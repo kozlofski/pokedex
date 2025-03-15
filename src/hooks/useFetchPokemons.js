@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 
+// this hook will be loaded from <App /> and pokemons' data written to global context
+
 const BASE_URL = "https://pokeapi.co/api/v2/";
 const LIMIT = 10;
 
 const useFetchPokemons = () => {
-  const [pokemons, setPokemons] = useState([]);
+  const [linksToPokemons, setLinksToPokemons] = useState([]);
   const [pokemonData, setPokemonData] = useState([]);
 
   useEffect(() => {
@@ -12,8 +14,8 @@ const useFetchPokemons = () => {
       try {
         const response = await fetch(`${BASE_URL}pokemon?limit=${LIMIT}`);
         const jsonResponse = await response.json();
-        setPokemons(jsonResponse.results);
-        console.log(jsonResponse);
+        console.log("Links to pokemons: ", jsonResponse.results);
+        setLinksToPokemons(jsonResponse.results);
       } catch (error) {
         console.log(error);
       }
@@ -22,9 +24,8 @@ const useFetchPokemons = () => {
   }, []);
 
   useEffect(() => {
-    const pokemonData = [];
-
-    pokemons.forEach(({ url }) => {
+    // const pokemonsFetched = [];
+    linksToPokemons.forEach(({ url }) => {
       const fetchPokemon = async () => {
         // const newPokemon = {};
         try {
@@ -50,14 +51,19 @@ const useFetchPokemons = () => {
             weight,
             ability
           );
+          // pokemonsFetched.push({ name, height, weight });
           setPokemonData([...pokemonData, { name, height, weight }]);
         } catch (error) {
           console.log(error);
         }
       };
+
       fetchPokemon();
     });
-  }, [pokemons]);
+
+    // console.log("Pokemons fetched: ", pokemonsFetched);
+    // setPokemonData(pokemonsFetched);
+  }, [linksToPokemons]);
 
   return { pokemons: pokemonData };
 };
