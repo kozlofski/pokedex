@@ -13,7 +13,9 @@ const Home = () => {
     return (
         <div>
             <div>Search Pokemąs</div>
-            <PokemonsBrowser></PokemonsBrowser>
+            <PokemonsBrowser>
+                {pokemons.map(() => { })}
+            </PokemonsBrowser>
         </div>
     )
 }

@@ -10,6 +10,7 @@ const useFetchPokemons = () => {
       try {
         const response = await fetch(`${BASE_URL}pokemon?limit=150`);
         const jsonResponse = await response.json();
+        setPokemons(jsonResponse.results);
         console.log(jsonResponse);
       } catch (error) {
         console.log(error);
@@ -18,7 +19,7 @@ const useFetchPokemons = () => {
     fetchData();
   }, []);
 
-  return pokemons;
+  return { pokemons: pokemons };
 };
 
 export default useFetchPokemons;
