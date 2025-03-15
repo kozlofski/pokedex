@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import { styled } from "styled-components"
-import useFetchPokemons from '../../hooks/useFetchPokemons'
+import { GlobalContext } from '../../context/GlobalContext'
+// import useFetchPokemons from '../../hooks/useFetchPokemons'
 
 const PokemonsBrowser = styled.ul`
     display: flex;
@@ -8,17 +9,19 @@ const PokemonsBrowser = styled.ul`
 `
 
 const Home = () => {
-    const { pokemons } = useFetchPokemons();
-    console.log("Pokemons from main: ", pokemons)
+    // const { pokemons } = useFetchPokemons();
+    // const { pokemons } = useContext(GlobalContext)
+
+    // console.log("Pokemons from main: ", pokemons)
 
     return (
         <div>
             <div>Search Pokemąs</div>
             <PokemonsBrowser>
-                {pokemons.map((pokemon, id) => {
+                {/* {pokemons.map((pokemon, id) => {
                     { console.log("Rendered: ", pokemon.name) }
                     <li key={id}>{pokemon.name}</li>
-                })}
+                })} */}
             </PokemonsBrowser>
         </div>
     )
