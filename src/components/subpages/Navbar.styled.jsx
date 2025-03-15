@@ -21,6 +21,7 @@ const routesIfNotLoggedIn = [
 const Navbar = () => {
     return (<>
         <div>Navbar</div>
+
         <LinkList links={isLoggedIn ? routesIfLoggedIn : routesIfNotLoggedIn} />
     </>
     )
