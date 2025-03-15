@@ -5,6 +5,7 @@ const LIMIT = 10;
 
 const useFetchPokemons = () => {
   const [pokemons, setPokemons] = useState([]);
+  const [pokemonData, setPokemonData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,17 +32,25 @@ const useFetchPokemons = () => {
           const jsonResponse = await response.json();
           const {
             name,
-            base_experience,
+            base_experience: baseExperience,
             height,
             weight,
             abilities: {
               0: {
-                ability: { name: abil },
+                ability: { name: ability },
               },
             },
           } = jsonResponse;
 
-          console.log(`pokemon: `, name, base_experience, height, weight, abil);
+          console.log(
+            `pokemon: `,
+            name,
+            baseExperience,
+            height,
+            weight,
+            ability
+          );
+          setPokemonData([...pokemonData, { name, height, weight }]);
         } catch (error) {
           console.log(error);
         }
@@ -50,7 +59,7 @@ const useFetchPokemons = () => {
     });
   }, [pokemons]);
 
-  return { pokemons: pokemons };
+  return { pokemons: pokemonData };
 };
 
 export default useFetchPokemons;
