@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import useFetchPokemons from "../hooks/useFetchPokemons";
 
 export const GlobalContext = createContext();
@@ -9,7 +9,6 @@ export const GlobalContextProvider = ({ children }) => {
 
   return (
     <GlobalContext.Provider value={{ pokemons }}>
-      {/* <GlobalContext.Provider > */}
       {children}
     </GlobalContext.Provider>
   );

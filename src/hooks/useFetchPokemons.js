@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 // this hook should be fired from GlobalContext
 
 const BASE_URL = "https://pokeapi.co/api/v2/";
-const LIMIT = 10;
+const LIMIT = 150;
 
 const useFetchPokemons = () => {
   console.log("Use fetch pokemons started");
