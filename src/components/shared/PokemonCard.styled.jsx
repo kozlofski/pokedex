@@ -6,7 +6,8 @@ const Card = styled.div`
 
 `
 
-const PokemonCard = ({ name, height, weight }) => {
+const PokemonCard = ({ pokemon }) => {
+    const { name, height, weight } = pokemon
     console.log("rendering", name)
 
     return (
