@@ -49,7 +49,7 @@ const ValueName = styled.p`
 
 const PokemonCard = ({ pokemon }) => {
     const { name, height, weight, imgUrl, baseExperience, ability } = pokemon
-    console.log("rendering", name)
+    // console.log("rendering", name)
 
     return (
         <Card>

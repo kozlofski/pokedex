@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { styled } from "styled-components"
 import { GlobalContext } from '../../context/GlobalContext'
 import PokemonCard from '../shared/PokemonCard.styled'
-// import useFetchPokemons from '../../hooks/useFetchPokemons'
+import Pagination from '../shared/Pagination.styled'
 
 const PokemonsBrowser = styled.ul`
     display: flex;
@@ -24,8 +24,11 @@ const HomeContainer = styled.div`
 `
 
 const Home = () => {
-    const { pokemons } = useContext(GlobalContext)
+    const { pokemons, currentPage } = useContext(GlobalContext)
+    // here will be also loaded user's pokemons, and array will be joined together
+    // users pokemons will be in an object to fast lookup (hashmap)
     const [pokemonsFiltered, setPokemonsFiltered] = useState(pokemons)
+    const [pokemonsPaginated, setPokemonsPaginated] = useState([])
     // console.log("Pokemons from main: ", pokemons)
 
     const filterPokemons = (event) => {
@@ -34,12 +37,18 @@ const Home = () => {
         setPokemonsFiltered(filtered)
     }
 
+    const paginate = () => {
+        const paginated = pokemonsFiltered.slice(1 + (currentPage - 1) * 15, (currentPage) * 15);
+        setPokemonsPaginated(paginated)
+    }
+
     return (
         <HomeContainer>
             <PokemonsFilter onChange={filterPokemons} placeholder='Search'></PokemonsFilter>
+            <Pagination totalPokemons={pokemons.length} />
             <PokemonsBrowser>
                 {pokemonsFiltered.length > 0 && pokemonsFiltered.map((pokemon, id) => {
-                    { console.log("Inside PokemonBrowser: ", pokemon) }
+                    // { console.log("Inside PokemonBrowser: ", pokemon) }
                     return <li key={id}>
                         <PokemonCard pokemon={pokemon} />
                     </li>

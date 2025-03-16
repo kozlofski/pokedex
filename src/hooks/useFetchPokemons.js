@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 // this hook should be fired from GlobalContext
 
@@ -9,6 +10,9 @@ const useFetchPokemons = () => {
   console.log("Use fetch pokemons started");
 
   const [pokemons, setPokemons] = useState([]);
+  const [pokemonsFetched, setPokemonsFetched] = useState(0);
+  // const { setPageLimit } = useContext(GlobalContext);
+  // setPageLimit(Math.floor(LIMIT / 15));
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,7 +20,7 @@ const useFetchPokemons = () => {
         const response = await fetch(`${BASE_URL}pokemon?limit=${LIMIT}`);
         const jsonResponse = await response.json();
         const linksToPokemons = jsonResponse.results;
-        console.log("Links to pokemons: ", linksToPokemons);
+        // console.log("Links to pokemons: ", linksToPokemons);
 
         const pokemonsArray = [];
 
@@ -64,6 +68,7 @@ const useFetchPokemons = () => {
 
         console.log("Pokemons array after foreach: ", pokemonsArray);
         setPokemons(pokemonsArray);
+        setPokemonsFetched(pokemonsArray.length);
       } catch (error) {
         console.log(error);
       }
@@ -71,7 +76,8 @@ const useFetchPokemons = () => {
     fetchData();
   }, []);
 
-  return { pokemons };
+  return { pokemons, pokemonsFetched };
+  // maybe delete pokemonsFetched property
 };
 
 export default useFetchPokemons;
