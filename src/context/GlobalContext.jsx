@@ -1,15 +1,14 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import useFetchPokemons from "../hooks/useFetchPokemons";
 
 export const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
   const { pokemons } = useFetchPokemons();
-  // useFetchPokemons();
-  console.log("From context file: ", pokemons)
+  console.log("From context: ", pokemons)
 
   return (
-    <GlobalContext.Provider value={{ pokemonData: [] }}>
+    <GlobalContext.Provider value={{ pokemons }}>
       {/* <GlobalContext.Provider > */}
       {children}
     </GlobalContext.Provider>

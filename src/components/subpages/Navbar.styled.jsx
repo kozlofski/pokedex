@@ -21,7 +21,7 @@ const routesIfNotLoggedIn = [
 const Navbar = () => {
     return (<>
         <div>Navbar</div>
-
+        <Link to={"/"}>Pokemon logo (home)</Link>
         <LinkList links={isLoggedIn ? routesIfLoggedIn : routesIfNotLoggedIn} />
     </>
     )

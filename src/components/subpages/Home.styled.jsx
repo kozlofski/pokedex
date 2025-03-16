@@ -1,27 +1,29 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { styled } from "styled-components"
 import { GlobalContext } from '../../context/GlobalContext'
+import PokemonCard from '../shared/PokemonCard.styled'
 // import useFetchPokemons from '../../hooks/useFetchPokemons'
 
 const PokemonsBrowser = styled.ul`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 `
 
 const Home = () => {
-    // const { pokemons } = useFetchPokemons();
-    // const { pokemons } = useContext(GlobalContext)
+    const { pokemons } = useContext(GlobalContext)
 
-    // console.log("Pokemons from main: ", pokemons)
+    console.log("Pokemons from main: ", pokemons)
 
     return (
         <div>
-            <div>Search Pokemąs</div>
+            <div>Search Pokemons</div>
             <PokemonsBrowser>
-                {/* {pokemons.map((pokemon, id) => {
-                    { console.log("Rendered: ", pokemon.name) }
-                    <li key={id}>{pokemon.name}</li>
-                })} */}
+                {pokemons.length > 0 && pokemons.map((pokemon, id) => {
+                    { console.log("Inside PokemonBrowser: ", pokemon) }
+                    return <li key={id}>
+                        <PokemonCard pokemon={pokemon} />
+                    </li>
+                })}
             </PokemonsBrowser>
         </div>
     )

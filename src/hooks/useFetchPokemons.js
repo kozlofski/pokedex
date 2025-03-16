@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 
-// this hook will be loaded from <App /> and pokemons' data written to global context
+// this hook should be fired from GlobalContext
 
 const BASE_URL = "https://pokeapi.co/api/v2/";
 const LIMIT = 10;
 
 const useFetchPokemons = () => {
-  // const [linksToPokemons, setLinksToPokemons] = useState([]);
-  const [pokemonData, setPokemonData] = useState([]);
+  console.log("Use fetch pokemons started");
+
+  const [pokemons, setPokemons] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,9 +18,10 @@ const useFetchPokemons = () => {
         const linksToPokemons = jsonResponse.results;
         console.log("Links to pokemons: ", linksToPokemons);
 
+        const pokemonsArray = [];
+
         linksToPokemons.forEach(({ url }) => {
           const fetchPokemon = async () => {
-            // const newPokemon = {};
             try {
               const response = await fetch(url);
               const jsonResponse = await response.json();
@@ -35,15 +37,17 @@ const useFetchPokemons = () => {
                 },
               } = jsonResponse;
 
-              console.log(
-                `pokemon: `,
+              const newPokemon = {
                 name,
                 baseExperience,
                 height,
                 weight,
-                ability
-              );
-              return { name, height, weight };
+                ability,
+              };
+
+              // console.log(`pokemon: `, newPokemon);
+              // console.log("Pokemon array at this iteration: ", pokemonsArray);
+              pokemonsArray.push(newPokemon);
             } catch (error) {
               console.log(error);
             }
@@ -52,7 +56,8 @@ const useFetchPokemons = () => {
           fetchPokemon();
         });
 
-        // console.log("Pokemons array: ", pokemonsArray);
+        console.log("Pokemons array after foreach: ", pokemonsArray);
+        setPokemons(pokemonsArray);
       } catch (error) {
         console.log(error);
       }
@@ -60,11 +65,7 @@ const useFetchPokemons = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log("Second use effect: ", pokemonData);
-  }, [pokemonData]);
-
-  return { pokemons: pokemonData };
+  return { pokemons };
 };
 
 export default useFetchPokemons;
