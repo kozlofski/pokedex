@@ -35,6 +35,11 @@ const useFetchPokemons = () => {
                     ability: { name: ability },
                   },
                 },
+                sprites: {
+                  other: {
+                    "official-artwork": { front_shiny: imgUrl },
+                  },
+                },
               } = jsonResponse;
 
               const newPokemon = {
@@ -43,6 +48,7 @@ const useFetchPokemons = () => {
                 height,
                 weight,
                 ability,
+                imgUrl,
               };
 
               // console.log(`pokemon: `, newPokemon);

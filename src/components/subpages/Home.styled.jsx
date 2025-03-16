@@ -6,7 +6,10 @@ import PokemonCard from '../shared/PokemonCard.styled'
 
 const PokemonsBrowser = styled.ul`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    list-style: none;
 `
 
 const Home = () => {
