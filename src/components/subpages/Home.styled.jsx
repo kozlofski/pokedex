@@ -12,7 +12,15 @@ const PokemonsBrowser = styled.ul`
     list-style: none;
 `
 const PokemonsFilter = styled.input`
-    border: 1px solid black;
+    border: 2px solid #aaaaaa;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+`
+
+const HomeContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 
 const Home = () => {
@@ -27,8 +35,8 @@ const Home = () => {
     }
 
     return (
-        <div>
-            <PokemonsFilter onChange={filterPokemons}></PokemonsFilter>
+        <HomeContainer>
+            <PokemonsFilter onChange={filterPokemons} placeholder='Search'></PokemonsFilter>
             <PokemonsBrowser>
                 {pokemonsFiltered.length > 0 && pokemonsFiltered.map((pokemon, id) => {
                     { console.log("Inside PokemonBrowser: ", pokemon) }
@@ -37,7 +45,7 @@ const Home = () => {
                     </li>
                 })}
             </PokemonsBrowser>
-        </div>
+        </HomeContainer>
     )
 }
 
