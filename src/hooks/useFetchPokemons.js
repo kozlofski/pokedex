@@ -59,12 +59,13 @@ const useFetchPokemons = () => {
         });
 
         console.log("Pokemons array after foreach: ", pokemonsArray);
-        setPokemons(pokemonsArray);
+        setPokemons([...pokemons, ...pokemonsArray]);
         setIsPending(false);
       } catch (error) {
         console.log(error);
       }
     };
+
     fetchData();
   }, []);
 

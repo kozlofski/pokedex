@@ -53,7 +53,7 @@ const Home = () => {
                 setPokemonsPaginated={setPokemonsPaginated} />
             <PokemonsBrowser>
                 {isPending && <p style={{ fontSize: "2rem" }}>Loading pokemons...</p>}
-                {pokemons.map((pokemon, id) =>
+                {pokemons && pokemons.map((pokemon, id) =>
                     <li key={id}>
                         <PokemonCard pokemon={pokemon} />
                     </li>

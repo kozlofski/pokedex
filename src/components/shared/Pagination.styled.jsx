@@ -40,7 +40,7 @@ const Pagination = ({ pokemonsFiltered, setPokemonsPaginated }) => {
     // const { pageLimit, currentPage, setCurrentPage } = useContext(GlobalContext)
     const [currentPage, setCurrentPage] = useState(1)
 
-    const totalPages = pokemonsFiltered.length / PAGE_LIMIT;
+    const totalPages = pokemonsFiltered ? pokemonsFiltered.length / PAGE_LIMIT : 0;
 
     const numbers = []
     for (let i = 1; i <= totalPages; i++) {
