@@ -2,7 +2,9 @@ import React, { useEffect } from 'react'
 
 import { useState, useContext } from 'react'
 import { styled } from "styled-components"
-import { GlobalContext } from '../../context/GlobalContext'
+import GlobalContext from '../../context/GlobalContext'
+
+const PAGE_LIMIT = 15;
 
 const PaginationContainer = styled.ul`
     padding: 1rem;
@@ -22,16 +24,34 @@ const PageButton = styled.li`
     color: blue;
 
     &:active {
-        border: 1px solid red;
+        border: 1px solid green;
+        }
+        
+    &.active {
+        border: 1px solid red;            
+    }
+
+    &:hover {
+        cursor: pointer;
     }
 `
 
-const Pagination = () => {
-    const { pageLimit, currentPage, setCurrentPage } = useContext(GlobalContext)
+const Pagination = ({ pokemonsFiltered, setPokemonsPaginated }) => {
+    // const { pageLimit, currentPage, setCurrentPage } = useContext(GlobalContext)
+    const [currentPage, setCurrentPage] = useState(1)
+
+    const totalPages = pokemonsFiltered.length / PAGE_LIMIT;
 
     const numbers = []
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= totalPages; i++) {
         numbers.push(i)
+    }
+
+    const handleChangePage = (number) => {
+        const newPage = number
+        const paginated = pokemonsFiltered.slice((newPage - 1) * 15, (newPage) * 15);
+        setPokemonsPaginated(paginated)
+        setCurrentPage(number)
     }
 
     return (
@@ -39,7 +59,8 @@ const Pagination = () => {
             {numbers.map((number) =>
             (<PageButton
                 key={number}
-                onClick={() => setCurrentPage(number)}
+                onClick={() => handleChangePage(number)}
+                className={number === currentPage ? "active" : ""}
             >{number}</PageButton>)
             )}
         </PaginationContainer>

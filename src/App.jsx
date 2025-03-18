@@ -9,7 +9,7 @@ import NotFound from "./components/subpages/NotFound.styled"
 import AppLayout from "./components/subpages/AppLayout.styled"
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import { GlobalContextProvider } from "./context/GlobalContext"
+import GlobalContextProvider from "./context/GlobalContextProvider"
 
 const router = createBrowserRouter([
   {

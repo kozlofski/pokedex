@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react'
 import { styled } from "styled-components"
-import { GlobalContext } from '../../context/GlobalContext'
+import GlobalContext from '../../context/GlobalContext'
 import PokemonCard from '../shared/PokemonCard.styled'
 import Pagination from '../shared/Pagination.styled'
+import useFetchPokemons from '../../hooks/useFetchPokemons'
 
 const PokemonsBrowser = styled.ul`
     display: flex;
@@ -15,8 +16,12 @@ const PokemonsFilter = styled.input`
     border: 2px solid #aaaaaa;
     padding: 0.5rem;
     border-radius: 0.25rem;
-`
 
+    &:focus {
+        border: 2px solid #999999;
+
+    }
+`
 const HomeContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -24,12 +29,13 @@ const HomeContainer = styled.div`
 `
 
 const Home = () => {
-    const { pokemons, currentPage } = useContext(GlobalContext)
-    // here will be also loaded user's pokemons, and array will be joined together
-    // users pokemons will be in an object to fast lookup (hashmap)
+    const { pokemons, isPending } = useFetchPokemons();
     const [pokemonsFiltered, setPokemonsFiltered] = useState(pokemons)
-    const [pokemonsPaginated, setPokemonsPaginated] = useState([])
-    // console.log("Pokemons from main: ", pokemons)
+    const [pokemonsPaginated, setPokemonsPaginated] = useState(pokemonsFiltered)
+
+    console.log("Pokemons from main: ", pokemons)
+    console.log("Pokemons filtered from main: ", pokemonsFiltered)
+    console.log("Pokemons paginated from main: ", pokemonsPaginated)
 
     const filterPokemons = (event) => {
         const filter = event.target.value;
@@ -37,24 +43,23 @@ const Home = () => {
         setPokemonsFiltered(filtered)
     }
 
-    const paginate = () => {
-        const paginated = pokemonsFiltered.slice(1 + (currentPage - 1) * 15, (currentPage) * 15);
-        setPokemonsPaginated(paginated)
-    }
-
     return (
         <HomeContainer>
-            <PokemonsFilter onChange={filterPokemons} placeholder='Search'></PokemonsFilter>
-            <Pagination totalPokemons={pokemons.length} />
+            <PokemonsFilter
+                onChange={filterPokemons}
+                placeholder='Search'></PokemonsFilter>
+            <Pagination
+                pokemonsFiltered={pokemonsFiltered}
+                setPokemonsPaginated={setPokemonsPaginated} />
             <PokemonsBrowser>
-                {pokemonsFiltered.length > 0 && pokemonsFiltered.map((pokemon, id) => {
-                    // { console.log("Inside PokemonBrowser: ", pokemon) }
-                    return <li key={id}>
+                {isPending && <p style={{ fontSize: "2rem" }}>Loading pokemons...</p>}
+                {pokemons.map((pokemon, id) =>
+                    <li key={id}>
                         <PokemonCard pokemon={pokemon} />
                     </li>
-                })}
+                )}
             </PokemonsBrowser>
-        </HomeContainer>
+        </HomeContainer >
     )
 }
 
