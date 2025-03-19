@@ -34,8 +34,8 @@ const Home = () => {
     const [pokemonsPaginated, setPokemonsPaginated] = useState(pokemonsFiltered)
 
     console.log("Pokemons from main: ", pokemons)
-    console.log("Pokemons filtered from main: ", pokemonsFiltered)
-    console.log("Pokemons paginated from main: ", pokemonsPaginated)
+    // console.log("Pokemons filtered from main: ", pokemonsFiltered)
+    // console.log("Pokemons paginated from main: ", pokemonsPaginated)
 
     const filterPokemons = (event) => {
         const filter = event.target.value;
@@ -53,10 +53,13 @@ const Home = () => {
                 setPokemonsPaginated={setPokemonsPaginated} />
             <PokemonsBrowser>
                 {isPending && <p style={{ fontSize: "2rem" }}>Loading pokemons...</p>}
-                {pokemons && pokemons.map((pokemon, id) =>
-                    <li key={id}>
+                {isPending || pokemons && pokemons.map((pokemon, id) => {
+                    console.log("Will render card from: ", pokemon.url)
+
+                    return <li key={id}>
                         <PokemonCard pokemon={pokemon} />
                     </li>
+                }
                 )}
             </PokemonsBrowser>
         </HomeContainer >

@@ -1,5 +1,6 @@
 import React from 'react'
 import { styled } from "styled-components"
+import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
 
 const Card = styled.div`
     padding: 0.5rem;
@@ -47,9 +48,13 @@ const ValueName = styled.p`
     margin: 0;
 `
 
-const PokemonCard = ({ pokemon }) => {
-    const { name, height, weight, imgUrl, baseExperience, ability } = pokemon
-    // console.log("rendering", name)
+const PokemonCard = ({ pokemon: { name, url } }) => {
+    console.log("Inside card: ", url)
+    const { baseExperience,
+        height,
+        weight,
+        ability,
+        imgUrl } = useFetchSinglePokemon(url)
 
     return (
         <Card>
