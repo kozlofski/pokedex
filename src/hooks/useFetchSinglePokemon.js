@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 const useFetchSinglePokemon = (url) => {
-  console.log("Fetching pokemon from :", url);
   const [pokemon, setPokemon] = useState({});
 
   useEffect(() => {

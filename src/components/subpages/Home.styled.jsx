@@ -1,9 +1,11 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { styled } from "styled-components"
 import GlobalContext from '../../context/GlobalContext'
 import PokemonCard from '../shared/PokemonCard.styled'
 import Pagination from '../shared/Pagination.styled'
 import useFetchPokemons from '../../hooks/useFetchPokemons'
+
+const PAGE_LIMIT = 15
 
 const PokemonsBrowser = styled.ul`
     display: flex;
@@ -31,11 +33,15 @@ const HomeContainer = styled.div`
 const Home = () => {
     const { pokemons, isPending } = useFetchPokemons();
     const [pokemonsFiltered, setPokemonsFiltered] = useState(pokemons)
-    const [pokemonsPaginated, setPokemonsPaginated] = useState(pokemonsFiltered)
+    const [pokemonsPaginated, setPokemonsPaginated] = useState(null)
+    const [currentPage, setCurrentPage] = useState(1)
 
-    console.log("Pokemons from main: ", pokemons)
-    // console.log("Pokemons filtered from main: ", pokemonsFiltered)
-    // console.log("Pokemons paginated from main: ", pokemonsPaginated)
+    useEffect(() => setPokemonsFiltered(pokemons), [pokemons])
+
+    useEffect(() => {
+        const paginated = pokemonsFiltered.slice((currentPage - 1) * PAGE_LIMIT, (currentPage) * PAGE_LIMIT);
+        setPokemonsPaginated(paginated)
+    }, [currentPage, pokemonsFiltered])
 
     const filterPokemons = (event) => {
         const filter = event.target.value;
@@ -50,12 +56,11 @@ const Home = () => {
                 placeholder='Search'></PokemonsFilter>
             <Pagination
                 pokemonsFiltered={pokemonsFiltered}
-                setPokemonsPaginated={setPokemonsPaginated} />
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage} />
             <PokemonsBrowser>
                 {isPending && <p style={{ fontSize: "2rem" }}>Loading pokemons...</p>}
-                {isPending || pokemons && pokemons.map((pokemon, id) => {
-                    console.log("Will render card from: ", pokemon.url)
-
+                {isPending || pokemonsPaginated && pokemonsPaginated.map((pokemon, id) => {
                     return <li key={id}>
                         <PokemonCard pokemon={pokemon} />
                     </li>

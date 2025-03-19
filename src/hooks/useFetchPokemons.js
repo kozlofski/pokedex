@@ -9,8 +9,6 @@ const BASE_URL = "https://pokeapi.co/api/v2/";
 const LIMIT = 150;
 
 const useFetchPokemons = () => {
-  console.log("Use fetch pokemons started");
-
   const [pokemons, setPokemons] = useState([]);
   const [isPending, setIsPending] = useState(false);
 

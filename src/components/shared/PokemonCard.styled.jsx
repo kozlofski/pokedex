@@ -49,7 +49,6 @@ const ValueName = styled.p`
 `
 
 const PokemonCard = ({ pokemon: { name, url } }) => {
-    console.log("Inside card: ", url)
     const { baseExperience,
         height,
         weight,
