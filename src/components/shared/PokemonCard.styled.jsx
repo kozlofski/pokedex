@@ -13,6 +13,14 @@ const Card = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+        transform: scale(1.05);
+        transition: all 0.1s ease-in-out;
+        box-shadow: 0.5rem 0.7rem 1.1rem #4444443A;
+
+    }
 `
 const Image = styled.img`
     height: 50%;
