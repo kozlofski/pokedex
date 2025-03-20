@@ -44,6 +44,7 @@ const Home = () => {
     }, [currentPage, pokemonsFiltered])
 
     const filterPokemons = (event) => {
+        setCurrentPage(1)
         const filter = event.target.value;
         const filtered = pokemons.filter((pokemon) => pokemon.name.toLowerCase().includes(filter));
         setPokemonsFiltered(filtered)
