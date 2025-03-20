@@ -33,6 +33,8 @@ const PageButton = styled.li`
 
     &:hover {
         cursor: pointer;
+        border: 1px solid green;
+
     }
 `
 

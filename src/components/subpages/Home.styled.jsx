@@ -11,8 +11,11 @@ const PokemonsBrowser = styled.ul`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-around;
     gap: 1.5rem;
     list-style: none;
+    margin: 0;
+    padding: 0;
 `
 const PokemonsFilter = styled.input`
     border: 2px solid #aaaaaa;
