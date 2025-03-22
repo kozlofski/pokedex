@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "id": "b78f",
+      "userName": "asdf",
+      "userEmail": "asdf@wp.pl"
+    },
+    {
+      "id": "df1a",
+      "userName": "dupa",
+      "userEmail": "dupa@wp.pl"
+    },
+    {
+      "id": "eadc",
+      "userName": "asdf",
+      "userEmail": "dupa@wp.pl"
+    },
+    {
+      "id": "d908",
+      "userName": "dupa",
+      "userEmail": "wp@wp.pl"
+    },
+    {
+      "id": "0aa8",
+      "userName": "dupa1",
+      "userEmail": "dupa@wp.pl"
+    },
+    {
+      "id": "8e42",
+      "userName": "dupa1",
+      "userEmail": "dupa@wp.pl"
+    }
+  ]
+}

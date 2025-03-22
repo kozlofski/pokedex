@@ -4,12 +4,19 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from 'zod'
 import Input from '../shared/Input.styled'
+import { useNavigate } from 'react-router'
+import useFetchUserNames from '../../hooks/useFetchUserNames'
+import { useEffect } from 'react'
+
+
+const JSON_SERVER_URL = "http://localhost:3000/users"
 
 const Form = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
 `
+
 
 const signupFormSchema = z.object({
     name: z.string().trim().min(3, { message: "imię musi zawierać conajmniej 3 znaki" }),
@@ -24,19 +31,42 @@ const signupFormSchema = z.object({
             path: ['confirm'],
         })
     }
+
+    // add username taken case
 })
 
 const SignUp = () => {
-    const { register, handleSubmit, formState: { errors, isSubmitting, isValid } } = useForm({ resolver: zodResolver(signupFormSchema) })
+    const userNamesTaken = useFetchUserNames();
+    console.log("User names from signup:", userNamesTaken)
 
-    const onSubmit = (data, event) => {
+    const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(signupFormSchema) })
+    const { navigate } = useNavigate();
+
+    const onSubmit = async (data, event) => {
         event.preventDefault();
-        console.log(data)
-        console.log("Errors from hook: ", errors)
+        console.log("submit successful", data)
+        try {
+            if (data.name in userNamesTaken)
+                throw new Error(`user name ${data.name} already taken in ${userNamesTaken}`)
+
+            const response = await fetch(JSON_SERVER_URL, {
+                method: "POST",
+                body: JSON.stringify({
+                    userName: data.name,
+                    userEmail: data.email
+                })
+            })
+            if (!response) throw new Error("something is not yes with response")
+
+            navigate('/home')
+        } catch (error) {
+            window.alert(error)
+        }
     }
 
     const onError = (error) => {
-        console.log("Error: ", error)
+        console.log("Error from hook: : ", error)
+        console.log("UserNamesTaken: ", userNamesTaken)
     }
 
     return (
