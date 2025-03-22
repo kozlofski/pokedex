@@ -6,13 +6,18 @@ const StyledInput = styled.input`
     border-radius: 0.5rem;
     padding: 0.25rem;
 `
+const ErrorMessage = styled.p`
+    color: red;
+    font-sie: 0.75rem;    
+    height: 1.5rem;
+`
 
 const Input = (props) => {
-    const { type, placeholder, ...rest } = props
-    console.log(rest)
-    return (
+    const { type, placeholder, error: { message }, ...rest } = props
+    return (<>
         <StyledInput type={type} placeholder={placeholder} {...rest}></StyledInput>
-    )
+        <ErrorMessage>{message}</ErrorMessage>
+    </>)
 }
 
 export default Input
