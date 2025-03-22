@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from 'zod'
 import Input from '../shared/Input.styled'
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import useFetchUserNames from '../../hooks/useFetchUserNames'
 import { useEffect } from 'react'
 
@@ -40,7 +40,7 @@ const SignUp = () => {
     console.log("User names from signup:", userNamesTaken)
 
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(signupFormSchema) })
-    const { navigate } = useNavigate();
+    const navigate = useNavigate();
 
     const onSubmit = async (data, event) => {
         event.preventDefault();
@@ -58,7 +58,7 @@ const SignUp = () => {
             })
             if (!response) throw new Error("something is not yes with response")
 
-            navigate('/home')
+            navigate(`/`);
         } catch (error) {
             window.alert(error)
         }
