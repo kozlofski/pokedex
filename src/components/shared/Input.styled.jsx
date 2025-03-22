@@ -9,7 +9,7 @@ const StyledInput = styled.input`
 
 const Input = (props) => {
     const { type, placeholder, ...rest } = props
-    // console.log(rest)
+    console.log(rest)
     return (
         <StyledInput type={type} placeholder={placeholder} {...rest}></StyledInput>
     )

@@ -8,6 +8,8 @@ import Edit from "./components/subpages/Edit.styled"
 import NotFound from "./components/subpages/NotFound.styled"
 import AppLayout from "./components/subpages/AppLayout.styled"
 
+import "./css/reset.css"
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import GlobalContextProvider from "./context/GlobalContextProvider"
 
