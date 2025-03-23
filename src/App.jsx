@@ -12,6 +12,7 @@ import "./css/reset.css"
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import GlobalContextProvider from "./context/GlobalContextProvider"
+import LoginContextProvider from "./context/LoginContextProvider"
 
 const router = createBrowserRouter([
   {
@@ -30,9 +31,11 @@ const router = createBrowserRouter([
 
 const App = () => {
   return (
-    <GlobalContextProvider>
-      <RouterProvider router={router} />
-    </GlobalContextProvider>
+    <LoginContextProvider>
+      <GlobalContextProvider>
+        <RouterProvider router={router} />
+      </GlobalContextProvider>
+    </LoginContextProvider>
   )
 }
 

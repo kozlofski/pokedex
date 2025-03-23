@@ -22,7 +22,6 @@ const PokemonsFilter = styled.input`
 
     &:focus {
         border: 2px solid #999999;
-
     }
 `
 const HomeContainer = styled.div`

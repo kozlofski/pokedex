@@ -4,7 +4,7 @@ import GlobalContext from "./GlobalContext";
 const GlobalContextProvider = ({ children }) => {
 
     return (
-        <GlobalContext.Provider>
+        <GlobalContext.Provider value={{}}>
             {children}
         </GlobalContext.Provider>
     );
