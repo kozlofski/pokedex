@@ -1,6 +1,8 @@
 import React from 'react'
 import { styled } from "styled-components"
 import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
+import { useState } from "react"
+import PokemonDetailsModal from "./PokemonDetailsModal.styled"
 
 const Card = styled.div`
     padding: 0.5rem;
@@ -56,15 +58,20 @@ const ValueName = styled.p`
     margin: 0;
 `
 
-const PokemonCard = ({ pokemon: { name, url } }) => {
+const PokemonCard = ({ pokemon: { name, url }, setModalOpened }) => {
     const { baseExperience,
         height,
         weight,
         ability,
         imgUrl } = useFetchSinglePokemon(url)
 
+
+    const openDetails = () => {
+        setModalOpened(true)
+    }
+
     return (
-        <Card>
+        <Card onClick={openDetails}>
             <Image src={imgUrl} alt="" />
             <Header>{name}</Header>
             <Characteristics>

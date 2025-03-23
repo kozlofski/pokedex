@@ -1,9 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { styled } from "styled-components"
 import GlobalContext from '../../context/GlobalContext'
 import PokemonCard from '../shared/PokemonCard.styled'
 import Pagination from '../shared/Pagination.styled'
 import useFetchPokemons from '../../hooks/useFetchPokemons'
+import PokemonDetailsModal from '../shared/PokemonDetailsModal.styled'
+import { createPortal } from "react-dom"
+
 
 const PAGE_LIMIT = 15
 
@@ -35,6 +38,8 @@ const Home = () => {
     const [pokemonsFiltered, setPokemonsFiltered] = useState(pokemons)
     const [pokemonsPaginated, setPokemonsPaginated] = useState(null)
     const [currentPage, setCurrentPage] = useState(1)
+    const [modalOpened, setModalOpened] = useState(false)
+
 
     useEffect(() => setPokemonsFiltered(pokemons), [pokemons])
 
@@ -50,6 +55,11 @@ const Home = () => {
         setPokemonsFiltered(filtered)
     }
 
+    const modal = createPortal(
+        <PokemonDetailsModal onClose={() => setModalOpened(false)} />,
+        document.body
+    )
+
     return (
         <HomeContainer>
             <PokemonsFilter
@@ -63,11 +73,12 @@ const Home = () => {
                 {isPending && <p style={{ fontSize: "2rem" }}>Loading pokemons...</p>}
                 {isPending || pokemonsPaginated && pokemonsPaginated.map((pokemon, id) => {
                     return <li key={id}>
-                        <PokemonCard pokemon={pokemon} />
+                        <PokemonCard pokemon={pokemon} setModalOpened={setModalOpened} />
                     </li>
                 }
                 )}
             </PokemonsBrowser>
+            {modalOpened && modal}
         </HomeContainer >
     )
 }
