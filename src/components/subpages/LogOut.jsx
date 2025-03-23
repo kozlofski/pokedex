@@ -14,13 +14,15 @@ const LogoutScreen = styled.div`
 `
 
 const LogOut = () => {
-    const { loggedUser, setLoggedUser } = useContext(LoginContext)
+    const { loggedUser, setLoggedUser, setLoggedUserId } = useContext(LoginContext)
     const navigate = useNavigate()
 
     useEffect(() => {
         setTimeout(() => {
             localStorage.setItem("loggedUser", null)
             setLoggedUser(null)
+            localStorage.setItem("loggedUserId", -1)
+            setLoggedUserId(-1)
             navigate('/')
         }, 1500)
     }, [])

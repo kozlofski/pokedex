@@ -26,7 +26,7 @@ const loginFormSchema = z.object({
 
 const LogIn = () => {
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(loginFormSchema) })
-    const { setLoggedUser } = useContext(LoginContext)
+    const { setLoggedUser, setLoggedUserId } = useContext(LoginContext)
     const navigate = useNavigate();
 
 
@@ -38,12 +38,15 @@ const LogIn = () => {
 
             const jsonResponse = await response.json();
             const foundUser = jsonResponse.find((user) => user.userName === data.name)
-            console.log(foundUser)
+            const foundUserId = foundUser.id;
+            console.log("User found: ", foundUserId)
             if (!foundUser) throw new Error("user not found")
             if (data.password !== foundUser.password)
                 throw new Error("password incorrect")
             setLoggedUser(data.name)
+            setLoggedUserId(foundUserId)
             localStorage.setItem("loggedUser", data.name)
+            localStorage.setItem("loggedUserId", foundUserId)
             navigate(`/`);
 
         } catch (error) {

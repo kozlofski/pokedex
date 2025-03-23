@@ -1,10 +1,13 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useContext } from 'react'
+import { useState, useEffect } from 'react';
 import { styled } from "styled-components"
 import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import LoginContext from '../../context/LoginContext';
+
+const JSON_SERVER_URL = "http://localhost:3000/users"
 
 const Modal = styled.div`
     position: fixed;
@@ -17,6 +20,7 @@ const Modal = styled.div`
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(10px);
+    // overflow: hidden;
   `
 
 const ModalContent = styled.div`
@@ -92,12 +96,12 @@ const Heart = styled.div`
     left: 1rem;
     bottom: 1rem;
 `
-const favourited = true;
 
 const PokemonDetailsModal = ({ onClose, pokemon }) => {
-    // console.log("Modal: ", pokemon)
+    const { loggedUserId } = useContext(LoginContext)
 
     const [isFavourite, setIsFavourite] = useState(false);
+    const [oldFavouritesArray, setOldFavouritesArray] = useState([]);
 
     const { baseExperience,
         height,
@@ -105,6 +109,54 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
         ability,
         imgUrl } = useFetchSinglePokemon(pokemon.url)
 
+    const setHeart = async () => {
+        try {
+            const response = await fetch(`${JSON_SERVER_URL}/${loggedUserId}`)
+            if (!response) throw new Error("Problem with fetching favourites")
+
+            const jsonResponse = await response.json();
+            setOldFavouritesArray(jsonResponse.favourites);
+
+            if (jsonResponse.favourites.indexOf(pokemon.name) !== -1) setIsFavourite(true)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(() => {
+        if (loggedUserId !== -1) setHeart();
+    }, [])
+
+
+    const toggleFavourite = async () => {
+        const newIsFavourite = !isFavourite;
+        console.log("Is favourite was: ", isFavourite)
+
+        try {
+            let newFavouritesArray = []
+
+            if (newIsFavourite === true) {
+                newFavouritesArray = [...oldFavouritesArray, pokemon.name]
+                console.log("Favouring: ", newFavouritesArray)
+            } else {
+                newFavouritesArray = oldFavouritesArray.filter(
+                    (favPokemon) => favPokemon !== pokemon.name
+                )
+            }
+
+            const patchResponse = fetch(`${JSON_SERVER_URL}/${loggedUserId}`, {
+                method: "PATCH",
+                body: JSON.stringify({
+                    favourites: newFavouritesArray
+                })
+            })
+            if (!patchResponse) throw new Error("Error patching favourites list")
+
+            setIsFavourite(newIsFavourite);
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
 
     return (
         <Modal onClick={onClose}>
@@ -131,7 +183,7 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
                         </Characteristic>
                     </Characteristics>
                 </Description>
-                <Heart onClick={() => setIsFavourite(prev => !prev)}>{isFavourite ?
+                <Heart onClick={toggleFavourite}>{isFavourite ?
                     <FavoriteIcon /> :
                     <FavoriteBorderIcon />}
                 </Heart>

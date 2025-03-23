@@ -1,10 +1,16 @@
 {
   "users": [
     {
-      "id": "afa8",
+      "id": "3292",
       "userName": "koza",
       "userEmail": "koza@wp.pl",
-      "password": "Dupa747$"
+      "password": "Dupa747$",
+      "favourites": [
+        "charmander",
+        "charmeleon",
+        "caterpie",
+        "metapod"
+      ]
     }
   ]
 }
