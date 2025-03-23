@@ -19,6 +19,7 @@ const LogOut = () => {
 
     useEffect(() => {
         setTimeout(() => {
+            localStorage.setItem("loggedUser", null)
             setLoggedUser(null)
             navigate('/')
         }, 1500)

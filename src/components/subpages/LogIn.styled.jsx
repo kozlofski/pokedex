@@ -33,9 +33,6 @@ const LogIn = () => {
     const onSubmit = async (data, event) => {
         event.preventDefault();
         try {
-            // if (!(data.name in userNames))
-            //     throw new Error(`user ${data.name} doesn't exist in database`)
-
             const response = await fetch(JSON_SERVER_URL)
             if (!response) throw new Error("something is not yes with response")
 
@@ -46,6 +43,7 @@ const LogIn = () => {
             if (data.password !== foundUser.password)
                 throw new Error("password incorrect")
             setLoggedUser(data.name)
+            localStorage.setItem("loggedUser", data.name)
             navigate(`/`);
 
         } catch (error) {

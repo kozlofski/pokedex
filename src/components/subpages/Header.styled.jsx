@@ -60,11 +60,12 @@ const User = styled.p`
 
 const Header = () => {
     const { loggedUser } = useContext(LoginContext)
+    console.log(loggedUser)
 
     return (<HeaderContainer>
         <Link to={"/"}><Logo src={logoPath} alt="POKEMON"></Logo></Link>
         <UserAndNavbar>
-            <User>{loggedUser ?? ""}</User>
+            <User>{loggedUser === null ? " " : loggedUser}</User>
             <Navbar links={loggedUser ? routesIfLoggedIn : routesIfNotLoggedIn} />
         </UserAndNavbar>
     </HeaderContainer>
