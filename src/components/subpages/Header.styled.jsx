@@ -12,7 +12,7 @@ const routesIfLoggedIn = [
     { name: "Arena", id: 4, path: "/arena" },
     { name: "Ranking", id: 5, path: "/ranking" },
     { name: "Edycja", id: 6, path: "/edit" },
-    { name: "Wyloguj", id: 7, path: "/logout" },
+    { name: "Wyloguj", id: 7, path: "/log-out" },
 ]
 
 const routesIfNotLoggedIn = [

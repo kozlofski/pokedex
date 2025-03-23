@@ -5,6 +5,7 @@ import Favorites from "./components/subpages/Favorites.styled"
 import Arena from "./components/subpages/Arena.styled"
 import Ranking from "./components/subpages/Ranking.styled"
 import Edit from "./components/subpages/Edit.styled"
+import LogOut from "./components/subpages/LogOut"
 import NotFound from "./components/subpages/NotFound.styled"
 import AppLayout from "./components/subpages/AppLayout.styled"
 
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { element: <Arena />, path: "/arena" },
       { element: <Ranking />, path: "/ranking" },
       { element: <Edit />, path: "/edit" },
+      { element: <LogOut />, path: "/log-out" },
       { element: <NotFound />, path: "*" },
     ]
   },

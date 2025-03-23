@@ -11,9 +11,6 @@ import { useContext } from 'react'
 import LoginContext from '../../context/LoginContext'
 import { useNavigate } from 'react-router-dom'
 
-
-
-
 const JSON_SERVER_URL = "http://localhost:3000/users"
 
 const Form = styled.form`

@@ -1,11 +1,16 @@
 import React from 'react'
 
+import { styled } from "styled-components"
+
+const MainContainer = styled.div`
+    height: 100%;
+`
+
 const Main = ({ children }) => {
     return (
-        <>
-            <div>Main</div>
+        <MainContainer>
             {children}
-        </>
+        </MainContainer>
     )
 }
 
