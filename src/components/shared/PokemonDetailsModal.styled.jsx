@@ -1,6 +1,10 @@
 import React from 'react'
+import { useState } from 'react';
 import { styled } from "styled-components"
 import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
+
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const Modal = styled.div`
     position: fixed;
@@ -26,6 +30,7 @@ const ModalContent = styled.div`
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    position: relative;
 
     @media (max-width: 600px) {
         flex-direction: column;
@@ -82,8 +87,17 @@ const ValueName = styled.p`
     margin: 0;
 `
 
+const Heart = styled.div`
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+`
+const favourited = true;
+
 const PokemonDetailsModal = ({ onClose, pokemon }) => {
-    console.log("Modal: ", pokemon)
+    // console.log("Modal: ", pokemon)
+
+    const [isFavourite, setIsFavourite] = useState(false);
 
     const { baseExperience,
         height,
@@ -94,7 +108,7 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
 
     return (
         <Modal onClick={onClose}>
-            <ModalContent>
+            <ModalContent onClick={e => e.stopPropagation()}>
                 <Image src={imgUrl} alt="" />
                 <Description>
                     <Header>{pokemon.name}</Header>
@@ -117,7 +131,10 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
                         </Characteristic>
                     </Characteristics>
                 </Description>
-                {/* <button onClick={onClose}>Zamknij</button> */}
+                <Heart onClick={() => setIsFavourite(prev => !prev)}>{isFavourite ?
+                    <FavoriteIcon /> :
+                    <FavoriteBorderIcon />}
+                </Heart>
             </ModalContent>
         </Modal>
     );

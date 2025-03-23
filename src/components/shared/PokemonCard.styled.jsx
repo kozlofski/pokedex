@@ -1,7 +1,8 @@
 import React from 'react'
 import { styled } from "styled-components"
 import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
-import { useState } from "react"
+import { useContext } from "react"
+import LoginContext from '../../context/LoginContext'
 import PokemonDetailsModal from "./PokemonDetailsModal.styled"
 
 const Card = styled.div`
@@ -68,6 +69,7 @@ const PokemonCard = ({ pokemon, setModalOpened, setSelectedPokemon }) => {
         ability,
         imgUrl } = useFetchSinglePokemon(pokemon.url)
 
+    const { loggedUser } = useContext(LoginContext)
 
     const openDetails = () => {
         setModalOpened(true)
