@@ -24,6 +24,9 @@ const Card = styled.div`
 
     }
 `
+
+// move from styles here down on to common file
+
 const Image = styled.img`
     height: 50%;
 `
@@ -58,22 +61,23 @@ const ValueName = styled.p`
     margin: 0;
 `
 
-const PokemonCard = ({ pokemon: { name, url }, setModalOpened }) => {
+const PokemonCard = ({ pokemon, setModalOpened, setSelectedPokemon }) => {
     const { baseExperience,
         height,
         weight,
         ability,
-        imgUrl } = useFetchSinglePokemon(url)
+        imgUrl } = useFetchSinglePokemon(pokemon.url)
 
 
     const openDetails = () => {
         setModalOpened(true)
+        setSelectedPokemon(pokemon)
     }
 
     return (
         <Card onClick={openDetails}>
             <Image src={imgUrl} alt="" />
-            <Header>{name}</Header>
+            <Header>{pokemon.name}</Header>
             <Characteristics>
                 <Characteristic>
                     <CharValue>{height}</CharValue>

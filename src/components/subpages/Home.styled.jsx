@@ -39,6 +39,7 @@ const Home = () => {
     const [pokemonsPaginated, setPokemonsPaginated] = useState(null)
     const [currentPage, setCurrentPage] = useState(1)
     const [modalOpened, setModalOpened] = useState(false)
+    const [selectedPokemon, setSelectedPokemon] = useState({})
 
 
     useEffect(() => setPokemonsFiltered(pokemons), [pokemons])
@@ -56,7 +57,7 @@ const Home = () => {
     }
 
     const modal = createPortal(
-        <PokemonDetailsModal onClose={() => setModalOpened(false)} />,
+        <PokemonDetailsModal onClose={() => setModalOpened(false)} pokemon={selectedPokemon} />,
         document.body
     )
 
@@ -73,7 +74,9 @@ const Home = () => {
                 {isPending && <p style={{ fontSize: "2rem" }}>Loading pokemons...</p>}
                 {isPending || pokemonsPaginated && pokemonsPaginated.map((pokemon, id) => {
                     return <li key={id}>
-                        <PokemonCard pokemon={pokemon} setModalOpened={setModalOpened} />
+                        <PokemonCard pokemon={pokemon}
+                            setModalOpened={setModalOpened}
+                            setSelectedPokemon={setSelectedPokemon} />
                     </li>
                 }
                 )}
