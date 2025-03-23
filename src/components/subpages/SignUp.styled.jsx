@@ -6,7 +6,8 @@ import * as z from 'zod'
 import Input from '../shared/Input.styled'
 import { useNavigate } from 'react-router-dom'
 import useFetchUserNames from '../../hooks/useFetchUserNames'
-import { useEffect } from 'react'
+import { useContext } from 'react'
+import LoginContext from '../../context/LoginContext'
 
 
 const JSON_SERVER_URL = "http://localhost:3000/users"
@@ -36,8 +37,10 @@ const signupFormSchema = z.object({
 })
 
 const SignUp = () => {
+    const { setLoggedUser } = useContext(LoginContext)
+
     const userNamesTaken = useFetchUserNames();
-    console.log("User names from signup:", userNamesTaken)
+    // console.log("User names from signup:", userNamesTaken)
 
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(signupFormSchema) })
     const navigate = useNavigate();
@@ -47,7 +50,7 @@ const SignUp = () => {
         console.log("submit successful", data)
         try {
             if (data.name in userNamesTaken)
-                throw new Error(`user name ${data.name} already taken in ${userNamesTaken}`)
+                throw new Error(`user name ${data.name} already taken`)
 
             const response = await fetch(JSON_SERVER_URL, {
                 method: "POST",
@@ -57,7 +60,7 @@ const SignUp = () => {
                 })
             })
             if (!response) throw new Error("something is not yes with response")
-
+            setLoggedUser(data.name)
             navigate(`/`);
         } catch (error) {
             window.alert(error)
