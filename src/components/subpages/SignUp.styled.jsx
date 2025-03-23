@@ -56,7 +56,8 @@ const SignUp = () => {
                 method: "POST",
                 body: JSON.stringify({
                     userName: data.name,
-                    userEmail: data.email
+                    userEmail: data.email,
+                    password: data.password,
                 })
             })
             if (!response) throw new Error("something is not yes with response")

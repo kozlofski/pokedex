@@ -1,79 +1,10 @@
 {
   "users": [
     {
-      "id": "b78f",
-      "userName": "asdf",
-      "userEmail": "asdf@wp.pl"
-    },
-    {
-      "id": "df1a",
-      "userName": "dupa",
-      "userEmail": "dupa@wp.pl"
-    },
-    {
-      "id": "eadc",
-      "userName": "asdf",
-      "userEmail": "dupa@wp.pl"
-    },
-    {
-      "id": "d908",
-      "userName": "dupa",
-      "userEmail": "wp@wp.pl"
-    },
-    {
-      "id": "0aa8",
-      "userName": "dupa1",
-      "userEmail": "dupa@wp.pl"
-    },
-    {
-      "id": "8e42",
-      "userName": "dupa1",
-      "userEmail": "dupa@wp.pl"
-    },
-    {
-      "id": "c127",
-      "userName": "dupa1a",
-      "userEmail": "dupa@wp.pl"
-    },
-    {
-      "id": "3e2f",
-      "userName": "dupa1as",
-      "userEmail": "dupa@wp.pl"
-    },
-    {
-      "id": "3b19",
-      "userName": "asdfg",
-      "userEmail": "sdffgafsd@wp.pl"
-    },
-    {
-      "id": "1322",
-      "userName": "dupa111",
-      "userEmail": "dupa@wp.pl"
-    },
-    {
-      "id": "93b6",
-      "userName": "sdfgbmjsad",
-      "userEmail": "shdjfh@wp.pl"
-    },
-    {
-      "id": "b694",
-      "userName": "dupa123",
-      "userEmail": "dupa@wp.pl"
-    },
-    {
-      "id": "8af9",
-      "userName": "dupa2322",
-      "userEmail": "dupa@wp.pl"
-    },
-    {
-      "id": "bfd5",
-      "userName": "dupe2133",
-      "userEmail": "fsdilahf@wp.pl"
-    },
-    {
-      "id": "0f43",
-      "userName": "dupa888",
-      "userEmail": "dupa@wpo.pl"
+      "id": "afa8",
+      "userName": "koza",
+      "userEmail": "koza@wp.pl",
+      "password": "Dupa747$"
     }
   ]
 }
