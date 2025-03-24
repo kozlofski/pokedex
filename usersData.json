@@ -5,15 +5,9 @@
       "userName": "koza",
       "userEmail": "koza@wp.pl",
       "password": "Dupa747$",
-      "favourites": [
-        "charmander",
-        "charmeleon",
-        "caterpie",
-        "metapod",
-        "bulbasaur",
-        "beedrill",
-        "venusaur"
-      ]
+      "favourites": {
+        "ivysaur": true
+      }
     }
   ]
 }

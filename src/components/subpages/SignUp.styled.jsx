@@ -58,7 +58,7 @@ const SignUp = () => {
                     userName: data.name,
                     userEmail: data.email,
                     password: data.password,
-                    favourites: [],
+                    favourites: {},
                 })
             })
             if (!response) throw new Error("something is not yes with response")

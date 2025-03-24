@@ -101,7 +101,7 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
     const { loggedUserId } = useContext(LoginContext)
 
     const [isFavourite, setIsFavourite] = useState(false);
-    const [oldFavouritesArray, setOldFavouritesArray] = useState([]);
+    const [oldFavourites, setOldFavourites] = useState({});
 
     const { baseExperience,
         height,
@@ -115,9 +115,9 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
             if (!response) throw new Error("Problem with fetching favourites")
 
             const jsonResponse = await response.json();
-            setOldFavouritesArray(jsonResponse.favourites);
+            setOldFavourites(jsonResponse.favourites);
 
-            if (jsonResponse.favourites.indexOf(pokemon.name) !== -1) setIsFavourite(true)
+            if (pokemon.name in jsonResponse.favourites) setIsFavourite(true)
         } catch (error) {
             console.log(error)
         }
@@ -132,21 +132,20 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
         console.log("Is favourite was: ", isFavourite)
 
         try {
-            let newFavouritesArray = []
+            let newFavourites = {}
 
             if (newIsFavourite === true) {
-                newFavouritesArray = [...oldFavouritesArray, pokemon.name]
-                console.log("Favouring: ", newFavouritesArray)
+                newFavourites = oldFavourites
+                newFavourites[pokemon.name] = true
             } else {
-                newFavouritesArray = oldFavouritesArray.filter(
-                    (favPokemon) => favPokemon !== pokemon.name
-                )
+                newFavourites = oldFavourites
+                delete newFavourites[pokemon.name]
             }
 
             const patchResponse = fetch(`${JSON_SERVER_URL}/${loggedUserId}`, {
                 method: "PATCH",
                 body: JSON.stringify({
-                    favourites: newFavouritesArray
+                    favourites: newFavourites
                 })
             })
             if (!patchResponse) throw new Error("Error patching favourites list")
