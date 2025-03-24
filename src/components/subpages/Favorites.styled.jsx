@@ -1,9 +1,11 @@
 import React from 'react'
+import PokemonBrowser from '../shared/PokemonBrowser.styled'
 
 const Favorites = () => {
-    return (
-        <div>Favorites</div>
-    )
+    return <>
+        <PokemonBrowser favourites={true} />
+    </>
+
 }
 
 export default Favorites

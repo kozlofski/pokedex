@@ -6,7 +6,10 @@
       "userEmail": "koza@wp.pl",
       "password": "Dupa747$",
       "favourites": {
-        "ivysaur": true
+        "charizard": true,
+        "wartortle": true,
+        "caterpie": true,
+        "weedle": true
       }
     }
   ]
