@@ -10,7 +10,7 @@ import { createPortal } from "react-dom"
 
 const PAGE_LIMIT = 15
 
-const PokemonsBrowser = styled.ul`
+const PokemonsGallery = styled.ul`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -70,7 +70,7 @@ const Home = () => {
                 pokemonsFiltered={pokemonsFiltered}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage} />
-            <PokemonsBrowser>
+            <PokemonsGallery>
                 {isPending && <p style={{ fontSize: "2rem" }}>Loading pokemons...</p>}
                 {isPending || pokemonsPaginated && pokemonsPaginated.map((pokemon, id) => {
                     return <li key={id}>
@@ -80,7 +80,7 @@ const Home = () => {
                     </li>
                 }
                 )}
-            </PokemonsBrowser>
+            </PokemonsGallery>
             {modalOpened && modal}
         </HomeContainer >
     )

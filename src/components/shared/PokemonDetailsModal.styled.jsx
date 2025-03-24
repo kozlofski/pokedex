@@ -183,10 +183,10 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
                         </Characteristic>
                     </Characteristics>
                 </Description>
-                <Heart onClick={toggleFavourite}>{isFavourite ?
+                {loggedUserId >= 0 && <Heart onClick={toggleFavourite}>{isFavourite ?
                     <FavoriteIcon /> :
                     <FavoriteBorderIcon />}
-                </Heart>
+                </Heart>}
             </ModalContent>
         </Modal>
     );
