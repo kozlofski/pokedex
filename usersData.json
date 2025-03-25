@@ -6,10 +6,18 @@
       "userEmail": "koza@wp.pl",
       "password": "Dupa747$",
       "favourites": {
-        "charizard": true,
-        "wartortle": true,
         "caterpie": true,
-        "weedle": true
+        "weedle": true,
+        "bulbasaur": true,
+        "ponyta": true,
+        "rapidash": true,
+        "dewgong": true,
+        "pikachu": true,
+        "eevee": true,
+        "jolteon": true,
+        "dratini": true,
+        "flareon": true,
+        "ninetales": true
       }
     }
   ]

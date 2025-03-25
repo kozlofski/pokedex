@@ -3,8 +3,10 @@ import { useState } from "react"
 
 const LoginContextProvider = ({ children }) => {
 
-    const [loggedUser, setLoggedUser] = useState(null)
-    const [loggedUserId, setLoggedUserId] = useState(-1)
+    const userName = localStorage.getItem("loggedUser") ?? null
+    const id = localStorage.getItem("loggedUserId") ?? -1
+    const [loggedUser, setLoggedUser] = useState(userName)
+    const [loggedUserId, setLoggedUserId] = useState(id)
 
     return (
         <LoginContext.Provider

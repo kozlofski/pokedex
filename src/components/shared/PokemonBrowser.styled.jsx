@@ -6,11 +6,10 @@ import useFetchPokemons from '../../hooks/useFetchPokemons'
 import PokemonDetailsModal from '../shared/PokemonDetailsModal.styled'
 import { createPortal } from "react-dom"
 import LoginContext from '../../context/LoginContext';
-
+import fetchUserData from './../../services/fetchUserData'
 
 const PAGE_LIMIT = 15
 const JSON_SERVER_URL = "http://localhost:3000/users"
-
 
 const PokemonsGallery = styled.ul`
     display: flex;
@@ -36,56 +35,44 @@ const BrowserContainer = styled.div`
 `
 
 const PokemonBrowser = ({ favourites }) => {
-    console.log("Render pokemon component")
     const { pokemons, isPending } = useFetchPokemons();
-
-    //               filter      changePage
-    //                  v           v
-    //  pokemons -> filtered -> paginated -> render
-    // 
-    // 
-
+    const [filter, setFilter] = useState('')
+    const [currentPage, setCurrentPage] = useState(1)
     const [pokemonsFiltered, setPokemonsFiltered] = useState(pokemons)
     const [pokemonsPaginated, setPokemonsPaginated] = useState(null)
-    const [currentPage, setCurrentPage] = useState(1)
     const [modalOpened, setModalOpened] = useState(false)
     const [selectedPokemon, setSelectedPokemon] = useState({})
     const { loggedUserId } = useContext(LoginContext)
 
-
-    // useEffect(() => filterPokemons, [])
+    useEffect(() => {
+        filterPokemons()
+    }, [filter, pokemons])
 
     useEffect(() => {
         const paginated = pokemonsFiltered.slice((currentPage - 1) * PAGE_LIMIT, (currentPage) * PAGE_LIMIT);
         setPokemonsPaginated(paginated)
     }, [currentPage, pokemonsFiltered])
 
-    const filterPokemons = async (event) => {
-        let filteredFavs = []
+
+    const filterPokemons = async () => {
+        const filterInput = (pokemon) => pokemon.name.toLowerCase().includes(filter)
+        let filtered = pokemons.filter(filterInput);
+
         if (favourites) {
             try {
-                const response = await fetch(`${JSON_SERVER_URL}/${loggedUserId}`)
-                if (!response) throw new Error("Problem with fetching favourites")
-
-                const jsonResponse = await response.json();
-                console.log("Fetched favs in filter: ", jsonResponse.favourites);
-                filteredFavs = await pokemons.filter((pokemon) => pokemon.name in jsonResponse.favourites)
+                const userDataResponse = await fetchUserData(JSON_SERVER_URL, loggedUserId)
+                console.log("Fetched favs in filter: ", userDataResponse.favourites);
+                const filterFavourites = (pokemon) => pokemon.name in userDataResponse.favourites
+                filtered = filtered.filter(filterFavourites)
             } catch (error) {
                 console.log(error)
             }
-        } else {
-            filteredFavs = pokemons;
         }
-        console.log("Filtered favs: ", filteredFavs)
 
-        const filter = event.target.value;
-        console.log(filter)
-        const filtered = filteredFavs.filter((pokemon) => pokemon.name.toLowerCase().includes(filter));
-        console.log("filtereded favs after input filter: ", filtered)
+        console.log(`Filtered pokemons ${favourites && "and favourited"}: `, filtered)
         setCurrentPage(1)
         setPokemonsFiltered(filtered)
     }
-    // filterPokemons();
 
     const modal = createPortal(
         <PokemonDetailsModal onClose={() => setModalOpened(false)} pokemon={selectedPokemon} />,
@@ -95,13 +82,14 @@ const PokemonBrowser = ({ favourites }) => {
     return (
         <BrowserContainer>
             <PokemonsFilter
-                onChange={filterPokemons}
+                onChange={(e) => setFilter(e.target.value)}
                 placeholder='Search'></PokemonsFilter>
             <Pagination
                 pokemonsFiltered={pokemonsFiltered}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage} />
             <PokemonsGallery>
+                {/* turn loader into separate component */}
                 {isPending && <p style={{ fontSize: "2rem" }}>Loading pokemons...</p>}
                 {isPending || pokemonsPaginated && pokemonsPaginated.map((pokemon, id) => {
                     return <li key={id}>
