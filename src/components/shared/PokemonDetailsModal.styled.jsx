@@ -138,6 +138,7 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
                 newFavourites = oldFavourites
                 newFavourites[pokemon.name] = true
             } else {
+                // spread syntax?
                 newFavourites = oldFavourites
                 delete newFavourites[pokemon.name]
             }

@@ -38,6 +38,13 @@ const BrowserContainer = styled.div`
 const PokemonBrowser = ({ favourites }) => {
     console.log("Render pokemon component")
     const { pokemons, isPending } = useFetchPokemons();
+
+    //               filter      changePage
+    //                  v           v
+    //  pokemons -> filtered -> paginated -> render
+    // 
+    // 
+
     const [pokemonsFiltered, setPokemonsFiltered] = useState(pokemons)
     const [pokemonsPaginated, setPokemonsPaginated] = useState(null)
     const [currentPage, setCurrentPage] = useState(1)
