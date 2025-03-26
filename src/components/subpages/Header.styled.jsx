@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { useState } from 'react'
 import { styled } from "styled-components"
 import LoginContext from '../../context/LoginContext'
+import Button from '../shared/Button.styled'
 
 import logoPath from "../../assets/pokemonLogo.svg"
 
@@ -34,14 +35,16 @@ const HeaderContainer = styled.header`
 const LinkList = styled.ul`
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: 0.25rem;
 `
 
 const Navbar = ({ links }) => {
     return (<LinkList>
         {links.map(({ name, id, path }) =>
             <li key={id}>
-                <Link to={path}>{name}</Link>
+                <Link to={path}>
+                    <Button>{name}</Button>
+                </Link>
             </li>)}
     </LinkList>)
 }

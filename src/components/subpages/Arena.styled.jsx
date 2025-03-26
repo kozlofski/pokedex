@@ -8,15 +8,19 @@ import { createPortal } from "react-dom"
 import PokemonDetailsModal from '../shared/PokemonDetailsModal.styled'
 import EmptyPokemonCard from '../shared/EmptyPokemonCard.styled'
 import CloseIcon from '@mui/icons-material/Close';
+import FightButton from '../shared/FightButton.styled'
+import fight from '../../services/fight'
 
 
 
 const JSON_SERVER_URL = "http://localhost:3000/users"
 
 const ArenaContainer = styled.div`
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
     gap: 2rem;
 `
 
@@ -34,7 +38,7 @@ const Arena = () => {
     const { loggedUserId } = useContext(LoginContext)
 
     const { leftPokemonFromArena, rightPokemonFromArena } = useFetchArena(JSON_SERVER_URL, loggedUserId)
-    console.log("In arena: ", leftPokemonFromArena, rightPokemonFromArena)
+    // console.log("In arena: ", leftPokemonFromArena, rightPokemonFromArena)
     const [leftPokemon, setLeftPokemon] = useState(undefined)
     const [rightPokemon, setRightPokemon] = useState(undefined)
 
@@ -43,7 +47,7 @@ const Arena = () => {
         setRightPokemon(rightPokemonFromArena)
     }, [leftPokemonFromArena, rightPokemonFromArena])
 
-    console.log("Pokemons: ", leftPokemon, rightPokemon)
+    // console.log("Pokemons: ", leftPokemon, rightPokemon)
 
     const [modalOpened, setModalOpened] = useState(false)
     const [selectedPokemon, setSelectedPokemon] = useState({})
@@ -81,11 +85,6 @@ const Arena = () => {
         }
     }
 
-    const fight = () => {
-        // const leftPower = 
-
-    }
-
     return (
         <ArenaContainer>
             <ArenaCardContainer>
@@ -98,7 +97,12 @@ const Arena = () => {
                     <EmptyPokemonCard />}
                 {leftPokemon && <RemoveFromArena onClick={() => removeFromArena("left")}><CloseIcon /></RemoveFromArena>}
             </ArenaCardContainer>
-            <button onClick={fight} disabled={!(leftPokemon && rightPokemon)} >WALCZ</button>
+
+            <FightButton
+                onClick={() => fight(leftPokemon, rightPokemon)}
+                disabled={!(leftPokemon && rightPokemon)} >
+                WALCZ!
+            </FightButton>
 
             <ArenaCardContainer>
                 {rightPokemon ?
