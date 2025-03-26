@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import useFetchUserNames from '../../hooks/useFetchUserNames'
 import { useContext } from 'react'
 import LoginContext from '../../context/LoginContext'
+import loginUser from '../../services/loginUser'
 
 
 const JSON_SERVER_URL = "http://localhost:3000/users"
@@ -37,7 +38,7 @@ const signupFormSchema = z.object({
 })
 
 const SignUp = () => {
-    const { setLoggedUser } = useContext(LoginContext)
+    const { setLoggedUser, setLoggedUserId } = useContext(LoginContext)
 
     const userNamesTaken = useFetchUserNames();
     // console.log("User names from signup:", userNamesTaken)
@@ -59,9 +60,20 @@ const SignUp = () => {
                     userEmail: data.email,
                     password: data.password,
                     favourites: {},
+                    "arena": {
+                        "left": null,
+                        "right": null
+                    }
                 })
             })
-            if (!response) throw new Error("something is not yes with response")
+            if (!response) throw new Error("something is not yes with POST response")
+
+            const inputtedUserName = data.name;
+            const inputtedPassword = data.password;
+            const foundUserId = loginUser(inputtedUserName, inputtedPassword, JSON_SERVER_URL)
+            setLoggedUser(data.name);
+            setLoggedUserId(foundUserId);
+
             setLoggedUser(data.name)
             navigate(`/`);
         } catch (error) {

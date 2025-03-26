@@ -61,7 +61,7 @@ const PokemonBrowser = ({ favourites }) => {
         if (favourites) {
             try {
                 const userDataResponse = await fetchUserData(JSON_SERVER_URL, loggedUserId)
-                console.log("Fetched favs in filter: ", userDataResponse.favourites);
+                // console.log("Fetched favs in filter: ", userDataResponse.favourites);
                 const filterFavourites = (pokemon) => pokemon.name in userDataResponse.favourites
                 filtered = filtered.filter(filterFavourites)
             } catch (error) {
@@ -69,7 +69,7 @@ const PokemonBrowser = ({ favourites }) => {
             }
         }
 
-        console.log(`Filtered pokemons ${favourites && "and favourited"}: `, filtered)
+        // console.log(`Filtered pokemons ${favourites && "and favourited"}: `, filtered)
         setCurrentPage(1)
         setPokemonsFiltered(filtered)
     }

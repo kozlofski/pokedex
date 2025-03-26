@@ -5,7 +5,10 @@ import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import StadiumIcon from '@mui/icons-material/Stadium';
+import CloseIcon from '@mui/icons-material/Close';
 import LoginContext from '../../context/LoginContext';
+import GlobalContext from '../../context/GlobalContext';
 
 const JSON_SERVER_URL = "http://localhost:3000/users"
 
@@ -93,15 +96,40 @@ const ValueName = styled.p`
 
 const Heart = styled.div`
     position: absolute;
-    left: 1rem;
     bottom: 1rem;
+    left: 1rem;
+`
+
+const Close = styled.div`
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+`
+
+const Arena = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: grey;
+
+    &.onArena {
+        color: red;
+    }
 `
 
 const PokemonDetailsModal = ({ onClose, pokemon }) => {
     const { loggedUserId } = useContext(LoginContext)
+    // console.log("Logged user from Details :", loggedUserId)
 
     const [isFavourite, setIsFavourite] = useState(false);
     const [oldFavourites, setOldFavourites] = useState({});
+    const [isOnArena, setIsOnArena] = useState(false)
+    const [arena, setArena] = useState({})
+
+    // const { setArena } = useContext(GlobalContext)
 
     const { baseExperience,
         height,
@@ -109,21 +137,28 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
         ability,
         imgUrl } = useFetchSinglePokemon(pokemon.url)
 
-    const setHeart = async () => {
+    const setHeartAndArenaIcons = async () => {
         try {
             const response = await fetch(`${JSON_SERVER_URL}/${loggedUserId}`)
             if (!response) throw new Error("Problem with fetching favourites")
 
             const jsonResponse = await response.json();
             setOldFavourites(jsonResponse.favourites);
+            setArena(jsonResponse.arena)
 
             if (pokemon.name in jsonResponse.favourites) setIsFavourite(true)
+            if (pokemon.name === jsonResponse.arena.leftPokemon?.name || pokemon.name === jsonResponse.arena.rightPokemon?.name) {
+                console.log(`${pokemon.name} matches ${jsonResponse.arena.leftPokemon?.name} or ${jsonResponse.arena.rightPokemon?.name}`)
+                setIsOnArena(true)
+            }
         } catch (error) {
             console.log(error)
         }
     }
+
     useEffect(() => {
-        if (loggedUserId !== -1) setHeart();
+        console.log("Setting heart and arena icons after initial render. User: ", loggedUserId)
+        if (loggedUserId !== -1) setHeartAndArenaIcons();
     }, [])
 
 
@@ -143,6 +178,7 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
                 delete newFavourites[pokemon.name]
             }
 
+            // fetch should be before if
             const patchResponse = fetch(`${JSON_SERVER_URL}/${loggedUserId}`, {
                 method: "PATCH",
                 body: JSON.stringify({
@@ -155,7 +191,48 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
         } catch (error) {
             console.log(error)
         }
+    }
 
+    const toggleArena = async () => {
+        const newIsOnArena = !isOnArena;
+        console.log(`${pokemon.name} will ${newIsOnArena ? "" : "not "}be now on arena`)
+        console.log("Arena: ", arena)
+        console.log("Arena length: ", Object.keys(arena).length)
+
+        try {
+            let newArena = {}
+
+            if (newIsOnArena === true) {
+                const pokemonsInArena = Object.keys(arena).length;
+                if (pokemonsInArena === 0) {
+                    newArena = { ...arena }
+                    newArena["leftPokemon"] = pokemon
+                }
+                if (pokemonsInArena === 1) {
+                    newArena = { ...arena }
+                    "leftPokemon" in newArena ? newArena["rightPokemon"] = pokemon : newArena["leftPokemon"] = pokemon
+                }
+                if (pokemonsInArena === 2) return
+            } else {
+                // spread syntax?
+                newArena = arena
+                if (pokemon.name === newArena["leftPokemon"].name) delete newArena["leftPokemon"]
+                else delete newArena["rightPokemon"]
+            }
+
+            const patchResponse = fetch(`${JSON_SERVER_URL}/${loggedUserId}`, {
+                method: "PATCH",
+                body: JSON.stringify({
+                    arena: newArena
+                })
+            })
+            if (!patchResponse) throw new Error("Error patching arena")
+
+            setArena(newArena)
+            setIsOnArena(newIsOnArena);
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
@@ -183,10 +260,14 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
                         </Characteristic>
                     </Characteristics>
                 </Description>
-                {loggedUserId >= 0 && <Heart onClick={toggleFavourite}>{isFavourite ?
+                {loggedUserId !== -1 && <Heart onClick={toggleFavourite}>{isFavourite ?
                     <FavoriteIcon /> :
                     <FavoriteBorderIcon />}
                 </Heart>}
+                {loggedUserId !== -1 && <Arena className={isOnArena && "onArena"}>
+                    <StadiumIcon onClick={toggleArena} />{Object.keys(arena).length}/2
+                </Arena>}
+                <Close onClick={onClose}><CloseIcon /></Close>
             </ModalContent>
         </Modal>
     );

@@ -11,6 +11,9 @@ import { useContext } from 'react'
 import LoginContext from '../../context/LoginContext'
 import { useNavigate } from 'react-router-dom'
 
+// import useLoginUser from '../../hooks/useLoginUser'
+import loginUser from '../../services/loginUser'
+
 const JSON_SERVER_URL = "http://localhost:3000/users"
 
 const Form = styled.form`
@@ -29,26 +32,16 @@ const LogIn = () => {
     const { setLoggedUser, setLoggedUserId } = useContext(LoginContext)
     const navigate = useNavigate();
 
-
     const onSubmit = async (data, event) => {
         event.preventDefault();
+
+        const inputtedUserName = data.name;
+        const inputtedPassword = data.password;
         try {
-            const response = await fetch(JSON_SERVER_URL)
-            if (!response) throw new Error("something is not yes with response")
-
-            const jsonResponse = await response.json();
-            const foundUser = jsonResponse.find((user) => user.userName === data.name)
-            const foundUserId = foundUser.id;
-            console.log("User found: ", foundUserId)
-            if (!foundUser) throw new Error("user not found")
-            if (data.password !== foundUser.password)
-                throw new Error("password incorrect")
-            setLoggedUser(data.name)
-            setLoggedUserId(foundUserId)
-            localStorage.setItem("loggedUser", data.name)
-            localStorage.setItem("loggedUserId", foundUserId)
+            const foundUserId = loginUser(inputtedUserName, inputtedPassword, JSON_SERVER_URL)
+            foundUserId.then((userId) => setLoggedUserId(userId))
+            setLoggedUser(data.name);
             navigate(`/`);
-
         } catch (error) {
             window.alert(error)
         }

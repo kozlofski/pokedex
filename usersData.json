@@ -17,8 +17,48 @@
         "jolteon": true,
         "dratini": true,
         "flareon": true,
-        "ninetales": true
+        "ninetales": true,
+        "venusaur": true
+      },
+      "arena": {
+        "leftPokemon": {
+          "name": "bulbasaur",
+          "url": "https://pokeapi.co/api/v2/pokemon/1/"
+        },
+        "rightPokemon": {
+          "name": "venusaur",
+          "url": "https://pokeapi.co/api/v2/pokemon/3/"
+        }
       }
+    },
+    {
+      "id": "9d6c",
+      "userName": "Gabrysia",
+      "userEmail": "asd@wp.pl",
+      "password": "Dupa747$",
+      "favourites": {
+        "squirtle": true,
+        "wartortle": true,
+        "pidgeot": true,
+        "pikachu": true,
+        "ninetales": true,
+        "rapidash": true,
+        "goldeen": true,
+        "eevee": true,
+        "vaporeon": true,
+        "jolteon": true,
+        "articuno": true,
+        "flareon": true
+      },
+      "arena": {}
+    },
+    {
+      "id": "816b",
+      "userName": "dupa",
+      "userEmail": "dupa@wp.pl",
+      "password": "Dupa747$",
+      "favourites": {},
+      "arena": {}
     }
   ]
 }
