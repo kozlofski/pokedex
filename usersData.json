@@ -20,16 +20,7 @@
         "ninetales": true,
         "venusaur": true
       },
-      "arena": {
-        "leftPokemon": {
-          "name": "bulbasaur",
-          "url": "https://pokeapi.co/api/v2/pokemon/1/"
-        },
-        "rightPokemon": {
-          "name": "venusaur",
-          "url": "https://pokeapi.co/api/v2/pokemon/3/"
-        }
-      }
+      "arena": {}
     },
     {
       "id": "9d6c",

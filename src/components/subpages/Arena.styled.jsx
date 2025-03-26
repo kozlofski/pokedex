@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { styled } from "styled-components"
 import GlobalContext from '../../context/GlobalContext'
 import PokemonCard from '../shared/PokemonCard.styled'
@@ -33,13 +33,17 @@ const RemoveFromArena = styled.div`
 const Arena = () => {
     const { loggedUserId } = useContext(LoginContext)
 
-    const { leftPokemon: left, rightPokemon: right } = useFetchArena(JSON_SERVER_URL, loggedUserId)
+    const { leftPokemonFromArena, rightPokemonFromArena } = useFetchArena(JSON_SERVER_URL, loggedUserId)
+    console.log("In arena: ", leftPokemonFromArena, rightPokemonFromArena)
+    const [leftPokemon, setLeftPokemon] = useState(undefined)
+    const [rightPokemon, setRightPokemon] = useState(undefined)
 
-    // const arena = useFetchArena(JSON_SERVER_URL, loggedUserId);
-    // console.log("Arena: ", arena, arena.leftPokemon, arena.rightPokemon)
-    // const [left, setLeft] = useState(arena.leftPokemon)
-    // const [right, setRight] = useState(arena.rightPokemon)
-    console.log("Pokemons: ", left, right)
+    useEffect(() => {
+        setLeftPokemon(leftPokemonFromArena)
+        setRightPokemon(rightPokemonFromArena)
+    }, [leftPokemonFromArena, rightPokemonFromArena])
+
+    console.log("Pokemons: ", leftPokemon, rightPokemon)
     // const { leftPokemon, rightPokemon } = arena
 
     const [modalOpened, setModalOpened] = useState(false)
@@ -55,10 +59,12 @@ const Arena = () => {
         try {
             let newArena = {}
             if (side === "left") {
-                newArena["leftPokemon"] = left
-
-            } else {
-                newArena["rightPokemon"] = right
+                newArena["rightPokemon"] = rightPokemon
+                setLeftPokemon(undefined)
+            }
+            else {
+                newArena["leftPokemon"] = leftPokemon
+                setRightPokemon(undefined)
             }
 
             const patchResponse = fetch(`${JSON_SERVER_URL}/${loggedUserId}`, {
@@ -80,14 +86,14 @@ const Arena = () => {
     return (
         <ArenaContainer>
             <ArenaCardContainer>
-                {left ? <PokemonCard pokemon={left} setModalOpened={setModalOpened} setSelectedPokemon={setSelectedPokemon} /> : <EmptyPokemonCard />}
-                {left && <RemoveFromArena onClick={() => removeFromArena("left")}><CloseIcon /></RemoveFromArena>}
+                {leftPokemon ? <PokemonCard pokemon={leftPokemon} setModalOpened={setModalOpened} setSelectedPokemon={setSelectedPokemon} /> : <EmptyPokemonCard />}
+                {leftPokemon && <RemoveFromArena onClick={() => removeFromArena("left")}><CloseIcon /></RemoveFromArena>}
             </ArenaCardContainer>
-            <button disabled={!(left && right)} >WALCZ</button>
+            <button disabled={!(leftPokemon && rightPokemon)} >WALCZ</button>
 
             <ArenaCardContainer>
-                {right ? <PokemonCard pokemon={right} setModalOpened={setModalOpened} setSelectedPokemon={setSelectedPokemon} /> : <EmptyPokemonCard />}
-                {right && <RemoveFromArena onClick={() => removeFromArena("right")}><CloseIcon /></RemoveFromArena>}
+                {rightPokemon ? <PokemonCard pokemon={rightPokemon} setModalOpened={setModalOpened} setSelectedPokemon={setSelectedPokemon} /> : <EmptyPokemonCard />}
+                {rightPokemon && <RemoveFromArena onClick={() => removeFromArena("right")}><CloseIcon /></RemoveFromArena>}
             </ArenaCardContainer>
             {modalOpened && modal}
 
