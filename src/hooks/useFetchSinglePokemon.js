@@ -1,46 +1,16 @@
 import { useEffect } from "react";
 import { useState } from "react";
 
+import fetchSinglePokemon from "../services/fetchSinglePokemon";
+
 const useFetchSinglePokemon = (url) => {
   const [pokemon, setPokemon] = useState({});
 
   useEffect(() => {
-    const fetchSinglePokemon = async () => {
-      try {
-        const response = await fetch(url);
-        const jsonResponse = await response.json();
-        const {
-          name,
-          base_experience: baseExperience,
-          height,
-          weight,
-          abilities: {
-            0: {
-              ability: { name: ability },
-            },
-          },
-          sprites: {
-            other: {
-              "official-artwork": { front_shiny: imgUrl },
-            },
-          },
-        } = await jsonResponse;
-
-        const newPokemon = {
-          name,
-          baseExperience,
-          height,
-          weight,
-          ability,
-          imgUrl,
-        };
-        setPokemon(newPokemon);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchSinglePokemon();
+    (async () => {
+      const newPokemon = await fetchSinglePokemon(url);
+      setPokemon(newPokemon);
+    })();
   }, [url]);
 
   return pokemon;

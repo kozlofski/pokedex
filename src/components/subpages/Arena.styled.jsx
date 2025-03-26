@@ -10,7 +10,7 @@ import EmptyPokemonCard from '../shared/EmptyPokemonCard.styled'
 import CloseIcon from '@mui/icons-material/Close';
 import FightButton from '../shared/FightButton.styled'
 import fight from '../../services/fight'
-
+import WinnerModal from '../shared/WinnerModal.styled'
 
 
 const JSON_SERVER_URL = "http://localhost:3000/users"
@@ -41,19 +41,29 @@ const Arena = () => {
     // console.log("In arena: ", leftPokemonFromArena, rightPokemonFromArena)
     const [leftPokemon, setLeftPokemon] = useState(undefined)
     const [rightPokemon, setRightPokemon] = useState(undefined)
+    const [winner, setWinner] = useState({})
+    const [winnerModalOpened, setWinnerModalOpened] = useState(false)
 
     useEffect(() => {
         setLeftPokemon(leftPokemonFromArena)
         setRightPokemon(rightPokemonFromArena)
     }, [leftPokemonFromArena, rightPokemonFromArena])
 
-    // console.log("Pokemons: ", leftPokemon, rightPokemon)
+    console.log("Pokemons: ", leftPokemon, rightPokemon)
 
     const [modalOpened, setModalOpened] = useState(false)
     const [selectedPokemon, setSelectedPokemon] = useState({})
 
     const modal = createPortal(
         <PokemonDetailsModal onClose={() => setModalOpened(false)} pokemon={selectedPokemon} />,
+        document.body
+    )
+
+    const winnerModal = createPortal(
+        <WinnerModal onClose={() => {
+            removeFromArena("both")
+            setWinnerModalOpened(false)
+        }} pokemon={winner} />,
         document.body
     )
 
@@ -65,8 +75,11 @@ const Arena = () => {
                 newArena["rightPokemon"] = rightPokemon
                 setLeftPokemon(undefined)
             }
-            else {
+            else if (side === "right") {
                 newArena["leftPokemon"] = leftPokemon
+                setRightPokemon(undefined)
+            } else {
+                setLeftPokemon(undefined)
                 setRightPokemon(undefined)
             }
 
@@ -85,6 +98,16 @@ const Arena = () => {
         }
     }
 
+    const handleFight = async () => {
+        const winnerFromService = await fight(leftPokemon, rightPokemon)
+        setWinner(winnerFromService)
+        setWinnerModalOpened(true)
+    }
+
+    // useEffect(() => {
+    //     console.log("Winner: ", winner)
+    // }, [winner])
+
     return (
         <ArenaContainer>
             <ArenaCardContainer>
@@ -99,7 +122,7 @@ const Arena = () => {
             </ArenaCardContainer>
 
             <FightButton
-                onClick={() => fight(leftPokemon, rightPokemon)}
+                onClick={handleFight}
                 disabled={!(leftPokemon && rightPokemon)} >
                 WALCZ!
             </FightButton>
@@ -115,6 +138,7 @@ const Arena = () => {
                 {rightPokemon && <RemoveFromArena onClick={() => removeFromArena("right")}><CloseIcon /></RemoveFromArena>}
             </ArenaCardContainer>
             {modalOpened && modal}
+            {winnerModalOpened && winnerModal}
 
 
         </ArenaContainer>

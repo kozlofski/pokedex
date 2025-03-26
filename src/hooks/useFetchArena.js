@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 const JSON_SERVER_URL = "http://localhost:3000/users";
 
 const useFetchArena = (SERVER_URL, userId) => {
-  const [leftPokemonFromArena, setLeftPokemonFromArena] = useState({});
-  const [rightPokemonFromArena, setRightPokemonFromArena] = useState({});
+  const [leftPokemonFromArena, setLeftPokemonFromArena] = useState(undefined);
+  const [rightPokemonFromArena, setRightPokemonFromArena] = useState(undefined);
 
   useEffect(() => {
     console.log(`Fetching arena for user ${userId} from ${SERVER_URL}`);
@@ -23,7 +23,7 @@ const useFetchArena = (SERVER_URL, userId) => {
       }
     };
 
-    fetchArenaData();
+    fetchArenaData(); // change to iife
   }, []);
 
   return { leftPokemonFromArena, rightPokemonFromArena };

@@ -10,9 +10,9 @@ const StyledButton = styled.button`
     color: white;
 `
 
-const Button = ({ children }) => {
+const Button = ({ children, onClick }) => {
     return (
-        <StyledButton>{children}</StyledButton>
+        <StyledButton onClick={onClick}>{children}</StyledButton>
     )
 }
 

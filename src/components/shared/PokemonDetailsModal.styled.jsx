@@ -30,7 +30,7 @@ const ModalContent = styled.div`
     padding: 0.5rem;
     border-radius: 0.5rem;
     box-shadow: 0.5rem 0.5rem 0.9rem #44444444;
-    background: linear-gradient(135deg, #ddddde, #ffffff, #ddddde);
+    background: linear-gradient(135deg, #cacdca, #ffffff, #cacdca);
     width: min(90%, 900px);
     height: 20rem;
     display: flex;

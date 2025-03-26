@@ -61,8 +61,10 @@ const ValueName = styled.p`
 `
 
 const PokemonCard = ({ pokemon, setModalOpened, setSelectedPokemon }) => {
-    const { baseExperience,
+    console.log("Pokemon card url: ", pokemon.url)
+    const {
         height,
+        baseExperience,
         weight,
         ability,
         imgUrl } = useFetchSinglePokemon(pokemon.url)

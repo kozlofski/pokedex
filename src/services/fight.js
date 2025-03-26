@@ -1,25 +1,25 @@
+import fetchSinglePokemon from "./fetchSinglePokemon";
+
 const fight = async (leftPokemon, rightPokemon) => {
   console.log("Fight!", leftPokemon, rightPokemon);
 
-  const fetchPokemon = async (url) => {
-    try {
-      const response = await fetch(url);
-      if (!response) throw new Error("problem fetching in fight");
-      const jsonResponse = await response.json();
-      const {
-        name,
-        base_experience: baseExperience,
-        weight,
-      } = await jsonResponse;
-      console.log(weight, baseExperience);
-      return { name: name, baseExperience: baseExperience, weight: weight };
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const {
+    name: leftName,
+    baseExperience: leftExp,
+    weight: leftWeight,
+  } = await fetchSinglePokemon(leftPokemon.url);
+  const {
+    name: rightName,
+    baseExperience: rightExp,
+    weight: rightWeight,
+  } = await fetchSinglePokemon(rightPokemon.url);
 
-  const pokemonData = fetchPokemon(leftPokemon.url);
-  console.log(pokemonData);
+  const leftPower = leftExp * leftWeight;
+  const rightPower = rightExp * rightWeight;
+  const winner = leftPower > rightPower ? leftPokemon : rightPokemon;
+  console.log(winner);
+
+  return winner;
 };
 
 export default fight;
