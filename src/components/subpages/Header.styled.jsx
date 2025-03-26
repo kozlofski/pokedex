@@ -3,7 +3,9 @@ import { useState } from 'react'
 import { styled } from "styled-components"
 import LoginContext from '../../context/LoginContext'
 
-const logoPath = "./../../assets/pokemonLogo.png"
+import logoPath from "../../assets/pokemonLogo.svg"
+
+// const logoPath = "./../../assets/pokemonLogo.png"
 
 import { Link } from 'react-router-dom'
 
@@ -24,6 +26,8 @@ const HeaderContainer = styled.header`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
 
 `
 
@@ -43,8 +47,7 @@ const Navbar = ({ links }) => {
 }
 
 const Logo = styled.img`
-    width: 100px;
-    height: 100px;
+    width: 140px;
 `
 
 const UserAndNavbar = styled.div`

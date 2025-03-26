@@ -44,7 +44,6 @@ const Arena = () => {
     }, [leftPokemonFromArena, rightPokemonFromArena])
 
     console.log("Pokemons: ", leftPokemon, rightPokemon)
-    // const { leftPokemon, rightPokemon } = arena
 
     const [modalOpened, setModalOpened] = useState(false)
     const [selectedPokemon, setSelectedPokemon] = useState({})
@@ -80,19 +79,35 @@ const Arena = () => {
         } catch (error) {
             console.log(error)
         }
+    }
+
+    const fight = () => {
+        // const leftPower = 
 
     }
 
     return (
         <ArenaContainer>
             <ArenaCardContainer>
-                {leftPokemon ? <PokemonCard pokemon={leftPokemon} setModalOpened={setModalOpened} setSelectedPokemon={setSelectedPokemon} /> : <EmptyPokemonCard />}
+                {leftPokemon ?
+                    <PokemonCard
+                        pokemon={leftPokemon}
+                        setModalOpened={setModalOpened}
+                        setSelectedPokemon={setSelectedPokemon}
+                    /> :
+                    <EmptyPokemonCard />}
                 {leftPokemon && <RemoveFromArena onClick={() => removeFromArena("left")}><CloseIcon /></RemoveFromArena>}
             </ArenaCardContainer>
-            <button disabled={!(leftPokemon && rightPokemon)} >WALCZ</button>
+            <button onClick={fight} disabled={!(leftPokemon && rightPokemon)} >WALCZ</button>
 
             <ArenaCardContainer>
-                {rightPokemon ? <PokemonCard pokemon={rightPokemon} setModalOpened={setModalOpened} setSelectedPokemon={setSelectedPokemon} /> : <EmptyPokemonCard />}
+                {rightPokemon ?
+                    <PokemonCard
+                        pokemon={rightPokemon}
+                        setModalOpened={setModalOpened}
+                        setSelectedPokemon={setSelectedPokemon}
+                    /> :
+                    <EmptyPokemonCard />}
                 {rightPokemon && <RemoveFromArena onClick={() => removeFromArena("right")}><CloseIcon /></RemoveFromArena>}
             </ArenaCardContainer>
             {modalOpened && modal}

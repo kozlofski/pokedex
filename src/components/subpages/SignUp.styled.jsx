@@ -63,6 +63,9 @@ const SignUp = () => {
                     "arena": {
                         "left": null,
                         "right": null
+                    },
+                    "stats": {
+
                     }
                 })
             })
