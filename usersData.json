@@ -1,10 +1,10 @@
 {
   "users": [
     {
-      "id": "3292",
+      "id": "067d",
       "userName": "koza",
       "userEmail": "koza@wp.pl",
-      "password": "Dupa747$",
+      "hashedPassword": 3821238780675380,
       "favourites": {
         "caterpie": true,
         "weedle": true,
@@ -25,10 +25,10 @@
       "stats": {}
     },
     {
-      "id": "9d6c",
+      "id": "368d",
       "userName": "Gabrysia",
-      "userEmail": "asd@wp.pl",
-      "password": "Dupa747$",
+      "userEmail": "koza@wp.pl",
+      "hashedPassword": 3821238780675380,
       "favourites": {
         "squirtle": true,
         "wartortle": true,
@@ -43,26 +43,7 @@
         "articuno": true,
         "flareon": true
       },
-      "arena": {}
-    },
-    {
-      "id": "816b",
-      "userName": "dupa",
-      "userEmail": "dupa@wp.pl",
-      "password": "Dupa747$",
-      "favourites": {},
-      "arena": {}
-    },
-    {
-      "id": "9025",
-      "userName": "kot",
-      "userEmail": "kot@wp.pl",
-      "password": "Dupa747$",
-      "favourites": {},
-      "arena": {
-        "left": null,
-        "right": null
-      },
+      "arena": {},
       "stats": {}
     }
   ]

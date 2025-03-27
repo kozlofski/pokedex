@@ -10,6 +10,7 @@ import { useContext } from 'react'
 import LoginContext from '../../context/LoginContext'
 import loginUser from '../../services/loginUser'
 import Button from "./../shared/Button.styled"
+import cyrb53 from '../../services/cyrb53'
 
 
 const JSON_SERVER_URL = "http://localhost:3000/users"
@@ -54,16 +55,17 @@ const SignUp = () => {
             if (data.name in userNamesTaken)
                 throw new Error(`user name ${data.name} already taken`)
 
+            const hashedPassword = cyrb53(data.password)
+
             const response = await fetch(JSON_SERVER_URL, {
                 method: "POST",
                 body: JSON.stringify({
                     userName: data.name,
                     userEmail: data.email,
-                    password: data.password,
+                    hashedPassword: hashedPassword,
                     favourites: {},
                     "arena": {
-                        "left": null,
-                        "right": null
+
                     },
                     "stats": {
 
@@ -72,9 +74,7 @@ const SignUp = () => {
             })
             if (!response) throw new Error("something is not yes with POST response")
 
-            const inputtedUserName = data.name;
-            const inputtedPassword = data.password;
-            loginUser(inputtedUserName, inputtedPassword, JSON_SERVER_URL, setLoggedUser, setLoggedUserId)
+            loginUser(data.name, hashedPassword, JSON_SERVER_URL, setLoggedUser, setLoggedUserId)
 
             navigate(`/`);
         } catch (error) {

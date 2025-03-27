@@ -14,6 +14,8 @@ import { useNavigate } from 'react-router-dom'
 import loginUser from '../../services/loginUser'
 import Button from '../shared/Button.styled'
 
+import cyrb53 from '../../services/cyrb53'
+
 const JSON_SERVER_URL = "http://localhost:3000/users"
 
 const Form = styled.form`
@@ -37,8 +39,10 @@ const LogIn = () => {
 
         const inputtedUserName = data.name;
         const inputtedPassword = data.password;
+        const hashedPassword = cyrb53(inputtedPassword)
+
         try {
-            const foundUserId = await loginUser(inputtedUserName, inputtedPassword, JSON_SERVER_URL, setLoggedUser, setLoggedUserId)
+            const foundUserId = await loginUser(inputtedUserName, hashedPassword, JSON_SERVER_URL, setLoggedUser, setLoggedUserId)
             if (foundUserId === -1) throw new Error()
 
             navigate(`/`);

@@ -1,6 +1,6 @@
 const loginUser = async (
   userName,
-  password,
+  hashedPassword,
   SERVER_URL,
   setLoggedUser,
   setLoggedUserId
@@ -14,10 +14,14 @@ const loginUser = async (
     if (!foundUser) throw new Error("user not found");
 
     const foundUserId = await foundUser.id;
-    if (password !== foundUser.password) throw new Error("password incorrect");
+
+    console.log("Passwords: ", hashedPassword, foundUser.hashedPassword);
+    if (hashedPassword !== foundUser.hashedPassword)
+      throw new Error("password incorrect");
 
     localStorage.setItem("loggedUser", userName);
     localStorage.setItem("loggedUserId", foundUserId);
+    localStorage.setItem("loggedUserHashedPassword", hashedPassword);
     setLoggedUser(userName);
     setLoggedUserId(foundUserId);
     return foundUserId;
