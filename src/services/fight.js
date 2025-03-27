@@ -1,8 +1,6 @@
 import fetchSinglePokemon from "./fetchSinglePokemon";
 
 const fight = async (leftPokemon, rightPokemon) => {
-  console.log("Fight!", leftPokemon, rightPokemon);
-
   const {
     // name: leftName,
     baseExperience: leftExp,
@@ -18,7 +16,6 @@ const fight = async (leftPokemon, rightPokemon) => {
   const rightPower = rightExp * rightWeight;
   const winner = leftPower > rightPower ? leftPokemon : rightPokemon;
   const loser = leftPower > rightPower ? rightPokemon : leftPokemon;
-  console.log(winner);
 
   return { winner, loser };
 };

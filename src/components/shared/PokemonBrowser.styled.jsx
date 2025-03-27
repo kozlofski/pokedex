@@ -53,7 +53,6 @@ const PokemonBrowser = ({ favourites }) => {
         setPokemonsPaginated(paginated)
     }, [currentPage, pokemonsFiltered])
 
-
     const filterPokemons = async () => {
         const filterInput = (pokemon) => pokemon.name.toLowerCase().includes(filter)
         let filtered = pokemons.filter(filterInput);
@@ -95,7 +94,8 @@ const PokemonBrowser = ({ favourites }) => {
                     return <li key={id}>
                         <PokemonCard pokemon={pokemon}
                             setModalOpened={setModalOpened}
-                            setSelectedPokemon={setSelectedPokemon} />
+                            setSelectedPokemon={setSelectedPokemon}
+                        />
                     </li>
                 }
                 )}

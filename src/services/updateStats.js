@@ -11,12 +11,8 @@ const updateStats = async (winnerPokemon, loserPokemon, loggedUserId) => {
     const oldStats = userData.stats;
 
     const winnerPokemonData = await fetchSinglePokemon(winnerUrl);
-
     const loserPokemonData = await fetchSinglePokemon(loserUrl);
-    const oldLoserBaseExperience = loserPokemonData.baseExperience;
-    const newLoserBaseExperience = oldLoserBaseExperience;
 
-    console.log(`Old stats: `, oldStats);
     let newStats = {};
 
     if (winnerName in oldStats) {
@@ -30,13 +26,12 @@ const updateStats = async (winnerPokemon, loserPokemon, loggedUserId) => {
         baseExperience: newWinnerBaseExperience,
       };
     } else {
-      const newWinnerBaseExperience = winnerPokemonData.baseExperience + 10;
       newStats = {
         ...oldStats,
         [winnerName]: {
           wins: 1,
           losses: 0,
-          baseExperience: newWinnerBaseExperience,
+          baseExperience: winnerPokemonData.baseExperience + 10,
         },
       };
     }
@@ -48,7 +43,7 @@ const updateStats = async (winnerPokemon, loserPokemon, loggedUserId) => {
       newStats[loserName] = {
         wins: newWins,
         losses: newLosses,
-        baseExperience: newLoserBaseExperience,
+        baseExperience: loserPokemonData.baseExperience,
       };
     } else {
       newStats = {
@@ -56,12 +51,10 @@ const updateStats = async (winnerPokemon, loserPokemon, loggedUserId) => {
         [loserName]: {
           wins: 0,
           losses: 1,
-          baseExperience: newLoserBaseExperience,
+          baseExperience: loserPokemonData.baseExperience,
         },
       };
     }
-
-    console.log(`New stats for ${name}: `, newStats);
 
     const patchResponse = fetch(`${JSON_SERVER_URL}/${loggedUserId}`, {
       method: "PATCH",

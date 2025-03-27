@@ -7,7 +7,6 @@ const useFetchArena = (SERVER_URL, userId) => {
   const [rightPokemonFromArena, setRightPokemonFromArena] = useState(undefined);
 
   useEffect(() => {
-    console.log(`Fetching arena for user ${userId} from ${SERVER_URL}`);
     const fetchArenaData = async () => {
       try {
         const response = await fetch(`${SERVER_URL}/${userId}`);

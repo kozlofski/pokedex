@@ -122,14 +122,12 @@ const Arena = styled.div`
 
 const PokemonDetailsModal = ({ onClose, pokemon }) => {
     const { loggedUserId } = useContext(LoginContext)
-    // console.log("Logged user from Details :", loggedUserId)
 
     const [isFavourite, setIsFavourite] = useState(false);
     const [oldFavourites, setOldFavourites] = useState({});
     const [isOnArena, setIsOnArena] = useState(false)
     const [arena, setArena] = useState({})
 
-    // const { setArena } = useContext(GlobalContext)
 
     const { baseExperience,
         height,
@@ -157,7 +155,6 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
     }
 
     useEffect(() => {
-        console.log("Setting heart and arena icons after initial render. User: ", loggedUserId)
         if (loggedUserId !== -1) setHeartAndArenaIcons();
     }, [])
 
@@ -195,9 +192,6 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
 
     const toggleArena = async () => {
         const newIsOnArena = !isOnArena;
-        console.log(`${pokemon.name} will ${newIsOnArena ? "" : "not "}be now on arena`)
-        console.log("Arena: ", arena)
-        console.log("Arena length: ", Object.keys(arena).length)
 
         try {
             let newArena = {}

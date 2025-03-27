@@ -37,10 +37,8 @@ const RemoveFromArena = styled.div`
 
 const Arena = () => {
     const { loggedUserId } = useContext(LoginContext)
-    // const loggedUserId = localStorage.getItem("loggedUserId")
 
     const { leftPokemonFromArena, rightPokemonFromArena } = useFetchArena(JSON_SERVER_URL, loggedUserId)
-    // console.log("In arena: ", leftPokemonFromArena, rightPokemonFromArena)
     const [leftPokemon, setLeftPokemon] = useState(undefined)
     const [rightPokemon, setRightPokemon] = useState(undefined)
     const [winner, setWinner] = useState({})
@@ -50,8 +48,6 @@ const Arena = () => {
         setLeftPokemon(leftPokemonFromArena)
         setRightPokemon(rightPokemonFromArena)
     }, [leftPokemonFromArena, rightPokemonFromArena])
-
-    // console.log("Pokemons: ", leftPokemon, rightPokemon)
 
     const [modalOpened, setModalOpened] = useState(false)
     const [selectedPokemon, setSelectedPokemon] = useState({})
@@ -70,7 +66,6 @@ const Arena = () => {
     )
 
     const removeFromArena = async (side) => {
-        console.log(`removing ${side} from arena`)
         try {
             let newArena = {}
             if (side === "left") {

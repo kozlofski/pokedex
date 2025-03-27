@@ -1,5 +1,4 @@
 const fetchUserData = async (SERVER_URL, userId) => {
-  console.log("Fetching favs from userId: ", userId);
   const response = await fetch(`${SERVER_URL}/${userId}`);
   if (!response) throw new Error("Problem with fetching favourites");
 
