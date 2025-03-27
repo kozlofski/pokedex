@@ -19,8 +19,8 @@ const LogOut = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            localStorage.setItem("loggedUser", null)
-            setLoggedUser(null)
+            localStorage.setItem("loggedUser", "null")
+            setLoggedUser("null")
             localStorage.setItem("loggedUserId", -1)
             setLoggedUserId(-1)
             navigate('/')

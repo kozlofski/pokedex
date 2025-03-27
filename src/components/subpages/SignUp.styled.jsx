@@ -9,6 +9,7 @@ import useFetchUserNames from '../../hooks/useFetchUserNames'
 import { useContext } from 'react'
 import LoginContext from '../../context/LoginContext'
 import loginUser from '../../services/loginUser'
+import Button from "./../shared/Button.styled"
 
 
 const JSON_SERVER_URL = "http://localhost:3000/users"
@@ -73,11 +74,8 @@ const SignUp = () => {
 
             const inputtedUserName = data.name;
             const inputtedPassword = data.password;
-            const foundUserId = loginUser(inputtedUserName, inputtedPassword, JSON_SERVER_URL)
-            setLoggedUser(data.name);
-            setLoggedUserId(foundUserId);
+            loginUser(inputtedUserName, inputtedPassword, JSON_SERVER_URL, setLoggedUser, setLoggedUserId)
 
-            setLoggedUser(data.name)
             navigate(`/`);
         } catch (error) {
             window.alert(error)
@@ -108,7 +106,7 @@ const SignUp = () => {
                 type={"password"}
                 placeholder={"powtórz hasło"}
                 error={errors.confirm ?? ""} />
-            <input type="submit" />
+            <Button type="submit" >Zarejestruj</Button>
         </Form>
     )
 }

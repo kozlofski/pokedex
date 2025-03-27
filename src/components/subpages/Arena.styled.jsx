@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { styled } from "styled-components"
 import GlobalContext from '../../context/GlobalContext'
 import PokemonCard from '../shared/PokemonCard.styled'
@@ -36,6 +36,7 @@ const RemoveFromArena = styled.div`
 
 const Arena = () => {
     const { loggedUserId } = useContext(LoginContext)
+    // const loggedUserId = localStorage.getItem("loggedUserId")
 
     const { leftPokemonFromArena, rightPokemonFromArena } = useFetchArena(JSON_SERVER_URL, loggedUserId)
     // console.log("In arena: ", leftPokemonFromArena, rightPokemonFromArena)

@@ -1,5 +1,4 @@
 const fetchSinglePokemon = async (url) => {
-  console.log("Url: ", url);
   try {
     const response = await fetch(url);
     if (!response) throw new Error("problem fetching pokemon");
@@ -29,7 +28,6 @@ const fetchSinglePokemon = async (url) => {
       ability,
       imgUrl,
     };
-    console.log("New pokemon inside fetchSingle... servce: ", newPokemon);
     return newPokemon;
   } catch (error) {
     console.log(error);

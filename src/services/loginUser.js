@@ -1,4 +1,10 @@
-const loginUser = async (userName, password, SERVER_URL) => {
+const loginUser = async (
+  userName,
+  password,
+  SERVER_URL,
+  setLoggedUser,
+  setLoggedUserId
+) => {
   try {
     const response = await fetch(SERVER_URL);
     if (!response) throw new Error("something is not yes with response");
@@ -12,9 +18,13 @@ const loginUser = async (userName, password, SERVER_URL) => {
 
     localStorage.setItem("loggedUser", userName);
     localStorage.setItem("loggedUserId", foundUserId);
+    setLoggedUser(userName);
+    setLoggedUserId(foundUserId);
     return foundUserId;
   } catch (error) {
-    throw new Error(error);
+    window.alert(error);
+    throw error;
+    // return -1;
   }
 };
 

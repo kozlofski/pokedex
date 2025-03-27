@@ -8,7 +8,6 @@
       "favourites": {
         "caterpie": true,
         "weedle": true,
-        "bulbasaur": true,
         "ponyta": true,
         "rapidash": true,
         "dewgong": true,
@@ -18,7 +17,9 @@
         "flareon": true,
         "ninetales": true,
         "venusaur": true,
-        "pikachu": true
+        "pikachu": true,
+        "rattata": true,
+        "bulbasaur": true
       },
       "arena": {},
       "stats": {}
@@ -51,6 +52,18 @@
       "password": "Dupa747$",
       "favourites": {},
       "arena": {}
+    },
+    {
+      "id": "9025",
+      "userName": "kot",
+      "userEmail": "kot@wp.pl",
+      "password": "Dupa747$",
+      "favourites": {},
+      "arena": {
+        "left": null,
+        "right": null
+      },
+      "stats": {}
     }
   ]
 }

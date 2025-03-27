@@ -11,8 +11,8 @@ import { useContext } from 'react'
 import LoginContext from '../../context/LoginContext'
 import { useNavigate } from 'react-router-dom'
 
-// import useLoginUser from '../../hooks/useLoginUser'
 import loginUser from '../../services/loginUser'
+import Button from '../shared/Button.styled'
 
 const JSON_SERVER_URL = "http://localhost:3000/users"
 
@@ -28,7 +28,7 @@ const loginFormSchema = z.object({
 })
 
 const LogIn = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(loginFormSchema) })
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({ resolver: zodResolver(loginFormSchema) })
     const { setLoggedUser, setLoggedUserId } = useContext(LoginContext)
     const navigate = useNavigate();
 
@@ -38,12 +38,13 @@ const LogIn = () => {
         const inputtedUserName = data.name;
         const inputtedPassword = data.password;
         try {
-            const foundUserId = loginUser(inputtedUserName, inputtedPassword, JSON_SERVER_URL)
-            foundUserId.then((userId) => setLoggedUserId(userId))
-            setLoggedUser(data.name);
+            const foundUserId = await loginUser(inputtedUserName, inputtedPassword, JSON_SERVER_URL, setLoggedUser, setLoggedUserId)
+            if (foundUserId === -1) throw new Error()
+
             navigate(`/`);
         } catch (error) {
             window.alert(error)
+            reset();
         }
     }
 
@@ -59,7 +60,7 @@ const LogIn = () => {
                 type={"password"}
                 placeholder={"hasło"}
                 error={errors.password ?? ""} />
-            <input type="submit" />
+            <Button type="submit" >Zaloguj</Button>
 
         </Form>
 

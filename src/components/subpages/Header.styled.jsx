@@ -1,12 +1,9 @@
 import React, { useContext } from 'react'
-import { useState } from 'react'
 import { styled } from "styled-components"
 import LoginContext from '../../context/LoginContext'
 import Button from '../shared/Button.styled'
 
 import logoPath from "../../assets/pokemonLogo.svg"
-
-// const logoPath = "./../../assets/pokemonLogo.png"
 
 import { Link } from 'react-router-dom'
 
@@ -60,19 +57,19 @@ const UserAndNavbar = styled.div`
 `
 
 const User = styled.p`
-    font-size: 1rem;
-    
+    font-size: 1rem;    
 `
 
 const Header = () => {
     const { loggedUser } = useContext(LoginContext)
-    console.log(loggedUser)
+    // const { userName, setUserName } = useState(loggedUser)
+    console.log("rendering navbar with ", loggedUser)
 
     return (<HeaderContainer>
         <Link to={"/"}><Logo src={logoPath} alt="POKEMON"></Logo></Link>
         <UserAndNavbar>
-            <User>{loggedUser === null ? " " : loggedUser}</User>
-            <Navbar links={loggedUser ? routesIfLoggedIn : routesIfNotLoggedIn} />
+            <User>{loggedUser === "null" ? "" : loggedUser}</User>
+            <Navbar links={loggedUser === "null" ? routesIfNotLoggedIn : routesIfLoggedIn} />
         </UserAndNavbar>
     </HeaderContainer>
     )
