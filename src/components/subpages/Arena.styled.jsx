@@ -11,6 +11,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import FightButton from '../shared/FightButton.styled'
 import fight from '../../services/fight'
 import WinnerModal from '../shared/WinnerModal.styled'
+import updateStats from '../../services/updateStats'
 
 
 const JSON_SERVER_URL = "http://localhost:3000/users"
@@ -50,7 +51,7 @@ const Arena = () => {
         setRightPokemon(rightPokemonFromArena)
     }, [leftPokemonFromArena, rightPokemonFromArena])
 
-    console.log("Pokemons: ", leftPokemon, rightPokemon)
+    // console.log("Pokemons: ", leftPokemon, rightPokemon)
 
     const [modalOpened, setModalOpened] = useState(false)
     const [selectedPokemon, setSelectedPokemon] = useState({})
@@ -92,22 +93,18 @@ const Arena = () => {
             })
             if (!patchResponse) throw new Error("Error patching arena")
 
-            // setArena(newArena)
-            // setIsOnArena(newIsOnArena);
         } catch (error) {
             console.log(error)
         }
     }
 
     const handleFight = async () => {
-        const winnerFromService = await fight(leftPokemon, rightPokemon)
+        const { winner: winnerFromService, loser: loserFromService } = await fight(leftPokemon, rightPokemon)
+        await updateStats(winnerFromService, loserFromService, loggedUserId)
         setWinner(winnerFromService)
         setWinnerModalOpened(true)
     }
 
-    // useEffect(() => {
-    //     console.log("Winner: ", winner)
-    // }, [winner])
 
     return (
         <ArenaContainer>

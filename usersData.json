@@ -22,7 +22,28 @@
         "bulbasaur": true
       },
       "arena": {},
-      "stats": {}
+      "stats": {
+        "venusaur": {
+          "wins": 2,
+          "losses": 0,
+          "baseExperience": 283
+        },
+        "bulbasaur": {
+          "wins": 1,
+          "losses": 2,
+          "baseExperience": 74
+        },
+        "rattata": {
+          "wins": 1,
+          "losses": 0,
+          "baseExperience": 61
+        },
+        "caterpie": {
+          "wins": 0,
+          "losses": 2,
+          "baseExperience": 39
+        }
+      }
     },
     {
       "id": "368d",

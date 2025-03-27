@@ -23,7 +23,7 @@ const StyledButton = styled.button`
 `
 
 const FightButton = ({ children, disabled, onClick }) => {
-    console.log("Fight button disabled? ", disabled)
+    // console.log("Fight button disabled? ", disabled)
     return (
         <StyledButton onClick={onClick} disabled={disabled}>
             {children}

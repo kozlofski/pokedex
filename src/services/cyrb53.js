@@ -1,3 +1,4 @@
+// hashing function for hashing password
 // taken from
 // https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript
 

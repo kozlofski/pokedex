@@ -4,12 +4,12 @@ const fight = async (leftPokemon, rightPokemon) => {
   console.log("Fight!", leftPokemon, rightPokemon);
 
   const {
-    name: leftName,
+    // name: leftName,
     baseExperience: leftExp,
     weight: leftWeight,
   } = await fetchSinglePokemon(leftPokemon.url);
   const {
-    name: rightName,
+    // name: rightName,
     baseExperience: rightExp,
     weight: rightWeight,
   } = await fetchSinglePokemon(rightPokemon.url);
@@ -17,9 +17,10 @@ const fight = async (leftPokemon, rightPokemon) => {
   const leftPower = leftExp * leftWeight;
   const rightPower = rightExp * rightWeight;
   const winner = leftPower > rightPower ? leftPokemon : rightPokemon;
+  const loser = leftPower > rightPower ? rightPokemon : leftPokemon;
   console.log(winner);
 
-  return winner;
+  return { winner, loser };
 };
 
 export default fight;
