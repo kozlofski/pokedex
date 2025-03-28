@@ -9,7 +9,7 @@ import loginUser from "../services/loginUser";
 const LoginContextProvider = ({ children }) => {
 
     const userName = localStorage.getItem("loggedUser") ?? "null"
-    const id = localStorage.getItem("loggedUserId") ?? -1
+    const id = parseInt(localStorage.getItem("loggedUserId")) ?? -1
     const hashedPassword = parseInt(localStorage.getItem("loggedUserHashedPassword")) ?? 0
     const [loggedUser, setLoggedUser] = useState(userName)
     const [loggedUserId, setLoggedUserId] = useState(id)
