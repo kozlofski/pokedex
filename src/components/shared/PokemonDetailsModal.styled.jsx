@@ -254,6 +254,17 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
                             <CharValue>{ability}</CharValue>
                             <ValueName>Ability</ValueName>
                         </Characteristic>
+                        {wins !== undefined &&
+                            <>
+                                <Characteristic>
+                                    <CharValue>{wins}</CharValue>
+                                    <ValueName>Wins</ValueName>
+                                </Characteristic>
+                                <Characteristic>
+                                    <CharValue>{losses}</CharValue>
+                                    <ValueName>Losses</ValueName>
+                                </Characteristic>
+                            </>}
                     </Characteristics>
                 </Description>
                 {loggedUserId !== "-1" && <Heart onClick={toggleFavourite}>{isFavourite ?
