@@ -11,6 +11,7 @@ const Card = styled.div`
     background: linear-gradient(135deg, #ddddde, #ffffff, #ddddde);
     width: 15rem;
     height: 20rem;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -61,13 +62,33 @@ const ValueName = styled.p`
     margin: 0;
 `
 
+const WinsAndLosses = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.25rem;
+    background-color: #555555;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+`
+
+const WinOrLoss = styled.div`
+    color: #ffffff;
+    text-align: justify;  
+`
+
 const PokemonCard = ({ pokemon, setModalOpened, setSelectedPokemon }) => {
     const {
         height,
         baseExperience,
         weight,
         ability,
-        imgUrl } = useFetchSinglePokemon(pokemon.url)
+        imgUrl,
+        wins,
+        losses } = useFetchSinglePokemon(pokemon)
 
     const openDetails = () => {
         setModalOpened(true)
@@ -96,6 +117,10 @@ const PokemonCard = ({ pokemon, setModalOpened, setSelectedPokemon }) => {
                     <ValueName>Ability</ValueName>
                 </Characteristic>
             </Characteristics>
+            {wins !== undefined && <WinsAndLosses>
+                <WinOrLoss>W: {wins}</WinOrLoss>
+                <WinOrLoss>L: {losses}</WinOrLoss>
+            </WinsAndLosses>}
         </Card>
     )
 }
