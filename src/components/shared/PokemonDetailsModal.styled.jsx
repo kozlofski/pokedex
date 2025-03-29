@@ -254,11 +254,11 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
                         </Characteristic>
                     </Characteristics>
                 </Description>
-                {loggedUserId !== -1 && <Heart onClick={toggleFavourite}>{isFavourite ?
+                {loggedUserId !== "-1" && <Heart onClick={toggleFavourite}>{isFavourite ?
                     <FavoriteIcon /> :
                     <FavoriteBorderIcon />}
                 </Heart>}
-                {loggedUserId !== -1 && <Arena className={isOnArena && "onArena"}>
+                {loggedUserId !== "-1" && <Arena className={isOnArena && "onArena"}>
                     <StadiumIcon onClick={toggleArena} />{Object.keys(arena).length}/2
                 </Arena>}
                 <Close onClick={onClose}><CloseIcon /></Close>
