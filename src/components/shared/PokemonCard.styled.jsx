@@ -74,7 +74,6 @@ const PokemonCard = ({ pokemon, setModalOpened, setSelectedPokemon }) => {
         setSelectedPokemon(pokemon)
     }
 
-
     return (
         <Card onClick={openDetails}>
             <Image src={imgUrl} alt="" />
