@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import mergeWithUserData from "./../services/mergeWithUserData";
 
 // custom hook fetching list of pokemons from API
 // - only Pokemon's name and link
@@ -8,7 +9,7 @@ import { useState, useEffect } from "react";
 const BASE_URL = "https://pokeapi.co/api/v2/";
 const LIMIT = 150;
 
-const useFetchPokemons = () => {
+const useFetchPokemons = (serverUrl, loggedUserId) => {
   const [pokemons, setPokemons] = useState([]);
   const [isPending, setIsPending] = useState(false);
 
@@ -19,7 +20,12 @@ const useFetchPokemons = () => {
         const response = await fetch(`${BASE_URL}pokemon?limit=${LIMIT}`);
         const jsonResponse = await response.json();
         const linksToPokemons = await jsonResponse.results;
-        setPokemons(linksToPokemons);
+        const mergedLinksToPokemons = await mergeWithUserData(
+          linksToPokemons,
+          serverUrl,
+          loggedUserId
+        );
+        setPokemons(mergedLinksToPokemons);
         setIsPending(false);
       } catch (error) {
         console.log(error);

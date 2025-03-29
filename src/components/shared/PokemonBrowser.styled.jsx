@@ -35,14 +35,14 @@ const BrowserContainer = styled.div`
 `
 
 const PokemonBrowser = ({ favourites }) => {
-    const { pokemons, isPending } = useFetchPokemons();
+    const { loggedUserId } = useContext(LoginContext)
+    const { pokemons, isPending } = useFetchPokemons(JSON_SERVER_URL, loggedUserId);
     const [filter, setFilter] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
     const [pokemonsFiltered, setPokemonsFiltered] = useState(pokemons)
     const [pokemonsPaginated, setPokemonsPaginated] = useState(null)
     const [modalOpened, setModalOpened] = useState(false)
     const [selectedPokemon, setSelectedPokemon] = useState({})
-    const { loggedUserId } = useContext(LoginContext)
 
     useEffect(() => {
         filterPokemons()
