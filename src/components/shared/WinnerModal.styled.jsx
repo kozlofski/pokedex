@@ -108,7 +108,7 @@ const H2 = styled.h2`
 
 const WinnerModal = ({ onClose, pokemon }) => {
     const { loggedUserId } = useContext(LoginContext)
-    const { imgUrl } = useFetchSinglePokemon(pokemon.url)
+    const { imgUrl } = useFetchSinglePokemon(pokemon)
 
     useEffect(() => {
         // console.log("Setting heart and arena icons after initial render. User: ", loggedUserId)

@@ -133,7 +133,9 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
         height,
         weight,
         ability,
-        imgUrl } = useFetchSinglePokemon(pokemon.url)
+        imgUrl,
+        wins,
+        losses } = useFetchSinglePokemon(pokemon)
 
     const setHeartAndArenaIcons = async () => {
         try {

@@ -24,14 +24,14 @@
       "arena": {},
       "stats": {
         "venusaur": {
-          "wins": 5,
+          "wins": 6,
           "losses": 0,
-          "baseExperience": 313
+          "baseExperience": 323
         },
         "bulbasaur": {
-          "wins": 2,
+          "wins": 4,
           "losses": 6,
-          "baseExperience": 64
+          "baseExperience": 84
         },
         "rattata": {
           "wins": 1,
@@ -57,6 +57,11 @@
           "wins": 0,
           "losses": 1,
           "baseExperience": 112
+        },
+        "weedle": {
+          "wins": 0,
+          "losses": 3,
+          "baseExperience": 39
         }
       }
     },

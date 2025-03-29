@@ -1,8 +1,6 @@
 import React from 'react'
 import { styled } from "styled-components"
 import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
-import { useEffect } from 'react'
-import fetchUserData from '../../services/fetchUserData'
 
 const Card = styled.div`
     padding: 0.5rem;
