@@ -37,6 +37,7 @@ const BrowserContainer = styled.div`
 const PokemonBrowser = ({ favourites }) => {
     const { loggedUserId } = useContext(LoginContext)
     const { pokemons, isPending } = useFetchPokemons(JSON_SERVER_URL, loggedUserId);
+
     const [filter, setFilter] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
     const [pokemonsFiltered, setPokemonsFiltered] = useState(pokemons)

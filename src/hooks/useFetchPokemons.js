@@ -20,12 +20,15 @@ const useFetchPokemons = (serverUrl, loggedUserId) => {
         const response = await fetch(`${BASE_URL}pokemon?limit=${LIMIT}`);
         const jsonResponse = await response.json();
         const linksToPokemons = await jsonResponse.results;
-        const mergedLinksToPokemons = await mergeWithUserData(
-          linksToPokemons,
-          serverUrl,
-          loggedUserId
-        );
-        setPokemons(mergedLinksToPokemons);
+        if (loggedUserId === "-1") setPokemons(linksToPokemons);
+        else {
+          const mergedLinksToPokemons = await mergeWithUserData(
+            linksToPokemons,
+            serverUrl,
+            loggedUserId
+          );
+          setPokemons(mergedLinksToPokemons);
+        }
         setIsPending(false);
       } catch (error) {
         console.log(error);

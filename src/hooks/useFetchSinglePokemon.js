@@ -5,6 +5,7 @@ import fetchSinglePokemon from "../services/fetchSinglePokemon";
 
 const useFetchSinglePokemon = (pokemonInitial) => {
   const [pokemon, setPokemon] = useState({});
+  // console.log("fetching", pokemonInitial);
 
   useEffect(() => {
     (async () => {
@@ -18,10 +19,10 @@ const useFetchSinglePokemon = (pokemonInitial) => {
           baseExperience: pokemonInitial.baseExperience,
         };
       }
-
+      // console.log(newPokemon);
       setPokemon(newPokemon);
     })();
-  }, [pokemonInitial.url]);
+  }, [pokemonInitial]);
 
   return pokemon;
 };
