@@ -26,6 +26,18 @@ const TableRow = styled.tr`
 
 const TableHeader = styled.th`
 `
+
+const HeaderTitle = styled.span`
+    &.sortBy.asc::after {
+        content: "^"
+    }
+
+    &.sortBy.desc::after {
+        content: "v"
+    }
+
+`
+
 const TableCell = styled.td`
 padding: 0 1rem;
 text-align: center;
@@ -34,41 +46,113 @@ border-bottom: 1px solid blue;
 
 const Ranking = () => {
     const { loggedUserId } = useContext(LoginContext)
-    // const { pokemons, isPending } = useFetchPokemons(JSON_SERVER_URL, loggedUserId);
     const { completePokemons, isPending } = useFetchAllPokemons(BASE_URL, JSON_SERVER_URL, loggedUserId)
-    // const [completePokemons, setCompletePokemons] = useState([])
-    // console.log("Pokemons in ranking: ", pokemons)
     const [sortedPokemons, setSortedPokemons] = useState(completePokemons)
+    const [nameSortAsc, setNameSortAsc] = useState(true)
+    const [expSortAsc, setExpSortAsc] = useState(true)
+    const [weightSortAsc, setWeightSortAsc] = useState(true)
+    const [heightSortAsc, setHeightSortAsc] = useState(true)
+    const [winsSortAsc, setWinsSortAsc] = useState(true)
+    const [lossesSortAsc, setLossesSortAsc] = useState(true)
+    const [sortingParam, setSortingParam] = useState("name")
 
     // useEffect(() => setSortedPokemons(pokemons), [pokemons])
-    // useEffect(() => sortPokemons(), [completePokemons])
+    useEffect(() => sortPokemons(sortName), [completePokemons])
 
-    // const sortPokemons = () => {
-    //     const sorted = completePokemons.toSorted((pokemonA, pokemonB) => pokemonA.baseExperience - pokemonB.baseExperience)
-    //     setSortedPokemons(sorted)
-    // }
+    const sortPokemons = (sortingFn) => {
+        const sorted = completePokemons.toSorted(sortingFn)
+        setSortedPokemons(sorted)
+    }
+
+    const handleSortByName = () => {
+        setSortingParam("name")
+        sortPokemons(sortName)
+        setNameSortAsc(prev => !prev)
+    }
+
+    const handleSortByExp = () => {
+        setExpSortAsc(prev => !prev)
+        setSortingParam("exp")
+        sortPokemons(sortExp)
+    }
+
+    const handleSortByWeight = () => {
+        setWeightSortAsc(prev => !prev)
+        setSortingParam("weight")
+        sortPokemons(sortWeight)
+    }
+
+    const handleSortByHeight = () => {
+        setHeightSortAsc(prev => !prev)
+        setSortingParam("height")
+        sortPokemons(sortHeight)
+    }
+
+    const handleSortByWins = () => {
+        setWinsSortAsc(prev => !prev)
+        setSortingParam("wins")
+        sortPokemons(sortWins)
+    }
+
+    const handleSortByLosses = () => {
+        setLossesSortAsc(prev => !prev)
+        setSortingParam("losses")
+        sortPokemons(sortLosses)
+    }
+
+    const sortName = (pokemonA, pokemonB) =>
+        nameSortAsc ? pokemonA.name.localeCompare(pokemonB.name) : pokemonB.name.localeCompare(pokemonA.name)
+
+    const sortExp = (pokemonA, pokemonB) =>
+        expSortAsc ? pokemonA.baseExperience - pokemonB.baseExperience : pokemonB.baseExperience - pokemonA.baseExperience
+
+    const sortWeight = (pokemonA, pokemonB) =>
+        weightSortAsc ? pokemonA.weight - pokemonB.weight : pokemonB.weight - pokemonA.weight
+
+    const sortHeight = (pokemonA, pokemonB) =>
+        heightSortAsc ? pokemonA.height - pokemonB.height : pokemonB.height - pokemonA.height
+
+    const sortWins = (pokemonA, pokemonB) =>
+        winsSortAsc ? pokemonA.wins - pokemonB.wins : pokemonB.wins - pokemonA.wins
+
+    const sortLosses = (pokemonA, pokemonB) =>
+        lossesSortAsc ? pokemonA.losses - pokemonB.losses : pokemonB.losses - pokemonA.losses
+
+
 
     return (
         <RankingContainer>
             <RankingTable>
                 <TableHead>
                     <TableRow>
-                        <TableHeader></TableHeader>
-                        <TableHeader>name</TableHeader>
-                        <TableHeader>base exp</TableHeader>
-                        <TableHeader>weight</TableHeader>
-                        <TableHeader>height</TableHeader>
-                        <TableHeader>wins</TableHeader>
-                        <TableHeader>losses</TableHeader>
+                        <TableHeader> </TableHeader>
+                        <TableHeader onClick={handleSortByName} >
+                            <HeaderTitle className={`${(sortingParam === "name" && "sortBy")} ${(nameSortAsc ? "asc" : "desc")}`}>name</HeaderTitle>
+                        </TableHeader>
+                        <TableHeader onClick={handleSortByExp}>
+                            <HeaderTitle className={`${(sortingParam === "exp" && "sortBy")} ${(expSortAsc ? "asc" : "desc")}`}>base exp</HeaderTitle></TableHeader>
+                        <TableHeader onClick={handleSortByWeight}>
+                            <HeaderTitle className={`${(sortingParam === "weight" && "sortBy")} ${(weightSortAsc ? "asc" : "desc")}`}>weight</HeaderTitle>
+                        </TableHeader>
+                        <TableHeader onClick={handleSortByHeight}>
+                            <HeaderTitle className={`${(sortingParam === "height" && "sortBy")} ${(heightSortAsc ? "asc" : "desc")}`}>height</HeaderTitle>
+                        </TableHeader>
+                        <TableHeader onClick={handleSortByWins}>
+                            <HeaderTitle className={`${(sortingParam === "wins" && "sortBy")} ${(winsSortAsc ? "asc" : "desc")}`}>wins</HeaderTitle>
+                        </TableHeader>
+                        <TableHeader onClick={handleSortByLosses}>
+                            <HeaderTitle className={`${(sortingParam === "losses" && "sortBy")} ${(lossesSortAsc ? "asc" : "desc")}`}>losses</HeaderTitle>
+                        </TableHeader>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {completePokemons.map((pokemon, id) =>
+                    {isPending || sortedPokemons.map((pokemon, id) =>
                         <TableRowComponent key={id} pokemon={pokemon} />
                     )}
                 </TableBody>
 
             </RankingTable>
+            {isPending && <p>loading ranking...</p>}
         </RankingContainer>
     )
 }
@@ -87,7 +171,6 @@ const TableRowComponent = ({ pokemon }) => {
         height,
         wins,
         losses } = pokemon
-
 
     return (
         <TableRow>

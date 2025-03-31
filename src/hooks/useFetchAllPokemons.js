@@ -38,12 +38,11 @@ const useFetchAllPokemons = (apiUrl, jsonServerUrl, loggedUserId) => {
           )
         )
         .then((pokemonsWithDetailsMergedWithUserData) =>
-          setCompletePokemons(pokemonsWithDetailsMergedWithUserData)
+          setCompletePokemons([...pokemonsWithDetailsMergedWithUserData])
         )
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
+        .finally(setIsPending(false));
     };
-
-    setIsPending(false);
   }, []);
 
   return { completePokemons, isPending };
