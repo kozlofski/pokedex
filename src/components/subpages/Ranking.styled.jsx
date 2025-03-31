@@ -1,47 +1,51 @@
 import React from 'react'
 import { styled } from "styled-components"
-// import useFetchPokemons from '../../hooks/useFetchPokemons'
-import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
 import useFetchAllPokemons from '../../hooks/useFetchAllPokemons'
 import { useState, useEffect, useContext } from 'react'
 import LoginContext from '../../context/LoginContext'
 const JSON_SERVER_URL = "http://localhost:3000/users"
 const BASE_URL = "https://pokeapi.co/api/v2/";
 
-
 const RankingContainer = styled.div`
 
 `
 
 const RankingTable = styled.table`
-width: 100%;
+    width: 100%;
 `
 const TableHead = styled.thead`
 `
 const TableBody = styled.tbody`
-width: 100%;
-`
+    width: 100%;
+    `
 const TableRow = styled.tr`
-`
+    &:nth-child(even) {
+        background-color: #aaeeff;
+        }
+        `
 
 const TableHeader = styled.th`
-`
+        position: sticky;
+        background-color: #ffffffff;
+        padding: 1rem 0;
+        top: 0;
+        `
 
 const HeaderTitle = styled.span`
-    &.sortBy.asc::after {
-        content: "^"
+&.sortBy.asc::after {
+    content: "^"
     }
-
+    
     &.sortBy.desc::after {
         content: "v"
-    }
-
-`
+        }
+        
+        `
 
 const TableCell = styled.td`
-padding: 0 1rem;
-text-align: center;
-border-bottom: 1px solid blue;
+        padding: 0 1rem;
+        text-align: center;
+        border: none;
 `
 
 const Ranking = () => {
@@ -56,7 +60,6 @@ const Ranking = () => {
     const [lossesSortAsc, setLossesSortAsc] = useState(true)
     const [sortingParam, setSortingParam] = useState("name")
 
-    // useEffect(() => setSortedPokemons(pokemons), [pokemons])
     useEffect(() => sortPokemons(sortName), [completePokemons])
 
     const sortPokemons = (sortingFn) => {
@@ -118,8 +121,6 @@ const Ranking = () => {
     const sortLosses = (pokemonA, pokemonB) =>
         lossesSortAsc ? pokemonA.losses - pokemonB.losses : pokemonB.losses - pokemonA.losses
 
-
-
     return (
         <RankingContainer>
             <RankingTable>
@@ -157,8 +158,8 @@ const Ranking = () => {
     )
 }
 
-
 const Image = styled.img`
+    margin: 0 auto;
     height: 6rem;
 `
 
