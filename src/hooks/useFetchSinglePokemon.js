@@ -19,6 +19,14 @@ const useFetchSinglePokemon = (pokemonInitial) => {
           baseExperience: pokemonInitial.baseExperience,
         };
       }
+      if (pokemonInitial.height !== undefined) {
+        newPokemon = {
+          ...newPokemon,
+          height: pokemonInitial.height,
+          weight: pokemonInitial.weight,
+          baseExperience: pokemonInitial.baseExperience,
+        };
+      }
       // console.log(newPokemon);
       setPokemon(newPokemon);
     })();

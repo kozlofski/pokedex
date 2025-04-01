@@ -4,15 +4,24 @@ const mergeWithUserData = async (linksToPokemons, serverUrl, loggedUserId) => {
   try {
     const userData = await fetchUserData(serverUrl, loggedUserId);
     const mergedPokemons = linksToPokemons.map((pokemon) => {
+      let modifiedPokemon = { ...pokemon };
+      if (pokemon.name in userData.modified) {
+        modifiedPokemon = {
+          ...modifiedPokemon,
+          height: userData.modified[pokemon.name].height,
+          weight: userData.modified[pokemon.name].weight,
+          baseExperience: userData.modified[pokemon.name].baseExperience,
+        };
+      }
       if (pokemon.name in userData.stats) {
-        const modifiedPokemon = {
-          ...pokemon,
+        modifiedPokemon = {
+          ...modifiedPokemon,
           wins: userData.stats[pokemon.name].wins,
           losses: userData.stats[pokemon.name].losses,
           baseExperience: userData.stats[pokemon.name].baseExperience,
         };
-        return modifiedPokemon;
-      } else return pokemon;
+      }
+      return modifiedPokemon;
     });
     return mergedPokemons;
   } catch (e) {
