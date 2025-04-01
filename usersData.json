@@ -26,9 +26,9 @@
       "arena": {},
       "stats": {
         "venusaur": {
-          "wins": 6,
+          "wins": 7,
           "losses": 0,
-          "baseExperience": 323
+          "baseExperience": 333
         },
         "bulbasaur": {
           "wins": 4,
@@ -37,7 +37,7 @@
         },
         "rattata": {
           "wins": 1,
-          "losses": 1,
+          "losses": 2,
           "baseExperience": 51
         },
         "caterpie": {
@@ -64,8 +64,24 @@
           "wins": 0,
           "losses": 3,
           "baseExperience": 39
+        },
+        "eevee": {
+          "wins": 1,
+          "losses": 0,
+          "baseExperience": 75
+        },
+        "dewgong": {
+          "wins": 1,
+          "losses": 0,
+          "baseExperience": 176
+        },
+        "rapidash": {
+          "wins": 0,
+          "losses": 2,
+          "baseExperience": 175
         }
-      }
+      },
+      "modified": {}
     },
     {
       "id": "368d",
@@ -87,16 +103,8 @@
         "flareon": true
       },
       "arena": {},
-      "stats": {}
-    },
-    {
-      "id": "2895",
-      "userName": "koza111",
-      "userEmail": "koza@wp.pl",
-      "hashedPassword": 3821238780675380,
-      "favourites": {},
-      "arena": {},
-      "stats": {}
+      "stats": {},
+      "modified": {}
     }
   ]
 }
