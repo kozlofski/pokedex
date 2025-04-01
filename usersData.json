@@ -91,9 +91,21 @@
           "height": "1511",
           "weight": "480",
           "baseExperience": "250"
+        },
+        "arcanine": {
+          "height": "190",
+          "weight": "1550",
+          "baseExperience": "194"
         }
-      }, 
-      "created: {}"
+      },
+      "created": {
+        "sdfg": {
+          "height": "2134",
+          "weight": "234",
+          "baseExperience": "234",
+          "ability": "safdgdsgh"
+        }
+      }
     },
     {
       "id": "368d",
@@ -116,7 +128,8 @@
       },
       "arena": {},
       "stats": {},
-      "modified": {}
+      "modified": {},
+      "created": {}
     }
   ]
 }

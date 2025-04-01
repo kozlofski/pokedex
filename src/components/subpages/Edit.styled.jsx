@@ -4,8 +4,16 @@ import { useState, useContext } from 'react'
 import LoginContext from '../../context/LoginContext'
 import Button from '../shared/Button.styled'
 import EditPokemon from '../shared/EditPokemon.styled'
+import CreatePokemon from '../shared/CreatePokemon.styled'
+import { styled } from "styled-components"
 
 const JSON_SERVER_URL = "http://localhost:3000/users"
+
+const Init = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
 
 const Edit = () => {
     const [editedPokemon, setEditedPokemon] = useState({})
@@ -20,9 +28,13 @@ const Edit = () => {
 
     return (
         <>
-            <div>Edit</div>
-            {editMode === "init" && <PokemonRankingTable edit={true} setEditedPokemon={setEditedPokemon} />}
+            {editMode === "init" &&
+                (<Init>
+                    <Button onClick={() => setEditMode("create")} >Stwórz własnego pokemona</Button>
+                    <PokemonRankingTable edit={true} setEditedPokemon={setEditedPokemon} />
+                </Init>)}
             {editMode === "edit" && <EditPokemon editedPokemon={editedPokemon} loggedUserId={loggedUserId} />}
+            {editMode === "create" && <CreatePokemon loggedUserId={loggedUserId} />}
         </>
     )
 }

@@ -10,27 +10,26 @@ import fetchUserData from '../../services/fetchUserData'
 
 const JSON_SERVER_URL = "http://localhost:3000/users"
 
-const EditForm = styled.form`
-display: flex;
-flex-direction: column;
-align-items: end;
-max-width: 20rem;
-margin: 0 auto;
+const CreateForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    max-width: 20rem;
+    margin: 0 auto;
 `
 
 const editFormSchema = z.object({
+    name: z.string().trim().min(1, { message: "imię pokemona musi zawierać conajmniej 2 litery" }),
     height: z.string().trim().min(1, { message: "wprowadź liczbę naturalną" }).regex(new RegExp(/^\d+$/g), { message: "nieprawidłowa liczba" }),
     weight: z.string().trim().min(1, { message: "wprowadź liczbę naturalną" }).regex(new RegExp(/^\d+$/g), { message: "nieprawidłowa liczba" }),
     baseExperience: z.string().trim().min(1, { message: "wprowadź liczbę naturalną" }).regex(new RegExp(/^\d+$/g), { message: "nieprawidłowa liczba" }),
+    ability: z.string().trim().min(1, { message: "umiejętnośćnie może być pusta" }),
 })
 
-const EditPokemon = ({ editedPokemon, loggedUserId }) => {
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm({ resolver: zodResolver(editFormSchema) })
+const CreatePokemon = ({ loggedUserId }) => {
+    const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(editFormSchema) })
     const navigate = useNavigate();
 
-    setValue("height", editedPokemon.height.toString())
-    setValue("weight", editedPokemon.weight.toString())
-    setValue("baseExperience", editedPokemon.baseExperience.toString())
 
     const onSubmit = async (data, event) => {
         console.log(data)
@@ -38,32 +37,27 @@ const EditPokemon = ({ editedPokemon, loggedUserId }) => {
 
         try {
             const userData = await fetchUserData(JSON_SERVER_URL, loggedUserId);
-            const oldModified = userData.modified;
-            const pokemonName = editedPokemon.name
+            const oldCreated = userData.created;
 
-            let newModified = {}
+            let newCreated = {}
 
-            if (pokemonName in oldModified) {
-                newModified = { ...oldModified };
-                newModified[pokemonName] = {
-                    height: data.height,
-                    weight: data.weight,
-                    baseExperience: data.baseExperience,
-                };
+            if (data.name in oldCreated) {
+                throw new Error("pokemon with that name already exists")
             } else {
-                newModified = {
-                    ...oldModified,
-                    [pokemonName]: {
+                newCreated = {
+                    ...oldCreated,
+                    [data.name]: {
                         height: data.height,
                         weight: data.weight,
                         baseExperience: data.baseExperience,
+                        ability: data.ability,
                     },
                 };
             }
             const patchResponse = fetch(`${JSON_SERVER_URL}/${loggedUserId}`, {
                 method: "PATCH",
                 body: JSON.stringify({
-                    modified: newModified,
+                    created: newCreated,
                 }),
             });
             if (!patchResponse) throw new Error("something is not yes with patching pokemon")
@@ -80,30 +74,41 @@ const EditPokemon = ({ editedPokemon, loggedUserId }) => {
 
     return (
         <>
-            <EditForm onSubmit={handleSubmit(onSubmit, onError)}>
-                <label for="height">Height: </label>
+            <CreateForm onSubmit={handleSubmit(onSubmit, onError)}>
+                <label for="name">Imię: </label>
+                <Input {...register('name')}
+                    type={"text"}
+                    placeholder={"imię"}
+                    error={errors.name ?? ""} />
+
+                <label for="height">Wzrost: </label>
                 <Input {...register('height')}
                     type={"text"}
                     placeholder={"wzrost"}
-                    error={errors.name ?? ""} />
+                    error={errors.height ?? ""} />
 
-                <label for="weight">Weight: </label>
-
+                <label for="weight">Waga: </label>
                 <Input {...register('weight')}
                     type={"text"}
                     placeholder={"waga"}
-                    error={errors.email ?? ""} />
-                <label for="baseExperience">Base experience: </label>
+                    error={errors.weight ?? ""} />
 
+                <label for="baseExperience">Doświadczenie: </label>
                 <Input {...register('baseExperience')}
                     type={"text"}
                     placeholder={"doświadczenie"}
-                    error={errors.password ?? ""} />
-                <Button type="submit" >Potwierdź zmiany</Button>
+                    error={errors.baseExperience ?? ""} />
 
-            </EditForm>
+                <label for="baseExperience">Umiejętność: </label>
+                <Input {...register('ability')}
+                    type={"text"}
+                    placeholder={"umiejętność"}
+                    error={errors.ability ?? ""} />
+                <Button type="submit" >Utfusz</Button>
+
+            </CreateForm>
         </>
     )
 }
 
-export default EditPokemon
+export default CreatePokemon
