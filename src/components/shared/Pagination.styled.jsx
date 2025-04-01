@@ -42,17 +42,16 @@ const Pagination = ({ pokemonsFiltered, currentPage, setCurrentPage }) => {
     // const { pageLimit, currentPage, setCurrentPage } = useContext(GlobalContext)
     // const [currentPage, setCurrentPage] = useState(1)
 
-    const totalPages = pokemonsFiltered ? pokemonsFiltered.length / PAGE_LIMIT : 0;
+    const totalPages = pokemonsFiltered ? 1 + (pokemonsFiltered.length - 1) / PAGE_LIMIT : 0;
 
     const numbers = []
-    for (let i = 1; i <= totalPages; i++) {
-        numbers.push(i)
-    }
+    if (totalPages >= 2)
+        for (let i = 1; i <= totalPages; i++) {
+            numbers.push(i)
+        }
 
     const handleChangePage = (number) => {
-        // const newPage = number
-        // const paginated = pokemonsFiltered.slice((newPage - 1) * PAGE_LIMIT, (newPage) * PAGE_LIMIT);
-        // setPokemonsPaginated(paginated)
+
         setCurrentPage(number)
     }
 
