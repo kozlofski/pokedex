@@ -47,7 +47,7 @@ const TableCell = styled.td`
         border: none;
 `
 
-const PokemonRankingTable = ({ edit }) => {
+const PokemonRankingTable = ({ edit, setEditedPokemon }) => {
     const { loggedUserId } = useContext(LoginContext)
     const { completePokemons, isPending } = useFetchAllPokemons(BASE_URL, JSON_SERVER_URL, loggedUserId)
     const [sortedPokemons, setSortedPokemons] = useState(completePokemons)
@@ -148,7 +148,7 @@ const PokemonRankingTable = ({ edit }) => {
                 </TableHead>
                 <TableBody>
                     {isPending || sortedPokemons.map((pokemon, id) =>
-                        <TableRowComponent key={id} pokemon={pokemon} edit={edit} />
+                        <TableRowComponent key={id} pokemon={pokemon} edit={edit} setEditedPokemon={setEditedPokemon} />
                     )}
                 </TableBody>
 
@@ -167,7 +167,7 @@ const EditButton = styled.button`
 
 `
 
-const TableRowComponent = ({ pokemon, edit }) => {
+const TableRowComponent = ({ pokemon, edit, setEditedPokemon }) => {
     const {
         imgUrl,
         name,
@@ -177,7 +177,9 @@ const TableRowComponent = ({ pokemon, edit }) => {
         wins,
         losses } = pokemon
 
-    const handleEdit = () => { }
+    const handleEdit = () => {
+        setEditedPokemon(pokemon)
+    }
 
     return (
         <TableRow>

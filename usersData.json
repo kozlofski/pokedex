@@ -81,7 +81,13 @@
           "baseExperience": 175
         }
       },
-      "modified": {}
+      "modified": {
+        "abra": {
+          "height": "10",
+          "weight": "195",
+          "baseExperience": "62"
+        }
+      }
     },
     {
       "id": "368d",
