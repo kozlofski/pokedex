@@ -7,6 +7,7 @@ import Input from '../shared/Input.styled'
 import { useNavigate } from 'react-router-dom'
 import Button from '../shared/Button.styled'
 import fetchUserData from '../../services/fetchUserData'
+import fetchLinksToPokemons from '../../services/fetchLinksToPokemons'
 
 const JSON_SERVER_URL = "http://localhost:3000/users"
 
@@ -38,6 +39,9 @@ const CreatePokemon = ({ loggedUserId }) => {
         try {
             const userData = await fetchUserData(JSON_SERVER_URL, loggedUserId);
             const oldCreated = userData.created;
+
+            const linksToPokemons = await fetchLinksToPokemons()
+            console.log(linksToPokemons)
 
             let newCreated = {}
 
@@ -75,31 +79,31 @@ const CreatePokemon = ({ loggedUserId }) => {
     return (
         <>
             <CreateForm onSubmit={handleSubmit(onSubmit, onError)}>
-                <label for="name">Imię: </label>
+                <label htmlFor="name">Imię: </label>
                 <Input {...register('name')}
                     type={"text"}
                     placeholder={"imię"}
                     error={errors.name ?? ""} />
 
-                <label for="height">Wzrost: </label>
+                <label htmlFor="height">Wzrost: </label>
                 <Input {...register('height')}
                     type={"text"}
                     placeholder={"wzrost"}
                     error={errors.height ?? ""} />
 
-                <label for="weight">Waga: </label>
+                <label htmlFor="weight">Waga: </label>
                 <Input {...register('weight')}
                     type={"text"}
                     placeholder={"waga"}
                     error={errors.weight ?? ""} />
 
-                <label for="baseExperience">Doświadczenie: </label>
+                <label htmlFor="baseExperience">Doświadczenie: </label>
                 <Input {...register('baseExperience')}
                     type={"text"}
                     placeholder={"doświadczenie"}
                     error={errors.baseExperience ?? ""} />
 
-                <label for="baseExperience">Umiejętność: </label>
+                <label htmlFor="baseExperience">Umiejętność: </label>
                 <Input {...register('ability')}
                     type={"text"}
                     placeholder={"umiejętność"}
