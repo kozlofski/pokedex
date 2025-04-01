@@ -11,8 +11,12 @@ import fetchUserData from '../../services/fetchUserData'
 
 const JSON_SERVER_URL = "http://localhost:3000/users"
 
-
 const EditForm = styled.form`
+display: flex;
+flex-direction: column;
+align-items: end;
+max-width: 20rem;
+margin: 0 auto;
 `
 
 const editFormSchema = z.object({
@@ -78,15 +82,20 @@ const EditPokemon = ({ editedPokemon, loggedUserId }) => {
     return (
         <>
             <EditForm onSubmit={handleSubmit(onSubmit, onError)}>
+                <label for="height">Height: </label>
                 <Input {...register('height')}
                     type={"text"}
                     placeholder={"wzrost"}
                     error={errors.name ?? ""} />
 
+                <label for="weight">Weight: </label>
+
                 <Input {...register('weight')}
                     type={"text"}
                     placeholder={"waga"}
                     error={errors.email ?? ""} />
+                <label for="baseExperience">Base experience: </label>
+
                 <Input {...register('baseExperience')}
                     type={"text"}
                     placeholder={"doświadczenie"}

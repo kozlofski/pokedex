@@ -25,7 +25,8 @@ const Form = styled.form`
 const signupFormSchema = z.object({
     name: z.string().trim().min(3, { message: "imię musi zawierać conajmniej 3 znaki" }),
     email: z.string().trim().email({ message: "wprowadź prawidłowy adres e-mail" }),
-    password: z.string().trim().min(8, { message: "hasło musi zawierać co najmniej 8 znaków" }).regex(new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/g), { message: "za słabe hasło" }),
+    password: z.string().trim().min(8, { message: "hasło musi zawierać co najmniej 8 znaków" })
+        .regex(new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/g), { message: "za słabe hasło" }),
     confirm: z.string().trim().min(1, { message: "potwierdź wprowadzone hasło" }),
 }).superRefine((val, ctx) => {
     if (val.password !== val.confirm) {
@@ -66,7 +67,8 @@ const SignUp = () => {
                     favourites: {},
                     "arena": {},
                     "stats": {},
-                    "modified": {}
+                    "modified": {},
+                    "created": {}
                 })
             })
             if (!response) throw new Error("something is not yes with POST response")

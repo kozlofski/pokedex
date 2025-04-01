@@ -14,6 +14,7 @@ const ErrorMessage = styled.p`
 
 const Input = (props) => {
     const { type, placeholder, error: { message }, ...rest } = props
+    console.log("Input props: ", props)
     return (<>
         <StyledInput type={type} placeholder={placeholder} {...rest}></StyledInput>
         <ErrorMessage>{message}</ErrorMessage>
