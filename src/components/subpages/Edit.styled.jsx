@@ -1,8 +1,12 @@
 import React from 'react'
+import Ranking from './Ranking.styled'
 
 const Edit = () => {
     return (
-        <div>Edit</div>
+        <>
+            <div>Edit</div>
+            <Ranking />
+        </>
     )
 }
 
