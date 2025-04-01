@@ -14,6 +14,7 @@ const useFetchPokemons = (serverUrl, loggedUserId) => {
   const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
+    // this can be separate service
     const fetchData = async () => {
       try {
         setIsPending(true);

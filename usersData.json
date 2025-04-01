@@ -104,6 +104,18 @@
           "weight": "234",
           "baseExperience": "234",
           "ability": "safdgdsgh"
+        },
+        "ivysaur": {
+          "height": "2314",
+          "weight": "324",
+          "baseExperience": "324",
+          "ability": "xfgvds"
+        },
+        "ivysaur2": {
+          "height": "3425",
+          "weight": "456",
+          "baseExperience": "4356",
+          "ability": "gfdbdfgg"
         }
       }
     },
