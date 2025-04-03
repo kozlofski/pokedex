@@ -1,5 +1,5 @@
 import React from 'react'
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import { styled } from "styled-components"
 
@@ -12,6 +12,12 @@ const PaginationContainer = styled.ul`
     flex-direction: row;
     list-style: none;
     gap: 0.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+    border: none;
+    border-radius: 1rem;
 `
 const PageButton = styled.li`
     height: 2em;
@@ -36,26 +42,24 @@ const PageButton = styled.li`
     }
 `
 
-const Pagination = ({ pokemonsFiltered, currentPage, setCurrentPage = 1, setPokemonsPaginated }) => {
-    // const { pageLimit, currentPage, setCurrentPage } = useContext(GlobalContext)
-    // const [currentPage, setCurrentPage] = useState(1)
-
+const Pagination = ({ pokemonsFiltered, setPokemonsPaginated }) => {
     const totalPages = pokemonsFiltered ? 1 + (pokemonsFiltered.length - 1) / PAGE_LIMIT : 0;
+    const [currentPage, setCurrentPage] = useState(1)
 
     useEffect(() => {
         const paginated = pokemonsFiltered.slice((currentPage - 1) * PAGE_LIMIT, (currentPage) * PAGE_LIMIT);
         setPokemonsPaginated(paginated)
     }, [currentPage, pokemonsFiltered, setPokemonsPaginated])
 
+    useEffect(() => setCurrentPage(1), [pokemonsFiltered])
+
     const numbers = []
     if (totalPages >= 2)
-        for (let i = 1; i <= totalPages; i++) {
+        for (let i = 1; i <= totalPages; i++)
             numbers.push(i)
-        }
 
-    const handleChangePage = (number) => {
-        setCurrentPage(number)
-    }
+
+    const handleChangePage = (number) => setCurrentPage(number) // necessary? inline?
 
     return (
         <PaginationContainer>

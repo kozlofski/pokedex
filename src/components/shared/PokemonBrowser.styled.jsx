@@ -38,39 +38,26 @@ const PokemonBrowser = ({ favourites }) => {
     const { loggedUserId } = useContext(LoginContext)
     const { pokemons, isPending } = useFetchPokemons();
 
-    const [filter, setFilter] = useState('')
-    const [currentPage, setCurrentPage] = useState(1)
-    const [pokemonsFiltered, setPokemonsFiltered] = useState(pokemons)
+    const [pokemonsFiltered, setPokemonsFiltered] = useState()
     const [pokemonsPaginated, setPokemonsPaginated] = useState(null)
     const [modalOpened, setModalOpened] = useState(false)
     const [selectedPokemon, setSelectedPokemon] = useState({})
 
-    // onChange?
-    useEffect(() => {
-        filterPokemons()
-    }, [filter, pokemons])
-
-    // useEffect(() => {
-    //     // const paginated = pokemonsFiltered.slice((currentPage - 1) * PAGE_LIMIT, (currentPage) * PAGE_LIMIT);
-    //     // setPokemonsPaginated(paginated)
-    // }, [currentPage, pokemonsFiltered])
-
-    const filterPokemons = async () => {
-        const filterInput = (pokemon) => pokemon.name.toLowerCase().includes(filter)
+    const handleFilter = async (event) => {
+        const input = event.target.value
+        const filterInput = (pokemon) => pokemon.name.toLowerCase().includes(input)
         let filtered = pokemons.filter(filterInput);
 
         if (favourites) {
             try {
                 const userDataResponse = await fetchUserData(loggedUserId)
-                // console.log("Fetched favs in filter: ", userDataResponse.favourites);
+                if (!userDataResponse) throw new Error("Error fetching user data from JSON server")
                 const filterFavourites = (pokemon) => pokemon.name in userDataResponse.favourites
                 filtered = filtered.filter(filterFavourites)
             } catch (error) {
-                console.log("Catched from browser: ", error)
+                console.log("Error in filtering favourites in browser: ", error)
             }
         }
-
-        setCurrentPage(1)
         setPokemonsFiltered(filtered)
     }
 
@@ -82,13 +69,12 @@ const PokemonBrowser = ({ favourites }) => {
     return (
         <BrowserContainer>
             <PokemonsFilter
-                onChange={(e) => setFilter(e.target.value)}
-                placeholder='Search'></PokemonsFilter>
+                onChange={handleFilter}
+                placeholder='Search pokemon'></PokemonsFilter>
             <Pagination
-                pokemonsFiltered={pokemonsFiltered}
+                pokemonsFiltered={pokemonsFiltered || pokemons}
                 setPokemonsPaginated={setPokemonsPaginated}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage} />
+            />
             <PokemonsGallery>
                 {/* turn loader into separate component */}
                 {isPending && <p style={{ fontSize: "2rem" }}>Loading pokemons...</p>}
