@@ -68,7 +68,6 @@ const User = styled.p`
 
 const Header = () => {
     const { loggedUser } = useContext(LoginContext)
-    console.log("rendering navbar with ", loggedUser)
 
     return (<HeaderContainer>
         <Link to={"/"}><Logo src={logoPath} alt="POKEMON"></Logo></Link>

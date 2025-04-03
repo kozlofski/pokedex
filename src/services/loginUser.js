@@ -15,7 +15,6 @@ const loginUser = async (
 
     const foundUserId = await foundUser.id;
 
-    console.log("Passwords: ", hashedPassword, foundUser.hashedPassword);
     if (hashedPassword !== foundUser.hashedPassword)
       throw new Error("password incorrect");
 
