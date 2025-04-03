@@ -28,15 +28,14 @@ const TableHeader = styled.th`
         `
 
 const HeaderTitle = styled.span`
-&.sortBy.asc::after {
-    content: "^"
+    &.sortBy.asc::after {
+        content: "^"
     }
     
     &.sortBy.desc::after {
         content: "v"
         }
-        
-        `
+`
 
 const TableCell = styled.td`
         padding: 0 1rem;
@@ -47,6 +46,7 @@ const TableCell = styled.td`
 const PokemonRankingTable = ({ edit, setEditedPokemon }) => {
     const { completePokemons, isPending } = useFetchAllPokemons()
     const [sortedPokemons, setSortedPokemons] = useState(completePokemons)
+
     const [nameSortAsc, setNameSortAsc] = useState(true)
     const [expSortAsc, setExpSortAsc] = useState(true)
     const [weightSortAsc, setWeightSortAsc] = useState(true)
@@ -118,38 +118,38 @@ const PokemonRankingTable = ({ edit, setEditedPokemon }) => {
 
     return (
         <RankingContainer>
-            <RankingTable>
-                <TableHead>
-                    <TableRow>
-                        <TableHeader> </TableHeader>
-                        <TableHeader onClick={handleSortByName} >
-                            <HeaderTitle className={`${(sortingParam === "name" && "sortBy")} ${(nameSortAsc ? "asc" : "desc")}`}>name</HeaderTitle>
-                        </TableHeader>
-                        <TableHeader onClick={handleSortByExp}>
-                            <HeaderTitle className={`${(sortingParam === "exp" && "sortBy")} ${(expSortAsc ? "asc" : "desc")}`}>base exp</HeaderTitle></TableHeader>
-                        <TableHeader onClick={handleSortByWeight}>
-                            <HeaderTitle className={`${(sortingParam === "weight" && "sortBy")} ${(weightSortAsc ? "asc" : "desc")}`}>weight</HeaderTitle>
-                        </TableHeader>
-                        <TableHeader onClick={handleSortByHeight}>
-                            <HeaderTitle className={`${(sortingParam === "height" && "sortBy")} ${(heightSortAsc ? "asc" : "desc")}`}>height</HeaderTitle>
-                        </TableHeader>
-                        <TableHeader onClick={handleSortByWins}>
-                            <HeaderTitle className={`${(sortingParam === "wins" && "sortBy")} ${(winsSortAsc ? "asc" : "desc")}`}>wins</HeaderTitle>
-                        </TableHeader>
-                        <TableHeader onClick={handleSortByLosses}>
-                            <HeaderTitle className={`${(sortingParam === "losses" && "sortBy")} ${(lossesSortAsc ? "asc" : "desc")}`}>losses</HeaderTitle>
-                        </TableHeader>
-                        {edit && <TableHeader> </TableHeader>}
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {isPending || sortedPokemons.map((pokemon, id) =>
-                        <TableRowComponent key={id} pokemon={pokemon} edit={edit} setEditedPokemon={setEditedPokemon} />
-                    )}
-                </TableBody>
+            {isPending ? "Loading ranking..." :
+                <RankingTable>
+                    <TableHead>
+                        <TableRow>
+                            <TableHeader> </TableHeader>
+                            <TableHeader onClick={handleSortByName} >
+                                <HeaderTitle className={`${(sortingParam === "name" && "sortBy")} ${(nameSortAsc ? "asc" : "desc")}`}>name</HeaderTitle>
+                            </TableHeader>
+                            <TableHeader onClick={handleSortByExp}>
+                                <HeaderTitle className={`${(sortingParam === "exp" && "sortBy")} ${(expSortAsc ? "asc" : "desc")}`}>base exp</HeaderTitle></TableHeader>
+                            <TableHeader onClick={handleSortByWeight}>
+                                <HeaderTitle className={`${(sortingParam === "weight" && "sortBy")} ${(weightSortAsc ? "asc" : "desc")}`}>weight</HeaderTitle>
+                            </TableHeader>
+                            <TableHeader onClick={handleSortByHeight}>
+                                <HeaderTitle className={`${(sortingParam === "height" && "sortBy")} ${(heightSortAsc ? "asc" : "desc")}`}>height</HeaderTitle>
+                            </TableHeader>
+                            <TableHeader onClick={handleSortByWins}>
+                                <HeaderTitle className={`${(sortingParam === "wins" && "sortBy")} ${(winsSortAsc ? "asc" : "desc")}`}>wins</HeaderTitle>
+                            </TableHeader>
+                            <TableHeader onClick={handleSortByLosses}>
+                                <HeaderTitle className={`${(sortingParam === "losses" && "sortBy")} ${(lossesSortAsc ? "asc" : "desc")}`}>losses</HeaderTitle>
+                            </TableHeader>
+                            {edit && <TableHeader> </TableHeader>}
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {isPending || sortedPokemons.map((pokemon, id) =>
+                            <TableRowComponent key={id} pokemon={pokemon} edit={edit} setEditedPokemon={setEditedPokemon} />
+                        )}
+                    </TableBody>
 
-            </RankingTable>
-            {isPending && <p>loading ranking...</p>}
+                </RankingTable>}
         </RankingContainer>
     )
 }

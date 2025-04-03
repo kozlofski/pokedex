@@ -105,12 +105,6 @@
           "baseExperience": "234",
           "ability": "safdgdsgh"
         },
-        "ivysaur": {
-          "height": "2314",
-          "weight": "324",
-          "baseExperience": "324",
-          "ability": "xfgvds"
-        },
         "ivysaur2": {
           "height": "3425",
           "weight": "456",
@@ -128,6 +122,13 @@
           "weight": "2342",
           "baseExperience": "342",
           "ability": "fsgvfdsgfg"
+        },
+        "sdfgsdfghgfhgfd": {
+          "height": "234",
+          "weight": "234",
+          "baseExperience": "456",
+          "ability": "sdfggh",
+          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/152.png"
         }
       }
     },

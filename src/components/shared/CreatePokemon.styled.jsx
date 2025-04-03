@@ -20,6 +20,14 @@ const CreateForm = styled.form`
     margin: 0 auto;
 `
 
+const Image = styled.img`
+    height: 100px;
+
+    @media (max-width: 600px) {
+        // fix this
+    }
+`
+
 const editFormSchema = z.object({
     name: z.string().trim().min(1, { message: "imię pokemona musi zawierać conajmniej 2 litery" }),
     height: z.string().trim().min(1, { message: "wprowadź liczbę naturalną" }).regex(new RegExp(/^\d+$/g), { message: "nieprawidłowa liczba" }),
@@ -32,9 +40,10 @@ const CreatePokemon = ({ loggedUserId }) => {
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(editFormSchema) })
     const navigate = useNavigate();
     const [modalOpened, setModalOpened] = useState(false)
+    const [chosenImageUrl, setChosenImageUrl] = useState(null)
 
     const modal = createPortal(
-        <PokemonPictureModal onClose={() => setModalOpened(false)} />,
+        <PokemonPictureModal onClose={() => setModalOpened(false)} setChosenImageUrl={setChosenImageUrl} />,
         document.body
     )
 
@@ -61,6 +70,7 @@ const CreatePokemon = ({ loggedUserId }) => {
                         weight: data.weight,
                         baseExperience: data.baseExperience,
                         ability: data.ability,
+                        imgUrl: chosenImageUrl
                     },
                 };
             }
@@ -116,6 +126,7 @@ const CreatePokemon = ({ loggedUserId }) => {
                     type={"text"}
                     placeholder={"umiejętność"}
                     error={errors.ability ?? ""} />
+                {chosenImageUrl && <Image src={chosenImageUrl} />}
                 <Button onClick={() => setModalOpened(true)}>Wybierz zdjęcie dla pokemona</Button>
                 <Button type="submit" >Utfusz</Button>
                 {modalOpened && modal}

@@ -9,7 +9,7 @@ const useFetchAllPokemons = () => {
   const { loggedUserId } = useContext(LoginContext);
 
   const [completePokemons, setCompletePokemons] = useState([]);
-  const [isPending, setIsPending] = useState(false);
+  const [isPending, setIsPending] = useState();
 
   useEffect(() => {
     setIsPending(true);
@@ -35,9 +35,10 @@ const useFetchAllPokemons = () => {
         .then((pokemonsWithDetailsMergedWithUserData) =>
           setCompletePokemons([...pokemonsWithDetailsMergedWithUserData])
         )
-        .catch((error) => console.log(error))
-        .finally(setIsPending(false));
+        .catch((error) => console.log(error));
+      // .finally(setIsPending(false));
     };
+    setIsPending(false);
   }, [loggedUserId]);
 
   return { completePokemons, isPending };

@@ -10,7 +10,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import LoginContext from '../../context/LoginContext';
 import GlobalContext from '../../context/GlobalContext';
 
-import { JSON_SERVER_URL, API_URL } from '../../constants';
+import { LIMIT, PICTURES_TO_CHOOSE } from '../../constants';
+import fetchSinglePokemon from '../../services/fetchSinglePokemon';
+import useFetchPokemons from '../../hooks/useFetchPokemons';
+import Button from './Button.styled';
 
 const Modal = styled.div`
     position: fixed;
@@ -54,13 +57,46 @@ const Image = styled.img`
 `
 
 
-const PokemonPictureModal = ({ onClose }) => {
+const PokemonPictureModal = ({ onClose, setChosenImageUrl }) => {
+    const { pokemons } = useFetchPokemons(LIMIT, PICTURES_TO_CHOOSE)
+    const [currentPictureNumber, setCurrentPictureNumber] = useState(0)
+    const [currentPictureUrl, setCurrentPictureUrl] = useState(0)
+    // console.log(pokemons)
+
+    const handlePrevPicture = async () => {
+        let current = currentPictureNumber;
+        current--;
+        if (current < 0) current = PICTURES_TO_CHOOSE - 1
+        console.log("Current: ", current)
+        setCurrentPictureNumber(current)
+        const { imgUrl } = await fetchSinglePokemon(pokemons[current].url)
+        console.log(imgUrl)
+        setCurrentPictureUrl(imgUrl)
+    }
+
+    const handleNextPicture = async () => {
+        let current = currentPictureNumber;
+        current++;
+        if (current >= PICTURES_TO_CHOOSE) current = 0
+        console.log("Current: ", current)
+        setCurrentPictureNumber(current)
+        const { imgUrl } = await fetchSinglePokemon(pokemons[current].url)
+        console.log(imgUrl)
+        setCurrentPictureUrl(imgUrl)
+    }
+
+    const handleChoosePicture = () => {
+        setChosenImageUrl(currentPictureUrl)
+        onClose()
+    }
 
 
     return (
         <Modal onClick={onClose}>
             <ModalContent onClick={e => e.stopPropagation()}>
-
+                <Button onClick={handlePrevPicture}>prev</Button>
+                <Image src={currentPictureUrl} onClick={handleChoosePicture} />
+                <Button onClick={handleNextPicture}>next</Button>
             </ModalContent>
         </Modal>
     );

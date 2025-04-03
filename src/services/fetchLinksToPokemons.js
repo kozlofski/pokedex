@@ -1,9 +1,13 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
-const LIMIT = 150;
 
-const fetchLinksToPokemons = async () => {
+const fetchLinksToPokemons = async (start, limit) => {
+  const startQueryParam = start > 0 ? `offset=${start}&` : "";
+
+  console.log(start, limit);
   try {
-    const response = await fetch(`${BASE_URL}pokemon?limit=${LIMIT}`);
+    const response = await fetch(
+      `${BASE_URL}pokemon?${startQueryParam}limit=${limit}`
+    );
     if (!response) throw new Error("fetching pokemons links went bad");
     const jsonResponse = await response.json();
     const linksToPokemons = await jsonResponse.results;

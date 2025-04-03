@@ -10,7 +10,7 @@ import { styled } from "styled-components"
 const Init = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    // align-items: center;
 `
 
 const Edit = () => {
