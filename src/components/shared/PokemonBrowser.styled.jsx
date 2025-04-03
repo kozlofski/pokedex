@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { styled } from "styled-components"
-import PokemonCard from '../shared/PokemonCard.styled'
-import Pagination from '../shared/Pagination.styled'
-import useFetchPokemons from '../../hooks/useFetchPokemons'
-import PokemonDetailsModal from '../shared/PokemonDetailsModal.styled'
 import { createPortal } from "react-dom"
+
+import Pagination from '../shared/Pagination.styled'
+import PokemonCard from '../shared/PokemonCard.styled'
+import PokemonDetailsModal from '../shared/PokemonDetailsModal.styled'
 import LoginContext from '../../context/LoginContext';
+import useFetchPokemons from '../../hooks/useFetchPokemons'
 import fetchUserData from './../../services/fetchUserData'
 
-import { PAGE_LIMIT, JSON_SERVER_URL } from "../../constants"
-
+import { PAGE_LIMIT } from "../../constants"
 
 const PokemonsGallery = styled.ul`
     display: flex;
@@ -50,11 +50,10 @@ const PokemonBrowser = ({ favourites }) => {
         filterPokemons()
     }, [filter, pokemons])
 
-    useEffect(() => {
-        // to separate fn(), maybe encapsulate to pagination component
-        const paginated = pokemonsFiltered.slice((currentPage - 1) * PAGE_LIMIT, (currentPage) * PAGE_LIMIT);
-        setPokemonsPaginated(paginated)
-    }, [currentPage, pokemonsFiltered])
+    // useEffect(() => {
+    //     // const paginated = pokemonsFiltered.slice((currentPage - 1) * PAGE_LIMIT, (currentPage) * PAGE_LIMIT);
+    //     // setPokemonsPaginated(paginated)
+    // }, [currentPage, pokemonsFiltered])
 
     const filterPokemons = async () => {
         const filterInput = (pokemon) => pokemon.name.toLowerCase().includes(filter)
@@ -87,6 +86,7 @@ const PokemonBrowser = ({ favourites }) => {
                 placeholder='Search'></PokemonsFilter>
             <Pagination
                 pokemonsFiltered={pokemonsFiltered}
+                setPokemonsPaginated={setPokemonsPaginated}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage} />
             <PokemonsGallery>

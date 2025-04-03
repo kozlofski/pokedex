@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect } from 'react';
 
 import { styled } from "styled-components"
 
@@ -32,15 +33,19 @@ const PageButton = styled.li`
     &:hover {
         cursor: pointer;
         border: 1px solid green;
-
     }
 `
 
-const Pagination = ({ pokemonsFiltered, currentPage, setCurrentPage }) => {
+const Pagination = ({ pokemonsFiltered, currentPage, setCurrentPage = 1, setPokemonsPaginated }) => {
     // const { pageLimit, currentPage, setCurrentPage } = useContext(GlobalContext)
     // const [currentPage, setCurrentPage] = useState(1)
 
     const totalPages = pokemonsFiltered ? 1 + (pokemonsFiltered.length - 1) / PAGE_LIMIT : 0;
+
+    useEffect(() => {
+        const paginated = pokemonsFiltered.slice((currentPage - 1) * PAGE_LIMIT, (currentPage) * PAGE_LIMIT);
+        setPokemonsPaginated(paginated)
+    }, [currentPage, pokemonsFiltered, setPokemonsPaginated])
 
     const numbers = []
     if (totalPages >= 2)
@@ -49,7 +54,6 @@ const Pagination = ({ pokemonsFiltered, currentPage, setCurrentPage }) => {
         }
 
     const handleChangePage = (number) => {
-
         setCurrentPage(number)
     }
 
