@@ -60,8 +60,16 @@ const Image = styled.img`
 const PokemonPictureModal = ({ onClose, setChosenImageUrl }) => {
     const { pokemons } = useFetchPokemons(LIMIT, PICTURES_TO_CHOOSE)
     const [currentPictureNumber, setCurrentPictureNumber] = useState(0)
-    const [currentPictureUrl, setCurrentPictureUrl] = useState(0)
-    // console.log(pokemons)
+    const [currentPictureUrl, setCurrentPictureUrl] = useState()
+
+    useEffect(() => {
+        (async () => {
+            const { imgUrl } = await fetchSinglePokemon(pokemons[0].url)
+            console.log(imgUrl)
+            setCurrentPictureUrl(imgUrl)
+        })()
+    }, [pokemons])
+
 
     const handlePrevPicture = async () => {
         let current = currentPictureNumber;
