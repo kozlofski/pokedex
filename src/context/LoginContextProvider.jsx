@@ -1,8 +1,6 @@
 import LoginContext from "./LoginContext";
 import { useState } from "react"
-
-const JSON_SERVER_URL = "http://localhost:3000/users"
-
+import { JSON_SERVER_URL } from "../constants";
 
 import loginUser from "../services/loginUser";
 

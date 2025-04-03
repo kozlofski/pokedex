@@ -7,8 +7,6 @@ import EditPokemon from '../shared/EditPokemon.styled'
 import CreatePokemon from '../shared/CreatePokemon.styled'
 import { styled } from "styled-components"
 
-const JSON_SERVER_URL = "http://localhost:3000/users"
-
 const Init = styled.div`
     display: flex;
     flex-direction: column;
@@ -18,7 +16,6 @@ const Init = styled.div`
 const Edit = () => {
     const [editedPokemon, setEditedPokemon] = useState({})
     const [editMode, setEditMode] = useState("init")
-    // init, edit, create
     const { loggedUserId } = useContext(LoginContext)
 
     useEffect(() => {

@@ -1,10 +1,7 @@
 import React from 'react'
 import { styled } from "styled-components"
 import useFetchAllPokemons from '../../hooks/useFetchAllPokemons'
-import { useState, useEffect, useContext } from 'react'
-import LoginContext from '../../context/LoginContext'
-const JSON_SERVER_URL = "http://localhost:3000/users"
-const BASE_URL = "https://pokeapi.co/api/v2/";
+import { useState, useEffect } from 'react'
 
 const RankingContainer = styled.div`
 
@@ -48,8 +45,7 @@ const TableCell = styled.td`
 `
 
 const PokemonRankingTable = ({ edit, setEditedPokemon }) => {
-    const { loggedUserId } = useContext(LoginContext)
-    const { completePokemons, isPending } = useFetchAllPokemons(BASE_URL, JSON_SERVER_URL, loggedUserId)
+    const { completePokemons, isPending } = useFetchAllPokemons()
     const [sortedPokemons, setSortedPokemons] = useState(completePokemons)
     const [nameSortAsc, setNameSortAsc] = useState(true)
     const [expSortAsc, setExpSortAsc] = useState(true)

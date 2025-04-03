@@ -1,5 +1,7 @@
-const fetchUserData = async (SERVER_URL, userId) => {
-  const response = await fetch(`${SERVER_URL}/${userId}`);
+import { JSON_SERVER_URL } from "../constants";
+
+const fetchUserData = async (userId) => {
+  const response = await fetch(`${JSON_SERVER_URL}/${userId}`);
   if (!response) throw new Error("Problem with fetching favourites");
 
   const jsonResponse = await response.json();

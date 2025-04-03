@@ -26,14 +26,14 @@
       "arena": {},
       "stats": {
         "venusaur": {
-          "wins": 7,
+          "wins": 8,
           "losses": 0,
-          "baseExperience": 333
+          "baseExperience": 343
         },
         "bulbasaur": {
           "wins": 4,
-          "losses": 6,
-          "baseExperience": 84
+          "losses": 7,
+          "baseExperience": 64
         },
         "rattata": {
           "wins": 1,
@@ -85,7 +85,7 @@
         "abra": {
           "height": "111",
           "weight": "222",
-          "baseExperience": "331"
+          "baseExperience": "335"
         },
         "alakazam": {
           "height": "1511",
@@ -122,6 +122,12 @@
           "weight": "234",
           "baseExperience": "234",
           "ability": "sdfgsdf"
+        },
+        "asdfas": {
+          "height": "234",
+          "weight": "2342",
+          "baseExperience": "342",
+          "ability": "fsgvfdsgfg"
         }
       }
     },

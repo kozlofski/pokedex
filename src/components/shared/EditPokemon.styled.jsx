@@ -7,8 +7,7 @@ import Input from '../shared/Input.styled'
 import { useNavigate } from 'react-router-dom'
 import Button from '../shared/Button.styled'
 import fetchUserData from '../../services/fetchUserData'
-
-const JSON_SERVER_URL = "http://localhost:3000/users"
+import { JSON_SERVER_URL } from '../../constants'
 
 const EditForm = styled.form`
 display: flex;
@@ -37,7 +36,7 @@ const EditPokemon = ({ editedPokemon, loggedUserId }) => {
         event.preventDefault();
 
         try {
-            const userData = await fetchUserData(JSON_SERVER_URL, loggedUserId);
+            const userData = await fetchUserData(loggedUserId);
             const oldModified = userData.modified;
             const pokemonName = editedPokemon.name
 

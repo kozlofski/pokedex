@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
-import { useState, useContext } from 'react'
 import { styled } from "styled-components"
-import GlobalContext from '../../context/GlobalContext'
 
 const PAGE_LIMIT = 15;
 

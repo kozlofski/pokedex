@@ -1,8 +1,8 @@
 import fetchUserData from "./fetchUserData";
 
-const mergeWithUserData = async (linksToPokemons, serverUrl, loggedUserId) => {
+const mergeWithUserData = async (linksToPokemons, loggedUserId) => {
   try {
-    const userData = await fetchUserData(serverUrl, loggedUserId);
+    const userData = await fetchUserData(loggedUserId);
     const mergedPokemons = linksToPokemons.map((pokemon) => {
       let modifiedPokemon = { ...pokemon };
       if (pokemon.name in userData.modified) {

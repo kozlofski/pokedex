@@ -7,7 +7,7 @@ const updateStats = async (winnerPokemon, loserPokemon, loggedUserId) => {
   try {
     const { name: winnerName, url: winnerUrl } = winnerPokemon;
     const { name: loserName, url: loserUrl } = loserPokemon;
-    const userData = await fetchUserData(JSON_SERVER_URL, loggedUserId);
+    const userData = await fetchUserData(loggedUserId);
     const oldStats = userData.stats;
 
     const winnerPokemonData = await fetchSinglePokemon(winnerUrl);

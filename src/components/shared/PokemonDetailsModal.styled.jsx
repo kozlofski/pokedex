@@ -8,9 +8,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import StadiumIcon from '@mui/icons-material/Stadium';
 import CloseIcon from '@mui/icons-material/Close';
 import LoginContext from '../../context/LoginContext';
-import GlobalContext from '../../context/GlobalContext';
-
-const JSON_SERVER_URL = "http://localhost:3000/users"
+import { JSON_SERVER_URL } from '../../constants';
 
 const Modal = styled.div`
     position: fixed;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from "styled-components"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -8,8 +8,9 @@ import { useNavigate } from 'react-router-dom'
 import Button from '../shared/Button.styled'
 import fetchUserData from '../../services/fetchUserData'
 import fetchLinksToPokemons from '../../services/fetchLinksToPokemons'
-
-const JSON_SERVER_URL = "http://localhost:3000/users"
+import { createPortal } from "react-dom"
+import PokemonPictureModal from "../shared/PokemonPictureModal.styled"
+import { JSON_SERVER_URL } from "../../constants.js"
 
 const CreateForm = styled.form`
     display: flex;
@@ -30,14 +31,19 @@ const editFormSchema = z.object({
 const CreatePokemon = ({ loggedUserId }) => {
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(editFormSchema) })
     const navigate = useNavigate();
+    const [modalOpened, setModalOpened] = useState(false)
 
+    const modal = createPortal(
+        <PokemonPictureModal onClose={() => setModalOpened(false)} />,
+        document.body
+    )
 
     const onSubmit = async (data, event) => {
         console.log(data)
         event.preventDefault();
 
         try {
-            const userData = await fetchUserData(JSON_SERVER_URL, loggedUserId);
+            const userData = await fetchUserData(loggedUserId);
             const oldCreated = userData.created;
 
             const linksToPokemons = await fetchLinksToPokemons()
@@ -79,6 +85,8 @@ const CreatePokemon = ({ loggedUserId }) => {
     return (
         <>
             <CreateForm onSubmit={handleSubmit(onSubmit, onError)}>
+
+
                 <label htmlFor="name">Imię: </label>
                 <Input {...register('name')}
                     type={"text"}
@@ -108,7 +116,9 @@ const CreatePokemon = ({ loggedUserId }) => {
                     type={"text"}
                     placeholder={"umiejętność"}
                     error={errors.ability ?? ""} />
+                <Button onClick={() => setModalOpened(true)}>Wybierz zdjęcie dla pokemona</Button>
                 <Button type="submit" >Utfusz</Button>
+                {modalOpened && modal}
 
             </CreateForm>
         </>

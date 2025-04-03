@@ -1,19 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+
+import LoginContext from "../context/LoginContext";
 import mergeWithUserData from "../services/mergeWithUserData";
 import fetchSinglePokemon from "../services/fetchSinglePokemon";
+import { API_URL, LIMIT } from "../constants";
 
-// const BASE_URL = "https://pokeapi.co/api/v2/";
-const LIMIT = 150;
+const useFetchAllPokemons = () => {
+  const { loggedUserId } = useContext(LoginContext);
 
-const useFetchAllPokemons = (apiUrl, jsonServerUrl, loggedUserId) => {
   const [completePokemons, setCompletePokemons] = useState([]);
   const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
     setIsPending(true);
     const fetchLinksToPokemons = () => {
-      // setIsPending(true);
-      fetch(`${apiUrl}pokemon?limit=${LIMIT}`)
+      fetch(`${API_URL}pokemon?limit=${LIMIT}`)
         .then((response) => response.json())
         .then((jsonResponse) => {
           fetchPokemonsDetails(jsonResponse.results);
@@ -23,19 +24,13 @@ const useFetchAllPokemons = (apiUrl, jsonServerUrl, loggedUserId) => {
     fetchLinksToPokemons();
 
     const fetchPokemonsDetails = (linksToPokemons) => {
-      // console.log("Inside second fetch: ", linksToPokemons);
       const pokemonFetchPromises = linksToPokemons.map((pokemon) =>
         fetchSinglePokemon(pokemon.url)
       );
 
-      // const completePokemons = [];
       Promise.all(pokemonFetchPromises)
         .then((fetchedPokemonsWithDetails) =>
-          mergeWithUserData(
-            fetchedPokemonsWithDetails,
-            jsonServerUrl,
-            loggedUserId
-          )
+          mergeWithUserData(fetchedPokemonsWithDetails, loggedUserId)
         )
         .then((pokemonsWithDetailsMergedWithUserData) =>
           setCompletePokemons([...pokemonsWithDetailsMergedWithUserData])
@@ -43,7 +38,7 @@ const useFetchAllPokemons = (apiUrl, jsonServerUrl, loggedUserId) => {
         .catch((error) => console.log(error))
         .finally(setIsPending(false));
     };
-  }, []);
+  }, [loggedUserId]);
 
   return { completePokemons, isPending };
 };

@@ -8,8 +8,8 @@ import { createPortal } from "react-dom"
 import LoginContext from '../../context/LoginContext';
 import fetchUserData from './../../services/fetchUserData'
 
-const PAGE_LIMIT = 15
-const JSON_SERVER_URL = "http://localhost:3000/users"
+import { PAGE_LIMIT, JSON_SERVER_URL } from "../../constants"
+
 
 const PokemonsGallery = styled.ul`
     display: flex;
@@ -36,7 +36,7 @@ const BrowserContainer = styled.div`
 
 const PokemonBrowser = ({ favourites }) => {
     const { loggedUserId } = useContext(LoginContext)
-    const { pokemons, isPending } = useFetchPokemons(JSON_SERVER_URL, loggedUserId);
+    const { pokemons, isPending } = useFetchPokemons();
 
     const [filter, setFilter] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
@@ -45,11 +45,13 @@ const PokemonBrowser = ({ favourites }) => {
     const [modalOpened, setModalOpened] = useState(false)
     const [selectedPokemon, setSelectedPokemon] = useState({})
 
+    // onChange?
     useEffect(() => {
         filterPokemons()
     }, [filter, pokemons])
 
     useEffect(() => {
+        // to separate fn(), maybe encapsulate to pagination component
         const paginated = pokemonsFiltered.slice((currentPage - 1) * PAGE_LIMIT, (currentPage) * PAGE_LIMIT);
         setPokemonsPaginated(paginated)
     }, [currentPage, pokemonsFiltered])
@@ -60,16 +62,15 @@ const PokemonBrowser = ({ favourites }) => {
 
         if (favourites) {
             try {
-                const userDataResponse = await fetchUserData(JSON_SERVER_URL, loggedUserId)
+                const userDataResponse = await fetchUserData(loggedUserId)
                 // console.log("Fetched favs in filter: ", userDataResponse.favourites);
                 const filterFavourites = (pokemon) => pokemon.name in userDataResponse.favourites
                 filtered = filtered.filter(filterFavourites)
             } catch (error) {
-                console.log(error)
+                console.log("Catched from browser: ", error)
             }
         }
 
-        // console.log(`Filtered pokemons ${favourites && "and favourited"}: `, filtered)
         setCurrentPage(1)
         setPokemonsFiltered(filtered)
     }

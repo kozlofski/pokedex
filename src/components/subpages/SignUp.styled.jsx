@@ -12,8 +12,7 @@ import loginUser from '../../services/loginUser'
 import Button from "./../shared/Button.styled"
 import cyrb53 from '../../services/cyrb53'
 
-
-const JSON_SERVER_URL = "http://localhost:3000/users"
+import { JSON_SERVER_URL } from '../../constants'
 
 const Form = styled.form`
     display: flex;

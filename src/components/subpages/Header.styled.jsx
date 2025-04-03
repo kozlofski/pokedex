@@ -68,7 +68,6 @@ const User = styled.p`
 
 const Header = () => {
     const { loggedUser } = useContext(LoginContext)
-    // const { userName, setUserName } = useState(loggedUser)
     console.log("rendering navbar with ", loggedUser)
 
     return (<HeaderContainer>

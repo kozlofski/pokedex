@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { styled } from "styled-components"
-import GlobalContext from '../../context/GlobalContext'
 import PokemonCard from '../shared/PokemonCard.styled'
 import LoginContext from '../../context/LoginContext'
 import useFetchArena from '../../hooks/useFetchArena'
@@ -12,9 +11,8 @@ import FightButton from '../shared/FightButton.styled'
 import fight from '../../services/fight'
 import WinnerModal from '../shared/WinnerModal.styled'
 import updateStats from '../../services/updateStats'
+import { JSON_SERVER_URL } from '../../constants'
 
-
-const JSON_SERVER_URL = "http://localhost:3000/users"
 
 const ArenaContainer = styled.div`
     height: 100%;
