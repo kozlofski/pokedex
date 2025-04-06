@@ -1,15 +1,10 @@
 import { useState, useEffect, useContext } from "react";
-import mergeWithUserData from "./../services/mergeWithUserData";
 import fetchLinksToPokemons from "../services/fetchLinksToPokemons";
 import { LIMIT } from "../constants";
 import LoginContext from "../context/LoginContext";
+import fetchUserData from "../services/fetchUserData";
 
-// custom hook fetching list of pokemons from API
-// - only Pokemon's name and link
-// to further details - these are downloaded
-// by another hook form inside Pokemon's card
-
-const useFetchPokemons = (start = 0, limit = LIMIT) => {
+const useFetchPokemons = (start = 0, limit = LIMIT, favourites) => {
   const { loggedUserId } = useContext(LoginContext);
 
   const [pokemons, setPokemons] = useState([]);
@@ -20,22 +15,31 @@ const useFetchPokemons = (start = 0, limit = LIMIT) => {
     (async () => {
       try {
         setIsPending(true);
-        const linksToPokemons = await fetchLinksToPokemons(start, limit);
-        // if (loggedUserId === "-1") setPokemons(linksToPokemons);
-        // else {
-        //   const mergedLinksToPokemons = await mergeWithUserData(
-        //     linksToPokemons,
-        //     loggedUserId
-        //   );
-        //   setPokemons(mergedLinksToPokemons);
-        // }
+        let linksToPokemons = await fetchLinksToPokemons(start, limit);
+
+        if (favourites) {
+          try {
+            const userDataResponse = await fetchUserData(loggedUserId);
+            if (!userDataResponse)
+              throw new Error("Error fetching user data from JSON server");
+            const filterFavourites = (pokemon) =>
+              pokemon.name in userDataResponse.favourites;
+            linksToPokemons = linksToPokemons.filter(filterFavourites);
+          } catch (error) {
+            console.log(
+              "Error in filtering favourites in useFetchPokemons: ",
+              error
+            );
+          }
+        }
+
         setPokemons(linksToPokemons);
         setIsPending(false);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, [start, limit, loggedUserId]);
+  }, [start, limit, favourites, loggedUserId]);
 
   return { pokemons, isPending };
 };

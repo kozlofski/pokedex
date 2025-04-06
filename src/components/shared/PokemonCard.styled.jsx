@@ -88,8 +88,6 @@ const PokemonCard = ({ pokemon, setModalOpened, setSelectedPokemon }) => {
         wins,
         losses } = useFetchSinglePokemon(pokemon)
 
-
-
     const openDetails = () => {
         setModalOpened(true)
         setSelectedPokemon(pokemon)

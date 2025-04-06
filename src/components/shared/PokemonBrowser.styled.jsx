@@ -8,6 +8,7 @@ import PokemonDetailsModal from '../shared/PokemonDetailsModal.styled'
 import LoginContext from '../../context/LoginContext';
 import useFetchPokemons from '../../hooks/useFetchPokemons'
 import fetchUserData from './../../services/fetchUserData'
+import { LIMIT } from '../../constants'
 
 
 const PokemonsGallery = styled.ul`
@@ -34,8 +35,8 @@ const BrowserContainer = styled.div`
 `
 
 const PokemonBrowser = ({ favourites }) => {
-    const { loggedUserId } = useContext(LoginContext)
-    const { pokemons, isPending } = useFetchPokemons();
+    // const { loggedUserId } = useContext(LoginContext)
+    const { pokemons, isPending } = useFetchPokemons(0, LIMIT, favourites);
 
     console.log(pokemons)
     const [pokemonsFiltered, setPokemonsFiltered] = useState()
@@ -48,16 +49,16 @@ const PokemonBrowser = ({ favourites }) => {
         const filterInput = (pokemon) => pokemon.name.toLowerCase().includes(input)
         let filtered = pokemons.filter(filterInput);
 
-        if (favourites) {
-            try {
-                const userDataResponse = await fetchUserData(loggedUserId)
-                if (!userDataResponse) throw new Error("Error fetching user data from JSON server")
-                const filterFavourites = (pokemon) => pokemon.name in userDataResponse.favourites
-                filtered = filtered.filter(filterFavourites)
-            } catch (error) {
-                console.log("Error in filtering favourites in browser: ", error)
-            }
-        }
+        // if (favourites) {
+        //     try {
+        //         const userDataResponse = await fetchUserData(loggedUserId)
+        //         if (!userDataResponse) throw new Error("Error fetching user data from JSON server")
+        //         const filterFavourites = (pokemon) => pokemon.name in userDataResponse.favourites
+        //         filtered = filtered.filter(filterFavourites)
+        //     } catch (error) {
+        //         console.log("Error in filtering favourites in browser: ", error)
+        //     }
+        // }
         setPokemonsFiltered(filtered)
     }
 

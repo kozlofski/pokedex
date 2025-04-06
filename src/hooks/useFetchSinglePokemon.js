@@ -1,6 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import LoginContext from "../context/LoginContext";
 
 import fetchSinglePokemon from "../services/fetchSinglePokemon";
