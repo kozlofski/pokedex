@@ -17,7 +17,7 @@ const useFetchPokemons = (start = 0, limit = LIMIT) => {
 
   useEffect(() => {
     // this can be separate service
-    const fetchData = async () => {
+    (async () => {
       try {
         setIsPending(true);
         const linksToPokemons = await fetchLinksToPokemons(start, limit);
@@ -33,11 +33,8 @@ const useFetchPokemons = (start = 0, limit = LIMIT) => {
       } catch (error) {
         console.log(error);
       }
-    };
-
-    fetchData();
-  }, [loggedUserId]);
-  // why this is necessary? Because it is provided by the hook?
+    })();
+  }, [start, limit, loggedUserId]);
 
   return { pokemons, isPending };
 };

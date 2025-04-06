@@ -9,7 +9,6 @@ import LoginContext from '../../context/LoginContext';
 import useFetchPokemons from '../../hooks/useFetchPokemons'
 import fetchUserData from './../../services/fetchUserData'
 
-import { PAGE_LIMIT } from "../../constants"
 
 const PokemonsGallery = styled.ul`
     display: flex;
@@ -38,6 +37,7 @@ const PokemonBrowser = ({ favourites }) => {
     const { loggedUserId } = useContext(LoginContext)
     const { pokemons, isPending } = useFetchPokemons();
 
+    console.log(pokemons)
     const [pokemonsFiltered, setPokemonsFiltered] = useState()
     const [pokemonsPaginated, setPokemonsPaginated] = useState(null)
     const [modalOpened, setModalOpened] = useState(false)

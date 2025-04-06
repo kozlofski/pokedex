@@ -7,7 +7,7 @@ import Input from '../shared/Input.styled'
 import { useNavigate } from 'react-router-dom'
 import Button from '../shared/Button.styled'
 import fetchUserData from '../../services/fetchUserData'
-import fetchLinksToPokemons from '../../services/fetchLinksToPokemons'
+// import fetchLinksToPokemons from '../../services/fetchLinksToPokemons'
 import { createPortal } from "react-dom"
 import PokemonPictureModal from "../shared/PokemonPictureModal.styled"
 import { JSON_SERVER_URL } from "../../constants.js"
@@ -52,28 +52,30 @@ const CreatePokemon = ({ loggedUserId }) => {
         event.preventDefault();
 
         try {
+            if (chosenImageUrl === null)
+                throw new Error("please choose picture")
+
             const userData = await fetchUserData(loggedUserId);
             const oldCreated = userData.created;
 
-            const linksToPokemons = await fetchLinksToPokemons()
-            console.log(linksToPokemons)
-
-            let newCreated = {}
-
-            if (data.name in oldCreated) {
+            if (data.name in oldCreated)
                 throw new Error("pokemon with that name already exists")
-            } else {
-                newCreated = {
-                    ...oldCreated,
-                    [data.name]: {
-                        height: data.height,
-                        weight: data.weight,
-                        baseExperience: data.baseExperience,
-                        ability: data.ability,
-                        imgUrl: chosenImageUrl
-                    },
-                };
-            }
+
+            // unnecessavryvgbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+            // const linksToPokemons = await fetchLinksToPokemons()
+            // console.log(linksToPokemons)
+            let newCreated = {}
+            newCreated = {
+                ...oldCreated,
+                [data.name]: {
+                    height: data.height,
+                    weight: data.weight,
+                    baseExperience: data.baseExperience,
+                    ability: data.ability,
+                    imgUrl: chosenImageUrl
+                },
+            };
+
             const patchResponse = fetch(`${JSON_SERVER_URL}/${loggedUserId}`, {
                 method: "PATCH",
                 body: JSON.stringify({
