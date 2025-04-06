@@ -17,7 +17,6 @@ const useFetchSinglePokemon = (pokemonInitial) => {
       } else {
         newPokemon = { ...pokemonInitial };
       }
-      console.log("User id: ", loggedUserId);
 
       const userData = await fetchUserData(loggedUserId);
 

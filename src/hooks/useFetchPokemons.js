@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import fetchLinksToPokemons from "../services/fetchLinksToPokemons";
 import { LIMIT } from "../constants";
 import LoginContext from "../context/LoginContext";
-import fetchUserData from "../services/fetchUserData";
+import filterFavourites from "../services/filterFavourites";
 
 const useFetchPokemons = (start = 0, limit = LIMIT, favourites) => {
   const { loggedUserId } = useContext(LoginContext);
@@ -17,21 +17,11 @@ const useFetchPokemons = (start = 0, limit = LIMIT, favourites) => {
         setIsPending(true);
         let linksToPokemons = await fetchLinksToPokemons(start, limit);
 
-        if (favourites) {
-          try {
-            const userDataResponse = await fetchUserData(loggedUserId);
-            if (!userDataResponse)
-              throw new Error("Error fetching user data from JSON server");
-            const filterFavourites = (pokemon) =>
-              pokemon.name in userDataResponse.favourites;
-            linksToPokemons = linksToPokemons.filter(filterFavourites);
-          } catch (error) {
-            console.log(
-              "Error in filtering favourites in useFetchPokemons: ",
-              error
-            );
-          }
-        }
+        if (favourites)
+          linksToPokemons = await filterFavourites(
+            linksToPokemons,
+            loggedUserId
+          );
 
         setPokemons(linksToPokemons);
         setIsPending(false);

@@ -19,9 +19,10 @@
         "venusaur": true,
         "pikachu": true,
         "rattata": true,
-        "bulbasaur": true,
         "kakuna": true,
-        "ivysaur": true
+        "ivysaur": true,
+        "bulbasaur": true,
+        "horsea": true
       },
       "arena": {},
       "stats": {
