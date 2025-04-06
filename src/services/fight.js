@@ -1,17 +1,17 @@
-import fetchSinglePokemon from "./fetchSinglePokemon";
+// import fetchSinglePokemon from "./fetchSinglePokemon";
 
-const fight = async (leftPokemon, rightPokemon) => {
+const fight = (leftPokemon, rightPokemon) => {
   console.log("Fight: ", leftPokemon, rightPokemon);
   const {
     // name: leftName,
     baseExperience: leftExp,
     weight: leftWeight,
-  } = await fetchSinglePokemon(leftPokemon.url);
+  } = leftPokemon;
   const {
     // name: rightName,
     baseExperience: rightExp,
     weight: rightWeight,
-  } = await fetchSinglePokemon(rightPokemon.url);
+  } = rightPokemon;
 
   const leftPower = leftExp * leftWeight;
   const rightPower = rightExp * rightWeight;

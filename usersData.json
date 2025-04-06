@@ -26,20 +26,7 @@
         "sdfgsdfghgfhgfd": true,
         "dupa": true
       },
-      "arena": {
-        "rightPokemon": {
-          "name": "sdfgsdfghgfhgfd",
-          "baseExperience": 456,
-          "height": 234,
-          "weight": 234,
-          "ability": "sdfggh",
-          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/152.png"
-        },
-        "leftPokemon": {
-          "name": "bulbasaur",
-          "url": "https://pokeapi.co/api/v2/pokemon/1/"
-        }
-      },
+      "arena": {},
       "stats": {
         "venusaur": {
           "wins": 8,
@@ -48,7 +35,7 @@
         },
         "bulbasaur": {
           "wins": 4,
-          "losses": 7,
+          "losses": 9,
           "baseExperience": 64
         },
         "rattata": {
@@ -62,9 +49,9 @@
           "baseExperience": 39
         },
         "ivysaur": {
-          "wins": 2,
+          "wins": 4,
           "losses": 0,
-          "baseExperience": 162
+          "baseExperience": 182
         },
         "ponyta": {
           "wins": 1,

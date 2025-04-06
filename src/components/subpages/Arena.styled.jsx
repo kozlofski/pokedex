@@ -92,7 +92,7 @@ const Arena = () => {
     }
 
     const handleFight = async () => {
-        const { winner: winnerFromService, loser: loserFromService } = await fight(leftPokemon, rightPokemon)
+        const { winner: winnerFromService, loser: loserFromService } = fight(leftPokemon, rightPokemon)
         await updateStats(winnerFromService, loserFromService, loggedUserId)
         setWinner(winnerFromService)
         setWinnerModalOpened(true)

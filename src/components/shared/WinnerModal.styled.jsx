@@ -1,14 +1,8 @@
-import React, { useContext } from 'react'
-import { useState, useEffect } from 'react';
+import React from 'react'
+import { useEffect } from 'react';
 import { styled } from "styled-components"
 import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
 
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import StadiumIcon from '@mui/icons-material/Stadium';
-import CloseIcon from '@mui/icons-material/Close';
-import LoginContext from '../../context/LoginContext';
-import GlobalContext from '../../context/GlobalContext';
 import Button from "./Button.styled"
 
 const JSON_SERVER_URL = "http://localhost:3000/users"
@@ -107,7 +101,7 @@ const H2 = styled.h2`
 
 
 const WinnerModal = ({ onClose, pokemon }) => {
-    const { loggedUserId } = useContext(LoginContext)
+    // const { loggedUserId } = useContext(LoginContext)
     const { imgUrl } = useFetchSinglePokemon(pokemon)
 
     useEffect(() => {

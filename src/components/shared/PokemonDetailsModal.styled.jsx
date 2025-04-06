@@ -198,14 +198,14 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
 
             if (newIsOnArena === true) {
                 const pokemonsInArena = Object.keys(arena).length;
-                const pokemonToArena = { name, baseExperience, weight, imgUrl }
+                const pokemonToArena = { name: pokemon.name, url: pokemon.url, baseExperience, weight, imgUrl }
                 if (pokemonsInArena === 0) {
                     newArena = { ...arena }
-                    newArena["leftPokemon"] = pokemon
+                    newArena["leftPokemon"] = pokemonToArena
                 }
                 if (pokemonsInArena === 1) {
                     newArena = { ...arena }
-                    "leftPokemon" in newArena ? newArena["rightPokemon"] = pokemon : newArena["leftPokemon"] = pokemon
+                    "leftPokemon" in newArena ? newArena["rightPokemon"] = pokemonToArena : newArena["leftPokemon"] = pokemonToArena
                 }
                 if (pokemonsInArena === 2) return
             } else {
