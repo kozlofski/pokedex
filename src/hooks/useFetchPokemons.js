@@ -21,14 +21,15 @@ const useFetchPokemons = (start = 0, limit = LIMIT) => {
       try {
         setIsPending(true);
         const linksToPokemons = await fetchLinksToPokemons(start, limit);
-        if (loggedUserId === "-1") setPokemons(linksToPokemons);
-        else {
-          const mergedLinksToPokemons = await mergeWithUserData(
-            linksToPokemons,
-            loggedUserId
-          );
-          setPokemons(mergedLinksToPokemons);
-        }
+        // if (loggedUserId === "-1") setPokemons(linksToPokemons);
+        // else {
+        //   const mergedLinksToPokemons = await mergeWithUserData(
+        //     linksToPokemons,
+        //     loggedUserId
+        //   );
+        //   setPokemons(mergedLinksToPokemons);
+        // }
+        setPokemons(linksToPokemons);
         setIsPending(false);
       } catch (error) {
         console.log(error);
