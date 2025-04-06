@@ -1,36 +1,50 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { useContext } from "react";
+import LoginContext from "../context/LoginContext";
 
 import fetchSinglePokemon from "../services/fetchSinglePokemon";
+import fetchUserData from "../services/fetchUserData";
 
 const useFetchSinglePokemon = (pokemonInitial) => {
   const [pokemon, setPokemon] = useState({});
-  // console.log("fetching", pokemonInitial);
+  const { loggedUserId } = useContext(LoginContext);
+  console.log("fetching", pokemonInitial);
 
   useEffect(() => {
     (async () => {
-      let newPokemon = await fetchSinglePokemon(pokemonInitial.url);
+      let newPokemon = {};
+      if (pokemonInitial.url !== undefined) {
+        newPokemon = await fetchSinglePokemon(pokemonInitial.url);
+      } else {
+        newPokemon = { ...pokemonInitial };
+      }
+      console.log("User id: ", loggedUserId);
 
-      if (pokemonInitial.wins !== undefined) {
+      const userData = await fetchUserData(loggedUserId);
+
+      if (pokemonInitial.name in userData.modified) {
         newPokemon = {
           ...newPokemon,
-          wins: pokemonInitial.wins,
-          losses: pokemonInitial.losses,
-          baseExperience: pokemonInitial.baseExperience,
+          height: userData.modified[pokemonInitial.name].height,
+          weight: userData.modified[pokemonInitial.name].weight,
+          baseExperience: userData.modified[pokemonInitial.name].baseExperience,
         };
       }
-      if (pokemonInitial.height !== undefined) {
+
+      if (pokemonInitial.name in userData.stats) {
         newPokemon = {
           ...newPokemon,
-          height: pokemonInitial.height,
-          weight: pokemonInitial.weight,
-          baseExperience: pokemonInitial.baseExperience,
+          wins: userData.stats[pokemonInitial.name].wins,
+          losses: userData.stats[pokemonInitial.name].losses,
+          baseExperience: userData.stats[pokemonInitial.name].baseExperience,
         };
       }
-      // console.log(newPokemon);
+
+      console.log(newPokemon);
       setPokemon(newPokemon);
     })();
-  }, [pokemonInitial]);
+  }, [pokemonInitial, loggedUserId]);
 
   return pokemon;
 };
