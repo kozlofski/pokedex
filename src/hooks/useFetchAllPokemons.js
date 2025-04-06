@@ -1,9 +1,12 @@
 import { useState, useEffect, useContext } from "react";
 
 import LoginContext from "../context/LoginContext";
-import mergeWithUserData from "../services/mergeWithUserData";
 import fetchSinglePokemon from "../services/fetchSinglePokemon";
 import { API_URL, LIMIT } from "../constants";
+import fetchLinksToPokemons from "../services/fetchLinksToPokemons";
+import mergeWithUserPokemons from "../services/mergeWithUserPokemons";
+
+import updatePokemonWithUserData from "../services/updatePokemonWithUserData";
 
 const useFetchAllPokemons = () => {
   const { loggedUserId } = useContext(LoginContext);
@@ -13,31 +16,34 @@ const useFetchAllPokemons = () => {
 
   useEffect(() => {
     setIsPending(true);
-    const fetchLinksToPokemons = () => {
-      fetch(`${API_URL}pokemon?limit=${LIMIT}`)
-        .then((response) => response.json())
-        .then((jsonResponse) => {
-          fetchPokemonsDetails(jsonResponse.results);
-        })
-        .catch((error) => console.log(error));
-    };
-    fetchLinksToPokemons();
 
-    const fetchPokemonsDetails = (linksToPokemons) => {
-      const pokemonFetchPromises = linksToPokemons.map((pokemon) =>
-        fetchSinglePokemon(pokemon.url)
+    (async () => {
+      let linksToPokemons = await fetchLinksToPokemons(0, LIMIT);
+
+      linksToPokemons = await mergeWithUserPokemons(
+        linksToPokemons,
+        loggedUserId
       );
 
+      const pokemonFetchPromises = linksToPokemons.map(
+        async (pokemonInitial) => {
+          let newPokemon;
+          if (pokemonInitial.url === undefined)
+            newPokemon = { ...pokemonInitial };
+          else newPokemon = await fetchSinglePokemon(pokemonInitial.url);
+
+          newPokemon = await updatePokemonWithUserData(
+            newPokemon,
+            loggedUserId
+          );
+          return newPokemon;
+        }
+      );
       Promise.all(pokemonFetchPromises)
-        .then((fetchedPokemonsWithDetails) =>
-          mergeWithUserData(fetchedPokemonsWithDetails, loggedUserId)
-        )
-        .then((pokemonsWithDetailsMergedWithUserData) =>
-          setCompletePokemons([...pokemonsWithDetailsMergedWithUserData])
-        )
+        .then((pokemons) => setCompletePokemons([...pokemons]))
         .catch((error) => console.log(error));
-      // .finally(setIsPending(false));
-    };
+    })();
+
     setIsPending(false);
   }, [loggedUserId]);
 

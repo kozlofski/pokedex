@@ -47,6 +47,8 @@ const PokemonRankingTable = ({ edit, setEditedPokemon }) => {
     const { completePokemons, isPending } = useFetchAllPokemons()
     const [sortedPokemons, setSortedPokemons] = useState(completePokemons)
 
+    console.log("Complete pokemons: ", completePokemons)
+
     const [nameSortAsc, setNameSortAsc] = useState(true)
     const [expSortAsc, setExpSortAsc] = useState(true)
     const [weightSortAsc, setWeightSortAsc] = useState(true)

@@ -1,6 +1,7 @@
 import fetchSinglePokemon from "./fetchSinglePokemon";
 
 const fight = async (leftPokemon, rightPokemon) => {
+  console.log("Fight: ", leftPokemon, rightPokemon);
   const {
     // name: leftName,
     baseExperience: leftExp,

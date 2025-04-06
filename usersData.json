@@ -22,9 +22,24 @@
         "kakuna": true,
         "ivysaur": true,
         "bulbasaur": true,
-        "horsea": true
+        "horsea": true,
+        "sdfgsdfghgfhgfd": true,
+        "dupa": true
       },
-      "arena": {},
+      "arena": {
+        "rightPokemon": {
+          "name": "sdfgsdfghgfhgfd",
+          "baseExperience": 456,
+          "height": 234,
+          "weight": 234,
+          "ability": "sdfggh",
+          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/152.png"
+        },
+        "leftPokemon": {
+          "name": "bulbasaur",
+          "url": "https://pokeapi.co/api/v2/pokemon/1/"
+        }
+      },
       "stats": {
         "venusaur": {
           "wins": 8,
@@ -97,33 +112,14 @@
           "height": "190",
           "weight": "1550",
           "baseExperience": "194"
+        },
+        "dupa": {
+          "height": "3451",
+          "weight": "21",
+          "baseExperience": "435"
         }
       },
       "created": {
-        "sdfg": {
-          "height": "2134",
-          "weight": "234",
-          "baseExperience": "234",
-          "ability": "safdgdsgh"
-        },
-        "ivysaur2": {
-          "height": "3425",
-          "weight": "456",
-          "baseExperience": "4356",
-          "ability": "gfdbdfgg"
-        },
-        "gdsf1": {
-          "height": "2134",
-          "weight": "234",
-          "baseExperience": "234",
-          "ability": "sdfgsdf"
-        },
-        "asdfas": {
-          "height": "234",
-          "weight": "2342",
-          "baseExperience": "342",
-          "ability": "fsgvfdsgfg"
-        },
         "sdfgsdfghgfhgfd": {
           "height": "234",
           "weight": "234",
@@ -131,26 +127,12 @@
           "ability": "sdfggh",
           "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/152.png"
         },
-        "sdfghhgf": {
-          "height": "345",
-          "weight": "356456",
-          "baseExperience": "34564",
-          "ability": "dfghdgfhgg",
-          "imgUrl": null
-        },
-        "dfghgf": {
-          "height": "4536",
-          "weight": "4536",
-          "baseExperience": "345",
-          "ability": "dfgshgfdh",
-          "imgUrl": null
-        },
-        "dgffjghjghfj": {
-          "height": "234",
-          "weight": "2432",
-          "baseExperience": "645",
-          "ability": "dgfhdgfh",
-          "imgUrl": null
+        "dupa": {
+          "height": "3451",
+          "weight": "21",
+          "baseExperience": "4355654",
+          "ability": "zabijanie",
+          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/153.png"
         }
       }
     },

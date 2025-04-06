@@ -198,6 +198,7 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
 
             if (newIsOnArena === true) {
                 const pokemonsInArena = Object.keys(arena).length;
+                const pokemonToArena = { name, baseExperience, weight, imgUrl }
                 if (pokemonsInArena === 0) {
                     newArena = { ...arena }
                     newArena["leftPokemon"] = pokemon

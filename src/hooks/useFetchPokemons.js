@@ -3,6 +3,7 @@ import fetchLinksToPokemons from "../services/fetchLinksToPokemons";
 import { LIMIT } from "../constants";
 import LoginContext from "../context/LoginContext";
 import filterFavourites from "../services/filterFavourites";
+import mergeWithUserPokemons from "../services/mergeWithUserPokemons";
 
 const useFetchPokemons = (start = 0, limit = LIMIT, favourites) => {
   const { loggedUserId } = useContext(LoginContext);
@@ -16,6 +17,11 @@ const useFetchPokemons = (start = 0, limit = LIMIT, favourites) => {
       try {
         setIsPending(true);
         let linksToPokemons = await fetchLinksToPokemons(start, limit);
+
+        linksToPokemons = await mergeWithUserPokemons(
+          linksToPokemons,
+          loggedUserId
+        );
 
         if (favourites)
           linksToPokemons = await filterFavourites(

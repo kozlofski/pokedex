@@ -11,6 +11,7 @@ const fetchLinksToPokemons = async (start, limit) => {
     if (!response) throw new Error("fetching pokemons links went bad");
     const jsonResponse = await response.json();
     const linksToPokemons = await jsonResponse.results;
+
     return linksToPokemons;
   } catch (error) {
     throw new Error(error);
