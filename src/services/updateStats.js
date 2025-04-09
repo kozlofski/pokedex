@@ -1,6 +1,5 @@
 import fetchUserData from "./fetchUserData";
-
-const JSON_SERVER_URL = "http://localhost:3000/users";
+import { JSON_SERVER_URL } from "../constants";
 
 const updateStats = async (winnerPokemon, loserPokemon, loggedUserId) => {
   try {
@@ -57,7 +56,7 @@ const updateStats = async (winnerPokemon, loserPokemon, loggedUserId) => {
         stats: newStats,
       }),
     });
-    if (!patchResponse) throw new Error("problem patching stats");
+    if (!patchResponse) throw new Error("Error during patching stats: ");
   } catch (e) {
     window.alert(e);
   }

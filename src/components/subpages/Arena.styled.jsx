@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
+
 import { styled } from "styled-components"
 import PokemonCard from '../shared/PokemonCard.styled'
 import LoginContext from '../../context/LoginContext'
@@ -12,26 +13,7 @@ import fight from '../../services/fight'
 import WinnerModal from '../shared/WinnerModal.styled'
 import updateStats from '../../services/updateStats'
 import { JSON_SERVER_URL } from '../../constants'
-
-
-const ArenaContainer = styled.div`
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    gap: 2rem;
-`
-
-const ArenaCardContainer = styled.div`
-    position: relative;
-`
-
-const RemoveFromArena = styled.div`
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-`
+import updateArena from '../../services/updateArena'
 
 const Arena = () => {
     const { loggedUserId } = useContext(LoginContext)
@@ -82,14 +64,7 @@ const Arena = () => {
                 setRightPokemon(undefined)
             }
 
-            const patchResponse = fetch(`${JSON_SERVER_URL}/${loggedUserId}`, {
-                method: "PATCH",
-                body: JSON.stringify({
-                    arena: newArena
-                })
-            })
-            if (!patchResponse) throw new Error("Error patching arena")
-
+            updateArena(newArena, loggedUserId)
         } catch (error) {
             console.log(error)
         }
@@ -139,5 +114,24 @@ const Arena = () => {
         </ArenaContainer>
     )
 }
+
+const ArenaContainer = styled.div`
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+`
+
+const ArenaCardContainer = styled.div`
+    position: relative;
+`
+
+const RemoveFromArena = styled.div`
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+`
 
 export default Arena
