@@ -5,9 +5,8 @@ import { createPortal } from "react-dom"
 import Pagination from '../shared/Pagination.styled'
 import PokemonCard from '../shared/PokemonCard.styled'
 import PokemonDetailsModal from '../shared/PokemonDetailsModal.styled'
-import useFetchPokemons from '../../hooks/useFetchPokemons'
+import useFetchRawPokemons from '../../hooks/useFetchRawPokemons'
 import { LIMIT } from '../../constants'
-
 
 const PokemonsGallery = styled.ul`
     display: flex;
@@ -33,19 +32,19 @@ const BrowserContainer = styled.div`
 `
 
 const PokemonBrowser = ({ favourites }) => {
-    const { pokemons, isPending } = useFetchPokemons(0, LIMIT, favourites);
+    const { rawPokemons, isPending } = useFetchRawPokemons(0, LIMIT, favourites);
 
-    console.log(pokemons)
-    const [pokemonsFiltered, setPokemonsFiltered] = useState()
-    const [pokemonsPaginated, setPokemonsPaginated] = useState(null)
+    // console.log(rawPokemons)
+    const [rawPokemonsFiltered, setRawPokemonsFiltered] = useState()
+    const [rawPokemonsPaginated, setRawPokemonsPaginated] = useState(null)
     const [modalOpened, setModalOpened] = useState(false)
     const [selectedPokemon, setSelectedPokemon] = useState({})
 
     const handleFilter = async (event) => {
         const input = event.target.value
-        const filterInput = (pokemon) => pokemon.name.toLowerCase().includes(input)
-        let filtered = pokemons.filter(filterInput);
-        setPokemonsFiltered(filtered)
+        const filterInput = (rawPokemon) => rawPokemon.name.toLowerCase().includes(input)
+        let filtered = rawPokemons.filter(filterInput);
+        setRawPokemonsFiltered(filtered) // oneliner?
     }
 
     const modal = createPortal(
@@ -59,15 +58,15 @@ const PokemonBrowser = ({ favourites }) => {
                 onChange={handleFilter}
                 placeholder='Search pokemon'></PokemonsFilter>
             <Pagination
-                pokemonsFiltered={pokemonsFiltered || pokemons}
-                setPokemonsPaginated={setPokemonsPaginated}
+                rawPokemonsFiltered={rawPokemonsFiltered || rawPokemons}
+                setRawPokemonsPaginated={setRawPokemonsPaginated}
             />
             <PokemonsGallery>
                 {/* turn loader into separate component */}
                 {isPending && <p style={{ fontSize: "2rem" }}>Loading pokemons...</p>}
-                {isPending || pokemonsPaginated && pokemonsPaginated.map((pokemon, id) => {
+                {isPending || rawPokemonsPaginated && rawPokemonsPaginated.map((rawPokemon, id) => {
                     return <li key={id}>
-                        <PokemonCard pokemon={pokemon}
+                        <PokemonCard rawPokemon={rawPokemon}
                             setModalOpened={setModalOpened}
                             setSelectedPokemon={setSelectedPokemon}
                         />

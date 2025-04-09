@@ -21,10 +21,11 @@
         "rattata": true,
         "kakuna": true,
         "ivysaur": true,
-        "bulbasaur": true,
         "horsea": true,
         "sdfgsdfghgfhgfd": true,
-        "dupa": true
+        "dupa": true,
+        "charmander": true,
+        "bulbasaur": true
       },
       "arena": {},
       "stats": {
@@ -35,7 +36,7 @@
         },
         "bulbasaur": {
           "wins": 4,
-          "losses": 9,
+          "losses": 15,
           "baseExperience": 64
         },
         "rattata": {
@@ -49,9 +50,9 @@
           "baseExperience": 39
         },
         "ivysaur": {
-          "wins": 4,
+          "wins": 10,
           "losses": 0,
-          "baseExperience": 182
+          "baseExperience": 242
         },
         "ponyta": {
           "wins": 1,
@@ -82,42 +83,31 @@
           "wins": 0,
           "losses": 2,
           "baseExperience": 175
-        }
-      },
-      "modified": {
-        "abra": {
-          "height": "111",
-          "weight": "222",
-          "baseExperience": "335"
-        },
-        "alakazam": {
-          "height": "1511",
-          "weight": "480",
-          "baseExperience": "250"
-        },
-        "arcanine": {
-          "height": "190",
-          "weight": "1550",
-          "baseExperience": "194"
         },
         "dupa": {
-          "height": "3451",
-          "weight": "21",
-          "baseExperience": "435"
+          "wins": 1,
+          "losses": 0,
+          "baseExperience": 4355664
+        },
+        "sdfgsdfghgfhgfd": {
+          "wins": 0,
+          "losses": 1,
+          "baseExperience": 456
         }
       },
+      "modified": {},
       "created": {
         "sdfgsdfghgfhgfd": {
-          "height": "234",
-          "weight": "234",
-          "baseExperience": "456",
+          "height": 234,
+          "weight": 234,
+          "baseExperience": 456,
           "ability": "sdfggh",
           "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/152.png"
         },
         "dupa": {
-          "height": "3451",
-          "weight": "21",
-          "baseExperience": "4355654",
+          "height": 3451,
+          "weight": 21,
+          "baseExperience": 4355654,
           "ability": "zabijanie",
           "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/153.png"
         }

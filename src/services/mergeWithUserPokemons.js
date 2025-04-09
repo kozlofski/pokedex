@@ -2,20 +2,13 @@ import fetchUserData from "./fetchUserData";
 
 const mergeWithUserPokemons = async (linksToPokemons, loggedUserId) => {
   const userData = await fetchUserData(loggedUserId);
-  const pokemonEntries = Object.entries(userData.created);
-  console.log("Userdata created: ", pokemonEntries);
+  const createdPokemonsNames = Object.keys(userData.created);
 
-  const userPokemons = pokemonEntries.map((entry) => {
+  const userPokemons = createdPokemonsNames.map((name) => {
     return {
-      name: entry[0],
-      baseExperience: parseInt(entry[1].baseExperience),
-      height: parseInt(entry[1].height),
-      weight: parseInt(entry[1].weight),
-      ability: entry[1].ability,
-      imgUrl: entry[1].imgUrl,
+      name: name,
     };
   });
-  console.log("User pokemons: ", userPokemons);
 
   return [...linksToPokemons, ...userPokemons];
 };

@@ -42,16 +42,16 @@ const PageButton = styled.li`
     }
 `
 
-const Pagination = ({ pokemonsFiltered, setPokemonsPaginated }) => {
-    const totalPages = pokemonsFiltered ? 1 + (pokemonsFiltered.length - 1) / PAGE_LIMIT : 0;
+const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
+    const totalPages = rawPokemonsFiltered ? 1 + (rawPokemonsFiltered.length - 1) / PAGE_LIMIT : 0;
     const [currentPage, setCurrentPage] = useState(1)
 
     useEffect(() => {
-        const paginated = pokemonsFiltered.slice((currentPage - 1) * PAGE_LIMIT, (currentPage) * PAGE_LIMIT);
-        setPokemonsPaginated(paginated)
-    }, [currentPage, pokemonsFiltered, setPokemonsPaginated])
+        const paginated = rawPokemonsFiltered.slice((currentPage - 1) * PAGE_LIMIT, (currentPage) * PAGE_LIMIT);
+        setRawPokemonsPaginated(paginated)
+    }, [currentPage, rawPokemonsFiltered, setRawPokemonsPaginated])
 
-    useEffect(() => setCurrentPage(1), [pokemonsFiltered])
+    useEffect(() => setCurrentPage(1), [rawPokemonsFiltered])
 
     const numbers = []
     if (totalPages >= 2)

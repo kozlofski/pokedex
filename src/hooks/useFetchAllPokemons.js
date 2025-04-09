@@ -30,7 +30,10 @@ const useFetchAllPokemons = () => {
           let newPokemon;
           if (pokemonInitial.url === undefined)
             newPokemon = { ...pokemonInitial };
-          else newPokemon = await fetchSinglePokemon(pokemonInitial.url);
+          else {
+            newPokemon = await fetchSinglePokemon(pokemonInitial.url);
+            newPokemon.url = pokemonInitial.url;
+          }
 
           newPokemon = await updatePokemonWithUserData(
             newPokemon,

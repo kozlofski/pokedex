@@ -1,7 +1,7 @@
 import React from 'react'
 import { styled } from "styled-components"
 import useFetchAllPokemons from '../../hooks/useFetchAllPokemons'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const RankingContainer = styled.div`
 
@@ -18,14 +18,14 @@ const TableRow = styled.tr`
     &:nth-child(even) {
         background-color: #aaeeff;
         }
-        `
+    `
 
 const TableHeader = styled.th`
-        position: sticky;
-        background-color: #ffffffff;
-        padding: 1rem 0;
-        top: 0;
-        `
+    position: sticky;
+    background-color: #ffffffff;
+    padding: 1rem 0;
+    top: 0;
+`
 
 const HeaderTitle = styled.span`
     &.sortBy.asc::after {
@@ -57,7 +57,7 @@ const PokemonRankingTable = ({ edit, setEditedPokemon }) => {
     const [lossesSortAsc, setLossesSortAsc] = useState(true)
     const [sortingParam, setSortingParam] = useState("name")
 
-    useEffect(() => sortPokemons(sortName), [completePokemons])
+    // useEffect(() => sortPokemons(sortName), [completePokemons])
 
     const sortPokemons = (sortingFn) => {
         const sorted = completePokemons.toSorted(sortingFn)

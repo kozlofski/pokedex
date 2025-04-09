@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useState, useEffect } from 'react';
 import { styled } from "styled-components"
-import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
+// import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -12,7 +12,7 @@ import GlobalContext from '../../context/GlobalContext';
 
 import { LIMIT, PICTURES_TO_CHOOSE } from '../../constants';
 import fetchSinglePokemon from '../../services/fetchSinglePokemon';
-import useFetchPokemons from '../../hooks/useFetchPokemons';
+import useFetchRawPokemons from '../../hooks/useFetchRawPokemons';
 import Button from './Button.styled';
 
 const Modal = styled.div`
@@ -58,7 +58,7 @@ const Image = styled.img`
 
 
 const PokemonPictureModal = ({ onClose, setChosenImageUrl }) => {
-    const { pokemons } = useFetchPokemons(LIMIT, PICTURES_TO_CHOOSE)
+    const { pokemons } = useFetchRawPokemons(LIMIT, PICTURES_TO_CHOOSE)
     const [currentPictureNumber, setCurrentPictureNumber] = useState(0)
     const [currentPictureUrl, setCurrentPictureUrl] = useState()
 

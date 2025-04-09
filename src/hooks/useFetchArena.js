@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
+import { JSON_SERVER_URL } from "../constants";
 
-const JSON_SERVER_URL = "http://localhost:3000/users";
+// const JSON_SERVER_URL = "http://localhost:3000/users";
 
-const useFetchArena = (SERVER_URL, userId) => {
+const useFetchArena = (userId) => {
   const [leftPokemonFromArena, setLeftPokemonFromArena] = useState(undefined);
   const [rightPokemonFromArena, setRightPokemonFromArena] = useState(undefined);
 
   useEffect(() => {
     const fetchArenaData = async () => {
       try {
-        const response = await fetch(`${SERVER_URL}/${userId}`);
+        // fetchUserData
+        const response = await fetch(`${JSON_SERVER_URL}/${userId}`);
         if (!response) throw new Error("Problem with fetching arena");
 
         const jsonResponse = await response.json();

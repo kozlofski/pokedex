@@ -36,12 +36,16 @@ const RemoveFromArena = styled.div`
 const Arena = () => {
     const { loggedUserId } = useContext(LoginContext)
 
-    const { leftPokemonFromArena, rightPokemonFromArena } = useFetchArena(JSON_SERVER_URL, loggedUserId)
+    const { leftPokemonFromArena, rightPokemonFromArena } = useFetchArena(loggedUserId)
     const [leftPokemon, setLeftPokemon] = useState(undefined)
     const [rightPokemon, setRightPokemon] = useState(undefined)
     const [winner, setWinner] = useState({})
     const [winnerModalOpened, setWinnerModalOpened] = useState(false)
 
+    console.log("Left pokemons in arena: ", leftPokemonFromArena)
+    console.log("Right pokemons in arena: ", rightPokemonFromArena)
+
+    // is that necessary?
     useEffect(() => {
         setLeftPokemon(leftPokemonFromArena)
         setRightPokemon(rightPokemonFromArena)
@@ -102,9 +106,9 @@ const Arena = () => {
     return (
         <ArenaContainer>
             <ArenaCardContainer>
-                {leftPokemon ?
+                {leftPokemon !== undefined ?
                     <PokemonCard
-                        pokemon={leftPokemon}
+                        rawPokemon={{ name: leftPokemon.name, url: leftPokemon.url ?? undefined }}
                         setModalOpened={setModalOpened}
                         setSelectedPokemon={setSelectedPokemon}
                     /> :
@@ -119,9 +123,9 @@ const Arena = () => {
             </FightButton>
 
             <ArenaCardContainer>
-                {rightPokemon ?
+                {rightPokemon !== undefined ?
                     <PokemonCard
-                        pokemon={rightPokemon}
+                        rawPokemon={rightPokemon}
                         setModalOpened={setModalOpened}
                         setSelectedPokemon={setSelectedPokemon}
                     /> :

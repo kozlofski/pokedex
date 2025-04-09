@@ -1,26 +1,21 @@
-import fetchSinglePokemon from "./fetchSinglePokemon";
 import fetchUserData from "./fetchUserData";
 
 const JSON_SERVER_URL = "http://localhost:3000/users";
 
 const updateStats = async (winnerPokemon, loserPokemon, loggedUserId) => {
   try {
-    const { name: winnerName, url: winnerUrl } = winnerPokemon;
-    const { name: loserName, url: loserUrl } = loserPokemon;
     const userData = await fetchUserData(loggedUserId);
     const oldStats = userData.stats;
 
-    const winnerPokemonData = await fetchSinglePokemon(winnerUrl);
-    const loserPokemonData = await fetchSinglePokemon(loserUrl);
-
     let newStats = {};
 
-    if (winnerName in oldStats) {
-      const newWinnerBaseExperience = oldStats[winnerName].baseExperience + 10;
-      const newWins = oldStats[winnerName].wins + 1;
-      const newLosses = oldStats[winnerName].losses;
+    if (winnerPokemon.name in oldStats) {
+      const newWinnerBaseExperience =
+        oldStats[winnerPokemon.name].baseExperience + 10;
+      const newWins = oldStats[winnerPokemon.name].wins + 1;
+      const newLosses = oldStats[winnerPokemon.name].losses;
       newStats = { ...oldStats };
-      newStats[winnerName] = {
+      newStats[winnerPokemon.name] = {
         wins: newWins,
         losses: newLosses,
         baseExperience: newWinnerBaseExperience,
@@ -28,30 +23,30 @@ const updateStats = async (winnerPokemon, loserPokemon, loggedUserId) => {
     } else {
       newStats = {
         ...oldStats,
-        [winnerName]: {
+        [winnerPokemon.name]: {
           wins: 1,
           losses: 0,
-          baseExperience: winnerPokemonData.baseExperience + 10,
+          baseExperience: winnerPokemon.baseExperience + 10,
         },
       };
     }
 
-    if (loserName in oldStats) {
-      const newWins = oldStats[loserName].wins;
-      const newLosses = oldStats[loserName].losses + 1;
+    if (loserPokemon.name in oldStats) {
+      const newWins = oldStats[loserPokemon.name].wins;
+      const newLosses = oldStats[loserPokemon.name].losses + 1;
 
-      newStats[loserName] = {
+      newStats[loserPokemon.name] = {
         wins: newWins,
         losses: newLosses,
-        baseExperience: loserPokemonData.baseExperience,
+        baseExperience: loserPokemon.baseExperience,
       };
     } else {
       newStats = {
         ...newStats,
-        [loserName]: {
+        [loserPokemon.name]: {
           wins: 0,
           losses: 1,
-          baseExperience: loserPokemonData.baseExperience,
+          baseExperience: loserPokemon.baseExperience,
         },
       };
     }

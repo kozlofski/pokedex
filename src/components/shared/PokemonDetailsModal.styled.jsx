@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { useState, useEffect } from 'react';
 import { styled } from "styled-components"
-import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -9,6 +8,7 @@ import StadiumIcon from '@mui/icons-material/Stadium';
 import CloseIcon from '@mui/icons-material/Close';
 import LoginContext from '../../context/LoginContext';
 import { JSON_SERVER_URL } from '../../constants';
+import fetchUserData from '../../services/fetchUserData';
 
 const Modal = styled.div`
     position: fixed;
@@ -126,27 +126,25 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
     const [isOnArena, setIsOnArena] = useState(false)
     const [arena, setArena] = useState({})
 
-
-    const { baseExperience,
+    const { name,
+        baseExperience,
         height,
         weight,
         ability,
         imgUrl,
         wins,
-        losses } = useFetchSinglePokemon(pokemon)
+        losses } = pokemon
 
     const setHeartAndArenaIcons = async () => {
         try {
-            const response = await fetch(`${JSON_SERVER_URL}/${loggedUserId}`)
-            if (!response) throw new Error("Problem with fetching favourites")
+            const userData = await fetchUserData(loggedUserId)
 
-            const jsonResponse = await response.json();
-            setOldFavourites(jsonResponse.favourites);
-            setArena(jsonResponse.arena)
+            setOldFavourites(userData.favourites);
+            setArena(userData.arena)
 
-            if (pokemon.name in jsonResponse.favourites) setIsFavourite(true)
-            if (pokemon.name === jsonResponse.arena.leftPokemon?.name || pokemon.name === jsonResponse.arena.rightPokemon?.name) {
-                console.log(`${pokemon.name} matches ${jsonResponse.arena.leftPokemon?.name} or ${jsonResponse.arena.rightPokemon?.name}`)
+            if (name in userData.favourites) setIsFavourite(true)
+            if (name === userData.arena.leftPokemon?.name || name === userData.arena.rightPokemon?.name) {
+                console.log(`${name} matches ${userData.arena.leftPokemon?.name} or ${userData.arena.rightPokemon?.name}`)
                 setIsOnArena(true)
             }
         } catch (error) {
@@ -169,6 +167,7 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
             if (newIsFavourite === true) {
                 newFavourites = oldFavourites
                 newFavourites[pokemon.name] = true
+                // change pokemon.name to name
             } else {
                 // spread syntax?
                 newFavourites = oldFavourites
@@ -198,20 +197,22 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
 
             if (newIsOnArena === true) {
                 const pokemonsInArena = Object.keys(arena).length;
-                const pokemonToArena = { name: pokemon.name, url: pokemon.url, baseExperience, weight, imgUrl }
+                // const pokemonToArena = { name: name, url: url ?? undefined }
+                // console.log("Pokemon to arena: ", pokemonToArena)
+
                 if (pokemonsInArena === 0) {
                     newArena = { ...arena }
-                    newArena["leftPokemon"] = pokemonToArena
+                    newArena["leftPokemon"] = pokemon
                 }
                 if (pokemonsInArena === 1) {
                     newArena = { ...arena }
-                    "leftPokemon" in newArena ? newArena["rightPokemon"] = pokemonToArena : newArena["leftPokemon"] = pokemonToArena
+                    "leftPokemon" in newArena ? newArena["rightPokemon"] = pokemon : newArena["leftPokemon"] = pokemon
                 }
                 if (pokemonsInArena === 2) return
             } else {
                 // spread syntax?
                 newArena = arena
-                if (pokemon.name === newArena["leftPokemon"].name) delete newArena["leftPokemon"]
+                if (name === newArena["leftPokemon"].name) delete newArena["leftPokemon"]
                 else delete newArena["rightPokemon"]
             }
 

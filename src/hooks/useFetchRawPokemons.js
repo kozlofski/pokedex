@@ -5,10 +5,10 @@ import LoginContext from "../context/LoginContext";
 import filterFavourites from "../services/filterFavourites";
 import mergeWithUserPokemons from "../services/mergeWithUserPokemons";
 
-const useFetchPokemons = (start = 0, limit = LIMIT, favourites) => {
+const useFetchRawPokemons = (start = 0, limit = LIMIT, favourites) => {
   const { loggedUserId } = useContext(LoginContext);
 
-  const [pokemons, setPokemons] = useState([]);
+  const [rawPokemons, setRawPokemons] = useState([]);
   const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const useFetchPokemons = (start = 0, limit = LIMIT, favourites) => {
             loggedUserId
           );
 
-        setPokemons(linksToPokemons);
+        setRawPokemons(linksToPokemons);
         setIsPending(false);
       } catch (error) {
         console.log(error);
@@ -37,7 +37,7 @@ const useFetchPokemons = (start = 0, limit = LIMIT, favourites) => {
     })();
   }, [start, limit, favourites, loggedUserId]);
 
-  return { pokemons, isPending };
+  return { rawPokemons, isPending };
 };
 
-export default useFetchPokemons;
+export default useFetchRawPokemons;

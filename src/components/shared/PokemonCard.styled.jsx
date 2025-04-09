@@ -2,6 +2,56 @@ import React from 'react'
 import { styled } from "styled-components"
 import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
 
+const PokemonCard = ({ rawPokemon, setModalOpened, setSelectedPokemon }) => {
+    const pokemon = useFetchSinglePokemon(rawPokemon)
+
+    const {
+        name,
+        height,
+        baseExperience,
+        weight,
+        ability,
+        imgUrl,
+        wins,
+        losses,
+    } = pokemon
+
+    const openDetails = () => {
+        console.log(pokemon)
+        setModalOpened(true)
+        setSelectedPokemon(pokemon)
+    }
+
+    return (
+        <Card onClick={openDetails}>
+            <Image src={imgUrl} alt="" />
+            <Header>{name}</Header>
+            <Characteristics>
+                <Characteristic>
+                    <CharValue>{height}</CharValue>
+                    <ValueName>Height</ValueName>
+                </Characteristic>
+                <Characteristic>
+                    <CharValue>{baseExperience}</CharValue>
+                    <ValueName>Base experience</ValueName>
+                </Characteristic>
+                <Characteristic>
+                    <CharValue>{weight}</CharValue>
+                    <ValueName>Weight</ValueName>
+                </Characteristic>
+                <Characteristic>
+                    <CharValue>{ability}</CharValue>
+                    <ValueName>Ability</ValueName>
+                </Characteristic>
+            </Characteristics>
+            {wins !== undefined && <WinsAndLosses>
+                <WinOrLoss>W: {wins}</WinOrLoss>
+                <WinOrLoss>L: {losses}</WinOrLoss>
+            </WinsAndLosses>}
+        </Card>
+    )
+}
+
 const Card = styled.div`
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -77,50 +127,5 @@ const WinOrLoss = styled.div`
     color: #ffffff;
     text-align: justify;  
 `
-
-const PokemonCard = ({ pokemon, setModalOpened, setSelectedPokemon }) => {
-    const {
-        height,
-        baseExperience,
-        weight,
-        ability,
-        imgUrl,
-        wins,
-        losses } = useFetchSinglePokemon(pokemon)
-
-    const openDetails = () => {
-        setModalOpened(true)
-        setSelectedPokemon(pokemon)
-    }
-
-    return (
-        <Card onClick={openDetails}>
-            <Image src={imgUrl} alt="" />
-            <Header>{pokemon.name}</Header>
-            <Characteristics>
-                <Characteristic>
-                    <CharValue>{height}</CharValue>
-                    <ValueName>Height</ValueName>
-                </Characteristic>
-                <Characteristic>
-                    <CharValue>{baseExperience}</CharValue>
-                    <ValueName>Base experience</ValueName>
-                </Characteristic>
-                <Characteristic>
-                    <CharValue>{weight}</CharValue>
-                    <ValueName>Weight</ValueName>
-                </Characteristic>
-                <Characteristic>
-                    <CharValue>{ability}</CharValue>
-                    <ValueName>Ability</ValueName>
-                </Characteristic>
-            </Characteristics>
-            {wins !== undefined && <WinsAndLosses>
-                <WinOrLoss>W: {wins}</WinOrLoss>
-                <WinOrLoss>L: {losses}</WinOrLoss>
-            </WinsAndLosses>}
-        </Card>
-    )
-}
 
 export default PokemonCard
