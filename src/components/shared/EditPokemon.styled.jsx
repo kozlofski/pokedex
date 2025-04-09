@@ -38,9 +38,10 @@ const EditPokemon = ({ editedPokemon, loggedUserId }) => {
         try {
             const userData = await fetchUserData(loggedUserId);
             const oldModified = userData.modified;
+            const oldStats = userData.stats
             const pokemonName = editedPokemon.name
-
             let newModified = {}
+            let newStats = {}
 
             if (pokemonName in oldModified) {
                 newModified = { ...oldModified };
@@ -59,10 +60,23 @@ const EditPokemon = ({ editedPokemon, loggedUserId }) => {
                     },
                 };
             }
+
+            if (pokemonName in oldStats) {
+                newStats = { ...oldStats };
+                newStats[pokemonName] = {
+                    wins: oldStats[pokemonName].wins,
+                    losses: oldStats[pokemonName].losses,
+                    baseExperience: data.baseExperience,
+                }
+            } else {
+                newStats = { ...oldStats }
+            }
+
             const patchResponse = fetch(`${JSON_SERVER_URL}/${loggedUserId}`, {
                 method: "PATCH",
                 body: JSON.stringify({
                     modified: newModified,
+                    stats: newStats,
                 }),
             });
             if (!patchResponse) throw new Error("something is not yes with patching pokemon")
@@ -80,19 +94,19 @@ const EditPokemon = ({ editedPokemon, loggedUserId }) => {
     return (
         <>
             <EditForm onSubmit={handleSubmit(onSubmit, onError)}>
-                <label for="height">Height: </label>
+                <label htmlFor="height">Height: </label>
                 <Input {...register('height')}
                     type={"text"}
                     placeholder={"wzrost"}
                     error={errors.name ?? ""} />
 
-                <label for="weight">Weight: </label>
+                <label htmlFor="weight">Weight: </label>
 
                 <Input {...register('weight')}
                     type={"text"}
                     placeholder={"waga"}
                     error={errors.email ?? ""} />
-                <label for="baseExperience">Base experience: </label>
+                <label htmlFor="baseExperience">Base experience: </label>
 
                 <Input {...register('baseExperience')}
                     type={"text"}

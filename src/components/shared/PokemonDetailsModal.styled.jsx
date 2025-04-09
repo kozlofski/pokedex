@@ -11,8 +11,6 @@ import fetchUserData from '../../services/fetchUserData';
 import updateArena from '../../services/updateArena';
 import updateFavourites from '../../services/updateFavourites';
 
-
-
 const PokemonDetailsModal = ({ onClose, pokemon }) => {
     const { loggedUserId } = useContext(LoginContext)
 
@@ -48,7 +46,7 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
     }
 
     useEffect(() => {
-        if (loggedUserId !== -1) setHeartAndArenaIcons();
+        if (loggedUserId !== "-1") setHeartAndArenaIcons();
     }, [])
 
 

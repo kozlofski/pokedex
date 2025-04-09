@@ -4,11 +4,12 @@ import LoginContext from "../context/LoginContext";
 import fetchSinglePokemon from "../services/fetchSinglePokemon";
 import { API_URL, LIMIT } from "../constants";
 import fetchLinksToPokemons from "../services/fetchLinksToPokemons";
+import fetchUserData from "../services/fetchUserData";
 import mergeWithUserPokemons from "../services/mergeWithUserPokemons";
 
 import updatePokemonWithUserData from "../services/updatePokemonWithUserData";
 
-const useFetchAllPokemons = () => {
+const useFetchAllPokemons = (setSortedPokemons) => {
   const { loggedUserId } = useContext(LoginContext);
 
   const [completePokemons, setCompletePokemons] = useState([]);
@@ -25,16 +26,22 @@ const useFetchAllPokemons = () => {
         loggedUserId
       );
 
-      const pokemonFetchPromises = linksToPokemons.map(
-        async (pokemonInitial) => {
-          let newPokemon;
-          if (pokemonInitial.url === undefined)
-            newPokemon = { ...pokemonInitial };
-          else {
-            newPokemon = await fetchSinglePokemon(pokemonInitial.url);
-            newPokemon.url = pokemonInitial.url;
-          }
+      console.log("Fetch all: ", linksToPokemons);
 
+      const pokemonFetchPromises = linksToPokemons.map(
+        async (inputPokemonData) => {
+          let newPokemon;
+
+          if (
+            !("url" in inputPokemonData) ||
+            inputPokemonData.url === undefined
+          ) {
+            const userData = await fetchUserData(loggedUserId);
+            const createdPokemonData = userData.created[inputPokemonData.name];
+            newPokemon = { ...createdPokemonData, name: inputPokemonData.name };
+          } else newPokemon = await fetchSinglePokemon(inputPokemonData.url);
+
+          newPokemon.url = inputPokemonData.url;
           newPokemon = await updatePokemonWithUserData(
             newPokemon,
             loggedUserId
@@ -43,8 +50,11 @@ const useFetchAllPokemons = () => {
         }
       );
       Promise.all(pokemonFetchPromises)
-        .then((pokemons) => setCompletePokemons([...pokemons]))
-        .catch((error) => console.log(error));
+        .then((pokemons) => {
+          setCompletePokemons([...pokemons]);
+          setSortedPokemons(pokemons);
+        })
+        .catch((error) => console.error(error));
     })();
 
     setIsPending(false);

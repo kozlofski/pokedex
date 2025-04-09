@@ -3,51 +3,11 @@ import { styled } from "styled-components"
 import useFetchAllPokemons from '../../hooks/useFetchAllPokemons'
 import { useState } from 'react'
 
-const RankingContainer = styled.div`
-
-`
-const RankingTable = styled.table`
-    width: 100%;
-`
-const TableHead = styled.thead`
-`
-const TableBody = styled.tbody`
-    width: 100%;
-    `
-const TableRow = styled.tr`
-    &:nth-child(even) {
-        background-color: #aaeeff;
-        }
-    `
-
-const TableHeader = styled.th`
-    position: sticky;
-    background-color: #ffffffff;
-    padding: 1rem 0;
-    top: 0;
-`
-
-const HeaderTitle = styled.span`
-    &.sortBy.asc::after {
-        content: "^"
-    }
-    
-    &.sortBy.desc::after {
-        content: "v"
-        }
-`
-
-const TableCell = styled.td`
-        padding: 0 1rem;
-        text-align: center;
-        border: none;
-`
-
 const PokemonRankingTable = ({ edit, setEditedPokemon }) => {
-    const { completePokemons, isPending } = useFetchAllPokemons()
-    const [sortedPokemons, setSortedPokemons] = useState(completePokemons)
+    const [sortedPokemons, setSortedPokemons] = useState([])
+    const { completePokemons, isPending } = useFetchAllPokemons(setSortedPokemons)
 
-    console.log("Complete pokemons: ", completePokemons)
+    // console.log("Complete pokemons: ", completePokemons)
 
     const [nameSortAsc, setNameSortAsc] = useState(true)
     const [expSortAsc, setExpSortAsc] = useState(true)
@@ -194,5 +154,45 @@ const TableRowComponent = ({ pokemon, edit, setEditedPokemon }) => {
         </TableRow>
     )
 }
+
+const RankingContainer = styled.div`
+
+`
+const RankingTable = styled.table`
+    width: 100%;
+`
+const TableHead = styled.thead`
+`
+const TableBody = styled.tbody`
+    width: 100%;
+    `
+const TableRow = styled.tr`
+    &:nth-child(even) {
+        background-color: #aaeeff;
+        }
+    `
+
+const TableHeader = styled.th`
+    position: sticky;
+    background-color: #ffffffff;
+    padding: 1rem 0;
+    top: 0;
+`
+
+const HeaderTitle = styled.span`
+    &.sortBy.asc::after {
+        content: "^"
+    }
+    
+    &.sortBy.desc::after {
+        content: "v"
+        }
+`
+
+const TableCell = styled.td`
+        padding: 0 1rem;
+        text-align: center;
+        border: none;
+`
 
 export default PokemonRankingTable

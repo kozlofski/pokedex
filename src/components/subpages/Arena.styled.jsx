@@ -24,10 +24,6 @@ const Arena = () => {
     const [winner, setWinner] = useState({})
     const [winnerModalOpened, setWinnerModalOpened] = useState(false)
 
-    console.log("Left pokemons in arena: ", leftPokemonFromArena)
-    console.log("Right pokemons in arena: ", rightPokemonFromArena)
-
-    // is that necessary?
     useEffect(() => {
         setLeftPokemon(leftPokemonFromArena)
         setRightPokemon(rightPokemonFromArena)
@@ -63,10 +59,9 @@ const Arena = () => {
                 setLeftPokemon(undefined)
                 setRightPokemon(undefined)
             }
-
             updateArena(newArena, loggedUserId)
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 
@@ -76,7 +71,6 @@ const Arena = () => {
         setWinner(winnerFromService)
         setWinnerModalOpened(true)
     }
-
 
     return (
         <ArenaContainer>

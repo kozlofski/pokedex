@@ -18,10 +18,12 @@ const useFetchRawPokemons = (start = 0, limit = LIMIT, favourites) => {
         setIsPending(true);
         let linksToPokemons = await fetchLinksToPokemons(start, limit);
 
-        linksToPokemons = await mergeWithUserPokemons(
-          linksToPokemons,
-          loggedUserId
-        );
+        if (loggedUserId !== "-1") {
+          linksToPokemons = await mergeWithUserPokemons(
+            linksToPokemons,
+            loggedUserId
+          );
+        }
 
         if (favourites)
           linksToPokemons = await filterFavourites(
