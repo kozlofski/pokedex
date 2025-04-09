@@ -35,13 +35,13 @@
           "baseExperience": 343
         },
         "bulbasaur": {
-          "wins": 4,
-          "losses": 16,
-          "baseExperience": 64
+          "wins": 7,
+          "losses": 17,
+          "baseExperience": 94
         },
         "rattata": {
           "wins": 1,
-          "losses": 2,
+          "losses": 4,
           "baseExperience": 51
         },
         "caterpie": {
@@ -98,6 +98,16 @@
           "wins": 1,
           "losses": 0,
           "baseExperience": 277
+        },
+        "butterfree": {
+          "wins": 1,
+          "losses": 0,
+          "baseExperience": 208
+        },
+        "horsea": {
+          "wins": 0,
+          "losses": 1,
+          "baseExperience": 59
         }
       },
       "modified": {
