@@ -6,16 +6,19 @@ import { styled } from "styled-components"
 const PAGE_LIMIT = 15;
 
 const PaginationContainer = styled.ul`
+    width: 100%;
     padding: 1rem;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     list-style: none;
     gap: 0.5rem;
     position: sticky;
     top: 0;
     z-index: 1;
-    background-color: white;
+    backdrop-filter: blur(10px);
+    // background-color: ${({ theme }) => theme.color.paginationBackground};
     border: none;
     border-radius: 1rem;
 `
@@ -23,10 +26,10 @@ const PageButton = styled.li`
     height: 2em;
     width: 2em;
     padding: 0.25em;
-    border: 1px solid blue;
+    border: 1px solid ${({ theme }) => theme.color.pagination};
     border-radius: 33%;
     text-align: center;
-    color: blue;
+    color: ${({ theme }) => theme.color.pagination};
 
     &:active {
         border: 1px solid green;

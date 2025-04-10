@@ -1,12 +1,12 @@
 import GlobalContext from "./GlobalContext";
 import { useState } from "react";
 
-const GlobalContextProvider = ({ children }) => {
+const GlobalContextProvider = ({ children, setSelectedTheme }) => {
 
     const [arena, setArena] = useState([])
 
     return (
-        <GlobalContext.Provider value={{ arena, setArena }}>
+        <GlobalContext.Provider value={{ arena, setArena, setSelectedTheme }}>
             {children}
         </GlobalContext.Provider>
     );

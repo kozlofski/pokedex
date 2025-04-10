@@ -14,6 +14,9 @@ import "./css/reset.css"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import GlobalContextProvider from "./context/GlobalContextProvider"
 import LoginContextProvider from "./context/LoginContextProvider"
+import { ThemeProvider } from "styled-components"
+import { light } from "./styles/theme"
+import { useState } from "react"
 
 const router = createBrowserRouter([
   {
@@ -32,12 +35,16 @@ const router = createBrowserRouter([
 ])
 
 const App = () => {
+  const [selectedTheme, setSelectedTheme] = useState(light)
+
   return (
-    <LoginContextProvider>
-      <GlobalContextProvider>
-        <RouterProvider router={router} />
-      </GlobalContextProvider>
-    </LoginContextProvider>
+    <ThemeProvider theme={selectedTheme}>
+      <LoginContextProvider>
+        <GlobalContextProvider setSelectedTheme={setSelectedTheme}>
+          <RouterProvider router={router} />
+        </GlobalContextProvider>
+      </LoginContextProvider>
+    </ThemeProvider>
   )
 }
 

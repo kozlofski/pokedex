@@ -5,9 +5,13 @@ import { Outlet } from 'react-router-dom'
 import { styled } from "styled-components"
 
 const AppContainer = styled.div`
-   display: grid;
-   grid-template-rows: 100px calc(100vh - 100px);
+    width: fit-content;
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    background: ${({ theme }) => theme.color.background};
 `
+
+
 
 const AppLayout = () => {
     return (

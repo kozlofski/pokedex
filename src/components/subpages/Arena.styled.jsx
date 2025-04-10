@@ -4,6 +4,8 @@ import { styled } from "styled-components"
 import PokemonCard from '../shared/PokemonCard.styled'
 import LoginContext from '../../context/LoginContext'
 import useFetchArena from '../../hooks/useFetchArena'
+import { useNavigate } from 'react-router-dom'
+
 import { createPortal } from "react-dom"
 import PokemonDetailsModal from '../shared/PokemonDetailsModal.styled'
 import EmptyPokemonCard from '../shared/EmptyPokemonCard.styled'
@@ -23,6 +25,8 @@ const Arena = () => {
     const [rightPokemon, setRightPokemon] = useState(undefined)
     const [winner, setWinner] = useState({})
     const [winnerModalOpened, setWinnerModalOpened] = useState(false)
+
+
 
     useEffect(() => {
         setLeftPokemon(leftPokemonFromArena)

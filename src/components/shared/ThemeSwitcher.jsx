@@ -1,0 +1,40 @@
+import React from 'react'
+import { useContext } from 'react'
+import GlobalContext from '../../context/GlobalContext'
+import { light, dark } from '../../styles/theme'
+import styled from 'styled-components'
+
+const ThemeSwitcher = () => {
+    const { setSelectedTheme } = useContext(GlobalContext)
+
+    return (
+        <SwitcherContainer>
+            <ThemeButton className="light" onClick={() => setSelectedTheme(light)}></ThemeButton>
+            <ThemeButton className="dark" onClick={() => setSelectedTheme(dark)}></ThemeButton>
+        </SwitcherContainer>
+    )
+}
+
+const SwitcherContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+`
+
+const ThemeButton = styled.button`
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    &.light {
+        background-color: ${light.color.background}; 
+        border: 1px solid ${light.color.button};
+    }
+
+    &.dark {
+        background-color: ${dark.color.background}; 
+        border: 1px solid ${dark.color.button};
+    }
+`
+
+export default ThemeSwitcher

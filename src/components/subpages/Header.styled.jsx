@@ -3,6 +3,7 @@ import { styled } from "styled-components"
 import LoginContext from '../../context/LoginContext'
 import Button from '../shared/Button.styled'
 import PersonIcon from '@mui/icons-material/Person';
+import ThemeSwitcher from '../shared/ThemeSwitcher';
 
 import logoPath from "../../assets/pokemonLogo.svg"
 
@@ -72,10 +73,12 @@ const Header = () => {
     return (<HeaderContainer>
         <Link to={"/"}><Logo src={logoPath} alt="POKEMON"></Logo></Link>
         <UserAndNavbar>
-            {loggedUser !== "null" && <UserContainer>
-                <PersonIcon />
-                <User>{loggedUser}</User>
-            </UserContainer>}
+            <ThemeSwitcher />
+            {loggedUser !== "null" &&
+                <UserContainer>
+                    <PersonIcon />
+                    <User>{loggedUser}</User>
+                </UserContainer>}
             <Navbar links={loggedUser === "null" ? routesIfNotLoggedIn : routesIfLoggedIn} />
         </UserAndNavbar>
     </HeaderContainer>
