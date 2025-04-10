@@ -1,8 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { styled } from "styled-components"
 import LoginContext from '../../context/LoginContext'
 import Button from '../shared/Button.styled'
 import PersonIcon from '@mui/icons-material/Person';
+import MenuIcon from '@mui/icons-material/Menu';
 import ThemeSwitcher from '../shared/ThemeSwitcher';
 
 import logoPath from "../../assets/pokemonLogo.svg"
@@ -30,8 +31,13 @@ const HeaderContainer = styled.header`
     padding: 1rem;
 
      @media (max-width: 660px) {
+        width: 100%;
         justify-content: flex-start;
-        padding: 0 0 2rem 0;
+        padding: 0;
+        position: fixed;
+        top: 0;
+        z-index: 10;
+        background: ${({ theme }) => theme.color.background};
     }
 
 `
@@ -48,19 +54,15 @@ const LinkList = styled.ul`
         top: 0;
         left: 0;
         z-index: 2;
+
+        &.menuClosed {
+            display: none;
+        }
     }
+   
 `
 
-const Navbar = ({ links }) => {
-    return (<LinkList>
-        {links.map(({ name, id, path }) =>
-            <li key={id}>
-                <Link to={path}>
-                    <Button nav="true">{name}</Button>
-                </Link>
-            </li>)}
-    </LinkList>)
-}
+
 
 const Logo = styled.img`
     width: 140px;
@@ -74,9 +76,7 @@ const UserAndNavbar = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    flex-grow: 1;
-
-   
+    flex-grow: 1;   
 `
 
 const UserContainer = styled.div`
@@ -88,11 +88,39 @@ const User = styled.p`
     color: ${({ theme }) => theme.color.fontOnBackground};
     font-size: 1rem;    
 `
+const MenuIconWrapper = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    @media (min-width: 661px) {
+        display: none;
+    }
+`
 
 const Header = () => {
+    const [menuOpened, setMenuOpened] = useState(false)
     const { loggedUser } = useContext(LoginContext)
 
+    const handleClickMobileMenu = () => {
+        setMenuOpened(prev => !prev)
+    }
+
+    const Navbar = ({ links }) => {
+        return (<LinkList className={!menuOpened && "menuClosed"}>
+            {links.map(({ name, id, path }) =>
+                <li key={id}>
+                    <Link to={path}>
+                        <Button>{name}</Button>
+                    </Link>
+                </li>)}
+        </LinkList>)
+    }
+
     return (<HeaderContainer>
+        <MenuIconWrapper onClick={handleClickMobileMenu} >
+            <MenuIcon />
+        </MenuIconWrapper>
         <Link to={"/"}><Logo src={logoPath} alt="POKEMON"></Logo></Link>
         <UserAndNavbar>
             <UserContainer>

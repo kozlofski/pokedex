@@ -27,7 +27,28 @@
         "charmander": true,
         "bulbasaur": true
       },
-      "arena": {},
+      "arena": {
+        "leftPokemon": {
+          "name": "bulbasaur",
+          "baseExperience": 94,
+          "height": 7,
+          "weight": 69,
+          "ability": "overgrow",
+          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png",
+          "url": "https://pokeapi.co/api/v2/pokemon/1/",
+          "wins": 7,
+          "losses": 17
+        },
+        "rightPokemon": {
+          "name": "charmeleon",
+          "baseExperience": 142,
+          "height": 11,
+          "weight": 190,
+          "ability": "blaze",
+          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/5.png",
+          "url": "https://pokeapi.co/api/v2/pokemon/5/"
+        }
+      },
       "stats": {
         "venusaur": {
           "wins": 8,

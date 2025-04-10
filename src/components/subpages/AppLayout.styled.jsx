@@ -12,7 +12,7 @@ const AppContainer = styled.div`
     background: ${({ theme }) => theme.color.background};
 
      @media (max-width: 660px) {
-        grid-template-rows: auto 1fr;
+        grid-template-rows: 1.5rem 1fr;
     }
 `
 

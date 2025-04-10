@@ -16,10 +16,9 @@ const StyledButton = styled.button`
     }
 `
 
-const Button = ({ children, onClick, nav }) => {
-    console.log(nav)
+const Button = ({ children, onClick }) => {
     return (
-        <StyledButton onClick={onClick} nav={nav}>{children}</StyledButton>
+        <StyledButton onClick={onClick}>{children}</StyledButton>
     )
 }
 

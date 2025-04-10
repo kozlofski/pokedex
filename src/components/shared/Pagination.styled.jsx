@@ -21,6 +21,12 @@ const PaginationContainer = styled.ul`
     // background-color: ${({ theme }) => theme.color.paginationBackground};
     border: none;
     border-radius: 1rem;
+
+    @media (max-width: 660px) {
+        position: fixed;
+        top: inherit;
+        bottom: 0;
+    }
 `
 const PageButton = styled.li`
     height: 2em;
