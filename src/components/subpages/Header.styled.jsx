@@ -29,12 +29,26 @@ const HeaderContainer = styled.header`
     align-items: center;
     padding: 1rem;
 
+     @media (max-width: 660px) {
+        justify-content: flex-start;
+        padding: 0 0 2rem 0;
+    }
+
 `
 
 const LinkList = styled.ul`
     display: flex;
     flex-direction: row;
     gap: 0.25rem;
+
+    @media (max-width: 660px) {
+        flex-direction: column;
+        width: 100%;
+        // position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
 `
 
 const Navbar = ({ links }) => {
@@ -42,7 +56,7 @@ const Navbar = ({ links }) => {
         {links.map(({ name, id, path }) =>
             <li key={id}>
                 <Link to={path}>
-                    <Button>{name}</Button>
+                    <Button nav="true">{name}</Button>
                 </Link>
             </li>)}
     </LinkList>)
@@ -50,12 +64,19 @@ const Navbar = ({ links }) => {
 
 const Logo = styled.img`
     width: 140px;
+
+     @media (max-width: 660px) {
+        display: none;
+    }
 `
 
 const UserAndNavbar = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    flex-grow: 1;
+
+   
 `
 
 const UserContainer = styled.div`
@@ -64,6 +85,7 @@ const UserContainer = styled.div`
 `
 
 const User = styled.p`
+    color: ${({ theme }) => theme.color.fontOnBackground};
     font-size: 1rem;    
 `
 
@@ -73,12 +95,15 @@ const Header = () => {
     return (<HeaderContainer>
         <Link to={"/"}><Logo src={logoPath} alt="POKEMON"></Logo></Link>
         <UserAndNavbar>
-            <ThemeSwitcher />
-            {loggedUser !== "null" &&
-                <UserContainer>
-                    <PersonIcon />
-                    <User>{loggedUser}</User>
-                </UserContainer>}
+            <UserContainer>
+                <ThemeSwitcher />
+                {loggedUser !== "null" &&
+                    <>
+                        <PersonIcon style={{ color: ({ theme }) => theme.color.fontOnBackground }} />
+                        <User>{loggedUser}</User>
+                    </>
+                }
+            </UserContainer>
             <Navbar links={loggedUser === "null" ? routesIfNotLoggedIn : routesIfLoggedIn} />
         </UserAndNavbar>
     </HeaderContainer>

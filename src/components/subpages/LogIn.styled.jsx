@@ -18,6 +18,7 @@ import cyrb53 from '../../services/cyrb53'
 import { JSON_SERVER_URL } from '../../constants'
 
 const Form = styled.form`
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;

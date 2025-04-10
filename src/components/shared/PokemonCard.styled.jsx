@@ -1,8 +1,6 @@
 import React from 'react'
 import { styled } from "styled-components"
 import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
-import { light, dark } from '../../styles/theme'
-
 
 const PokemonCard = ({ rawPokemon, setModalOpened, setSelectedPokemon }) => {
     const pokemon = useFetchSinglePokemon(rawPokemon)

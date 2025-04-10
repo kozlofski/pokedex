@@ -26,10 +26,10 @@ const PageButton = styled.li`
     height: 2em;
     width: 2em;
     padding: 0.25em;
-    border: 1px solid ${({ theme }) => theme.color.pagination};
+    border: 1px solid ${({ theme }) => theme.color.fontOnBackground};
     border-radius: 33%;
     text-align: center;
-    color: ${({ theme }) => theme.color.pagination};
+    color: ${({ theme }) => theme.color.fontOnBackground};
 
     &:active {
         border: 1px solid green;

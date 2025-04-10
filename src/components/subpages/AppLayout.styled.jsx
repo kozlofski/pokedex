@@ -5,10 +5,15 @@ import { Outlet } from 'react-router-dom'
 import { styled } from "styled-components"
 
 const AppContainer = styled.div`
-    width: fit-content;
+    width: 100vw;
+    min-height: 100vh;
     display: grid;
     grid-template-rows: 100px 1fr;
     background: ${({ theme }) => theme.color.background};
+
+     @media (max-width: 660px) {
+        grid-template-rows: auto 1fr;
+    }
 `
 
 

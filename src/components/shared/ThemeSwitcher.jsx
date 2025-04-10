@@ -22,8 +22,8 @@ const SwitcherContainer = styled.div`
 `
 
 const ThemeButton = styled.button`
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
 
     &.light {

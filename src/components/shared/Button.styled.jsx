@@ -8,11 +8,18 @@ const StyledButton = styled.button`
     border-radius: 0.25rem;
     background-color: #00aaff;
     color: white;
+
+    
+    @media (max-width: 660px) {
+        width: 100%;
+        height: 4rem;
+    }
 `
 
-const Button = ({ children, onClick }) => {
+const Button = ({ children, onClick, nav }) => {
+    console.log(nav)
     return (
-        <StyledButton onClick={onClick}>{children}</StyledButton>
+        <StyledButton onClick={onClick} nav={nav}>{children}</StyledButton>
     )
 }
 
