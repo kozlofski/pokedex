@@ -69,9 +69,9 @@ const Card = styled.div`
     &:hover {
         transform: scale(1.05);
         transition: all 0.1s ease-in-out;
-        box-shadow: 0.5rem 0.7rem 1.1rem #4444443A;
-
+        box-shadow: 0.5rem 0.7rem 1.1rem ${({ theme }) => theme.color.cardShadowHover};
     }
+  
 `
 
 // move from styles here down on to common file

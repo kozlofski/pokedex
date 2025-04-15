@@ -10,7 +10,7 @@ import { styled } from "styled-components"
 const Init = styled.div`
     display: flex;
     flex-direction: column;
-    // align-items: center;
+    align-items: center;
 `
 
 const Edit = () => {
@@ -27,7 +27,7 @@ const Edit = () => {
         <>
             {editMode === "init" &&
                 (<Init>
-                    <Button onClick={() => setEditMode("create")} >Stwórz własnego pokemona</Button>
+                    <Button onClick={() => setEditMode("create")} width={"10rem"}>Stwórz własnego pokemona</Button>
                     <PokemonRankingTable edit={true} setEditedPokemon={setEditedPokemon} />
                 </Init>)}
             {editMode === "edit" && <EditPokemon editedPokemon={editedPokemon} loggedUserId={loggedUserId} />}

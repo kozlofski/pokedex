@@ -10,55 +10,29 @@
         "weedle": true,
         "ponyta": true,
         "rapidash": true,
-        "dewgong": true,
         "eevee": true,
-        "jolteon": true,
-        "dratini": true,
-        "flareon": true,
         "ninetales": true,
         "venusaur": true,
         "pikachu": true,
         "rattata": true,
         "kakuna": true,
         "ivysaur": true,
-        "horsea": true,
         "sdfgsdfghgfhgfd": true,
         "dupa": true,
         "charmander": true,
         "bulbasaur": true
       },
-      "arena": {
-        "leftPokemon": {
-          "name": "bulbasaur",
-          "baseExperience": 94,
-          "height": 7,
-          "weight": 69,
-          "ability": "overgrow",
-          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png",
-          "url": "https://pokeapi.co/api/v2/pokemon/1/",
-          "wins": 7,
-          "losses": 17
-        },
-        "rightPokemon": {
-          "name": "charmeleon",
-          "baseExperience": 142,
-          "height": 11,
-          "weight": 190,
-          "ability": "blaze",
-          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/5.png",
-          "url": "https://pokeapi.co/api/v2/pokemon/5/"
-        }
-      },
+      "arena": {},
       "stats": {
         "venusaur": {
-          "wins": 8,
+          "wins": 10,
           "losses": 0,
-          "baseExperience": 343
+          "baseExperience": 363
         },
         "bulbasaur": {
-          "wins": 7,
-          "losses": 17,
-          "baseExperience": 94
+          "wins": 9,
+          "losses": 19,
+          "baseExperience": 114
         },
         "rattata": {
           "wins": 1,
@@ -67,7 +41,7 @@
         },
         "caterpie": {
           "wins": 0,
-          "losses": 3,
+          "losses": 4,
           "baseExperience": 39
         },
         "ivysaur": {
@@ -76,9 +50,9 @@
           "baseExperience": 242
         },
         "ponyta": {
-          "wins": 1,
+          "wins": 3,
           "losses": 0,
-          "baseExperience": 92
+          "baseExperience": 112
         },
         "pikachu": {
           "wins": 0,
@@ -87,7 +61,7 @@
         },
         "weedle": {
           "wins": 0,
-          "losses": 3,
+          "losses": 5,
           "baseExperience": 39
         },
         "eevee": {
@@ -129,6 +103,16 @@
           "wins": 0,
           "losses": 1,
           "baseExperience": 59
+        },
+        "charmeleon": {
+          "wins": 1,
+          "losses": 0,
+          "baseExperience": 152
+        },
+        "charmander": {
+          "wins": 0,
+          "losses": 2,
+          "baseExperience": 62
         }
       },
       "modified": {
@@ -136,6 +120,11 @@
           "height": "3451",
           "weight": "21",
           "baseExperience": "435"
+        },
+        "squirtle": {
+          "height": "5",
+          "weight": "90",
+          "baseExperience": "64"
         }
       },
       "created": {

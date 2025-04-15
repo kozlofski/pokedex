@@ -164,6 +164,7 @@ const Modal = styled.div`
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(10px);
+    z-index: 2;
   `
 
 const ModalContent = styled.div`

@@ -7,7 +7,7 @@ const PAGE_LIMIT = 15;
 
 const PaginationContainer = styled.ul`
     width: 100%;
-    padding: 1rem;
+    padding: 0.75rem;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
@@ -17,15 +17,20 @@ const PaginationContainer = styled.ul`
     position: sticky;
     top: 0;
     z-index: 1;
-    backdrop-filter: blur(10px);
-    // background-color: ${({ theme }) => theme.color.paginationBackground};
     border: none;
-    border-radius: 1rem;
+    background-color: ${({ theme }) => theme.color.background};
 
+    // border-radius: 1rem;
+    
     @media (max-width: 660px) {
+        background-color: ${({ theme }) => theme.color.paginationBackground};
+        backdrop-filter: blur(10px);
         position: fixed;
         top: inherit;
         bottom: 0;
+        overflow-x: scroll;  
+        scrollbar-width: none;
+        gap: 0.75%;
     }
 `
 const PageButton = styled.li`
@@ -36,6 +41,7 @@ const PageButton = styled.li`
     border-radius: 33%;
     text-align: center;
     color: ${({ theme }) => theme.color.fontOnBackground};
+
 
     &:active {
         border: 1px solid green;
@@ -48,6 +54,12 @@ const PageButton = styled.li`
     &:hover {
         cursor: pointer;
         border: 1px solid green;
+    }
+
+    @media (max-width: 660px) {
+        height: 3rem;
+        width: 3rem;
+        font-size: 1.5rem;
     }
 `
 
@@ -71,15 +83,17 @@ const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
     const handleChangePage = (number) => setCurrentPage(number) // necessary? inline?
 
     return (
-        <PaginationContainer>
-            {numbers.map((number) =>
-            (<PageButton
-                key={number}
-                onClick={() => handleChangePage(number)}
-                className={number === currentPage ? "active" : ""}
-            >{number}</PageButton>)
-            )}
-        </PaginationContainer>
+        <>
+            {totalPages >= 2 && <PaginationContainer>
+                {numbers.map((number) =>
+                (<PageButton
+                    key={number}
+                    onClick={() => handleChangePage(number)}
+                    className={number === currentPage ? "active" : ""}
+                >{number}</PageButton>)
+                )}
+            </PaginationContainer>}
+        </>
     )
 }
 

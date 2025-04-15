@@ -4,11 +4,13 @@ import FlashOnIcon from '@mui/icons-material/FlashOn';
 
 const StyledButton = styled.button`
     padding: 0.25rem 1rem;
-    width: 7rem;
-    height: 7rem;
+    width: 200px;
+    height: 200px;
     border: none;
-    border-radius: 0.25rem;
-    background-color: #ff3300;
+    border-radius: 0.5rem;
+    box-shadow: 0.5rem 0.5rem 0.9rem ${({ theme }) => theme.color.cardShadow};
+
+    background-color: ${({ theme }) => theme.color.fightButton};
     color: white;
     display: flex;
     flex-direction: column;
@@ -17,8 +19,19 @@ const StyledButton = styled.button`
     gap: 0.5rem;
 
     &:disabled {
-        background-color: #aaaaaa;
-        color: #cccccc;
+        background-color: ${({ theme }) => theme.color.fightButtonInactive};
+        color: ${({ theme }) => theme.color.fightButtonInactiveFont};
+    }
+
+    &:active:not(&:disabled) {
+        box-shadow: 0.25rem 0.25rem 0.5rem ${({ theme }) => theme.color.cardShadow};
+        transform: translate(0.1rem, 0.1rem);
+    }
+
+    @media (max-width: 768px) {
+        order: 2;
+        min-width: 300px;
+        flex-grow: 1;
     }
 `
 

@@ -2,6 +2,7 @@ import React from 'react'
 import { styled } from "styled-components"
 import useFetchAllPokemons from '../../hooks/useFetchAllPokemons'
 import { useState } from 'react'
+import Loader from './Loader'
 
 const PokemonRankingTable = ({ edit, setEditedPokemon }) => {
     const [sortedPokemons, setSortedPokemons] = useState([])
@@ -80,7 +81,7 @@ const PokemonRankingTable = ({ edit, setEditedPokemon }) => {
 
     return (
         <RankingContainer>
-            {isPending ? "Loading ranking..." :
+            {isPending ? <Loader /> :
                 <RankingTable>
                     <TableHead>
                         <TableRow>
@@ -119,6 +120,7 @@ const PokemonRankingTable = ({ edit, setEditedPokemon }) => {
 const Image = styled.img`
     margin: 0 auto;
     height: 2rem;
+    width: 2rem;
 `
 
 const EditButton = styled.button`
@@ -156,7 +158,9 @@ const TableRowComponent = ({ pokemon, edit, setEditedPokemon }) => {
 }
 
 const RankingContainer = styled.div`
-
+    height: 100%;
+    width: 100%;
+    max-width: 1024px;
 `
 const RankingTable = styled.table`
     width: 100%;
@@ -169,13 +173,13 @@ const TableBody = styled.tbody`
 const TableRow = styled.tr`
     &:nth-child(even) {
         background-color: #aaeeff;
-        }
-    `
+    }
+`
 
 const TableHeader = styled.th`
     position: sticky;
-    background-color: #ffffffff;
-    padding: 1rem 0;
+    background-color: ${({ theme }) => theme.color.background};
+    padding: 2rem 0;
     top: 0;
 `
 
@@ -186,7 +190,12 @@ const HeaderTitle = styled.span`
     
     &.sortBy.desc::after {
         content: "v"
-        }
+    }
+
+    @media (max-width: 660px) {
+        writing-mode: vertical-lr;
+        text-orientation: mixed;
+    }
 `
 
 const TableCell = styled.td`

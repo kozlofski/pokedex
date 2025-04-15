@@ -29,6 +29,7 @@ const HeaderContainer = styled.header`
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    width: 100%;
 
      @media (max-width: 660px) {
         width: 100%;
@@ -54,7 +55,7 @@ const LinkList = styled.ul`
         top: 0;
         left: 0;
         z-index: 2;
-
+        
         &.menuClosed {
             display: none;
         }
@@ -67,7 +68,7 @@ const LinkList = styled.ul`
 const Logo = styled.img`
     width: 140px;
 
-     @media (max-width: 660px) {
+     @media (max-width: 768px) {
         display: none;
     }
 `
@@ -92,9 +93,20 @@ const MenuIconWrapper = styled.div`
     position: fixed;
     top: 0;
     left: 0;
-    
+
     @media (min-width: 661px) {
         display: none;
+    }
+`
+
+const StyledLink = styled(Link)`
+    flex-shrink: 1;
+
+    @media (min-width: 769px) {  
+
+        &.homeMobile {
+            display: none;
+        }
     }
 `
 
@@ -108,11 +120,12 @@ const Header = () => {
 
     const Navbar = ({ links }) => {
         return (<LinkList className={!menuOpened && "menuClosed"}>
+            <li><StyledLink className="homeMobile" to={"/"}><Button onClick={() => setMenuOpened(false)}>Home</Button></StyledLink></li>
             {links.map(({ name, id, path }) =>
                 <li key={id}>
-                    <Link to={path}>
-                        <Button>{name}</Button>
-                    </Link>
+                    <StyledLink to={path}>
+                        <Button onClick={() => setMenuOpened(false)}>{name}</Button>
+                    </StyledLink>
                 </li>)}
         </LinkList>)
     }

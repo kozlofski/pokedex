@@ -117,9 +117,12 @@ const ArenaContainer = styled.div`
     height: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
-    gap: 2rem;
+
+    @media (max-width: 768px) {
+        flex-wrap: wrap;
+    }
 `
 
 const ArenaCardContainer = styled.div`

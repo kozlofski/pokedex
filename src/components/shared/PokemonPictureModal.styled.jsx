@@ -26,6 +26,7 @@ const Modal = styled.div`
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(10px);
+    z-index: 10;
     // overflow: hidden;
   `
 

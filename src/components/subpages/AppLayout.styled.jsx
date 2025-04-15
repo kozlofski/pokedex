@@ -11,8 +11,9 @@ const AppContainer = styled.div`
     grid-template-rows: 100px 1fr;
     background: ${({ theme }) => theme.color.background};
 
-     @media (max-width: 660px) {
-        grid-template-rows: 1.5rem 1fr;
+    @media (max-width: 660px) {
+        // padding-top: 1rem;
+        grid-template-rows: 1fr;
     }
 `
 

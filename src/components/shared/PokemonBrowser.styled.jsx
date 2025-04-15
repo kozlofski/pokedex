@@ -7,28 +7,39 @@ import PokemonCard from '../shared/PokemonCard.styled'
 import PokemonDetailsModal from '../shared/PokemonDetailsModal.styled'
 import useFetchRawPokemons from '../../hooks/useFetchRawPokemons'
 import { LIMIT } from '../../constants'
+import Loader from './Loader'
+
+const BrowserContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    height: 100%;
+
+    @media (max-width: 660px) {
+        margin-top: 0.5rem;
+    }
+`
 
 const PokemonsGallery = styled.ul`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
     gap: 1.5rem;
     list-style: none;    
+    height: 100%;
+
 `
 const PokemonsFilter = styled.input`
     border: 2px solid #aaaaaa;
     padding: 0.5rem;
     border-radius: 0.25rem;
+    // margin: 0.5rem;
 
     &:focus {
         border: 2px solid #999999;
     }
-`
-const BrowserContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 `
 
 const PokemonBrowser = ({ favourites }) => {
@@ -63,7 +74,7 @@ const PokemonBrowser = ({ favourites }) => {
             />
             <PokemonsGallery>
                 {/* turn loader into separate component */}
-                {isPending && <p style={{ fontSize: "2rem" }}>Loading pokemons...</p>}
+                {isPending && <Loader />}
                 {isPending || rawPokemonsPaginated && rawPokemonsPaginated.map((rawPokemon, id) => {
                     return <li key={id}>
                         <PokemonCard rawPokemon={rawPokemon}
