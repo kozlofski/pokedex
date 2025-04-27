@@ -3,13 +3,15 @@ import { styled } from "styled-components"
 import useFetchAllPokemons from '../../hooks/useFetchAllPokemons'
 import { useState } from 'react'
 import Loader from './Loader'
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 const PokemonRankingTable = ({ edit, setEditedPokemon }) => {
     const [sortedPokemons, setSortedPokemons] = useState([])
     const { completePokemons, isPending } = useFetchAllPokemons(setSortedPokemons)
 
-    // console.log("Complete pokemons: ", completePokemons)
-
+    // these states hold sorting direction that will be
+    // applied on next handleSort function
     const [nameSortAsc, setNameSortAsc] = useState(true)
     const [expSortAsc, setExpSortAsc] = useState(true)
     const [weightSortAsc, setWeightSortAsc] = useState(true)
@@ -17,8 +19,6 @@ const PokemonRankingTable = ({ edit, setEditedPokemon }) => {
     const [winsSortAsc, setWinsSortAsc] = useState(true)
     const [lossesSortAsc, setLossesSortAsc] = useState(true)
     const [sortingParam, setSortingParam] = useState("name")
-
-    // useEffect(() => sortPokemons(sortName), [completePokemons])
 
     const sortPokemons = (sortingFn) => {
         const sorted = completePokemons.toSorted(sortingFn)
@@ -87,21 +87,58 @@ const PokemonRankingTable = ({ edit, setEditedPokemon }) => {
                         <TableRow>
                             <TableHeader> </TableHeader>
                             <TableHeader onClick={handleSortByName} >
-                                <HeaderTitle className={`${(sortingParam === "name" && "sortBy")} ${(nameSortAsc ? "asc" : "desc")}`}>name</HeaderTitle>
+                                <HeaderTitle>name
+                                    {sortingParam === "name" &&
+                                        <SortingDirArrow>
+                                            {!nameSortAsc ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
+                                        </SortingDirArrow>
+                                    }
+                                </HeaderTitle>
                             </TableHeader>
-                            <TableHeader onClick={handleSortByExp}>
-                                <HeaderTitle className={`${(sortingParam === "exp" && "sortBy")} ${(expSortAsc ? "asc" : "desc")}`}>base exp</HeaderTitle></TableHeader>
+                            <TableHeader onClick={handleSortByExp} >
+                                <HeaderTitle>base exp
+                                    {sortingParam === "exp" &&
+                                        <SortingDirArrow>
+                                            {!expSortAsc ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
+                                        </SortingDirArrow>
+                                    }
+                                </HeaderTitle>
+                            </TableHeader>
                             <TableHeader onClick={handleSortByWeight}>
-                                <HeaderTitle className={`${(sortingParam === "weight" && "sortBy")} ${(weightSortAsc ? "asc" : "desc")}`}>weight</HeaderTitle>
+                                <HeaderTitle>weight
+                                    {sortingParam === "weight" &&
+                                        <SortingDirArrow>
+                                            {!weightSortAsc ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
+                                        </SortingDirArrow>
+                                    }
+                                </HeaderTitle>
                             </TableHeader>
                             <TableHeader onClick={handleSortByHeight}>
-                                <HeaderTitle className={`${(sortingParam === "height" && "sortBy")} ${(heightSortAsc ? "asc" : "desc")}`}>height</HeaderTitle>
+                                <HeaderTitle>height
+                                    {sortingParam === "height" &&
+                                        <SortingDirArrow>
+                                            {!heightSortAsc ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
+                                        </SortingDirArrow>
+                                    }
+                                </HeaderTitle>
                             </TableHeader>
                             <TableHeader onClick={handleSortByWins}>
-                                <HeaderTitle className={`${(sortingParam === "wins" && "sortBy")} ${(winsSortAsc ? "asc" : "desc")}`}>wins</HeaderTitle>
+                                <HeaderTitle>wins
+                                    {sortingParam === "wins" &&
+                                        <SortingDirArrow>
+                                            {!winsSortAsc ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
+                                        </SortingDirArrow>
+                                    }
+                                </HeaderTitle>
                             </TableHeader>
                             <TableHeader onClick={handleSortByLosses}>
-                                <HeaderTitle className={`${(sortingParam === "losses" && "sortBy")} ${(lossesSortAsc ? "asc" : "desc")}`}>losses</HeaderTitle>
+                                <HeaderTitle >losses
+                                    {sortingParam === "losses" &&
+                                        <SortingDirArrow>
+                                            {!lossesSortAsc ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
+                                        </SortingDirArrow>
+                                    }
+                                </HeaderTitle>
                             </TableHeader>
                             {edit && <TableHeader> </TableHeader>}
                         </TableRow>
@@ -121,11 +158,10 @@ const Image = styled.img`
     margin: 0 auto;
     height: 2rem;
     width: 2rem;
+    min-height: 2rem;
+    min-width: 2rem;
 `
 
-const EditButton = styled.button`
-
-`
 
 const TableRowComponent = ({ pokemon, edit, setEditedPokemon }) => {
     const {
@@ -151,7 +187,7 @@ const TableRowComponent = ({ pokemon, edit, setEditedPokemon }) => {
                 <TableCell>{height}</TableCell>
                 <TableCell>{wins}</TableCell>
                 <TableCell>{losses}</TableCell>
-                {edit && <EditButton onClick={handleEdit}>Edytuj</EditButton>}
+                {edit && <TableCell onClick={handleEdit} className="editButton" >Edytuj</TableCell>}
             </>}
         </TableRow>
     )
@@ -161,6 +197,11 @@ const RankingContainer = styled.div`
     height: 100%;
     width: 100%;
     max-width: 1024px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100%;
+    justify-content: center;
 `
 const RankingTable = styled.table`
     width: 100%;
@@ -171,9 +212,15 @@ const TableBody = styled.tbody`
     width: 100%;
     `
 const TableRow = styled.tr`
-    &:nth-child(even) {
-        background-color: #aaeeff;
+    &:nth-child(odd) {
+        color: ${({ theme }) => theme.color.fontOnBackground};        
     }
+
+    &:nth-child(even) {
+        background-color: ${({ theme }) => theme.color.tableSecondaryColor};        
+        color: ${({ theme }) => theme.color.tableSecondaryFontColor};        
+    }
+
 `
 
 const TableHeader = styled.th`
@@ -181,16 +228,24 @@ const TableHeader = styled.th`
     background-color: ${({ theme }) => theme.color.background};
     padding: 2rem 0;
     top: 0;
+  
+    @media (max-width: 660px) {
+        writing-mode: vertical-lr;
+        text-orientation: mixed;
+        padding: 1rem 0 0 0;
+        min-height: 120px;
+    }
 `
 
 const HeaderTitle = styled.span`
-    &.sortBy.asc::after {
-        content: "^"
+    &:hover {
+        cursor: pointer;
     }
-    
-    &.sortBy.desc::after {
-        content: "v"
-    }
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
     @media (max-width: 660px) {
         writing-mode: vertical-lr;
@@ -198,10 +253,17 @@ const HeaderTitle = styled.span`
     }
 `
 
+const SortingDirArrow = styled.span`
+`
+
 const TableCell = styled.td`
-        padding: 0 1rem;
         text-align: center;
         border: none;
+        min-width: fit-content;
+
+        &.editButton:hover {
+            cursor: pointer;
+        }
 `
 
 export default PokemonRankingTable

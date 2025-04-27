@@ -10,11 +10,11 @@ import fetchUserData from '../../services/fetchUserData'
 import { JSON_SERVER_URL } from '../../constants'
 
 const EditForm = styled.form`
-display: flex;
-flex-direction: column;
-align-items: end;
-max-width: 20rem;
-margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    max-width: 20rem;
+    margin: 0 auto;
 `
 
 const editFormSchema = z.object({

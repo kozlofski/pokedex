@@ -41,19 +41,9 @@ const PageButton = styled.li`
     border-radius: 33%;
     text-align: center;
     color: ${({ theme }) => theme.color.fontOnBackground};
-
-
-    &:active {
-        border: 1px solid green;
-        }
         
-    &.active {
-        border: 1px solid red;            
-    }
-
-    &:hover {
-        cursor: pointer;
-        border: 1px solid green;
+    &.current {
+        border: 1px solid ${({ theme }) => theme.color.paginationButton};            
     }
 
     @media (max-width: 660px) {
@@ -61,11 +51,21 @@ const PageButton = styled.li`
         width: 3rem;
         font-size: 1.5rem;
     }
+
+    &.blank {
+        border: none;    
+    }
 `
+
+// const PageSpace = styled.li`
+//     height: 2em;
+//     width: 2em;
+// `
 
 const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
     const totalPages = rawPokemonsFiltered ? 1 + (rawPokemonsFiltered.length - 1) / PAGE_LIMIT : 0;
     const [currentPage, setCurrentPage] = useState(1)
+    const [numbers, setNumbers] = useState([])
 
     useEffect(() => {
         const paginated = rawPokemonsFiltered.slice((currentPage - 1) * PAGE_LIMIT, (currentPage) * PAGE_LIMIT);
@@ -74,24 +74,55 @@ const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
 
     useEffect(() => setCurrentPage(1), [rawPokemonsFiltered])
 
-    const numbers = []
-    if (totalPages >= 2)
-        for (let i = 1; i <= totalPages; i++)
-            numbers.push(i)
+    useEffect(() => {
+        const numbersVar = [];
+        if (totalPages >= 2 && totalPages <= 10) {
+            for (let i = 1; i <= totalPages; i++)
+                numbersVar.push(i)
+            setNumbers(numbersVar)
+        }
+        else if (totalPages > 10) {
+            numbersVar.push(1)
+            if (currentPage > 3) {
+                numbersVar.push(-1)
+            }
 
+            if (currentPage > 2)
+                numbersVar.push(currentPage - 1)
+            if (currentPage > 1 && currentPage < Math.floor(totalPages))
+                numbersVar.push(currentPage)
+            if (currentPage < Math.floor(totalPages) - 1)
+                numbersVar.push(currentPage + 1)
 
-    const handleChangePage = (number) => setCurrentPage(number) // necessary? inline?
+            if (currentPage < Math.floor(totalPages) - 2)
+                numbersVar.push(-2)
+
+            // currentPage > 1 && numbersVar.push(currentPage - 1)
+            // numbersVar.push(currentPage);
+            // currentPage < totalPages && numbersVar.push(currentPage + 1)
+
+            numbersVar.push(Math.floor(totalPages));
+            setNumbers(numbersVar)
+        }
+    }, [currentPage, totalPages])
+
+    const handleChangePage = (number) => {
+        setCurrentPage(number)
+    } // necessary? inline?
 
     return (
         <>
             {totalPages >= 2 && <PaginationContainer>
                 {numbers.map((number) =>
-                (<PageButton
-                    key={number}
-                    onClick={() => handleChangePage(number)}
-                    className={number === currentPage ? "active" : ""}
-                >{number}</PageButton>)
-                )}
+                    number > 0 ?
+                        <PageButton
+                            key={number}
+                            onClick={() => handleChangePage(number)}
+                            className={number === currentPage ? "current" : ""}
+                        >{number}</PageButton> :
+                        <PageButton className="blank">...</PageButton>
+                )
+                }
             </PaginationContainer>}
         </>
     )

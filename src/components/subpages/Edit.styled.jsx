@@ -7,10 +7,14 @@ import EditPokemon from '../shared/EditPokemon.styled'
 import CreatePokemon from '../shared/CreatePokemon.styled'
 import { styled } from "styled-components"
 
-const Init = styled.div`
+
+const EditContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100%;
+    justify-content: center;
+   
 `
 
 const Edit = () => {
@@ -24,15 +28,15 @@ const Edit = () => {
     }, [editedPokemon])
 
     return (
-        <>
+        <EditContainer>
             {editMode === "init" &&
-                (<Init>
+                (<>
                     <Button onClick={() => setEditMode("create")} width={"10rem"}>Stwórz własnego pokemona</Button>
                     <PokemonRankingTable edit={true} setEditedPokemon={setEditedPokemon} />
-                </Init>)}
+                </>)}
             {editMode === "edit" && <EditPokemon editedPokemon={editedPokemon} loggedUserId={loggedUserId} />}
             {editMode === "create" && <CreatePokemon loggedUserId={loggedUserId} />}
-        </>
+        </EditContainer>
     )
 }
 
