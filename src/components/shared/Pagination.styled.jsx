@@ -22,8 +22,6 @@ const PaginationContainer = styled.ul`
     border: none;
     background-color: ${({ theme }) => theme.color.background};
 
-    // border-radius: 1rem;
-    
     @media (max-width: 660px) {
         background-color: ${({ theme }) => theme.color.paginationBackground};
         backdrop-filter: blur(10px);
@@ -62,7 +60,8 @@ const PageButton = styled.li`
 `
 
 const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
-    const totalPages = rawPokemonsFiltered ? 1 + (rawPokemonsFiltered.length - 1) / PAGE_LIMIT : 0;
+    const totalPages = rawPokemonsFiltered ? Math.ceil(rawPokemonsFiltered.length / PAGE_LIMIT) : 0;
+    console.log("total pages: ", totalPages)
     const [currentPage, setCurrentPage] = useState(1)
     const [numbers, setNumbers] = useState([])
     const [buttonsLimit, setButtonsLimit] = useState(12)
@@ -99,19 +98,19 @@ const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
 
             if (currentPage > 2)
                 numbersVar.push(currentPage - 1)
-            if (currentPage > 1 && currentPage < Math.floor(totalPages))
+            if (currentPage > 1 && currentPage < totalPages)
                 numbersVar.push(currentPage)
-            if (currentPage < Math.floor(totalPages) - 1)
+            if (currentPage < totalPages - 1)
                 numbersVar.push(currentPage + 1)
 
-            if (currentPage < Math.floor(totalPages) - 2)
+            if (currentPage < totalPages - 2)
                 numbersVar.push(-2)
 
             // currentPage > 1 && numbersVar.push(currentPage - 1)
             // numbersVar.push(currentPage);
             // currentPage < totalPages && numbersVar.push(currentPage + 1)
 
-            numbersVar.push(Math.floor(totalPages));
+            numbersVar.push(totalPages);
             setNumbers(numbersVar)
         }
 
@@ -134,7 +133,7 @@ const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
                             <PageButton className="blank">...</PageButton>
                     )
                     }
-                    <PageButton onClick={() => currentPage < Math.floor(totalPages) && setCurrentPage(prev => prev + 1)}><ArrowForwardIcon /></PageButton>
+                    <PageButton onClick={() => currentPage < totalPages && setCurrentPage(prev => prev + 1)}><ArrowForwardIcon /></PageButton>
 
                 </PaginationContainer>}
         </>
