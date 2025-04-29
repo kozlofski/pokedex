@@ -3,7 +3,6 @@ const BASE_URL = "https://pokeapi.co/api/v2/";
 const fetchLinksToPokemons = async (start, limit) => {
   const startQueryParam = start > 0 ? `offset=${start}&` : "";
 
-  console.log(start, limit);
   try {
     const response = await fetch(
       `${BASE_URL}pokemon?${startQueryParam}limit=${limit}`

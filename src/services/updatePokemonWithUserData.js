@@ -4,10 +4,7 @@ const updatePokemonWithUserData = async (inputPokemon, loggedUserId) => {
   let outputPokemon = { ...inputPokemon };
   const userData = await fetchUserData(loggedUserId);
 
-  if (inputPokemon.name === "dupa") console.log("Output 1: ", outputPokemon);
-
   if (inputPokemon.name in userData.modified) {
-    console.log("Modifying: ", inputPokemon.name);
     outputPokemon = {
       ...outputPokemon,
       height: userData.modified[inputPokemon.name].height,

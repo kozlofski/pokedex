@@ -26,8 +26,6 @@ const useFetchAllPokemons = (setSortedPokemons) => {
         loggedUserId
       );
 
-      console.log("Fetch all: ", linksToPokemons);
-
       const pokemonFetchPromises = linksToPokemons.map(
         async (inputPokemonData) => {
           let newPokemon;
