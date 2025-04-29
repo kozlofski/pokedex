@@ -1,14 +1,14 @@
 export const light = {
   color: {
     background: "#fbfbfb",
-    button: "#C6E7FF",
+    button: "#c6e7ff",
     cardDark: "#cbcbce",
     cardLight: "#ffffff",
     cardFont: "#000000",
-    orange: "#FFDDAE",
-    border: "#35374B",
+    orange: "#ffddae",
+    border: "#35374b",
     cardShadow: "#44444444",
-    cardShadowHover: "#4444443A",
+    cardShadowHover: "#4444443a",
     fontOnBackground: "#004488",
     paginationBackground: "#ffffff44",
     paginationButton: "#ff0000",
@@ -26,12 +26,12 @@ export const light = {
 
 export const dark = {
   color: {
-    background: "#35374B",
-    button: "#C6E7FF",
+    background: "#35374b",
+    button: "#c6e7ff",
     cardDark: "#888888",
     cardLight: "#ffffff",
     cardFont: "#000000",
-    orange: "#FFDDAE",
+    orange: "#ffddae",
     border: "#fbfbfb",
     cardShadow: "#bbbbbb44",
     fontOnBackground: "#ffffff",
@@ -42,7 +42,7 @@ export const dark = {
     fightButtonInactiveFont: "#eeeeee",
     fightButtonPressed: "#ee0000",
     tableSecondaryColor: "#aaeeff",
-    tableSecondaryFontColor: "#35374B",
+    tableSecondaryFontColor: "#35374b",
   },
   text: {
     main: "#000000",

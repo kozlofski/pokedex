@@ -21,8 +21,8 @@ const LogOut = () => {
         setTimeout(() => {
             localStorage.setItem("loggedUser", "null")
             setLoggedUser("null")
-            localStorage.setItem("loggedUserId", -1)
-            setLoggedUserId(-1)
+            localStorage.setItem("loggedUserId", "-1")
+            setLoggedUserId("-1")
             navigate('/')
         }, 1500)
     }, [])

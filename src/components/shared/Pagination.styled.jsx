@@ -2,6 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 
 import { styled } from "styled-components"
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const PAGE_LIMIT = 15;
 
@@ -39,7 +41,9 @@ const PageButton = styled.li`
     padding: 0.25em;
     border: 1px solid ${({ theme }) => theme.color.fontOnBackground};
     border-radius: 33%;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: ${({ theme }) => theme.color.fontOnBackground};
         
     &.current {
@@ -57,15 +61,11 @@ const PageButton = styled.li`
     }
 `
 
-// const PageSpace = styled.li`
-//     height: 2em;
-//     width: 2em;
-// `
-
 const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
     const totalPages = rawPokemonsFiltered ? 1 + (rawPokemonsFiltered.length - 1) / PAGE_LIMIT : 0;
     const [currentPage, setCurrentPage] = useState(1)
     const [numbers, setNumbers] = useState([])
+    const [buttonsLimit, setButtonsLimit] = useState(12)
 
     useEffect(() => {
         const paginated = rawPokemonsFiltered.slice((currentPage - 1) * PAGE_LIMIT, (currentPage) * PAGE_LIMIT);
@@ -75,13 +75,23 @@ const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
     useEffect(() => setCurrentPage(1), [rawPokemonsFiltered])
 
     useEffect(() => {
+        const handleResize = () => {
+            const { innerWidth } = window;
+            setButtonsLimit(innerWidth > 660 ? 12 : 6);
+        }
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+
+
+    useEffect(() => {
         const numbersVar = [];
-        if (totalPages >= 2 && totalPages <= 10) {
+        if (totalPages >= 2 && totalPages <= buttonsLimit) {
             for (let i = 1; i <= totalPages; i++)
                 numbersVar.push(i)
             setNumbers(numbersVar)
         }
-        else if (totalPages > 10) {
+        else if (totalPages > buttonsLimit) {
             numbersVar.push(1)
             if (currentPage > 3) {
                 numbersVar.push(-1)
@@ -104,26 +114,29 @@ const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
             numbersVar.push(Math.floor(totalPages));
             setNumbers(numbersVar)
         }
-    }, [currentPage, totalPages])
 
-    const handleChangePage = (number) => {
-        setCurrentPage(number)
-    } // necessary? inline?
+    }, [currentPage, totalPages, buttonsLimit])
+
+
 
     return (
         <>
-            {totalPages >= 2 && <PaginationContainer>
-                {numbers.map((number) =>
-                    number > 0 ?
-                        <PageButton
-                            key={number}
-                            onClick={() => handleChangePage(number)}
-                            className={number === currentPage ? "current" : ""}
-                        >{number}</PageButton> :
-                        <PageButton className="blank">...</PageButton>
-                )
-                }
-            </PaginationContainer>}
+            {totalPages >= 2 &&
+                <PaginationContainer>
+                    <PageButton onClick={() => currentPage > 1 && setCurrentPage(prev => prev - 1)}><ArrowBackIcon /></PageButton>
+                    {numbers.map((number) =>
+                        number > 0 ?
+                            <PageButton
+                                key={number}
+                                onClick={() => setCurrentPage(number)}
+                                className={number === currentPage ? "current" : ""}
+                            >{number}</PageButton> :
+                            <PageButton className="blank">...</PageButton>
+                    )
+                    }
+                    <PageButton onClick={() => currentPage < Math.floor(totalPages) && setCurrentPage(prev => prev + 1)}><ArrowForwardIcon /></PageButton>
+
+                </PaginationContainer>}
         </>
     )
 }
