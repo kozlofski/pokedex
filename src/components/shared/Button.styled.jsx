@@ -1,13 +1,10 @@
 import React from 'react'
 import { styled } from "styled-components"
 
-
-
-const Button = ({ children, onClick, width = "6rem" }) => {
-    const StyledButton = styled.button`
+const StyledButton = styled.button`
     padding: 0.25rem 1rem;
 
-    width: ${width};
+    width: ${(props) => props.width};
 
     border: none;
     border-radius: 0.25rem;
@@ -15,12 +12,13 @@ const Button = ({ children, onClick, width = "6rem" }) => {
     color: white;
     flex-shrink: 1;
 
-    
     @media (max-width: 660px) {
         width: 100%;
         height: 4rem;
     }
 `
+
+const Button = ({ children, onClick, width = "6rem" }) => {
     return (
         <StyledButton onClick={onClick} width={width}>{children}</StyledButton>
     )
