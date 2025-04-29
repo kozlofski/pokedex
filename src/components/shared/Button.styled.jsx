@@ -10,11 +10,10 @@ const StyledButton = styled.button`
     border-radius: 0.25rem;
     background-color: #00aaff;
     color: white;
-    flex-shrink: 1;
 
     @media (max-width: 660px) {
         width: 100%;
-        height: 4rem;
+        min-height: 4rem;
     }
 `
 

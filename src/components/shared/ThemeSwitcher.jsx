@@ -35,6 +35,11 @@ const ThemeButton = styled.button`
         background-color: ${dark.color.background}; 
         border: 1px solid ${dark.color.button};
     }
+
+    @media (max-width: 660px) {
+        width: 30px;
+        height: 30px;
+    }
 `
 
 export default ThemeSwitcher

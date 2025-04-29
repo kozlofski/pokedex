@@ -26,14 +26,14 @@
       "arena": {},
       "stats": {
         "venusaur": {
-          "wins": 11,
+          "wins": 13,
           "losses": 0,
           "baseExperience": "373"
         },
         "bulbasaur": {
           "wins": 9,
           "losses": 19,
-          "baseExperience": 114
+          "baseExperience": "114"
         },
         "rattata": {
           "wins": 1,
@@ -42,7 +42,7 @@
         },
         "caterpie": {
           "wins": 0,
-          "losses": 4,
+          "losses": 5,
           "baseExperience": 39
         },
         "ivysaur": {
@@ -91,9 +91,9 @@
           "baseExperience": 456
         },
         "charizard": {
-          "wins": 1,
-          "losses": 1,
-          "baseExperience": 277
+          "wins": 2,
+          "losses": 2,
+          "baseExperience": 287
         },
         "butterfree": {
           "wins": 1,
@@ -119,6 +119,10 @@
           "wins": 1,
           "losses": 0,
           "baseExperience": 187
+        },
+        "undefined": {
+          "wins": 0,
+          "losses": 1
         }
       },
       "modified": {
@@ -136,6 +140,11 @@
           "height": "20",
           "weight": "1000",
           "baseExperience": "373"
+        },
+        "bulbasaur": {
+          "height": "7",
+          "weight": "69",
+          "baseExperience": "114"
         }
       },
       "created": {

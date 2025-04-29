@@ -18,6 +18,8 @@ export const light = {
     fightButtonPressed: "#ee0000",
     tableSecondaryColor: "#aaeeff",
     tableSecondaryFontColor: "#004488",
+    errorMessage: "#ff0000",
+    inputBorder: "#aaaaaa",
   },
   text: {
     main: "#000000",
@@ -43,6 +45,8 @@ export const dark = {
     fightButtonPressed: "#ee0000",
     tableSecondaryColor: "#aaeeff",
     tableSecondaryFontColor: "#35374b",
+    errorMessage: "#ff0000",
+    inputBorder: "#aaaaaa",
   },
   text: {
     main: "#000000",

@@ -4,7 +4,6 @@ import { styled } from "styled-components"
 import PokemonCard from '../shared/PokemonCard.styled'
 import LoginContext from '../../context/LoginContext'
 import useFetchArena from '../../hooks/useFetchArena'
-import { useNavigate } from 'react-router-dom'
 
 import { createPortal } from "react-dom"
 import PokemonDetailsModal from '../shared/PokemonDetailsModal.styled'
@@ -115,6 +114,7 @@ const Arena = () => {
 
 const ArenaContainer = styled.div`
     height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -122,6 +122,7 @@ const ArenaContainer = styled.div`
 
     @media (max-width: 768px) {
         flex-wrap: wrap;
+        gap: 0.25rem;
     }
 `
 

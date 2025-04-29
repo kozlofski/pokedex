@@ -15,9 +15,11 @@ const BrowserContainer = styled.div`
     align-items: center;
     gap: 1.5rem;
     height: 100%;
+    padding-bottom: 2rem;
 
     @media (max-width: 660px) {
         margin-top: 0.5rem;
+        padding-bottom: 6rem;
     }
 `
 
@@ -32,7 +34,7 @@ const PokemonsGallery = styled.ul`
 
 `
 const PokemonsFilter = styled.input`
-    border: 2px solid #aaaaaa;
+    border: 2px solid ${({ theme }) => theme.color.inputBorder};
     padding: 0.5rem;
     border-radius: 0.25rem;
     // margin: 0.5rem;

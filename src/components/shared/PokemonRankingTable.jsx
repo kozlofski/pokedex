@@ -80,7 +80,7 @@ const PokemonRankingTable = ({ edit, setEditedPokemon }) => {
         lossesSortAsc ? pokemonA.losses - pokemonB.losses : pokemonB.losses - pokemonA.losses
 
     return (
-        <RankingContainer>
+        <RankingContainer className="ranking-container">
             {isPending ? <Loader /> :
                 <RankingTable>
                     <TableHead>
@@ -194,12 +194,13 @@ const TableRowComponent = ({ pokemon, edit, setEditedPokemon }) => {
 }
 
 const RankingContainer = styled.div`
+    // flex-grow: 1;
+    display: flex;
     height: 100%;
     width: 100%;
-    max-width: 1024px;
-    display: flex;
+    // max-width: 1024px;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     min-height: 100%;
     justify-content: center;
 `
@@ -234,6 +235,7 @@ const TableHeader = styled.th`
         text-orientation: mixed;
         padding: 1rem 0 0 0;
         min-height: 120px;
+        top: 2rem;
     }
 `
 

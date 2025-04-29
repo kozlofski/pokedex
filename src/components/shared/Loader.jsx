@@ -9,6 +9,7 @@ const LoaderContainer = styled.div`
     justify-content: center;
     align-items: center;
     height: 100%;
+    width: 100%;
     font-size: 3rem;
     gap: 2rem;
     color: ${({ theme }) => theme.color.fontOnBackground};

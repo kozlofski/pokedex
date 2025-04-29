@@ -65,6 +65,8 @@ const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
     const [numbers, setNumbers] = useState([])
     const [buttonsLimit, setButtonsLimit] = useState(12)
 
+
+
     useEffect(() => {
         const paginated = rawPokemonsFiltered.slice((currentPage - 1) * PAGE_LIMIT, (currentPage) * PAGE_LIMIT);
         setRawPokemonsPaginated(paginated)
@@ -73,12 +75,15 @@ const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
     useEffect(() => setCurrentPage(1), [rawPokemonsFiltered])
 
     useEffect(() => {
-        const handleResize = () => {
+        const setButtonsLimitDependingOnViewportSize = () => {
             const { innerWidth } = window;
             setButtonsLimit(innerWidth > 660 ? 12 : 6);
         }
-        window.addEventListener('resize', handleResize)
-        return () => window.removeEventListener('resize', handleResize)
+
+        setButtonsLimitDependingOnViewportSize();
+
+        window.addEventListener('resize', setButtonsLimitDependingOnViewportSize)
+        return () => window.removeEventListener('resize', setButtonsLimitDependingOnViewportSize)
     }, [])
 
 
@@ -121,7 +126,7 @@ const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
         <>
             {totalPages >= 2 &&
                 <PaginationContainer>
-                    <PageButton onClick={() => currentPage > 1 && setCurrentPage(prev => prev - 1)}><ArrowBackIcon /></PageButton>
+                    <PageButton key="-3" onClick={() => currentPage > 1 && setCurrentPage(prev => prev - 1)}><ArrowBackIcon /></PageButton>
                     {numbers.map((number) =>
                         number > 0 ?
                             <PageButton
@@ -129,10 +134,10 @@ const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
                                 onClick={() => setCurrentPage(number)}
                                 className={number === currentPage ? "current" : ""}
                             >{number}</PageButton> :
-                            <PageButton className="blank">...</PageButton>
+                            <PageButton key="-5" className="blank">...</PageButton>
                     )
                     }
-                    <PageButton onClick={() => currentPage < totalPages && setCurrentPage(prev => prev + 1)}><ArrowForwardIcon /></PageButton>
+                    <PageButton key="-4" onClick={() => currentPage < totalPages && setCurrentPage(prev => prev + 1)}><ArrowForwardIcon /></PageButton>
 
                 </PaginationContainer>}
         </>

@@ -9,11 +9,13 @@ import { styled } from "styled-components"
 
 
 const EditContainer = styled.div`
+    min-width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     min-height: 100%;
-    justify-content: center;
+    align-items: center;
+    // margin-top: 1rem;
+    // justify-content: center;
    
 `
 
@@ -28,7 +30,7 @@ const Edit = () => {
     }, [editedPokemon])
 
     return (
-        <EditContainer>
+        <EditContainer className="edit-container">
             {editMode === "init" &&
                 (<>
                     <Button onClick={() => setEditMode("create")} width={"10rem"}>Stwórz własnego pokemona</Button>

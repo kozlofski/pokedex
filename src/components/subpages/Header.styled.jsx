@@ -4,6 +4,7 @@ import LoginContext from '../../context/LoginContext'
 import Button from '../shared/Button.styled'
 import PersonIcon from '@mui/icons-material/Person';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import ThemeSwitcher from '../shared/ThemeSwitcher';
 
 import logoPath from "../../assets/pokemonLogo.svg"
@@ -24,17 +25,21 @@ const routesIfNotLoggedIn = [
 ]
 
 const HeaderContainer = styled.header`
+    margin: 0 auto;
+    max-width: 1024px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
-    padding: 1rem;
+    padding: 0 1rem;
     width: 100%;
 
-     @media (max-width: 660px) {
+    @media (max-width: 660px) {
+        padding: 0.25rem;
+        height: 3rem;
         width: 100%;
         justify-content: flex-start;
-        padding: 0;
+        // padding: 0;
         position: fixed;
         top: 0;
         z-index: 10;
@@ -51,10 +56,11 @@ const LinkList = styled.ul`
     @media (max-width: 660px) {
         flex-direction: column;
         width: 100%;
-        // position: fixed;
-        top: 0;
+        position: fixed;
+        top: 3rem;
         left: 0;
         z-index: 2;
+        background: ${({ theme }) => theme.color.background};
         
         &.menuClosed {
             display: none;
@@ -76,6 +82,7 @@ const Logo = styled.img`
 const UserAndNavbar = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 0.25rem;
     align-items: flex-end;
     flex-grow: 1;   
 `
@@ -83,16 +90,35 @@ const UserAndNavbar = styled.div`
 const UserContainer = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
+    font-size: 1rem;
+    
+    @media (max-width: 660px) {
+        // margin-right: 0.5rem;
+        font-size: 1.5rem;
+    }
 `
 
 const User = styled.p`
     color: ${({ theme }) => theme.color.fontOnBackground};
-    font-size: 1rem;    
+    font-size: inherit;    
+
+    // @media (max-width: 660px) {
+    //     font-size: 3rem;
+    // }
+
+    // @media (min-width: 661px) {
+    //     // display: none;
+    // }
+
 `
 const MenuIconWrapper = styled.div`
     position: fixed;
-    top: 0;
-    left: 0;
+    left: 0.25rem;
+    height: 3rem;
+
+    color: ${({ theme }) => theme.color.fontOnBackground};
+    font-size: 3rem;
 
     @media (min-width: 661px) {
         display: none;
@@ -130,17 +156,21 @@ const Header = () => {
         </LinkList>)
     }
 
+
     return (<HeaderContainer>
         <MenuIconWrapper onClick={handleClickMobileMenu} >
-            <MenuIcon />
+            {menuOpened ?
+                <CloseIcon color='inherit' fontSize='inherit' /> :
+                <MenuIcon color='inherit' fontSize='inherit' />
+            }
         </MenuIconWrapper>
         <Link to={"/"}><Logo src={logoPath} alt="POKEMON"></Logo></Link>
         <UserAndNavbar>
-            <UserContainer>
+            <UserContainer className="user-container">
                 <ThemeSwitcher />
                 {loggedUser !== "null" &&
                     <>
-                        <PersonIcon style={{ color: ({ theme }) => theme.color.fontOnBackground }} />
+                        <PersonIcon fontSize='inherit' />
                         <User>{loggedUser}</User>
                     </>
                 }
