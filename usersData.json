@@ -152,7 +152,18 @@
           "baseExperience": 4355654,
           "ability": "zabijanie",
           "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/153.png"
+        },
+        "dfghdfg": {
+          "height": "1234",
+          "weight": "54645",
+          "baseExperience": "234243",
+          "ability": "dgfh",
+          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/151.png"
         }
+      },
+      "usedPictures": {},
+      "picturesUsed": {
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/151.png": true
       }
     },
     {
@@ -177,7 +188,8 @@
       "arena": {},
       "stats": {},
       "modified": {},
-      "created": {}
+      "created": {},
+      "usedPictures": {}
     }
   ]
 }

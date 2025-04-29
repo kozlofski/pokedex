@@ -29,7 +29,7 @@ const Image = styled.img`
 `
 
 const editFormSchema = z.object({
-    name: z.string().trim().min(1, { message: "imię pokemona musi zawierać conajmniej 2 litery" }),
+    name: z.string().trim().min(1, { message: "imię pokemona musi zawierać co najmniej 2 litery" }),
     height: z.string().trim().min(1, { message: "wprowadź liczbę naturalną" }).regex(new RegExp(/^\d+$/g), { message: "nieprawidłowa liczba" }),
     weight: z.string().trim().min(1, { message: "wprowadź liczbę naturalną" }).regex(new RegExp(/^\d+$/g), { message: "nieprawidłowa liczba" }),
     baseExperience: z.string().trim().min(1, { message: "wprowadź liczbę naturalną" }).regex(new RegExp(/^\d+$/g), { message: "nieprawidłowa liczba" }),
@@ -43,7 +43,7 @@ const CreatePokemon = ({ loggedUserId }) => {
     const [chosenImageUrl, setChosenImageUrl] = useState(null)
 
     const modal = createPortal(
-        <PokemonPictureModal onClose={() => setModalOpened(false)} setChosenImageUrl={setChosenImageUrl} />,
+        <PokemonPictureModal onClose={() => setModalOpened(false)} setChosenImageUrl={setChosenImageUrl} userId={loggedUserId} />,
         document.body
     )
 
@@ -57,13 +57,11 @@ const CreatePokemon = ({ loggedUserId }) => {
 
             const userData = await fetchUserData(loggedUserId);
             const oldCreated = userData.created;
+            const picturesUsed = userData.picturesUsed;
 
             if (data.name in oldCreated)
                 throw new Error("pokemon with that name already exists")
 
-            // unnecessavryvgbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-            // const linksToPokemons = await fetchLinksToPokemons()
-            // console.log(linksToPokemons)
             let newCreated = {}
             newCreated = {
                 ...oldCreated,
@@ -76,10 +74,16 @@ const CreatePokemon = ({ loggedUserId }) => {
                 },
             };
 
+            const newPicturesUsed = {
+                ...picturesUsed,
+                [chosenImageUrl]: true
+            }
+
             const patchResponse = fetch(`${JSON_SERVER_URL}/${loggedUserId}`, {
                 method: "PATCH",
                 body: JSON.stringify({
                     created: newCreated,
+                    picturesUsed: newPicturesUsed,
                 }),
             });
             if (!patchResponse) throw new Error("something is not yes with patching pokemon")

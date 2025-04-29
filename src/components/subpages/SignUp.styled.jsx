@@ -67,7 +67,8 @@ const SignUp = () => {
                     "arena": {},
                     "stats": {},
                     "modified": {},
-                    "created": {}
+                    "created": {},
+                    "usedPictures": {},
                 })
             })
             if (!response) throw new Error("something is not yes with POST response")

@@ -3,17 +3,13 @@ import { useState, useEffect } from 'react';
 import { styled } from "styled-components"
 // import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
 
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import StadiumIcon from '@mui/icons-material/Stadium';
 import CloseIcon from '@mui/icons-material/Close';
-import LoginContext from '../../context/LoginContext';
-import GlobalContext from '../../context/GlobalContext';
 
 import { LIMIT, PICTURES_TO_CHOOSE } from '../../constants';
 import fetchSinglePokemon from '../../services/fetchSinglePokemon';
 import useFetchRawPokemons from '../../hooks/useFetchRawPokemons';
 import Button from './Button.styled';
+import fetchUserData from '../../services/fetchUserData';
 
 const Modal = styled.div`
     position: fixed;
@@ -52,24 +48,40 @@ const ModalContent = styled.div`
 const Image = styled.img`
     height: 100%;
 
+    &.taken {
+        filter: grayscale(100%) contrast(70%) brightness(140%) ;
+    }
+
     @media (max-width: 600px) {
         // fix this
     }
 `
 
 
-const PokemonPictureModal = ({ onClose, setChosenImageUrl }) => {
-    const { pokemons } = useFetchRawPokemons(LIMIT, PICTURES_TO_CHOOSE)
+const PokemonPictureModal = ({ onClose, setChosenImageUrl, userId }) => {
+    const { rawPokemons: pokemons } = useFetchRawPokemons(LIMIT, PICTURES_TO_CHOOSE)
     const [currentPictureNumber, setCurrentPictureNumber] = useState(0)
     const [currentPictureUrl, setCurrentPictureUrl] = useState()
+    const [picturesUsed, setPicturesUsed] = useState([])
+    const [pictureTaken, setPictureTaken] = useState(false)
 
     useEffect(() => {
         (async () => {
-            const { imgUrl } = await fetchSinglePokemon(pokemons[0].url)
-            console.log(imgUrl)
-            setCurrentPictureUrl(imgUrl)
+            try {
+                const { imgUrl } = await fetchSinglePokemon(pokemons[0].url)
+                setCurrentPictureUrl(imgUrl)
+
+                const userData = await fetchUserData(userId)
+                const picturesUsedData = userData.picturesUsed;
+                setPicturesUsed(picturesUsedData)
+
+                if (imgUrl in picturesUsedData) setPictureTaken(true)
+                else setPictureTaken(false)
+            } catch (error) {
+                console.log(error)
+            }
         })()
-    }, [pokemons])
+    }, [pokemons, userId])
 
 
     const handlePrevPicture = async () => {
@@ -81,6 +93,9 @@ const PokemonPictureModal = ({ onClose, setChosenImageUrl }) => {
         const { imgUrl } = await fetchSinglePokemon(pokemons[current].url)
         console.log(imgUrl)
         setCurrentPictureUrl(imgUrl)
+
+        if (imgUrl in picturesUsed) setPictureTaken(true)
+        else setPictureTaken(false)
     }
 
     const handleNextPicture = async () => {
@@ -92,6 +107,9 @@ const PokemonPictureModal = ({ onClose, setChosenImageUrl }) => {
         const { imgUrl } = await fetchSinglePokemon(pokemons[current].url)
         console.log(imgUrl)
         setCurrentPictureUrl(imgUrl)
+
+        if (imgUrl in picturesUsed) setPictureTaken(true)
+        else setPictureTaken(false)
     }
 
     const handleChoosePicture = () => {
@@ -104,7 +122,7 @@ const PokemonPictureModal = ({ onClose, setChosenImageUrl }) => {
         <Modal onClick={onClose}>
             <ModalContent onClick={e => e.stopPropagation()}>
                 <Button onClick={handlePrevPicture}>prev</Button>
-                <Image src={currentPictureUrl} onClick={handleChoosePicture} />
+                <Image src={currentPictureUrl} onClick={pictureTaken || handleChoosePicture} className={pictureTaken && "taken"} />
                 <Button onClick={handleNextPicture}>next</Button>
             </ModalContent>
         </Modal>

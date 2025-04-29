@@ -13,8 +13,6 @@ const updatePokemonWithUserData = async (inputPokemon, loggedUserId) => {
     };
   }
 
-  if (inputPokemon.name === "dupa") console.log("Output 2: ", outputPokemon);
-
   if (inputPokemon.name in userData.stats) {
     outputPokemon = {
       ...outputPokemon,
@@ -23,7 +21,6 @@ const updatePokemonWithUserData = async (inputPokemon, loggedUserId) => {
       baseExperience: userData.stats[inputPokemon.name].baseExperience, //problem
     };
   }
-  if (inputPokemon.name === "dupa") console.log("Output 3: ", outputPokemon);
   return outputPokemon;
 };
 

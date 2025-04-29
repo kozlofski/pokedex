@@ -61,7 +61,6 @@ const PageButton = styled.li`
 
 const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
     const totalPages = rawPokemonsFiltered ? Math.ceil(rawPokemonsFiltered.length / PAGE_LIMIT) : 0;
-    console.log("total pages: ", totalPages)
     const [currentPage, setCurrentPage] = useState(1)
     const [numbers, setNumbers] = useState([])
     const [buttonsLimit, setButtonsLimit] = useState(12)
