@@ -17,10 +17,18 @@ import Button from '../shared/Button.styled'
 import cyrb53 from '../../services/cyrb53'
 import { JSON_SERVER_URL } from '../../constants'
 
+const FormContainer = styled.div`
+    height: 100%;
+    display: flex;
+    align-items: center;
+`
+
 const Form = styled.form`
     width: 100%;
+    // min-height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 `
 
@@ -55,19 +63,19 @@ const LogIn = () => {
     const onError = () => { }
 
     return (
-        <Form onSubmit={handleSubmit(onSubmit, onError)}>
-            <Input {...register('name')}
-                type={"text"}
-                placeholder={"imię"}
-                error={errors.name ?? ""} />
-            <Input {...register('password')}
-                type={"password"}
-                placeholder={"hasło"}
-                error={errors.password ?? ""} />
-            <Button type="submit" >Zaloguj</Button>
-
-        </Form>
-
+        <FormContainer>
+            <Form onSubmit={handleSubmit(onSubmit, onError)}>
+                <Input {...register('name')}
+                    type={"text"}
+                    placeholder={"imię"}
+                    error={errors.name ?? ""} />
+                <Input {...register('password')}
+                    type={"password"}
+                    placeholder={"hasło"}
+                    error={errors.password ?? ""} />
+                <Button type="submit" >Zaloguj</Button>
+            </Form>
+        </FormContainer>
     )
 }
 

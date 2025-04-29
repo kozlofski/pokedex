@@ -7,6 +7,11 @@ const StyledInput = styled.input`
     background: ${({ theme }) => theme.color.background};
     border-radius: 0.5rem;
     padding: 0.25rem;
+
+    @media (max-width: 660px) {
+        width: 75%;
+        padding: 0.33rem;
+    }
 `
 const ErrorMessage = styled.p`
     color: ${({ theme }) => theme.color.errorMessage};

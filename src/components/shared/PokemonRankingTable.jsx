@@ -18,7 +18,7 @@ const PokemonRankingTable = ({ edit, setEditedPokemon }) => {
     const [heightSortAsc, setHeightSortAsc] = useState(true)
     const [winsSortAsc, setWinsSortAsc] = useState(true)
     const [lossesSortAsc, setLossesSortAsc] = useState(true)
-    const [sortingParam, setSortingParam] = useState("name")
+    const [sortingParam, setSortingParam] = useState()
 
     const sortPokemons = (sortingFn) => {
         const sorted = completePokemons.toSorted(sortingFn)
@@ -74,10 +74,10 @@ const PokemonRankingTable = ({ edit, setEditedPokemon }) => {
         heightSortAsc ? pokemonA.height - pokemonB.height : pokemonB.height - pokemonA.height
 
     const sortWins = (pokemonA, pokemonB) =>
-        winsSortAsc ? pokemonA.wins - pokemonB.wins : pokemonB.wins - pokemonA.wins
+        winsSortAsc ? (pokemonA.wins ?? -1) - (pokemonB.wins ?? -1) : (pokemonB.wins ?? -1) - (pokemonA.wins ?? -1)
 
     const sortLosses = (pokemonA, pokemonB) =>
-        lossesSortAsc ? pokemonA.losses - pokemonB.losses : pokemonB.losses - pokemonA.losses
+        lossesSortAsc ? (pokemonA.losses ?? -1) - (pokemonB.losses ?? -1) : (pokemonB.losses ?? -1) - (pokemonA.losses ?? -1)
 
     return (
         <RankingContainer className="ranking-container">

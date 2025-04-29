@@ -2,7 +2,7 @@ import React from 'react'
 import { styled } from "styled-components"
 
 const StyledButton = styled.button`
-    padding: 0.25rem 1rem;
+    padding: 0.33rem 1rem;
 
     width: ${(props) => props.width};
 
@@ -17,7 +17,7 @@ const StyledButton = styled.button`
     }
 `
 
-const Button = ({ children, onClick, width = "6rem" }) => {
+const Button = ({ children, onClick, width = "6.25rem" }) => {
     return (
         <StyledButton onClick={onClick} width={width}>{children}</StyledButton>
     )

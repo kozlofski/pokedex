@@ -14,12 +14,19 @@ import cyrb53 from '../../services/cyrb53'
 
 import { JSON_SERVER_URL } from '../../constants'
 
-const Form = styled.form`
+const FormContainer = styled.div`
+    height: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
 `
 
+const Form = styled.form`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`
 
 const signupFormSchema = z.object({
     name: z.string().trim().min(3, { message: "imię musi zawierać conajmniej 3 znaki" }),
@@ -87,26 +94,28 @@ const SignUp = () => {
     }
 
     return (
-        <Form onSubmit={handleSubmit(onSubmit, onError)}>
-            <Input {...register('name')}
-                type={"text"}
-                placeholder={"imię"}
-                error={errors.name ?? ""} />
+        <FormContainer>
+            <Form onSubmit={handleSubmit(onSubmit, onError)}>
+                <Input {...register('name')}
+                    type={"text"}
+                    placeholder={"imię"}
+                    error={errors.name ?? ""} />
 
-            <Input {...register('email')}
-                type={"text"}
-                placeholder={"e-mail"}
-                error={errors.email ?? ""} />
-            <Input {...register('password')}
-                type={"password"}
-                placeholder={"hasło"}
-                error={errors.password ?? ""} />
-            <Input {...register('confirm')}
-                type={"password"}
-                placeholder={"powtórz hasło"}
-                error={errors.confirm ?? ""} />
-            <Button type="submit" >Zarejestruj</Button>
-        </Form>
+                <Input {...register('email')}
+                    type={"text"}
+                    placeholder={"e-mail"}
+                    error={errors.email ?? ""} />
+                <Input {...register('password')}
+                    type={"password"}
+                    placeholder={"hasło"}
+                    error={errors.password ?? ""} />
+                <Input {...register('confirm')}
+                    type={"password"}
+                    placeholder={"powtórz hasło"}
+                    error={errors.confirm ?? ""} />
+                <Button type="submit" width="8rem">Zarejestruj</Button>
+            </Form>
+        </FormContainer>
     )
 }
 
