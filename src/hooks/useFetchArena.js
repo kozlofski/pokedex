@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { JSON_SERVER_URL } from "../constants";
 
-// const JSON_SERVER_URL = "http://localhost:3000/users";
-
 const useFetchArena = (userId) => {
   const [leftPokemonFromArena, setLeftPokemonFromArena] = useState(undefined);
   const [rightPokemonFromArena, setRightPokemonFromArena] = useState(undefined);

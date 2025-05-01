@@ -1,10 +1,11 @@
 import React from 'react'
 import { styled } from "styled-components"
-import useFetchAllPokemons from '../../hooks/useFetchAllPokemons'
 import { useState } from 'react'
-import Loader from './Loader'
+
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import useFetchAllPokemons from '../../hooks/useFetchAllPokemons'
+import Loader from './Loader'
 
 const PokemonRankingTable = ({ edit, setEditedPokemon }) => {
     const [sortedPokemons, setSortedPokemons] = useState([])
@@ -194,11 +195,9 @@ const TableRowComponent = ({ pokemon, edit, setEditedPokemon }) => {
 }
 
 const RankingContainer = styled.div`
-    // flex-grow: 1;
     display: flex;
     height: 100%;
     width: 100%;
-    // max-width: 1024px;
     flex-direction: column;
     align-items: stretch;
     min-height: 100%;
@@ -207,11 +206,13 @@ const RankingContainer = styled.div`
 const RankingTable = styled.table`
     width: 100%;
 `
+
 const TableHead = styled.thead`
 `
 const TableBody = styled.tbody`
     width: 100%;
-    `
+`
+
 const TableRow = styled.tr`
     &:nth-child(odd) {
         color: ${({ theme }) => theme.color.fontOnBackground};        
@@ -221,7 +222,6 @@ const TableRow = styled.tr`
         background-color: ${({ theme }) => theme.color.tableSecondaryColor};        
         color: ${({ theme }) => theme.color.tableSecondaryFontColor};        
     }
-
 `
 
 const TableHeader = styled.th`
@@ -253,9 +253,6 @@ const HeaderTitle = styled.span`
         writing-mode: vertical-lr;
         text-orientation: mixed;
     }
-`
-
-const SortingDirArrow = styled.span`
 `
 
 const TableCell = styled.td`

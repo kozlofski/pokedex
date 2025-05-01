@@ -1,20 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react'
-
 import { styled } from "styled-components"
-import PokemonCard from '../shared/PokemonCard.styled'
-import LoginContext from '../../context/LoginContext'
-import useFetchArena from '../../hooks/useFetchArena'
-
 import { createPortal } from "react-dom"
-import PokemonDetailsModal from '../shared/PokemonDetailsModal.styled'
-import EmptyPokemonCard from '../shared/EmptyPokemonCard.styled'
+
+import LoginContext from '../../context/LoginContext'
+
+import PokemonCard from '../shared/PokemonCard'
+import PokemonDetailsModal from '../shared/PokemonDetailsModal'
+import EmptyPokemonCard from '../shared/EmptyPokemonCard'
 import CloseIcon from '@mui/icons-material/Close';
-import FightButton from '../shared/FightButton.styled'
+import FightButton from '../shared/FightButton'
 import fight from '../../services/fight'
-import WinnerModal from '../shared/WinnerModal.styled'
+import WinnerModal from '../shared/WinnerModal'
 import updateStats from '../../services/updateStats'
-import { JSON_SERVER_URL } from '../../constants'
 import updateArena from '../../services/updateArena'
+import useFetchArena from '../../hooks/useFetchArena'
 
 const Arena = () => {
     const { loggedUserId } = useContext(LoginContext)
@@ -24,8 +23,6 @@ const Arena = () => {
     const [rightPokemon, setRightPokemon] = useState(undefined)
     const [winner, setWinner] = useState({})
     const [winnerModalOpened, setWinnerModalOpened] = useState(false)
-
-
 
     useEffect(() => {
         setLeftPokemon(leftPokemonFromArena)
@@ -106,8 +103,6 @@ const Arena = () => {
             </ArenaCardContainer>
             {modalOpened && modal}
             {winnerModalOpened && winnerModal}
-
-
         </ArenaContainer>
     )
 }

@@ -1,11 +1,13 @@
 import React from 'react'
 import { styled } from "styled-components"
 import { useForm } from "react-hook-form"
+import { useNavigate } from 'react-router-dom'
+
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from 'zod'
-import Input from '../shared/Input.styled'
-import { useNavigate } from 'react-router-dom'
-import Button from '../shared/Button.styled'
+
+import Input from '../shared/Input'
+import Button from './Button'
 import fetchUserData from '../../services/fetchUserData'
 import { JSON_SERVER_URL } from '../../constants'
 

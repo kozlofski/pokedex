@@ -3,7 +3,6 @@ import { styled } from "styled-components"
 
 import pokeballSrc from "../../assets/pokeball.svg"
 
-
 const Card = styled.div`
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -15,10 +14,7 @@ const Card = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 `
-
-// move from styles here down on to common file
 
 const Image = styled.img`
     height: 30%;
@@ -26,12 +22,9 @@ const Image = styled.img`
 `
 
 const EmptyPokemonCard = () => {
-
-
     return (
         <Card >
             <Image src={pokeballSrc} />
-
         </Card>
     )
 }

@@ -27,7 +27,6 @@ const loginUser = async (
   } catch (error) {
     window.alert(error);
     throw error;
-    // return -1;
   }
 };
 

@@ -1,15 +1,14 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { styled } from "styled-components"
-// import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
 
 import CloseIcon from '@mui/icons-material/Close';
 
-import { LIMIT, PICTURES_TO_CHOOSE } from '../../constants';
+import Button from './Button';
 import fetchSinglePokemon from '../../services/fetchSinglePokemon';
 import useFetchRawPokemons from '../../hooks/useFetchRawPokemons';
-import Button from './Button.styled';
 import fetchUserData from '../../services/fetchUserData';
+import { LIMIT, PICTURES_TO_CHOOSE } from '../../constants';
 
 const Modal = styled.div`
     position: fixed;

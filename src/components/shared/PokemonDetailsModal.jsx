@@ -2,11 +2,12 @@ import React, { useContext } from 'react'
 import { useState, useEffect } from 'react';
 import { styled } from "styled-components"
 
+import LoginContext from '../../context/LoginContext';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import StadiumIcon from '@mui/icons-material/Stadium';
 import CloseIcon from '@mui/icons-material/Close';
-import LoginContext from '../../context/LoginContext';
+
 import fetchUserData from '../../services/fetchUserData';
 import updateArena from '../../services/updateArena';
 import updateFavourites from '../../services/updateFavourites';

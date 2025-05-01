@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import { styled } from "styled-components"
+import { useNavigate } from 'react-router-dom'
+import { createPortal } from "react-dom"
+
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from 'zod'
-import Input from '../shared/Input.styled'
-import { useNavigate } from 'react-router-dom'
-import Button from '../shared/Button.styled'
-import fetchUserData from '../../services/fetchUserData'
-// import fetchLinksToPokemons from '../../services/fetchLinksToPokemons'
-import { createPortal } from "react-dom"
-import PokemonPictureModal from "../shared/PokemonPictureModal.styled"
+
+import fetchUserData from '../../services/fetchUserData.js'
+import Button from './Button.jsx'
+import PokemonPictureModal from "../shared/PokemonPictureModal"
+import Input from '../shared/Input'
 import { JSON_SERVER_URL } from "../../constants.js"
 
 const CreateForm = styled.form`

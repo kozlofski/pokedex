@@ -1,18 +1,16 @@
 import React from 'react'
-
+import { useContext } from 'react'
 import { useForm } from "react-hook-form"
 import { styled } from "styled-components"
-import Input from '../shared/Input.styled'
+import { useNavigate } from 'react-router-dom'
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from 'zod'
 
-import { useContext } from 'react'
 import LoginContext from '../../context/LoginContext'
-import { useNavigate } from 'react-router-dom'
-
 import loginUser from '../../services/loginUser'
-import Button from '../shared/Button.styled'
+import Input from '../shared/Input'
+import Button from '../shared/Button'
 
 import cyrb53 from '../../services/cyrb53'
 import { JSON_SERVER_URL } from '../../constants'

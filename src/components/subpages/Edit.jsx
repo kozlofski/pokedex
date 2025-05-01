@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import PokemonRankingTable from '../shared/PokemonRankingTable'
 import { useState, useContext } from 'react'
-import LoginContext from '../../context/LoginContext'
-import Button from '../shared/Button.styled'
-import EditPokemon from '../shared/EditPokemon.styled'
-import CreatePokemon from '../shared/CreatePokemon.styled'
 import { styled } from "styled-components"
 
+import PokemonRankingTable from '../shared/PokemonRankingTable'
+import LoginContext from '../../context/LoginContext'
+import Button from '../shared/Button'
+import EditPokemon from '../shared/EditPokemon'
+import CreatePokemon from '../shared/CreatePokemon'
 
 const EditContainer = styled.div`
     min-width: 100%;
@@ -14,9 +14,6 @@ const EditContainer = styled.div`
     flex-direction: column;
     min-height: 100%;
     align-items: center;
-    // margin-top: 1rem;
-    // justify-content: center;
-   
 `
 
 const Edit = () => {

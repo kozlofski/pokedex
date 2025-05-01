@@ -17,7 +17,6 @@ const PokemonCard = ({ rawPokemon, setModalOpened, setSelectedPokemon }) => {
     } = pokemon
 
     const openDetails = () => {
-        console.log(pokemon)
         setModalOpened(true)
         setSelectedPokemon(pokemon)
     }
@@ -73,8 +72,6 @@ const Card = styled.div`
     }
   
 `
-
-// move from styles here down on to common file
 
 const Image = styled.img`
     height: 50%;

@@ -1,18 +1,17 @@
 import { useState, useEffect, useContext } from "react";
+
 import fetchLinksToPokemons from "../services/fetchLinksToPokemons";
-import { LIMIT } from "../constants";
-import LoginContext from "../context/LoginContext";
 import filterFavourites from "../services/filterFavourites";
 import mergeWithUserPokemons from "../services/mergeWithUserPokemons";
+import LoginContext from "../context/LoginContext";
+import { LIMIT } from "../constants";
 
 const useFetchRawPokemons = (start = 0, limit = LIMIT, favourites) => {
   const { loggedUserId } = useContext(LoginContext);
-
   const [rawPokemons, setRawPokemons] = useState([]);
   const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
-    // this can be separate service
     (async () => {
       try {
         setIsPending(true);

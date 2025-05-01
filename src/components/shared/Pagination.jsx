@@ -1,11 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-
 import { styled } from "styled-components"
+
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
-const PAGE_LIMIT = 15;
+import { PAGE_LIMIT } from '../../constants';
 
 const PaginationContainer = styled.ul`
     width: 100%;
@@ -65,8 +64,6 @@ const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
     const [numbers, setNumbers] = useState([])
     const [buttonsLimit, setButtonsLimit] = useState(12)
 
-
-
     useEffect(() => {
         const paginated = rawPokemonsFiltered.slice((currentPage - 1) * PAGE_LIMIT, (currentPage) * PAGE_LIMIT);
         setRawPokemonsPaginated(paginated)
@@ -120,8 +117,6 @@ const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
 
     }, [currentPage, totalPages, buttonsLimit])
 
-
-
     return (
         <>
             {totalPages >= 2 &&
@@ -134,7 +129,7 @@ const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
                                 onClick={() => setCurrentPage(number)}
                                 className={number === currentPage ? "current" : ""}
                             >{number}</PageButton> :
-                            <PageButton key="-5" className="blank">...</PageButton>
+                            <PageButton key={number} className="blank">...</PageButton>
                     )
                     }
                     <PageButton key="-4" onClick={() => currentPage < totalPages && setCurrentPage(prev => prev + 1)}><ArrowForwardIcon /></PageButton>

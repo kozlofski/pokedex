@@ -1,4 +1,5 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
+import { API_URL } from "../constants";
 
 const fetchLinksToPokemons = async (start, limit) => {
   const startQueryParam = start > 0 ? `offset=${start}&` : "";

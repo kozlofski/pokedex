@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 
 import LoginContext from "../context/LoginContext";
 import fetchSinglePokemon from "../services/fetchSinglePokemon";
-import { API_URL, LIMIT } from "../constants";
+import { LIMIT } from "../constants";
 import fetchLinksToPokemons from "../services/fetchLinksToPokemons";
 import fetchUserData from "../services/fetchUserData";
 import mergeWithUserPokemons from "../services/mergeWithUserPokemons";
@@ -11,7 +11,6 @@ import updatePokemonWithUserData from "../services/updatePokemonWithUserData";
 
 const useFetchAllPokemons = (setSortedPokemons) => {
   const { loggedUserId } = useContext(LoginContext);
-
   const [completePokemons, setCompletePokemons] = useState([]);
   const [isPending, setIsPending] = useState();
 

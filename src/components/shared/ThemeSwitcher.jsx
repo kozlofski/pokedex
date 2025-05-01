@@ -1,8 +1,9 @@
 import React from 'react'
 import { useContext } from 'react'
+import styled from 'styled-components'
+
 import GlobalContext from '../../context/GlobalContext'
 import { light, dark } from '../../styles/theme'
-import styled from 'styled-components'
 
 const ThemeSwitcher = () => {
     const { setSelectedTheme } = useContext(GlobalContext)

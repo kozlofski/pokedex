@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
-import LoginContext from "../context/LoginContext";
 
+import LoginContext from "../context/LoginContext";
 import fetchSinglePokemon from "../services/fetchSinglePokemon";
 import updatePokemonWithUserData from "../services/updatePokemonWithUserData";
 import fetchUserData from "../services/fetchUserData";

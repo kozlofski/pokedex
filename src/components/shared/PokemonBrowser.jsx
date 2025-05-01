@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { styled } from "styled-components"
 import { createPortal } from "react-dom"
 
-import Pagination from '../shared/Pagination.styled'
-import PokemonCard from '../shared/PokemonCard.styled'
-import PokemonDetailsModal from '../shared/PokemonDetailsModal.styled'
+import Pagination from './Pagination'
+import PokemonCard from '../shared/PokemonCard'
+import PokemonDetailsModal from '../shared/PokemonDetailsModal'
 import useFetchRawPokemons from '../../hooks/useFetchRawPokemons'
-import { LIMIT } from '../../constants'
 import Loader from './Loader'
+import { LIMIT } from '../../constants'
 
 const BrowserContainer = styled.div`
     display: flex;
@@ -37,7 +37,6 @@ const PokemonsFilter = styled.input`
     border: 2px solid ${({ theme }) => theme.color.inputBorder};
     padding: 0.5rem;
     border-radius: 0.25rem;
-    // margin: 0.5rem;
 
     &:focus {
         border: 2px solid #999999;
@@ -46,8 +45,6 @@ const PokemonsFilter = styled.input`
 
 const PokemonBrowser = ({ favourites }) => {
     const { rawPokemons, isPending } = useFetchRawPokemons(0, LIMIT, favourites);
-
-    // console.log(rawPokemons)
     const [rawPokemonsFiltered, setRawPokemonsFiltered] = useState()
     const [rawPokemonsPaginated, setRawPokemonsPaginated] = useState(null)
     const [modalOpened, setModalOpened] = useState(false)
@@ -57,7 +54,7 @@ const PokemonBrowser = ({ favourites }) => {
         const input = event.target.value
         const filterInput = (rawPokemon) => rawPokemon.name.toLowerCase().includes(input)
         let filtered = rawPokemons.filter(filterInput);
-        setRawPokemonsFiltered(filtered) // oneliner?
+        setRawPokemonsFiltered(filtered)
     }
 
     const modal = createPortal(

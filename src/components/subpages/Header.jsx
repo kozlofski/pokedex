@@ -1,15 +1,15 @@
 import React, { useState, useContext } from 'react'
 import { styled } from "styled-components"
+import { Link } from 'react-router-dom'
+
 import LoginContext from '../../context/LoginContext'
-import Button from '../shared/Button.styled'
+import Button from '../shared/Button'
 import PersonIcon from '@mui/icons-material/Person';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import ThemeSwitcher from '../shared/ThemeSwitcher';
 
 import logoPath from "../../assets/pokemonLogo.svg"
-
-import { Link } from 'react-router-dom'
 
 const routesIfLoggedIn = [
     { name: "Ulubione", id: 3, path: "/favorites" },
@@ -45,7 +45,6 @@ const HeaderContainer = styled.header`
         z-index: 10;
         background: ${({ theme }) => theme.color.background};
     }
-
 `
 
 const LinkList = styled.ul`
@@ -66,10 +65,7 @@ const LinkList = styled.ul`
             display: none;
         }
     }
-   
 `
-
-
 
 const Logo = styled.img`
     width: 140px;
@@ -102,15 +98,6 @@ const UserContainer = styled.div`
 const User = styled.p`
     color: ${({ theme }) => theme.color.fontOnBackground};
     font-size: inherit;    
-
-    // @media (max-width: 660px) {
-    //     font-size: 3rem;
-    // }
-
-    // @media (min-width: 661px) {
-    //     // display: none;
-    // }
-
 `
 const MenuIconWrapper = styled.div`
     position: fixed;
@@ -156,7 +143,6 @@ const Header = () => {
         </LinkList>)
     }
 
-
     return (<HeaderContainer>
         <MenuIconWrapper onClick={handleClickMobileMenu} >
             {menuOpened ?
@@ -181,7 +167,4 @@ const Header = () => {
     )
 }
 
-
-
 export default Header
-

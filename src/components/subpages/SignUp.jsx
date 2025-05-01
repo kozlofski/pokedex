@@ -1,15 +1,17 @@
 import React from 'react'
+import { useContext } from 'react'
 import { styled } from "styled-components"
+import { useNavigate } from 'react-router-dom'
+
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from 'zod'
-import Input from '../shared/Input.styled'
-import { useNavigate } from 'react-router-dom'
-import useFetchUserNames from '../../hooks/useFetchUserNames'
-import { useContext } from 'react'
+
+import Input from '../shared/Input'
 import LoginContext from '../../context/LoginContext'
+import Button from "./../shared/Button"
 import loginUser from '../../services/loginUser'
-import Button from "./../shared/Button.styled"
+import useFetchUserNames from '../../hooks/useFetchUserNames'
 import cyrb53 from '../../services/cyrb53'
 
 import { JSON_SERVER_URL } from '../../constants'
@@ -42,16 +44,11 @@ const signupFormSchema = z.object({
             path: ['confirm'],
         })
     }
-
-    // add username taken case
 })
 
 const SignUp = () => {
     const { setLoggedUser, setLoggedUserId } = useContext(LoginContext)
-
     const userNamesTaken = useFetchUserNames();
-    // console.log("User names from signup:", userNamesTaken)
-
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(signupFormSchema) })
     const navigate = useNavigate();
 

@@ -1,8 +1,9 @@
 import React from 'react'
-import Header from "./Header.styled"
-import Main from "./Main.styled"
 import { Outlet } from 'react-router-dom'
 import { styled } from "styled-components"
+
+import Header from "./Header"
+import Main from "./Main"
 
 const AppContainer = styled.div`
     min-height: 100vh;

@@ -21,7 +21,8 @@
         "dupa": true,
         "charmander": true,
         "bulbasaur": true,
-        "charizard": true
+        "charizard": true,
+        "dsfajnjk": true
       },
       "arena": {},
       "stats": {
@@ -32,7 +33,7 @@
         },
         "bulbasaur": {
           "wins": 9,
-          "losses": 19,
+          "losses": 20,
           "baseExperience": "114"
         },
         "rattata": {
@@ -46,9 +47,9 @@
           "baseExperience": 39
         },
         "ivysaur": {
-          "wins": 10,
+          "wins": 11,
           "losses": 0,
-          "baseExperience": 242
+          "baseExperience": 252
         },
         "ponyta": {
           "wins": 3,
@@ -82,7 +83,7 @@
         },
         "dupa": {
           "wins": 1,
-          "losses": 1,
+          "losses": 2,
           "baseExperience": "435"
         },
         "sdfgsdfghgfhgfd": {
@@ -123,6 +124,11 @@
         "undefined": {
           "wins": 0,
           "losses": 1
+        },
+        "dsfajnjk": {
+          "wins": 1,
+          "losses": 0,
+          "baseExperience": "53410"
         }
       },
       "modified": {
@@ -168,11 +174,19 @@
           "baseExperience": "234243",
           "ability": "dgfh",
           "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/151.png"
+        },
+        "dsfajnjk": {
+          "height": "123",
+          "weight": "123",
+          "baseExperience": "534",
+          "ability": "sdfgdfsg",
+          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/153.png"
         }
       },
       "usedPictures": {},
       "picturesUsed": {
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/151.png": true
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/151.png": true,
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/153.png": true
       }
     },
     {

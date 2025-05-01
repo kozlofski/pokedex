@@ -1,11 +1,9 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { styled } from "styled-components"
+
 import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
-
-import Button from "./Button.styled"
-
-const JSON_SERVER_URL = "http://localhost:3000/users"
+import Button from "./Button"
 
 const Modal = styled.div`
     position: fixed;

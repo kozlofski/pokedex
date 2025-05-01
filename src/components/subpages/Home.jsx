@@ -1,5 +1,5 @@
 import React from 'react'
-import PokemonBrowser from '../shared/PokemonBrowser.styled'
+import PokemonBrowser from '../shared/PokemonBrowser'
 
 const Home = () => {
     return (

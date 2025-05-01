@@ -9,7 +9,6 @@ const StyledButton = styled.button`
     border: none;
     border-radius: 0.5rem;
     box-shadow: 0.5rem 0.5rem 0.9rem ${({ theme }) => theme.color.cardShadow};
-
     background-color: ${({ theme }) => theme.color.fightButton};
     color: white;
     display: flex;
@@ -36,7 +35,6 @@ const StyledButton = styled.button`
 `
 
 const FightButton = ({ children, disabled, onClick }) => {
-    // console.log("Fight button disabled? ", disabled)
     return (
         <StyledButton onClick={onClick} disabled={disabled}>
             {children}

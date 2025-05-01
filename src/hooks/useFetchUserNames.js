@@ -1,7 +1,5 @@
-import React from "react";
 import { useState, useEffect } from "react";
-
-const JSON_SERVER_URL = "http://localhost:3000/users";
+import { JSON_SERVER_URL } from "../constants";
 
 const useFetchUserNames = () => {
   const [userNamesTaken, setUserNamesTaken] = useState([]);

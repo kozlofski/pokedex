@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-import LoginContext from '../../context/LoginContext'
 import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { styled } from "styled-components"
+
+import LoginContext from '../../context/LoginContext'
 
 const LogoutScreen = styled.h2`
     display: flex;

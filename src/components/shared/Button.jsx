@@ -3,9 +3,7 @@ import { styled } from "styled-components"
 
 const StyledButton = styled.button`
     padding: 0.33rem 1rem;
-
     width: ${(props) => props.width};
-
     border: none;
     border-radius: 0.25rem;
     background-color: #00aaff;
