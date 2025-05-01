@@ -9,40 +9,6 @@ import useFetchRawPokemons from '../../hooks/useFetchRawPokemons'
 import Loader from './Loader'
 import { LIMIT } from '../../constants'
 
-const BrowserContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    height: 100%;
-    padding-bottom: 2rem;
-
-    @media (max-width: 660px) {
-        margin-top: 0.5rem;
-        padding-bottom: 6rem;
-    }
-`
-
-const PokemonsGallery = styled.ul`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    gap: 1.5rem;
-    list-style: none;    
-    height: 100%;
-
-`
-const PokemonsFilter = styled.input`
-    border: 2px solid ${({ theme }) => theme.color.inputBorder};
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-
-    &:focus {
-        border: 2px solid #999999;
-    }
-`
-
 const PokemonBrowser = ({ favourites }) => {
     const { rawPokemons, isPending } = useFetchRawPokemons(0, LIMIT, favourites);
     const [rawPokemonsFiltered, setRawPokemonsFiltered] = useState()
@@ -88,5 +54,39 @@ const PokemonBrowser = ({ favourites }) => {
         </BrowserContainer>
     )
 }
+
+const BrowserContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    height: 100%;
+    padding-bottom: 2rem;
+
+    @media (max-width: 660px) {
+        margin-top: 0.5rem;
+        padding-bottom: 6rem;
+    }
+`
+
+const PokemonsGallery = styled.ul`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 1.5rem;
+    list-style: none;    
+    height: 100%;
+
+`
+const PokemonsFilter = styled.input`
+    border: 2px solid ${({ theme }) => theme.color.inputBorder};
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+
+    &:focus {
+        border: 2px solid #999999;
+    }
+`
 
 export default PokemonBrowser

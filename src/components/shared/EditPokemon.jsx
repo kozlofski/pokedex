@@ -11,14 +11,6 @@ import Button from './Button'
 import fetchUserData from '../../services/fetchUserData'
 import { JSON_SERVER_URL } from '../../constants'
 
-const EditForm = styled.form`
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    max-width: 20rem;
-    margin: 0 auto;
-`
-
 const editFormSchema = z.object({
     height: z.string().trim().min(1, { message: "wprowadź liczbę naturalną" }).regex(new RegExp(/^\d+$/g), { message: "nieprawidłowa liczba" }),
     weight: z.string().trim().min(1, { message: "wprowadź liczbę naturalną" }).regex(new RegExp(/^\d+$/g), { message: "nieprawidłowa liczba" }),
@@ -120,5 +112,13 @@ const EditPokemon = ({ editedPokemon, loggedUserId }) => {
         </>
     )
 }
+
+const EditForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    max-width: 20rem;
+    margin: 0 auto;
+`
 
 export default EditPokemon

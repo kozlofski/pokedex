@@ -24,6 +24,50 @@ const routesIfNotLoggedIn = [
     { name: "Rejestracja", id: 2, path: "/sign-up" },
 ]
 
+const Header = () => {
+    const [menuOpened, setMenuOpened] = useState(false)
+    const { loggedUser } = useContext(LoginContext)
+
+    const handleClickMobileMenu = () => {
+        setMenuOpened(prev => !prev)
+    }
+
+    const Navbar = ({ links }) => {
+        return (<LinkList className={!menuOpened && "menuClosed"}>
+            <li><StyledLink className="homeMobile" to={"/"}><Button onClick={() => setMenuOpened(false)}>Home</Button></StyledLink></li>
+            {links.map(({ name, id, path }) =>
+                <li key={id}>
+                    <StyledLink to={path}>
+                        <Button onClick={() => setMenuOpened(false)}>{name}</Button>
+                    </StyledLink>
+                </li>)}
+        </LinkList>)
+    }
+
+    return (<HeaderContainer>
+        <MenuIconWrapper onClick={handleClickMobileMenu} >
+            {menuOpened ?
+                <CloseIcon color='inherit' fontSize='inherit' /> :
+                <MenuIcon color='inherit' fontSize='inherit' />
+            }
+        </MenuIconWrapper>
+        <Link to={"/"}><Logo src={logoPath} alt="POKEMON"></Logo></Link>
+        <UserAndNavbar>
+            <UserContainer className="user-container">
+                <ThemeSwitcher />
+                {loggedUser !== "null" &&
+                    <>
+                        <PersonIcon fontSize='inherit' />
+                        <User>{loggedUser}</User>
+                    </>
+                }
+            </UserContainer>
+            <Navbar links={loggedUser === "null" ? routesIfNotLoggedIn : routesIfLoggedIn} />
+        </UserAndNavbar>
+    </HeaderContainer>
+    )
+}
+
 const HeaderContainer = styled.header`
     margin: 0 auto;
     max-width: 1024px;
@@ -122,49 +166,5 @@ const StyledLink = styled(Link)`
         }
     }
 `
-
-const Header = () => {
-    const [menuOpened, setMenuOpened] = useState(false)
-    const { loggedUser } = useContext(LoginContext)
-
-    const handleClickMobileMenu = () => {
-        setMenuOpened(prev => !prev)
-    }
-
-    const Navbar = ({ links }) => {
-        return (<LinkList className={!menuOpened && "menuClosed"}>
-            <li><StyledLink className="homeMobile" to={"/"}><Button onClick={() => setMenuOpened(false)}>Home</Button></StyledLink></li>
-            {links.map(({ name, id, path }) =>
-                <li key={id}>
-                    <StyledLink to={path}>
-                        <Button onClick={() => setMenuOpened(false)}>{name}</Button>
-                    </StyledLink>
-                </li>)}
-        </LinkList>)
-    }
-
-    return (<HeaderContainer>
-        <MenuIconWrapper onClick={handleClickMobileMenu} >
-            {menuOpened ?
-                <CloseIcon color='inherit' fontSize='inherit' /> :
-                <MenuIcon color='inherit' fontSize='inherit' />
-            }
-        </MenuIconWrapper>
-        <Link to={"/"}><Logo src={logoPath} alt="POKEMON"></Logo></Link>
-        <UserAndNavbar>
-            <UserContainer className="user-container">
-                <ThemeSwitcher />
-                {loggedUser !== "null" &&
-                    <>
-                        <PersonIcon fontSize='inherit' />
-                        <User>{loggedUser}</User>
-                    </>
-                }
-            </UserContainer>
-            <Navbar links={loggedUser === "null" ? routesIfNotLoggedIn : routesIfLoggedIn} />
-        </UserAndNavbar>
-    </HeaderContainer>
-    )
-}
 
 export default Header

@@ -1,7 +1,15 @@
 import React from 'react'
 import { styled } from "styled-components"
-// import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';
+
+const Loader = () => {
+    return (
+        <LoaderContainer>
+            <LoaderHeader>loading...</LoaderHeader>
+            <HourglassTopIcon fontSize='inherit' />
+        </LoaderContainer>
+    )
+}
 
 const LoaderContainer = styled.div`
     display: flex;
@@ -17,14 +25,5 @@ const LoaderContainer = styled.div`
 const LoaderHeader = styled.h2`
     
 `
-
-const Loader = () => {
-    return (
-        <LoaderContainer>
-            <LoaderHeader>loading...</LoaderHeader>
-            <HourglassTopIcon fontSize='inherit' />
-        </LoaderContainer>
-    )
-}
 
 export default Loader

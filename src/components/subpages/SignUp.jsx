@@ -16,20 +16,6 @@ import cyrb53 from '../../services/cyrb53'
 
 import { JSON_SERVER_URL } from '../../constants'
 
-const FormContainer = styled.div`
-    height: 100%;
-    display: flex;
-    align-items: center;
-`
-
-const Form = styled.form`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-`
-
 const signupFormSchema = z.object({
     name: z.string().trim().min(3, { message: "imię musi zawierać conajmniej 3 znaki" }),
     email: z.string().trim().email({ message: "wprowadź prawidłowy adres e-mail" }),
@@ -115,5 +101,19 @@ const SignUp = () => {
         </FormContainer>
     )
 }
+
+const FormContainer = styled.div`
+    height: 100%;
+    display: flex;
+    align-items: center;
+`
+
+const Form = styled.form`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`
 
 export default SignUp

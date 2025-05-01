@@ -2,6 +2,15 @@ import React from 'react'
 import { styled } from "styled-components"
 import FlashOnIcon from '@mui/icons-material/FlashOn';
 
+const FightButton = ({ children, disabled, onClick }) => {
+    return (
+        <StyledButton onClick={onClick} disabled={disabled}>
+            {children}
+            <FlashOnIcon sx={{ fontSize: "2rem" }} />
+        </StyledButton>
+    )
+}
+
 const StyledButton = styled.button`
     padding: 0.25rem 1rem;
     width: 200px;
@@ -33,14 +42,5 @@ const StyledButton = styled.button`
         flex-grow: 1;
     }
 `
-
-const FightButton = ({ children, disabled, onClick }) => {
-    return (
-        <StyledButton onClick={onClick} disabled={disabled}>
-            {children}
-            <FlashOnIcon sx={{ fontSize: "2rem" }} />
-        </StyledButton>
-    )
-}
 
 export default FightButton

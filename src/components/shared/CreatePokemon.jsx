@@ -13,22 +13,6 @@ import PokemonPictureModal from "../shared/PokemonPictureModal"
 import Input from '../shared/Input'
 import { JSON_SERVER_URL } from "../../constants.js"
 
-const CreateForm = styled.form`
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    max-width: 20rem;
-    margin: 0 auto;
-`
-
-const Image = styled.img`
-    height: 100px;
-
-    @media (max-width: 600px) {
-        // fix this
-    }
-`
-
 const editFormSchema = z.object({
     name: z.string().trim().min(1, { message: "imię pokemona musi zawierać co najmniej 2 litery" }),
     height: z.string().trim().min(1, { message: "wprowadź liczbę naturalną" }).regex(new RegExp(/^\d+$/g), { message: "nieprawidłowa liczba" }),
@@ -142,5 +126,21 @@ const CreatePokemon = ({ loggedUserId }) => {
         </>
     )
 }
+
+const CreateForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    max-width: 20rem;
+    margin: 0 auto;
+`
+
+const Image = styled.img`
+    height: 100px;
+
+    @media (max-width: 600px) {
+        // fix this
+    }
+`
 
 export default CreatePokemon

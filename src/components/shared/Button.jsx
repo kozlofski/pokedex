@@ -1,6 +1,12 @@
 import React from 'react'
 import { styled } from "styled-components"
 
+const Button = ({ children, onClick, width = "6.25rem" }) => {
+    return (
+        <StyledButton onClick={onClick} width={width}>{children}</StyledButton>
+    )
+}
+
 const StyledButton = styled.button`
     padding: 0.33rem 1rem;
     width: ${(props) => props.width};
@@ -14,11 +20,5 @@ const StyledButton = styled.button`
         min-height: 4rem;
     }
 `
-
-const Button = ({ children, onClick, width = "6.25rem" }) => {
-    return (
-        <StyledButton onClick={onClick} width={width}>{children}</StyledButton>
-    )
-}
 
 export default Button

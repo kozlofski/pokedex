@@ -163,7 +163,6 @@ const Image = styled.img`
     min-width: 2rem;
 `
 
-
 const TableRowComponent = ({ pokemon, edit, setEditedPokemon }) => {
     const {
         imgUrl,

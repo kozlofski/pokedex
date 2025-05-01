@@ -1,6 +1,14 @@
 import React from 'react'
 import { styled } from "styled-components"
 
+const Main = ({ children }) => {
+    return (
+        <MainContainer>
+            {children}
+        </MainContainer>
+    )
+}
+
 const MainContainer = styled.main`
     max-width: 1280px; 
     width: 100%;
@@ -14,13 +22,5 @@ const MainContainer = styled.main`
         // padding-top: 1rem;
     }
 `
-
-const Main = ({ children }) => {
-    return (
-        <MainContainer>
-            {children}
-        </MainContainer>
-    )
-}
 
 export default Main

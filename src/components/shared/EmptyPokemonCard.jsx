@@ -3,6 +3,14 @@ import { styled } from "styled-components"
 
 import pokeballSrc from "../../assets/pokeball.svg"
 
+const EmptyPokemonCard = () => {
+    return (
+        <Card >
+            <Image src={pokeballSrc} />
+        </Card>
+    )
+}
+
 const Card = styled.div`
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -20,13 +28,5 @@ const Image = styled.img`
     height: 30%;
     filter: brightness(20%);
 `
-
-const EmptyPokemonCard = () => {
-    return (
-        <Card >
-            <Image src={pokeballSrc} />
-        </Card>
-    )
-}
 
 export default EmptyPokemonCard

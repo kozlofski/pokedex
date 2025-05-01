@@ -1,6 +1,14 @@
 import React from 'react'
 import { styled } from "styled-components"
 
+const Input = (props) => {
+    const { type, placeholder, error: { message }, ...rest } = props
+    return (<>
+        <StyledInput type={type} placeholder={placeholder} {...rest}></StyledInput>
+        <ErrorMessage>{message}</ErrorMessage>
+    </>)
+}
+
 const StyledInput = styled.input`
     border: 2px solid ${({ theme }) => theme.color.inputBorder};
     color: ${({ theme }) => theme.color.fontOnBackground};
@@ -18,13 +26,5 @@ const ErrorMessage = styled.p`
     font-sie: 0.75rem;    
     height: 1.5rem;
 `
-
-const Input = (props) => {
-    const { type, placeholder, error: { message }, ...rest } = props
-    return (<>
-        <StyledInput type={type} placeholder={placeholder} {...rest}></StyledInput>
-        <ErrorMessage>{message}</ErrorMessage>
-    </>)
-}
 
 export default Input

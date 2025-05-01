@@ -8,14 +8,6 @@ import Button from '../shared/Button'
 import EditPokemon from '../shared/EditPokemon'
 import CreatePokemon from '../shared/CreatePokemon'
 
-const EditContainer = styled.div`
-    min-width: 100%;
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-    align-items: center;
-`
-
 const Edit = () => {
     const [editedPokemon, setEditedPokemon] = useState({})
     const [editMode, setEditMode] = useState("init")
@@ -38,5 +30,13 @@ const Edit = () => {
         </EditContainer>
     )
 }
+
+const EditContainer = styled.div`
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    align-items: center;
+`
 
 export default Edit

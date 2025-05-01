@@ -5,6 +5,17 @@ import { styled } from "styled-components"
 import Header from "./Header"
 import Main from "./Main"
 
+const AppLayout = () => {
+    return (
+        <AppContainer>
+            <Header />
+            <Main >
+                <Outlet />
+            </Main>
+        </AppContainer>
+    )
+}
+
 const AppContainer = styled.div`
     min-height: 100vh;
     display: grid;
@@ -17,16 +28,5 @@ const AppContainer = styled.div`
         margin-top: 3rem;
     }
 `
-
-const AppLayout = () => {
-    return (
-        <AppContainer>
-            <Header />
-            <Main >
-                <Outlet />
-            </Main>
-        </AppContainer>
-    )
-}
 
 export default AppLayout

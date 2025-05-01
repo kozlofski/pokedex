@@ -5,6 +5,30 @@ import { styled } from "styled-components"
 import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
 import Button from "./Button"
 
+const WinnerModal = ({ onClose, pokemon }) => {
+    const { imgUrl } = useFetchSinglePokemon(pokemon)
+
+    useEffect(() => {
+        // console.log("Setting heart and arena icons after initial render. User: ", loggedUserId)
+        // if (loggedUserId !== -1) setHeartAndArenaIcons();
+    }, [])
+
+    return (
+        <Modal onClick={onClose}>
+            <ModalContent onClick={e => e.stopPropagation()}>
+                <H2>WINNER!</H2>
+                <Image src={imgUrl} alt="" />
+                <Description>
+                    <Header>{pokemon.name}</Header>
+
+                </Description>
+
+                <Button onClick={onClose}>Opuść arenę</Button>
+            </ModalContent>
+        </Modal>
+    );
+}
+
 const Modal = styled.div`
     position: fixed;
     top: 0;
@@ -16,8 +40,7 @@ const Modal = styled.div`
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(10px);
-    // overflow: hidden;
-  `
+`
 
 const ModalContent = styled.div`
     padding: 0.5rem;
@@ -53,8 +76,6 @@ const Image = styled.img`
         // fix this
     }
 `
-// move from styles here down on to common file
-
 
 const Header = styled.p`
     font-size: 1.75rem;
@@ -62,65 +83,8 @@ const Header = styled.p`
     margin: 0;
 `
 
-const Characteristics = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;  
-    gap: 2rem;  
-    flex-basis: 50%;
-`
-
-const Characteristic = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
-const CharValue = styled.p`
-    font-size: 0.75rem;
-    font-weight: 100;
-    margin: 0;
-`
-
-const ValueName = styled.p`
-    font-size: 0.75rem;
-    font-weight: 900;
-    margin: 0;
-`
-
-const Close = styled.div`
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-`
-
 const H2 = styled.h2`
     font-size: 2rem;
 `
-
-
-const WinnerModal = ({ onClose, pokemon }) => {
-    // const { loggedUserId } = useContext(LoginContext)
-    const { imgUrl } = useFetchSinglePokemon(pokemon)
-
-    useEffect(() => {
-        // console.log("Setting heart and arena icons after initial render. User: ", loggedUserId)
-        // if (loggedUserId !== -1) setHeartAndArenaIcons();
-    }, [])
-
-    return (
-        <Modal onClick={onClose}>
-            <ModalContent onClick={e => e.stopPropagation()}>
-                <H2>WINNER!</H2>
-                <Image src={imgUrl} alt="" />
-                <Description>
-                    <Header>{pokemon.name}</Header>
-
-                </Description>
-
-                <Button onClick={onClose}>Opuść arenę</Button>
-            </ModalContent>
-        </Modal>
-    );
-}
 
 export default WinnerModal

@@ -15,21 +15,6 @@ import Button from '../shared/Button'
 import cyrb53 from '../../services/cyrb53'
 import { JSON_SERVER_URL } from '../../constants'
 
-const FormContainer = styled.div`
-    height: 100%;
-    display: flex;
-    align-items: center;
-`
-
-const Form = styled.form`
-    width: 100%;
-    // min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`
-
 const loginFormSchema = z.object({
     name: z.string().trim().min(1, { message: "wprowadź nazwę użytkownika" }),
     password: z.string().trim().min(1, { message: "wprowadź hasło" }),
@@ -76,6 +61,21 @@ const LogIn = () => {
         </FormContainer>
     )
 }
+
+const FormContainer = styled.div`
+    height: 100%;
+    display: flex;
+    align-items: center;
+`
+
+const Form = styled.form`
+    width: 100%;
+    // min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
 
 export default LogIn
 
