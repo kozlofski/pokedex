@@ -1,3 +1,5 @@
+import { enqueueSnackbar } from "notistack";
+
 const loginUser = async (
   userName,
   hashedPassword,
@@ -7,16 +9,21 @@ const loginUser = async (
 ) => {
   try {
     const response = await fetch(SERVER_URL);
-    if (!response) throw new Error("something is not yes with response");
+    if (!response) throw new Error("JSON server bad response");
 
     const jsonResponse = await response.json();
     const foundUser = jsonResponse.find((user) => user.userName === userName);
-    if (!foundUser) throw new Error("user not found");
+    if (!foundUser) {
+      enqueueSnackbar("Użytkownik nie znaleziony");
+      throw new Error("user not found");
+    }
 
     const foundUserId = await foundUser.id;
 
-    if (hashedPassword !== foundUser.hashedPassword)
-      throw new Error("password incorrect");
+    if (hashedPassword !== foundUser.hashedPassword) {
+      enqueueSnackbar("Nieprawidłowe hasło");
+      throw new Error("wrong password");
+    }
 
     localStorage.setItem("loggedUser", userName);
     localStorage.setItem("loggedUserId", foundUserId);
@@ -25,8 +32,8 @@ const loginUser = async (
     setLoggedUserId(foundUserId);
     return foundUserId;
   } catch (error) {
-    window.alert(error);
-    throw error;
+    console.error(`${error}`);
+    return -1;
   }
 };
 

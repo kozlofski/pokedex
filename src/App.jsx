@@ -10,11 +10,13 @@ import NotFound from "./components/subpages/NotFound"
 import AppLayout from "./components/subpages/AppLayout"
 
 import "./css/reset.css"
+import "./css/App.css"
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import GlobalContextProvider from "./context/GlobalContextProvider"
 import LoginContextProvider from "./context/LoginContextProvider"
 import { ThemeProvider } from "styled-components"
+import { SnackbarProvider } from 'notistack'
 import { light } from "./styles/theme"
 import { useState } from "react"
 
@@ -40,9 +42,11 @@ const App = () => {
   return (
     <ThemeProvider theme={selectedTheme}>
       <LoginContextProvider>
-        <GlobalContextProvider setSelectedTheme={setSelectedTheme}>
-          <RouterProvider router={router} />
-        </GlobalContextProvider>
+        <SnackbarProvider preventDuplicate='true'>
+          <GlobalContextProvider setSelectedTheme={setSelectedTheme}>
+            <RouterProvider router={router} />
+          </GlobalContextProvider>
+        </SnackbarProvider>
       </LoginContextProvider>
     </ThemeProvider>
   )

@@ -225,13 +225,21 @@
           "baseExperience": 333,
           "ability": "nagła śmierć",
           "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/154.png"
+        },
+        "poke": {
+          "height": 213,
+          "weight": 34,
+          "baseExperience": 345,
+          "ability": "gsdfgdf",
+          "imgUrl": null
         }
       },
       "usedPictures": {},
       "picturesUsed": {
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/151.png": true,
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/153.png": true,
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/154.png": true
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/154.png": true,
+        "null": true
       }
     },
     {
@@ -253,6 +261,18 @@
         "articuno": true,
         "flareon": true
       },
+      "arena": {},
+      "stats": {},
+      "modified": {},
+      "created": {},
+      "usedPictures": {}
+    },
+    {
+      "id": "adfd",
+      "userName": "koza1",
+      "userEmail": "koza@wp.pl",
+      "hashedPassword": 3821238780675380,
+      "favourites": {},
       "arena": {},
       "stats": {},
       "modified": {},

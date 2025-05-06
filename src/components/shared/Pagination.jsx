@@ -55,10 +55,6 @@ const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
             if (currentPage < totalPages - 2)
                 numbersVar.push(-2)
 
-            // currentPage > 1 && numbersVar.push(currentPage - 1)
-            // numbersVar.push(currentPage);
-            // currentPage < totalPages && numbersVar.push(currentPage + 1)
-
             numbersVar.push(totalPages);
             setNumbers(numbersVar)
         }
@@ -69,7 +65,10 @@ const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
         <>
             {totalPages >= 2 &&
                 <PaginationContainer>
-                    <PageButton key="-3" onClick={() => currentPage > 1 && setCurrentPage(prev => prev - 1)}><ArrowBackIcon /></PageButton>
+                    <PageButton
+                        key="-3"
+                        onClick={() => currentPage > 1 && setCurrentPage(prev => prev - 1)}
+                        className="arrowButton"><ArrowBackIcon /></PageButton>
                     {numbers.map((number) =>
                         number > 0 ?
                             <PageButton
@@ -80,7 +79,10 @@ const Pagination = ({ rawPokemonsFiltered, setRawPokemonsPaginated }) => {
                             <PageButton key={number} className="blank">...</PageButton>
                     )
                     }
-                    <PageButton key="-4" onClick={() => currentPage < totalPages && setCurrentPage(prev => prev + 1)}><ArrowForwardIcon /></PageButton>
+                    <PageButton
+                        key="-4"
+                        onClick={() => currentPage < totalPages && setCurrentPage(prev => prev + 1)}
+                        className="arrowButton"><ArrowForwardIcon /></PageButton>
 
                 </PaginationContainer>}
         </>
@@ -120,12 +122,16 @@ const PageButton = styled.li`
     border: 1px solid ${({ theme }) => theme.color.fontOnBackground};
     border-radius: 33%;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: center;
     color: ${({ theme }) => theme.color.fontOnBackground};
         
     &.current {
         border: 1px solid ${({ theme }) => theme.color.paginationButton};            
+    }
+
+    &.arrowButton {
+        align-items: center;
     }
 
     @media (max-width: 660px) {

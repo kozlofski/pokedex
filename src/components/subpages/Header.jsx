@@ -9,7 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import ThemeSwitcher from '../shared/ThemeSwitcher';
 
-import logoPath from "../../assets/pokemonLogo.svg"
+import logoUrl from "../../assets/pokemonLogo.svg"
 
 const routesIfLoggedIn = [
     { name: "Ulubione", id: 3, path: "/favorites" },
@@ -51,7 +51,7 @@ const Header = () => {
                 <MenuIcon color='inherit' fontSize='inherit' />
             }
         </MenuIconWrapper>
-        <Link to={"/"}><Logo src={logoPath} alt="POKEMON"></Logo></Link>
+        <Link to={"/"}><Logo src={logoUrl} alt="POKEMON"></Logo></Link>
         <UserAndNavbar>
             <UserContainer className="user-container">
                 <ThemeSwitcher />

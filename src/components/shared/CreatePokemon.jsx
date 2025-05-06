@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { styled } from "styled-components"
 import { useNavigate } from 'react-router-dom'
 import { createPortal } from "react-dom"
+import { enqueueSnackbar } from 'notistack'
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -14,7 +15,7 @@ import Input from '../shared/Input'
 import { JSON_SERVER_URL } from "../../constants.js"
 
 const editFormSchema = z.object({
-    name: z.string().trim().min(1, { message: "imię pokemona musi zawierać co najmniej 2 litery" }),
+    name: z.string().trim().min(1, { message: "imię nie może być puste" }),
     height: z.string().trim().min(1, { message: "wprowadź liczbę naturalną" }).regex(new RegExp(/^\d+$/g), { message: "nieprawidłowa liczba" }),
     weight: z.string().trim().min(1, { message: "wprowadź liczbę naturalną" }).regex(new RegExp(/^\d+$/g), { message: "nieprawidłowa liczba" }),
     baseExperience: z.string().trim().min(1, { message: "wprowadź liczbę naturalną" }).regex(new RegExp(/^\d+$/g), { message: "nieprawidłowa liczba" }),
@@ -37,8 +38,10 @@ const CreatePokemon = ({ loggedUserId }) => {
         event.preventDefault();
 
         try {
-            if (chosenImageUrl === null)
-                throw new Error("please choose picture")
+            if (chosenImageUrl === null) {
+                enqueueSnackbar("wybierz obrazek dla pokemona")
+                throw new Error("wybierz obrazek dla pokemona")
+            }
 
             const userData = await fetchUserData(loggedUserId);
             const oldCreated = userData.created;
@@ -71,11 +74,12 @@ const CreatePokemon = ({ loggedUserId }) => {
                     picturesUsed: newPicturesUsed,
                 }),
             });
-            if (!patchResponse) throw new Error("something is not yes with patching pokemon")
+            if (!patchResponse) throw new Error("błąd podczas tworzenia pokemona")
 
+            enqueueSnackbar(`Pomyślnie utworzono nowego pokemona ${data.name}`)
             navigate(`/`);
         } catch (error) {
-            window.alert(error)
+            console.error(error)
         }
     }
 
@@ -86,38 +90,43 @@ const CreatePokemon = ({ loggedUserId }) => {
     return (
         <CreateFormContainer>
             <CreateForm onSubmit={handleSubmit(onSubmit, onError)}>
-                <label htmlFor="name">Imię: </label>
+                {/* <label htmlFor="name">Imię: </label> */}
                 <Input {...register('name')}
                     type={"text"}
+                    label="Imię:"
                     placeholder={"imię"}
                     error={errors.name ?? ""} />
 
-                <label htmlFor="height">Wzrost: </label>
+                {/* <label htmlFor="height">Wzrost: </label> */}
                 <Input {...register('height')}
                     type={"text"}
+                    label="Wzrost:"
                     placeholder={"wzrost"}
                     error={errors.height ?? ""} />
 
-                <label htmlFor="weight">Waga: </label>
+                {/* <label htmlFor="weight">Waga: </label> */}
                 <Input {...register('weight')}
                     type={"text"}
+                    label="Waga:"
                     placeholder={"waga"}
                     error={errors.weight ?? ""} />
 
-                <label htmlFor="baseExperience">Doświadczenie: </label>
+                {/* <label htmlFor="baseExperience">Doświadczenie: </label> */}
                 <Input {...register('baseExperience')}
                     type={"text"}
+                    label="Doświadczenie:"
                     placeholder={"doświadczenie"}
                     error={errors.baseExperience ?? ""} />
 
-                <label htmlFor="baseExperience">Umiejętność: </label>
+                {/* <label htmlFor="baseExperience">Umiejętność: </label> */}
                 <Input {...register('ability')}
                     type={"text"}
+                    label="Umiejętność:"
                     placeholder={"umiejętność"}
                     error={errors.ability ?? ""} />
                 {chosenImageUrl && <Image src={chosenImageUrl} />}
-                <Button onClick={() => setModalOpened(true)}>Wybierz zdjęcie dla pokemona</Button>
-                <Button type="submit" >Utfusz</Button>
+                <Button onClick={() => setModalOpened(true)} width="80%">Wybierz zdjęcie dla pokemona</Button>
+                <Button type="submit" width="80%">Utwórz</Button>
                 {modalOpened && modal}
             </CreateForm>
         </CreateFormContainer>
@@ -133,6 +142,7 @@ const CreateFormContainer = styled.div`
 `
 
 const CreateForm = styled.form`
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;

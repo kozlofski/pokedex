@@ -22,7 +22,7 @@ const PokemonCard = ({ rawPokemon, setModalOpened, setSelectedPokemon }) => {
     }
 
     return (
-        <Card onClick={openDetails}>
+        <Card onClick={openDetails} className="pokemon-card">
             <Image src={imgUrl} alt="" />
             <Header>{name}</Header>
             <Characteristics>
@@ -64,6 +64,7 @@ const Card = styled.div`
     justify-content: space-between;
     align-items: center;
     transition: all 0.1s ease-in-out;
+    color: ${({ theme }) => theme.color.cardFont};
 
     &:hover {
         transform: scale(1.05);
@@ -79,7 +80,7 @@ const Image = styled.img`
 
 const Header = styled.p`
     font-size: 1.75rem;
-    font-weight: 900;
+    font-weight: 600;
     margin: 0;
 `
 
@@ -97,13 +98,13 @@ const Characteristic = styled.div`
 `
 const CharValue = styled.p`
     font-size: 0.75rem;
-    font-weight: 100;
+    font-weight: 400;
     margin: 0;
 `
 
 const ValueName = styled.p`
     font-size: 0.75rem;
-    font-weight: 900;
+    font-weight: 700;
     margin: 0;
 `
 

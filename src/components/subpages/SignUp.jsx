@@ -15,6 +15,7 @@ import useFetchUserNames from '../../hooks/useFetchUserNames'
 import cyrb53 from '../../services/cyrb53'
 
 import { JSON_SERVER_URL } from '../../constants'
+import { enqueueSnackbar } from 'notistack'
 
 const signupFormSchema = z.object({
     name: z.string().trim().min(3, { message: "imię musi zawierać conajmniej 3 znaki" }),
@@ -40,10 +41,11 @@ const SignUp = () => {
 
     const onSubmit = async (data, event) => {
         event.preventDefault();
-        console.log("submit successful", data)
         try {
-            if (data.name in userNamesTaken)
-                throw new Error(`user name ${data.name} already taken`)
+            if (data.name in userNamesTaken) {
+                enqueueSnackbar(`użytkownik ${data.name} już istnieje`)
+                throw new Error("user already taken")
+            }
 
             const hashedPassword = cyrb53(data.password)
 
@@ -61,13 +63,13 @@ const SignUp = () => {
                     "usedPictures": {},
                 })
             })
-            if (!response) throw new Error("something is not yes with POST response")
+            if (!response) throw new Error("error during creating new user")
 
             loginUser(data.name, hashedPassword, JSON_SERVER_URL, setLoggedUser, setLoggedUserId)
-
+            enqueueSnackbar(`Utworzono i zalogowano użytkownika ${data.name}`)
             navigate(`/`);
         } catch (error) {
-            window.alert(error)
+            console.error(error)
         }
     }
 
@@ -81,19 +83,24 @@ const SignUp = () => {
             <Form onSubmit={handleSubmit(onSubmit, onError)}>
                 <Input {...register('name')}
                     type={"text"}
+                    label="Imię:"
                     placeholder={"imię"}
                     error={errors.name ?? ""} />
 
                 <Input {...register('email')}
                     type={"text"}
+                    label="e-mail:"
+
                     placeholder={"e-mail"}
                     error={errors.email ?? ""} />
                 <Input {...register('password')}
                     type={"password"}
+                    label="Hasło:"
                     placeholder={"hasło"}
                     error={errors.password ?? ""} />
                 <Input {...register('confirm')}
                     type={"password"}
+                    label="Powtórz hasło:"
                     placeholder={"powtórz hasło"}
                     error={errors.confirm ?? ""} />
                 <Button type="submit" width="8rem">Zarejestruj</Button>

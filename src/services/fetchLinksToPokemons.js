@@ -1,4 +1,3 @@
-const BASE_URL = "https://pokeapi.co/api/v2/";
 import { API_URL } from "../constants";
 
 const fetchLinksToPokemons = async (start, limit) => {
@@ -6,7 +5,7 @@ const fetchLinksToPokemons = async (start, limit) => {
 
   try {
     const response = await fetch(
-      `${BASE_URL}pokemon?${startQueryParam}limit=${limit}`
+      `${API_URL}pokemon?${startQueryParam}limit=${limit}`
     );
     if (!response) throw new Error("fetching pokemons links went bad");
     const jsonResponse = await response.json();

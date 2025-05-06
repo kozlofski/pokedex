@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { useForm } from "react-hook-form"
 import { styled } from "styled-components"
 import { useNavigate } from 'react-router-dom'
+import { enqueueSnackbar } from 'notistack'
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from 'zod'
@@ -35,10 +36,10 @@ const LogIn = () => {
         try {
             const foundUserId = await loginUser(inputtedUserName, hashedPassword, JSON_SERVER_URL, setLoggedUser, setLoggedUserId)
             if (foundUserId === -1) throw new Error()
-
+            enqueueSnackbar(`Zalogowano użytkownika ${inputtedUserName}`);
             navigate(`/`);
         } catch (error) {
-            window.alert(error)
+            console.error(error)
             reset();
         }
     }
@@ -50,10 +51,12 @@ const LogIn = () => {
             <Form onSubmit={handleSubmit(onSubmit, onError)}>
                 <Input {...register('name')}
                     type={"text"}
+                    label="Imię:"
                     placeholder={"imię"}
                     error={errors.name ?? ""} />
                 <Input {...register('password')}
                     type={"password"}
+                    label="Hasło:"
                     placeholder={"hasło"}
                     error={errors.password ?? ""} />
                 <Button type="submit" >Zaloguj</Button>

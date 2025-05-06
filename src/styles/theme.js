@@ -4,7 +4,7 @@ export const light = {
     button: "#c6e7ff",
     cardDark: "#cbcbce",
     cardLight: "#ffffff",
-    cardFont: "#000000",
+    cardFont: "#292f33",
     orange: "#ffddae",
     border: "#35374b",
     cardShadow: "#44444444",
@@ -21,9 +21,6 @@ export const light = {
     errorMessage: "#ff0000",
     inputBorder: "#aaaaaa",
   },
-  text: {
-    main: "#000000",
-  },
 };
 
 export const dark = {
@@ -32,7 +29,7 @@ export const dark = {
     button: "#c6e7ff",
     cardDark: "#888888",
     cardLight: "#ffffff",
-    cardFont: "#000000",
+    cardFont: "#292f33",
     orange: "#ffddae",
     border: "#fbfbfb",
     cardShadow: "#bbbbbb44",
@@ -47,8 +44,5 @@ export const dark = {
     tableSecondaryFontColor: "#35374b",
     errorMessage: "#ff0000",
     inputBorder: "#aaaaaa",
-  },
-  text: {
-    main: "#000000",
   },
 };

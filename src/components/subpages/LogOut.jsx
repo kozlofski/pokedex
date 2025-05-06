@@ -4,19 +4,19 @@ import { useContext } from 'react'
 import { styled } from "styled-components"
 
 import LoginContext from '../../context/LoginContext'
+import { enqueueSnackbar } from 'notistack'
 
 const LogOut = () => {
     const { loggedUser, setLoggedUser, setLoggedUserId } = useContext(LoginContext)
     const navigate = useNavigate()
 
     useEffect(() => {
-        setTimeout(() => {
-            localStorage.setItem("loggedUser", "null")
-            setLoggedUser("null")
-            localStorage.setItem("loggedUserId", "-1")
-            setLoggedUserId("-1")
-            navigate('/')
-        }, 1500)
+        localStorage.setItem("loggedUser", "null")
+        setLoggedUser("null")
+        localStorage.setItem("loggedUserId", "-1")
+        setLoggedUserId("-1")
+        enqueueSnackbar(`Wylogowano użytkownika ${loggedUser}`)
+        navigate('/')
     }, [])
 
     return (

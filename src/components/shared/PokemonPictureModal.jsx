@@ -76,6 +76,7 @@ const PokemonPictureModal = ({ onClose, setChosenImageUrl, userId }) => {
                 <Button onClick={handlePrevPicture}>prev</Button>
                 <Image src={currentPictureUrl} onClick={pictureTaken || handleChoosePicture} className={pictureTaken && "taken"} />
                 <Button onClick={handleNextPicture}>next</Button>
+                <Close onClick={onClose}><CloseIcon /></Close>
             </ModalContent>
         </Modal>
     );
@@ -125,6 +126,12 @@ const Image = styled.img`
     @media (max-width: 600px) {
         // fix this
     }
+`
+
+const Close = styled.div`
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
 `
 
 export default PokemonPictureModal

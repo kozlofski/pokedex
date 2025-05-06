@@ -38,10 +38,13 @@ const Arena = () => {
     )
 
     const winnerModal = createPortal(
-        <WinnerModal onClose={() => {
-            removeFromArena("both")
-            setWinnerModalOpened(false)
-        }} pokemon={winner} />,
+        <WinnerModal
+            onClose={() => {
+                removeFromArena("both")
+                setWinnerModalOpened(false)
+            }}
+            pokemon={winner}
+            className="winner-modal" />,
         document.body
     )
 
@@ -73,7 +76,7 @@ const Arena = () => {
     }
 
     return (
-        <ArenaContainer>
+        <ArenaContainer className="arena-container">
             <ArenaCardContainer>
                 {leftPokemon !== undefined ?
                     <PokemonCard
@@ -87,11 +90,12 @@ const Arena = () => {
 
             <FightButton
                 onClick={handleFight}
-                disabled={!(leftPokemon && rightPokemon)} >
+                disabled={!(leftPokemon && rightPokemon)}
+                className="fight-button">
                 WALCZ!
             </FightButton>
 
-            <ArenaCardContainer>
+            <ArenaCardContainer className="arena-card-container">
                 {rightPokemon !== undefined ?
                     <PokemonCard
                         rawPokemon={rightPokemon}

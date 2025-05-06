@@ -10,7 +10,7 @@ const useFetchArena = (userId) => {
       try {
         // fetchUserData
         const response = await fetch(`${JSON_SERVER_URL}/${userId}`);
-        if (!response) throw new Error("Problem with fetching arena");
+        if (!response) throw new Error("Error during fetching arena");
 
         const jsonResponse = await response.json();
         const { leftPokemon: left, rightPokemon: right } =

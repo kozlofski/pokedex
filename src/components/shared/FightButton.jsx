@@ -39,6 +39,7 @@ const StyledButton = styled.button`
     @media (max-width: 768px) {
         order: 2;
         min-width: 300px;
+        // height: 150px;
         flex-grow: 1;
     }
 `

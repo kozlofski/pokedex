@@ -6,14 +6,18 @@ const useFetchUserNames = () => {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(JSON_SERVER_URL);
-      const jsonResponse = await response.json();
-      const users = jsonResponse.reduce((outputObj, userData) => {
-        outputObj[userData.userName] = true;
-        return outputObj;
-      }, {});
-      console.log("Users fetched: ", users);
-      setUserNamesTaken(users);
+      try {
+        const response = await fetch(JSON_SERVER_URL);
+        const jsonResponse = await response.json();
+        const users = jsonResponse.reduce((outputObj, userData) => {
+          outputObj[userData.userName] = true;
+          return outputObj;
+        }, {});
+        console.log("Users fetched: ", users);
+        setUserNamesTaken(users);
+      } catch (error) {
+        console.error(error);
+      }
     })();
   }, []);
 

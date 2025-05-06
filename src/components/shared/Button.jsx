@@ -14,6 +14,10 @@ const StyledButton = styled.button`
     border-radius: 0.25rem;
     background-color: #00aaff;
     color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     @media (max-width: 660px) {
         width: 100%;
