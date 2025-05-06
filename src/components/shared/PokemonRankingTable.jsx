@@ -206,6 +206,10 @@ const RankingTable = styled.table`
     width: 100%;
 `
 
+const SortingDirArrow = styled.div``
+
+const TableHead = styled.thead`
+`
 const TableBody = styled.tbody`
     width: 100%;
 `
