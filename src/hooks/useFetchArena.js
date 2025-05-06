@@ -8,7 +8,6 @@ const useFetchArena = (userId) => {
   useEffect(() => {
     (async () => {
       try {
-        // fetchUserData
         const response = await fetch(`${JSON_SERVER_URL}/${userId}`);
         if (!response) throw new Error("Error during fetching arena");
 

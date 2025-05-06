@@ -27,27 +27,35 @@ const useFetchAllPokemons = (setSortedPokemons) => {
 
         const pokemonFetchPromises = linksToPokemons.map(
           async (inputPokemonData) => {
-            let newPokemon;
+            try {
+              let newPokemon;
 
-            if (
-              !("url" in inputPokemonData) ||
-              inputPokemonData.url === undefined
-            ) {
-              const userData = await fetchUserData(loggedUserId);
-              const createdPokemonData =
-                userData.created[inputPokemonData.name];
-              newPokemon = {
-                ...createdPokemonData,
-                name: inputPokemonData.name,
-              };
-            } else newPokemon = await fetchSinglePokemon(inputPokemonData.url);
+              if (
+                !("url" in inputPokemonData) ||
+                inputPokemonData.url === undefined
+              ) {
+                const userData = await fetchUserData(loggedUserId);
+                const createdPokemonData =
+                  userData.created[inputPokemonData.name];
+                newPokemon = {
+                  ...createdPokemonData,
+                  name: inputPokemonData.name,
+                };
+              } else
+                newPokemon = await fetchSinglePokemon(inputPokemonData.url);
 
-            newPokemon.url = inputPokemonData.url;
-            newPokemon = await updatePokemonWithUserData(
-              newPokemon,
-              loggedUserId
-            );
-            return newPokemon;
+              newPokemon.url = inputPokemonData.url;
+              newPokemon = await updatePokemonWithUserData(
+                newPokemon,
+                loggedUserId
+              );
+              return newPokemon;
+            } catch (error) {
+              console.error(
+                "Error in fetching single pokemon in useFetchAllPokemons: ",
+                error
+              );
+            }
           }
         );
 
@@ -59,7 +67,10 @@ const useFetchAllPokemons = (setSortedPokemons) => {
           .then(() => setIsPending(false))
           .catch((error) => console.error(error));
       } catch (error) {
-        console.error("Error fetching all pokemons", error);
+        console.error(
+          "Error fetching all pokemons in useFetchAllPokemons",
+          error
+        );
       }
     })();
   }, [loggedUserId]);

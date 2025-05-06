@@ -1,7 +1,9 @@
 const fetchSinglePokemon = async (url) => {
   try {
     const response = await fetch(url);
-    if (!response) throw new Error("problem fetching pokemon");
+    if (!response)
+      throw new Error("problem fetching pokemon in fetchSinglePokemon.js");
+
     const jsonResponse = await response.json();
     const {
       name,

@@ -32,7 +32,7 @@ const loginUser = async (
     setLoggedUserId(foundUserId);
     return foundUserId;
   } catch (error) {
-    console.error(`${error}`);
+    console.error(error);
     return -1;
   }
 };

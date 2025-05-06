@@ -26,25 +26,27 @@
         "Pokemą": true
       },
       "arena": {
-        "leftPokemon": {
+        "rightPokemon": {
           "name": "ivysaur",
-          "baseExperience": 252,
+          "baseExperience": 262,
           "height": 10,
           "weight": 130,
           "ability": "overgrow",
           "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/2.png",
           "url": "https://pokeapi.co/api/v2/pokemon/2/",
-          "wins": 11,
+          "wins": 12,
           "losses": 0
         },
-        "rightPokemon": {
-          "name": "kakuna",
-          "baseExperience": 72,
-          "height": 6,
-          "weight": 100,
-          "ability": "shed-skin",
-          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/14.png",
-          "url": "https://pokeapi.co/api/v2/pokemon/14/"
+        "leftPokemon": {
+          "name": "charizard",
+          "baseExperience": 287,
+          "height": 17,
+          "weight": 905,
+          "ability": "blaze",
+          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/6.png",
+          "url": "https://pokeapi.co/api/v2/pokemon/6/",
+          "wins": 2,
+          "losses": 3
         }
       },
       "stats": {
@@ -69,9 +71,9 @@
           "baseExperience": 39
         },
         "ivysaur": {
-          "wins": 11,
+          "wins": 12,
           "losses": 0,
-          "baseExperience": 252
+          "baseExperience": 262
         },
         "ponyta": {
           "wins": 3,
@@ -105,7 +107,7 @@
         },
         "dupa": {
           "wins": 1,
-          "losses": 2,
+          "losses": 3,
           "baseExperience": 435
         },
         "sdfgsdfghgfhgfd": {
@@ -161,6 +163,16 @@
           "wins": 1,
           "losses": 0,
           "baseExperience": 59
+        },
+        "kakuna": {
+          "wins": 0,
+          "losses": 1,
+          "baseExperience": 72
+        },
+        "sfdg": {
+          "wins": 1,
+          "losses": 0,
+          "baseExperience": 244
         }
       },
       "modified": {
@@ -188,6 +200,11 @@
           "height": 33,
           "weight": 33,
           "baseExperience": 33
+        },
+        "wartortle": {
+          "height": 10,
+          "weight": 225,
+          "baseExperience": 142
         }
       },
       "created": {
@@ -232,6 +249,13 @@
           "baseExperience": 345,
           "ability": "gsdfgdf",
           "imgUrl": null
+        },
+        "sfdg": {
+          "height": 234,
+          "weight": 324,
+          "baseExperience": 234,
+          "ability": "dfsdfgdfg",
+          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/155.png"
         }
       },
       "usedPictures": {},
@@ -239,7 +263,8 @@
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/151.png": true,
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/153.png": true,
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/154.png": true,
-        "null": true
+        "null": true,
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/155.png": true
       }
     },
     {
