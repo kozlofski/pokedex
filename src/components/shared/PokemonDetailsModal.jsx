@@ -197,10 +197,6 @@ const Description = styled.div`
 
 const Image = styled.img`
     height: 100%;
-
-    @media (max-width: 600px) {
-        // fix this
-    }
 `
 
 const Header = styled.p`
@@ -224,7 +220,7 @@ const Characteristic = styled.div`
 `
 const CharValue = styled.p`
     font-size: 0.75rem;
-    font-weight: 100;
+    font-weight: 400;
     margin: 0;
 `
 

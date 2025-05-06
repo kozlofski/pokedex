@@ -19,7 +19,6 @@ const InputContainer = styled.div`
 `
 
 const StyledLabel = styled.label`
-// align-self: start;
     color: ${({ theme }) => theme.color.fontOnBackground};
 `
 

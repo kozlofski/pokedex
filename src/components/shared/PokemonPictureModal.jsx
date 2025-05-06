@@ -94,7 +94,6 @@ const Modal = styled.div`
     justify-content: center;
     backdrop-filter: blur(10px);
     z-index: 10;
-    // overflow: hidden;
   `
 
 const ModalContent = styled.div`
@@ -121,10 +120,6 @@ const Image = styled.img`
 
     &.taken {
         filter: grayscale(100%) contrast(70%) brightness(140%) ;
-    }
-
-    @media (max-width: 600px) {
-        // fix this
     }
 `
 

@@ -17,10 +17,6 @@ const MainContainer = styled.main`
     display: flex;
     flex-direction: column;
     align-items: stretch;
-
-    @media (max-width: 660px) {
-        // padding-top: 1rem;
-    }
 `
 
 export default Main
