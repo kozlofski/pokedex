@@ -22,19 +22,20 @@
         "charmander": true,
         "bulbasaur": true,
         "charizard": true,
-        "dsfajnjk": true
+        "dsfajnjk": true,
+        "Pokemą": true
       },
       "arena": {},
       "stats": {
         "venusaur": {
-          "wins": 13,
+          "wins": 14,
           "losses": 0,
-          "baseExperience": "373"
+          "baseExperience": 44410
         },
         "bulbasaur": {
           "wins": 9,
           "losses": 20,
-          "baseExperience": "114"
+          "baseExperience": 1150
         },
         "rattata": {
           "wins": 1,
@@ -43,7 +44,7 @@
         },
         "caterpie": {
           "wins": 0,
-          "losses": 5,
+          "losses": 6,
           "baseExperience": 39
         },
         "ivysaur": {
@@ -84,7 +85,7 @@
         "dupa": {
           "wins": 1,
           "losses": 2,
-          "baseExperience": "435"
+          "baseExperience": 435
         },
         "sdfgsdfghgfhgfd": {
           "wins": 0,
@@ -93,7 +94,7 @@
         },
         "charizard": {
           "wins": 2,
-          "losses": 2,
+          "losses": 3,
           "baseExperience": 287
         },
         "butterfree": {
@@ -113,8 +114,8 @@
         },
         "charmander": {
           "wins": 0,
-          "losses": 2,
-          "baseExperience": 62
+          "losses": 3,
+          "baseExperience": 33
         },
         "ninetales": {
           "wins": 1,
@@ -128,29 +129,44 @@
         "dsfajnjk": {
           "wins": 1,
           "losses": 0,
-          "baseExperience": "53410"
+          "baseExperience": 53410
+        },
+        "metapod": {
+          "wins": 1,
+          "losses": 0,
+          "baseExperience": 82
+        },
+        "zubat": {
+          "wins": 1,
+          "losses": 0,
+          "baseExperience": 59
         }
       },
       "modified": {
         "dupa": {
-          "height": "3451",
-          "weight": "21",
-          "baseExperience": "435"
+          "height": 3451,
+          "weight": 21,
+          "baseExperience": 435
         },
         "squirtle": {
-          "height": "5",
-          "weight": "90",
-          "baseExperience": "64"
+          "height": 5,
+          "weight": 90,
+          "baseExperience": 64
         },
         "venusaur": {
-          "height": "20",
-          "weight": "1000",
-          "baseExperience": "373"
+          "height": 20,
+          "weight": 1000,
+          "baseExperience": 444
         },
         "bulbasaur": {
-          "height": "7",
-          "weight": "69",
-          "baseExperience": "114"
+          "height": 800,
+          "weight": 680,
+          "baseExperience": 1150
+        },
+        "charmander": {
+          "height": 33,
+          "weight": 33,
+          "baseExperience": 33
         }
       },
       "created": {
@@ -169,24 +185,32 @@
           "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/153.png"
         },
         "dfghdfg": {
-          "height": "1234",
-          "weight": "54645",
-          "baseExperience": "234243",
+          "height": 1234,
+          "weight": 54645,
+          "baseExperience": 34243,
           "ability": "dgfh",
           "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/151.png"
         },
         "dsfajnjk": {
-          "height": "123",
-          "weight": "123",
-          "baseExperience": "534",
+          "height": 123,
+          "weight": 23,
+          "baseExperience": 534,
           "ability": "sdfgdfsg",
           "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/153.png"
+        },
+        "Pokemą": {
+          "height": 111,
+          "weight": 222,
+          "baseExperience": 333,
+          "ability": "nagła śmierć",
+          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/154.png"
         }
       },
       "usedPictures": {},
       "picturesUsed": {
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/151.png": true,
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/153.png": true
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/153.png": true,
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/154.png": true
       }
     },
     {

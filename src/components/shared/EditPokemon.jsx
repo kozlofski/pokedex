@@ -40,17 +40,17 @@ const EditPokemon = ({ editedPokemon, loggedUserId }) => {
             if (pokemonName in oldModified) {
                 newModified = { ...oldModified };
                 newModified[pokemonName] = {
-                    height: data.height,
-                    weight: data.weight,
-                    baseExperience: data.baseExperience,
+                    height: parseInt(data.height),
+                    weight: parseInt(data.weight),
+                    baseExperience: parseInt(data.baseExperience),
                 };
             } else {
                 newModified = {
                     ...oldModified,
                     [pokemonName]: {
-                        height: data.height,
-                        weight: data.weight,
-                        baseExperience: data.baseExperience,
+                        height: parseInt(data.height),
+                        weight: parseInt(data.weight),
+                        baseExperience: parseInt(data.baseExperience),
                     },
                 };
             }
@@ -60,7 +60,7 @@ const EditPokemon = ({ editedPokemon, loggedUserId }) => {
                 newStats[pokemonName] = {
                     wins: oldStats[pokemonName].wins,
                     losses: oldStats[pokemonName].losses,
-                    baseExperience: data.baseExperience,
+                    baseExperience: parseInt(data.baseExperience),
                 }
             } else {
                 newStats = { ...oldStats }
@@ -86,7 +86,7 @@ const EditPokemon = ({ editedPokemon, loggedUserId }) => {
     }
 
     return (
-        <>
+        <EditFormContainer className="edit-form-container">
             <EditForm onSubmit={handleSubmit(onSubmit, onError)}>
                 <label htmlFor="height">Height: </label>
                 <Input {...register('height')}
@@ -109,16 +109,24 @@ const EditPokemon = ({ editedPokemon, loggedUserId }) => {
                 <Button type="submit" >Potwierdź zmiany</Button>
 
             </EditForm>
-        </>
+        </EditFormContainer>
     )
 }
+
+const EditFormContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
 
 const EditForm = styled.form`
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: center;
+    width: 100%;
     max-width: 20rem;
-    margin: 0 auto;
 `
 
 export default EditPokemon

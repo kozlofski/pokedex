@@ -17,7 +17,7 @@ const StyledInput = styled.input`
     padding: 0.25rem;
 
     @media (max-width: 660px) {
-        width: 75%;
+        width: 85%;
         padding: 0.33rem;
     }
 `

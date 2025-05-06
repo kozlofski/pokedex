@@ -51,9 +51,9 @@ const CreatePokemon = ({ loggedUserId }) => {
             newCreated = {
                 ...oldCreated,
                 [data.name]: {
-                    height: data.height,
-                    weight: data.weight,
-                    baseExperience: data.baseExperience,
+                    height: parseInt(data.height),
+                    weight: parseInt(data.weight),
+                    baseExperience: parseInt(data.baseExperience),
                     ability: data.ability,
                     imgUrl: chosenImageUrl
                 },
@@ -84,10 +84,8 @@ const CreatePokemon = ({ loggedUserId }) => {
     }
 
     return (
-        <>
+        <CreateFormContainer>
             <CreateForm onSubmit={handleSubmit(onSubmit, onError)}>
-
-
                 <label htmlFor="name">Imię: </label>
                 <Input {...register('name')}
                     type={"text"}
@@ -121,18 +119,26 @@ const CreatePokemon = ({ loggedUserId }) => {
                 <Button onClick={() => setModalOpened(true)}>Wybierz zdjęcie dla pokemona</Button>
                 <Button type="submit" >Utfusz</Button>
                 {modalOpened && modal}
-
             </CreateForm>
-        </>
+        </CreateFormContainer>
     )
 }
+
+const CreateFormContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
 
 const CreateForm = styled.form`
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: center;
     max-width: 20rem;
     margin: 0 auto;
+    gap: 0.25rem;
 `
 
 const Image = styled.img`

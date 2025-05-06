@@ -1,5 +1,4 @@
 const fight = (leftPokemon, rightPokemon) => {
-  console.log("Fight: ", leftPokemon, rightPokemon);
   const { baseExperience: leftExp, weight: leftWeight } = leftPokemon;
   const { baseExperience: rightExp, weight: rightWeight } = rightPokemon;
 
