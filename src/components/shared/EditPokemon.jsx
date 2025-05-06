@@ -26,7 +26,6 @@ const EditPokemon = ({ editedPokemon, loggedUserId }) => {
     setValue("baseExperience", editedPokemon.baseExperience.toString())
 
     const onSubmit = async (data, event) => {
-        console.log(data)
         event.preventDefault();
 
         try {
@@ -82,7 +81,7 @@ const EditPokemon = ({ editedPokemon, loggedUserId }) => {
     }
 
     const onError = (error) => {
-        console.log("Error from hook: : ", error)
+        console.error("Error from hook: : ", error)
     }
 
     return (

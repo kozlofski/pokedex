@@ -21,10 +21,10 @@ const Edit = () => {
     return (
         <EditContainer className="edit-container">
             {editMode === "init" &&
-                (<>
+                (<InitContainer>
                     <Button onClick={() => setEditMode("create")} width={"10rem"}>Stwórz własnego pokemona</Button>
                     <PokemonRankingTable edit={true} setEditedPokemon={setEditedPokemon} />
-                </>)}
+                </InitContainer>)}
             {editMode === "edit" && <EditPokemon editedPokemon={editedPokemon} loggedUserId={loggedUserId} />}
             {editMode === "create" && <CreatePokemon loggedUserId={loggedUserId} />}
         </EditContainer>
@@ -37,6 +37,15 @@ const EditContainer = styled.div`
     flex-direction: column;
     min-height: 100%;
     align-items: center;
+`
+
+const InitContainer = styled.div`
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    align-items: center;
+    padding-top: 1rem;
 `
 
 export default Edit

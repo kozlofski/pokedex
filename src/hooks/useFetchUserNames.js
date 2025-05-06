@@ -13,7 +13,6 @@ const useFetchUserNames = () => {
           outputObj[userData.userName] = true;
           return outputObj;
         }, {});
-        console.log("Users fetched: ", users);
         setUserNamesTaken(users);
       } catch (error) {
         console.error(error);

@@ -1,5 +1,4 @@
 import React from 'react'
-import { useEffect } from 'react';
 import { styled } from "styled-components"
 
 import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
@@ -7,11 +6,6 @@ import Button from "./Button"
 
 const WinnerModal = ({ onClose, pokemon }) => {
     const { imgUrl } = useFetchSinglePokemon(pokemon)
-
-    useEffect(() => {
-        // console.log("Setting heart and arena icons after initial render. User: ", loggedUserId)
-        // if (loggedUserId !== -1) setHeartAndArenaIcons();
-    }, [])
 
     return (
         <Modal onClick={onClose}>

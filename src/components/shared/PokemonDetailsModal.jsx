@@ -38,11 +38,10 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
 
             if (name in userData.favourites) setIsFavourite(true)
             if (name === userData.arena.leftPokemon?.name || name === userData.arena.rightPokemon?.name) {
-                console.log(`${name} matches ${userData.arena.leftPokemon?.name} or ${userData.arena.rightPokemon?.name}`)
                 setIsOnArena(true)
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 
@@ -53,7 +52,6 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
 
     const toggleFavourite = async () => {
         const newIsFavourite = !isFavourite;
-        console.log("Is favourite was: ", isFavourite)
 
         try {
             let newFavourites = {}
@@ -71,7 +69,7 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
 
             setIsFavourite(newIsFavourite);
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 
@@ -100,7 +98,7 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
             setArena(newArena)
             setIsOnArena((prev) => !prev);
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 

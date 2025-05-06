@@ -30,7 +30,7 @@ const PokemonPictureModal = ({ onClose, setChosenImageUrl, userId }) => {
                 if (imgUrl in picturesUsedData) setPictureTaken(true)
                 else setPictureTaken(false)
             } catch (error) {
-                console.log(error)
+                console.error(error)
             }
         })()
     }, [pokemons, userId])
@@ -40,10 +40,8 @@ const PokemonPictureModal = ({ onClose, setChosenImageUrl, userId }) => {
         let current = currentPictureNumber;
         current--;
         if (current < 0) current = PICTURES_TO_CHOOSE - 1
-        console.log("Current: ", current)
         setCurrentPictureNumber(current)
         const { imgUrl } = await fetchSinglePokemon(pokemons[current].url)
-        console.log(imgUrl)
         setCurrentPictureUrl(imgUrl)
 
         if (imgUrl in picturesUsed) setPictureTaken(true)
@@ -54,10 +52,8 @@ const PokemonPictureModal = ({ onClose, setChosenImageUrl, userId }) => {
         let current = currentPictureNumber;
         current++;
         if (current >= PICTURES_TO_CHOOSE) current = 0
-        console.log("Current: ", current)
         setCurrentPictureNumber(current)
         const { imgUrl } = await fetchSinglePokemon(pokemons[current].url)
-        console.log(imgUrl)
         setCurrentPictureUrl(imgUrl)
 
         if (imgUrl in picturesUsed) setPictureTaken(true)

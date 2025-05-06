@@ -4,7 +4,6 @@ const fight = (leftPokemon, rightPokemon) => {
 
   const leftPower = leftExp * leftWeight;
   const rightPower = rightExp * rightWeight;
-  // can it be simplified?
   const winner = leftPower > rightPower ? leftPokemon : rightPokemon;
   const loser = leftPower > rightPower ? rightPokemon : leftPokemon;
 

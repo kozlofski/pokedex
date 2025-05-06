@@ -33,7 +33,7 @@ const useFetchRawPokemons = (start = 0, limit = LIMIT, favourites) => {
         setRawPokemons(linksToPokemons);
         setIsPending(false);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     })();
   }, [start, limit, favourites, loggedUserId]);

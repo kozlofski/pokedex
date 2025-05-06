@@ -34,7 +34,6 @@ const CreatePokemon = ({ loggedUserId }) => {
     )
 
     const onSubmit = async (data, event) => {
-        console.log(data)
         event.preventDefault();
 
         try {
@@ -84,7 +83,7 @@ const CreatePokemon = ({ loggedUserId }) => {
     }
 
     const onError = (error) => {
-        console.log("Error from hook: : ", error)
+        console.error("Error from hook: : ", error)
     }
 
     return (

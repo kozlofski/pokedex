@@ -30,7 +30,7 @@ const fetchSinglePokemon = async (url) => {
     };
     return newPokemon;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

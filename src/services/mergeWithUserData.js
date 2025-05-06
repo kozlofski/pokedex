@@ -24,8 +24,8 @@ const mergeWithUserData = async (linksToPokemons, loggedUserId) => {
       return modifiedPokemon;
     });
     return mergedPokemons;
-  } catch (e) {
-    console.log("Fetch user data problem: ", e);
+  } catch (error) {
+    console.error("Fetch user data problem: ", error);
   }
 };
 
