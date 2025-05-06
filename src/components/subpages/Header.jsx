@@ -83,7 +83,6 @@ const HeaderContainer = styled.header`
         height: 3rem;
         width: 100%;
         justify-content: flex-start;
-        // padding: 0;
         position: fixed;
         top: 0;
         z-index: 10;
@@ -134,7 +133,6 @@ const UserContainer = styled.div`
     font-size: 1rem;
     
     @media (max-width: 660px) {
-        // margin-right: 0.5rem;
         font-size: 1.5rem;
     }
 `

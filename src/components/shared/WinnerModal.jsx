@@ -65,10 +65,6 @@ const Description = styled.div`
 
 const Image = styled.img`
     height: 100%;
-
-    @media (max-width: 600px) {
-        // fix this
-    }
 `
 
 const Header = styled.p`

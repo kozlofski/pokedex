@@ -72,4 +72,5 @@ After logging out you will be returned to homescreen
 On top of the screen you have option to change between light and dark mode
 
 Enjoy!
+
 kozlofski

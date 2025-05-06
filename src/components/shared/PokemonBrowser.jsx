@@ -38,7 +38,6 @@ const PokemonBrowser = ({ favourites }) => {
                 setRawPokemonsPaginated={setRawPokemonsPaginated}
             />
             <PokemonsGallery>
-                {/* turn loader into separate component */}
                 {isPending && <Loader />}
                 {isPending || rawPokemonsPaginated && rawPokemonsPaginated.map((rawPokemon, id) => {
                     return <li key={id}>
@@ -85,7 +84,8 @@ const PokemonsFilter = styled.input`
     border-radius: 0.25rem;
 
     &:focus {
-        border: 2px solid #999999;
+        outline: none;
+        border: 2px solid ${({ theme }) => theme.color.inputBorderFocus};
     }
 `
 

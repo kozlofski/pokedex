@@ -158,7 +158,7 @@ const Modal = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #00000088;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -170,7 +170,7 @@ const ModalContent = styled.div`
     padding: 0.5rem;
     border-radius: 0.5rem;
     box-shadow: 0.5rem 0.5rem 0.9rem #44444444;
-    background: linear-gradient(135deg, #cacdca, #ffffff, #cacdca);
+    background: linear-gradient(135deg, ${({ theme }) => theme.color.cardDark}, ${({ theme }) => theme.color.cardLight}, ${({ theme }) => theme.color.cardDark});
     width: min(90%, 900px);
     height: 20rem;
     display: flex;
@@ -254,7 +254,7 @@ const Arena = styled.div`
     color: grey;
 
     &.onArena {
-        color: red;
+        color: #ff0000;
     }
 `
 

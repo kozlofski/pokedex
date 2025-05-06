@@ -89,40 +89,36 @@ const CreatePokemon = ({ loggedUserId }) => {
     return (
         <CreateFormContainer>
             <CreateForm onSubmit={handleSubmit(onSubmit, onError)}>
-                {/* <label htmlFor="name">Imię: </label> */}
                 <Input {...register('name')}
                     type={"text"}
                     label="Imię:"
                     placeholder={"imię"}
                     error={errors.name ?? ""} />
 
-                {/* <label htmlFor="height">Wzrost: </label> */}
                 <Input {...register('height')}
                     type={"text"}
                     label="Wzrost:"
                     placeholder={"wzrost"}
                     error={errors.height ?? ""} />
 
-                {/* <label htmlFor="weight">Waga: </label> */}
                 <Input {...register('weight')}
                     type={"text"}
                     label="Waga:"
                     placeholder={"waga"}
                     error={errors.weight ?? ""} />
 
-                {/* <label htmlFor="baseExperience">Doświadczenie: </label> */}
                 <Input {...register('baseExperience')}
                     type={"text"}
                     label="Doświadczenie:"
                     placeholder={"doświadczenie"}
                     error={errors.baseExperience ?? ""} />
 
-                {/* <label htmlFor="baseExperience">Umiejętność: </label> */}
                 <Input {...register('ability')}
                     type={"text"}
                     label="Umiejętność:"
                     placeholder={"umiejętność"}
                     error={errors.ability ?? ""} />
+
                 {chosenImageUrl && <Image src={chosenImageUrl} />}
                 <Button onClick={() => setModalOpened(true)} width="80%">Wybierz zdjęcie dla pokemona</Button>
                 <Button type="submit" width="80%">Utwórz</Button>
@@ -152,10 +148,6 @@ const CreateForm = styled.form`
 
 const Image = styled.img`
     height: 100px;
-
-    @media (max-width: 600px) {
-        // fix this
-    }
 `
 
 export default CreatePokemon

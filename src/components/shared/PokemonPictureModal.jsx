@@ -19,6 +19,7 @@ const PokemonPictureModal = ({ onClose, setChosenImageUrl, userId }) => {
 
     useEffect(() => {
         (async () => {
+            if (pokemons[0] === undefined) return
             try {
                 const { imgUrl } = await fetchSinglePokemon(pokemons[0].url)
                 setCurrentPictureUrl(imgUrl)
@@ -61,6 +62,7 @@ const PokemonPictureModal = ({ onClose, setChosenImageUrl, userId }) => {
     }
 
     const handleChoosePicture = () => {
+        if (pictureTaken) return
         setChosenImageUrl(currentPictureUrl)
         onClose()
     }
@@ -70,7 +72,7 @@ const PokemonPictureModal = ({ onClose, setChosenImageUrl, userId }) => {
         <Modal onClick={onClose}>
             <ModalContent onClick={e => e.stopPropagation()}>
                 <Button onClick={handlePrevPicture}>prev</Button>
-                <Image src={currentPictureUrl} onClick={pictureTaken || handleChoosePicture} className={pictureTaken && "taken"} />
+                <Image className={pictureTaken && "taken"} src={currentPictureUrl} onClick={handleChoosePicture} />
                 <Button onClick={handleNextPicture}>next</Button>
                 <Close onClick={onClose}><CloseIcon /></Close>
             </ModalContent>
@@ -84,7 +86,7 @@ const Modal = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #00000088;
     display: flex;
     align-items: center;
     justify-content: center;

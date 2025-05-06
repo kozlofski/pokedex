@@ -19,7 +19,7 @@ const StyledButton = styled.button`
     border-radius: 0.5rem;
     box-shadow: 0.5rem 0.5rem 0.9rem ${({ theme }) => theme.color.cardShadow};
     background-color: ${({ theme }) => theme.color.fightButton};
-    color: white;
+    color: ${({ theme }) => theme.color.buttonFont};
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -39,7 +39,6 @@ const StyledButton = styled.button`
     @media (max-width: 768px) {
         order: 2;
         min-width: 300px;
-        // height: 150px;
         flex-grow: 1;
     }
 `

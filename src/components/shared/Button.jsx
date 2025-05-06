@@ -12,8 +12,8 @@ const StyledButton = styled.button`
     width: ${(props) => props.width};
     border: none;
     border-radius: 0.25rem;
-    background-color: #00aaff;
-    color: white;
+    background-color: ${({ theme }) => theme.color.buttonBackground};
+    color: ${({ theme }) => theme.color.buttonFont};
     text-align: center;
     display: flex;
     justify-content: center;

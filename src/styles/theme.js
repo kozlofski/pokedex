@@ -2,6 +2,8 @@ export const light = {
   color: {
     background: "#fbfbfb",
     button: "#c6e7ff",
+    buttonBackground: "#00aaff",
+    buttonFont: "#ffffff",
     cardDark: "#cbcbce",
     cardLight: "#ffffff",
     cardFont: "#292f33",
@@ -20,6 +22,8 @@ export const light = {
     tableSecondaryFontColor: "#004488",
     errorMessage: "#ff0000",
     inputBorder: "#aaaaaa",
+    inputBorderFocus: "#888888",
+    modalShadow: "#444444",
   },
 };
 
@@ -27,6 +31,8 @@ export const dark = {
   color: {
     background: "#35374b",
     button: "#c6e7ff",
+    buttonBackground: "#00aaff",
+    buttonFont: "#ffffff",
     cardDark: "#888888",
     cardLight: "#ffffff",
     cardFont: "#292f33",
@@ -44,5 +50,6 @@ export const dark = {
     tableSecondaryFontColor: "#35374b",
     errorMessage: "#ff0000",
     inputBorder: "#aaaaaa",
+    inputBorderFocus: "#888888",
   },
 };
