@@ -25,15 +25,19 @@ Run application
 npm run dev
 ```
 
+It will be most likely served at http://localhost:5173/
+
 ## Functionalities
 
 ### Homescreen
 
-You are able to browse pokemons from API. By default, only first 150 pokemons are fetched. You can change that by editing `constants.js` file in `src/` directory. You can click any pokemon, to see a modal. You can reach this site by clicking Pokemon logo, or clicking `Home` button in mobile menu.
+You are able to browse pokemons fetched from API. By default, only first 150 pokemons are fetched. You can change that by editing `constants.js` file in `src/` directory. You can click any pokemon, to see a modal. You can reach `home` page by clicking Pokemon logo, or clicking `Home` button in mobile menu.
 
 You can search pokemon by name, by using input below the navbar.
 
-If not logged in, there are only two options available, Sign-up and Log-In. Currently, user interface is only in Polish
+If not logged in, there are only two options available, Sign-up and Log-In.
+
+Currently, user interface is only in Polish
 
 ### Sign-Up (Rejestracja)
 
@@ -66,3 +70,6 @@ After logging out you will be returned to homescreen
 ### Theme changer
 
 On top of the screen you have option to change between light and dark mode
+
+Enjoy!
+kozlofski
