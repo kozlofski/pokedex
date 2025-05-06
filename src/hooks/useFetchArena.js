@@ -6,7 +6,7 @@ const useFetchArena = (userId) => {
   const [rightPokemonFromArena, setRightPokemonFromArena] = useState(undefined);
 
   useEffect(() => {
-    const fetchArenaData = async () => {
+    (async () => {
       try {
         // fetchUserData
         const response = await fetch(`${JSON_SERVER_URL}/${userId}`);
@@ -20,10 +20,8 @@ const useFetchArena = (userId) => {
       } catch (error) {
         throw new Error(error);
       }
-    };
-
-    fetchArenaData(); // change to iife
-  }, []);
+    })();
+  }, [userId]);
 
   return { leftPokemonFromArena, rightPokemonFromArena };
 };

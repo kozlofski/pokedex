@@ -70,7 +70,7 @@ const Header = () => {
 
 const HeaderContainer = styled.header`
     margin: 0 auto;
-    max-width: 1024px;
+    max-width: 1280px;
     display: flex;
     flex-direction: row;
     justify-content: start;

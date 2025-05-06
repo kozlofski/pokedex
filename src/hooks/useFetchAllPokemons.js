@@ -46,6 +46,7 @@ const useFetchAllPokemons = (setSortedPokemons) => {
           return newPokemon;
         }
       );
+
       Promise.all(pokemonFetchPromises)
         .then((pokemons) => {
           setCompletePokemons([...pokemons]);

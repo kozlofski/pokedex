@@ -52,7 +52,7 @@ const PokemonCard = ({ rawPokemon, setModalOpened, setSelectedPokemon }) => {
 }
 
 const Card = styled.div`
-    padding: 0.5rem;
+    padding: 0.75rem;
     border-radius: 0.5rem;
     box-shadow: 0.5rem 0.5rem 0.9rem ${({ theme }) => theme.color.cardShadow};
     background: linear-gradient(135deg, ${({ theme }) => theme.color.cardDark},${({ theme }) => theme.color.cardLight}, ${({ theme }) => theme.color.cardDark});

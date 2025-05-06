@@ -5,7 +5,7 @@ const useFetchUserNames = () => {
   const [userNamesTaken, setUserNamesTaken] = useState([]);
 
   useEffect(() => {
-    const fetchUserNames = async () => {
+    (async () => {
       const response = await fetch(JSON_SERVER_URL);
       const jsonResponse = await response.json();
       const users = jsonResponse.reduce((outputObj, userData) => {
@@ -14,8 +14,7 @@ const useFetchUserNames = () => {
       }, {});
       console.log("Users fetched: ", users);
       setUserNamesTaken(users);
-    };
-    fetchUserNames();
+    })();
   }, []);
 
   return userNamesTaken;
