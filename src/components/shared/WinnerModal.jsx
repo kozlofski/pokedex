@@ -10,7 +10,7 @@ const WinnerModal = ({ onClose, pokemon }) => {
     return (
         <Modal onClick={onClose}>
             <ModalContent onClick={e => e.stopPropagation()}>
-                <H2>WINNER!</H2>
+                <H2>ZWYCIĘZCA!</H2>
                 <Image src={imgUrl} alt="" />
                 <Description>
                     <Header>{pokemon.name}</Header>

@@ -73,8 +73,8 @@ const CreatePokemon = ({ loggedUserId }) => {
                     picturesUsed: newPicturesUsed,
                 }),
             });
-            if (!patchResponse) throw new Error("błąd podczas tworzenia pokemona")
-
+            if (!patchResponse) throw new Error("error creating pokemon")
+            console.log("Edited")
             enqueueSnackbar(`Pomyślnie utworzono nowego pokemona ${data.name}`)
             navigate(`/`);
         } catch (error) {

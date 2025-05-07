@@ -2,6 +2,8 @@ import React from 'react'
 import { styled } from "styled-components"
 import { useForm } from "react-hook-form"
 import { useNavigate } from 'react-router-dom'
+import { enqueueSnackbar } from 'notistack'
+
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from 'zod'
@@ -72,11 +74,12 @@ const EditPokemon = ({ editedPokemon, loggedUserId }) => {
                     stats: newStats,
                 }),
             });
-            if (!patchResponse) throw new Error("something is not yes with patching pokemon")
+            if (!patchResponse) throw new Error("error patching pokemon")
 
+            enqueueSnackbar(`Zmieniono atrybuty pokemona ${pokemonName}`)
             navigate(`/`);
         } catch (error) {
-            window.alert(error)
+            console.error(error)
         }
     }
 

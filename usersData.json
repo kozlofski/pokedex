@@ -8,9 +8,31 @@
       "favourites": {},
       "arena": {},
       "stats": {},
-      "modified": {},
-      "created": {},
-      "usedPictures": {}
+      "modified": {
+        "bulbasaur": {
+          "height": 700,
+          "weight": 55,
+          "baseExperience": 324
+        },
+        "charmander": {
+          "height": 6,
+          "weight": 852,
+          "baseExperience": 62
+        }
+      },
+      "created": {
+        "gfdh": {
+          "height": 435,
+          "weight": 12,
+          "baseExperience": 23,
+          "ability": "fgfdg",
+          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/151.png"
+        }
+      },
+      "usedPictures": {},
+      "picturesUsed": {
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/151.png": true
+      }
     },
     {
       "id": "d785",
@@ -22,7 +44,18 @@
         "ivysaur": true
       },
       "arena": {},
-      "stats": {},
+      "stats": {
+        "charmander": {
+          "wins": 1,
+          "losses": 0,
+          "baseExperience": 72
+        },
+        "bulbasaur": {
+          "wins": 0,
+          "losses": 1,
+          "baseExperience": 70
+        }
+      },
       "modified": {
         "bulbasaur": {
           "height": 7,
