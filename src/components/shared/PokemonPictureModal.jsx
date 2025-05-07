@@ -67,7 +67,6 @@ const PokemonPictureModal = ({ onClose, setChosenImageUrl, userId }) => {
         onClose()
     }
 
-
     return (
         <Modal onClick={onClose}>
             <ModalContent onClick={e => e.stopPropagation()}>
