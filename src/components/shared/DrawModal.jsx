@@ -3,7 +3,7 @@ import { styled } from "styled-components"
 
 import Button from "./Button"
 
-const WinnerModal = ({ onClose }) => {
+const DrawModal = ({ onClose }) => {
 
     return (
         <Modal onClick={onClose}>
@@ -70,4 +70,4 @@ const H2 = styled.h2`
     font-size: 2rem;
 `
 
-export default WinnerModal
+export default DrawModal

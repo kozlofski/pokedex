@@ -74,7 +74,6 @@ const CreatePokemon = ({ loggedUserId }) => {
                 }),
             });
             if (!patchResponse) throw new Error("error creating pokemon")
-            console.log("Edited")
             enqueueSnackbar(`Pomyślnie utworzono nowego pokemona ${data.name}`)
             navigate(`/`);
         } catch (error) {
