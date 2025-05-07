@@ -27,7 +27,7 @@ const LogOut = () => {
 const LogoutScreen = styled.h2`
     display: flex;
     width: 100%;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 6.25rem);
     text-align: center;
     justify-content: center;
     align-items: center;

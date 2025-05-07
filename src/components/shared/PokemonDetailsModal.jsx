@@ -162,7 +162,7 @@ const Modal = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(0.625rem);
     z-index: 2;
   `
 
@@ -171,7 +171,7 @@ const ModalContent = styled.div`
     border-radius: 0.5rem;
     box-shadow: 0.5rem 0.5rem 0.9rem #44444444;
     background: linear-gradient(135deg, ${({ theme }) => theme.color.cardDark}, ${({ theme }) => theme.color.cardLight}, ${({ theme }) => theme.color.cardDark});
-    width: min(90%, 900px);
+    width: min(90%, 56.25rem);
     height: 20rem;
     display: flex;
     flex-direction: row;

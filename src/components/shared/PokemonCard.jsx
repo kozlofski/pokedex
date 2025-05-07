@@ -112,7 +112,7 @@ const WinsAndLosses = styled.div`
     top: 0;
     left: 0;
     padding: 0.25rem;
-    background-color: #555555;
+    background-color: ${({ theme }) => theme.color.winsAndLossesBackground};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -121,7 +121,7 @@ const WinsAndLosses = styled.div`
 `
 
 const WinOrLoss = styled.div`
-    color: #ffffff;
+    color: ${({ theme }) => theme.color.winsAndLossesFont};
     text-align: justify;  
 `
 

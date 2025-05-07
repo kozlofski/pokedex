@@ -90,7 +90,7 @@ const Modal = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(0.625rem);
     z-index: 10;
   `
 

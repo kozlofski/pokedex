@@ -13,8 +13,8 @@ const FightButton = ({ children, disabled, onClick }) => {
 
 const StyledButton = styled.button`
     padding: 0.25rem 1rem;
-    width: 200px;
-    height: 200px;
+    width: 12.5rem;
+    height: 12.5rem;
     border: none;
     border-radius: 0.5rem;
     box-shadow: 0.5rem 0.5rem 0.9rem ${({ theme }) => theme.color.cardShadow};
@@ -38,7 +38,7 @@ const StyledButton = styled.button`
 
     @media (max-width: 768px) {
         order: 2;
-        min-width: 300px;
+        min-width: 18.75rem;
         flex-grow: 1;
     }
 `

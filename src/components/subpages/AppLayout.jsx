@@ -19,7 +19,7 @@ const AppLayout = () => {
 const AppContainer = styled.div`
     min-height: 100vh;
     display: grid;
-    grid-template-rows: 100px 1fr;
+    grid-template-rows: 6.25rem 1fr;
     grid-template-cols: 1fr;
     background: ${({ theme }) => theme.color.background};
 

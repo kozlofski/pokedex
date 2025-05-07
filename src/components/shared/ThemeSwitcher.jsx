@@ -19,12 +19,12 @@ const ThemeSwitcher = () => {
 const SwitcherContainer = styled.div`
     display: flex;
     flex-direction: row;
-    gap: 5px;
+    gap: 0.3125rem;
 `
 
 const ThemeButton = styled.button`
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
     border-radius: 50%;
 
     &.light {
@@ -38,8 +38,8 @@ const ThemeButton = styled.button`
     }
 
     @media (max-width: 660px) {
-        width: 30px;
-        height: 30px;
+        width: 1.875rem;
+        height: 1.875rem;
     }
 `
 

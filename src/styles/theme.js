@@ -24,6 +24,8 @@ export const light = {
     inputBorder: "#aaaaaa",
     inputBorderFocus: "#888888",
     modalShadow: "#444444",
+    winsAndLossesBackground: "#555555",
+    winsAndLossesFont: "#ffffff",
   },
 };
 
@@ -51,5 +53,7 @@ export const dark = {
     errorMessage: "#ff0000",
     inputBorder: "#aaaaaa",
     inputBorderFocus: "#888888",
+    winsAndLossesBackground: "#555555",
+    winsAndLossesFont: "#ffffff",
   },
 };

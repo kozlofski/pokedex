@@ -106,7 +106,7 @@ const PaginationContainer = styled.ul`
 
     @media (max-width: 660px) {
         background-color: ${({ theme }) => theme.color.paginationBackground};
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(0.625rem);
         position: fixed;
         top: inherit;
         bottom: 0;
@@ -116,8 +116,8 @@ const PaginationContainer = styled.ul`
     }
 `
 const PageButton = styled.li`
-    height: 2em;
-    width: 2em;
+    height: 2rem;
+    width: 2rem;
     padding: 0.25em;
     border: 1px solid ${({ theme }) => theme.color.fontOnBackground};
     border-radius: 33%;

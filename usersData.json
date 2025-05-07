@@ -33,9 +33,9 @@
           "baseExperience": 44420
         },
         "bulbasaur": {
-          "wins": 9,
+          "wins": 10,
           "losses": 20,
-          "baseExperience": 11500
+          "baseExperience": 11510
         },
         "rattata": {
           "wins": 1,
@@ -94,7 +94,7 @@
         },
         "charizard": {
           "wins": 3,
-          "losses": 3,
+          "losses": 4,
           "baseExperience": 297
         },
         "butterfree": {
