@@ -24,7 +24,7 @@ const updatePokemonWithUserData = async (inputPokemon, loggedUserId) => {
     }
     return outputPokemon;
   } catch (error) {
-    console.error("Error in updatePokemonWithUserData.js: ", error);
+    console.error(error);
   }
 };
 

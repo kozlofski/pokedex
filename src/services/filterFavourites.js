@@ -10,7 +10,7 @@ const filterFavourites = async (inputPokemons, loggedUserId) => {
     const favouritePokemons = inputPokemons.filter(favouritesFilter);
     return favouritePokemons;
   } catch (error) {
-    console.error("Error in filtering favourites in useFetchPokemons: ", error);
+    console.error(error);
   }
 };
 

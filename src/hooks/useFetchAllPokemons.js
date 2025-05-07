@@ -67,13 +67,10 @@ const useFetchAllPokemons = (setSortedPokemons) => {
           .then(() => setIsPending(false))
           .catch((error) => console.error(error));
       } catch (error) {
-        console.error(
-          "Error fetching all pokemons in useFetchAllPokemons",
-          error
-        );
+        console.error(error);
       }
     })();
-  }, [loggedUserId]);
+  }, [loggedUserId, setSortedPokemons]);
 
   return { completePokemons, isPending };
 };

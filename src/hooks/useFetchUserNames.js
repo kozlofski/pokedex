@@ -15,7 +15,7 @@ const useFetchUserNames = () => {
         }, {});
         setUserNamesTaken(users);
       } catch (error) {
-        console.error("Error in useFetchUserNames:", error);
+        console.error(error);
       }
     })();
   }, []);

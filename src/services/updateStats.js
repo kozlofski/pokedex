@@ -57,8 +57,8 @@ const updateStats = async (winnerPokemon, loserPokemon, loggedUserId) => {
       }),
     });
     if (!patchResponse) throw new Error("Error during patching stats: ");
-  } catch (e) {
-    window.alert(e);
+  } catch (error) {
+    console.error(error);
   }
 };
 
