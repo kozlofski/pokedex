@@ -20,45 +20,22 @@
         "sdfgsdfghgfhgfd": true,
         "dupa": true,
         "charmander": true,
-        "bulbasaur": true,
         "charizard": true,
         "dsfajnjk": true,
-        "Pokemą": true
+        "Pokemą": true,
+        "aser": true
       },
-      "arena": {
-        "rightPokemon": {
-          "name": "ivysaur",
-          "baseExperience": 262,
-          "height": 10,
-          "weight": 130,
-          "ability": "overgrow",
-          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/2.png",
-          "url": "https://pokeapi.co/api/v2/pokemon/2/",
-          "wins": 12,
-          "losses": 0
-        },
-        "leftPokemon": {
-          "name": "charizard",
-          "baseExperience": 287,
-          "height": 17,
-          "weight": 905,
-          "ability": "blaze",
-          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/6.png",
-          "url": "https://pokeapi.co/api/v2/pokemon/6/",
-          "wins": 2,
-          "losses": 3
-        }
-      },
+      "arena": {},
       "stats": {
         "venusaur": {
-          "wins": 14,
+          "wins": 15,
           "losses": 0,
-          "baseExperience": 44410
+          "baseExperience": 44420
         },
         "bulbasaur": {
           "wins": 9,
           "losses": 20,
-          "baseExperience": 1150
+          "baseExperience": 11500
         },
         "rattata": {
           "wins": 1,
@@ -72,7 +49,7 @@
         },
         "ivysaur": {
           "wins": 12,
-          "losses": 0,
+          "losses": 1,
           "baseExperience": 262
         },
         "ponyta": {
@@ -116,9 +93,9 @@
           "baseExperience": 456
         },
         "charizard": {
-          "wins": 2,
+          "wins": 3,
           "losses": 3,
-          "baseExperience": 287
+          "baseExperience": 297
         },
         "butterfree": {
           "wins": 1,
@@ -147,7 +124,7 @@
         },
         "undefined": {
           "wins": 0,
-          "losses": 1
+          "losses": 2
         },
         "dsfajnjk": {
           "wins": 1,
@@ -173,6 +150,16 @@
           "wins": 1,
           "losses": 0,
           "baseExperience": 244
+        },
+        "Pokemą": {
+          "wins": 1,
+          "losses": 0,
+          "baseExperience": 343
+        },
+        "aser": {
+          "wins": 0,
+          "losses": 1,
+          "baseExperience": 342
         }
       },
       "modified": {
@@ -192,9 +179,9 @@
           "baseExperience": 444
         },
         "bulbasaur": {
-          "height": 800,
-          "weight": 680,
-          "baseExperience": 1150
+          "height": 8000,
+          "weight": 6800,
+          "baseExperience": 11500
         },
         "charmander": {
           "height": 33,
@@ -256,6 +243,13 @@
           "baseExperience": 234,
           "ability": "dfsdfgdfg",
           "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/155.png"
+        },
+        "aser": {
+          "height": 234,
+          "weight": 21,
+          "baseExperience": 342,
+          "ability": "sdfds",
+          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/152.png"
         }
       },
       "usedPictures": {},
@@ -264,7 +258,8 @@
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/153.png": true,
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/154.png": true,
         "null": true,
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/155.png": true
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/155.png": true,
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/152.png": true
       }
     },
     {

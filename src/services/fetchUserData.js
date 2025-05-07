@@ -1,6 +1,8 @@
 import { JSON_SERVER_URL } from "../constants";
 
 const fetchUserData = async (userId) => {
+  if (userId === "-1") return;
+
   try {
     const response = await fetch(`${JSON_SERVER_URL}/${userId}`);
     if (!response)

@@ -8,6 +8,8 @@ const useFetchArena = (userId) => {
   useEffect(() => {
     (async () => {
       try {
+        if (userId === "-1") return;
+
         const response = await fetch(`${JSON_SERVER_URL}/${userId}`);
         if (!response) throw new Error("Error during fetching arena");
 
@@ -17,7 +19,7 @@ const useFetchArena = (userId) => {
         setLeftPokemonFromArena(left);
         setRightPokemonFromArena(right);
       } catch (error) {
-        throw new Error(error);
+        console.error(error);
       }
     })();
   }, [userId]);

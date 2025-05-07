@@ -7,6 +7,7 @@ import Ranking from "./components/subpages/Ranking"
 import Edit from "./components/subpages/Edit"
 import LogOut from "./components/subpages/LogOut"
 import NotFound from "./components/subpages/NotFound"
+import Forbidden from "./components/subpages/Forbidden"
 import AppLayout from "./components/subpages/AppLayout"
 
 import "./css/reset.css"
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
       { element: <Edit />, path: "/edit" },
       { element: <LogOut />, path: "/log-out" },
       { element: <NotFound />, path: "*" },
+      { element: <Forbidden />, path: "/forbidden" },
     ]
   },
 ])

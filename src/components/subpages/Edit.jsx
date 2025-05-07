@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState, useContext } from 'react'
 import { styled } from "styled-components"
+import { useNavigate } from 'react-router-dom'
 
 import PokemonRankingTable from '../shared/PokemonRankingTable'
 import LoginContext from '../../context/LoginContext'
@@ -9,16 +10,22 @@ import EditPokemon from '../shared/EditPokemon'
 import CreatePokemon from '../shared/CreatePokemon'
 
 const Edit = () => {
+    const { loggedUserId } = useContext(LoginContext)
+
     const [editedPokemon, setEditedPokemon] = useState({})
     const [editMode, setEditMode] = useState("init")
-    const { loggedUserId } = useContext(LoginContext)
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (loggedUserId === '-1') navigate('/forbidden')
+    })
 
     useEffect(() => {
         if (Object.keys(editedPokemon).length > 0)
             setEditMode("edit")
-    }, [editedPokemon])
+    }, [editedPokemon, navigate, loggedUserId])
 
-    return (
+    return (<>{loggedUserId !== '-1' &&
         <EditContainer className="edit-container">
             {editMode === "init" &&
                 (<InitContainer>
@@ -27,7 +34,8 @@ const Edit = () => {
                 </InitContainer>)}
             {editMode === "edit" && <EditPokemon editedPokemon={editedPokemon} loggedUserId={loggedUserId} />}
             {editMode === "create" && <CreatePokemon loggedUserId={loggedUserId} />}
-        </EditContainer>
+        </EditContainer>}
+    </>
     )
 }
 

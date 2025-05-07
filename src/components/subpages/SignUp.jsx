@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useContext } from 'react'
 import { styled } from "styled-components"
 import { useNavigate } from 'react-router-dom'
@@ -34,10 +34,14 @@ const signupFormSchema = z.object({
 })
 
 const SignUp = () => {
-    const { setLoggedUser, setLoggedUserId } = useContext(LoginContext)
+    const { loggedUserId, setLoggedUser, setLoggedUserId } = useContext(LoginContext)
     const userNamesTaken = useFetchUserNames();
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(signupFormSchema) })
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (loggedUserId !== '-1') navigate("/forbidden")
+    })
 
     const onSubmit = async (data, event) => {
         event.preventDefault();
@@ -78,34 +82,36 @@ const SignUp = () => {
         console.log("UserNamesTaken: ", userNamesTaken)
     }
 
-    return (
-        <FormContainer>
-            <Form onSubmit={handleSubmit(onSubmit, onError)}>
-                <Input {...register('name')}
-                    type={"text"}
-                    label="Imię:"
-                    placeholder={"imię"}
-                    error={errors.name ?? ""} />
+    return (<>
+        {loggedUserId === "-1" &&
+            <FormContainer>
+                <Form onSubmit={handleSubmit(onSubmit, onError)}>
+                    <Input {...register('name')}
+                        type={"text"}
+                        label="Imię:"
+                        placeholder={"imię"}
+                        error={errors.name ?? ""} />
 
-                <Input {...register('email')}
-                    type={"text"}
-                    label="e-mail:"
+                    <Input {...register('email')}
+                        type={"text"}
+                        label="e-mail:"
 
-                    placeholder={"e-mail"}
-                    error={errors.email ?? ""} />
-                <Input {...register('password')}
-                    type={"password"}
-                    label="Hasło:"
-                    placeholder={"hasło"}
-                    error={errors.password ?? ""} />
-                <Input {...register('confirm')}
-                    type={"password"}
-                    label="Powtórz hasło:"
-                    placeholder={"powtórz hasło"}
-                    error={errors.confirm ?? ""} />
-                <Button type="submit" width="8rem">Zarejestruj</Button>
-            </Form>
-        </FormContainer>
+                        placeholder={"e-mail"}
+                        error={errors.email ?? ""} />
+                    <Input {...register('password')}
+                        type={"password"}
+                        label="Hasło:"
+                        placeholder={"hasło"}
+                        error={errors.password ?? ""} />
+                    <Input {...register('confirm')}
+                        type={"password"}
+                        label="Powtórz hasło:"
+                        placeholder={"powtórz hasło"}
+                        error={errors.confirm ?? ""} />
+                    <Button type="submit" width="8rem">Zarejestruj</Button>
+                </Form>
+            </FormContainer>}
+    </>
     )
 }
 

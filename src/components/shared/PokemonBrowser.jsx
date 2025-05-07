@@ -80,6 +80,8 @@ const PokemonsGallery = styled.ul`
 `
 const PokemonsFilter = styled.input`
     border: 2px solid ${({ theme }) => theme.color.inputBorder};
+    color: ${({ theme }) => theme.color.fontOnBackground};
+    background: ${({ theme }) => theme.color.background};
     padding: 0.5rem;
     border-radius: 0.25rem;
 

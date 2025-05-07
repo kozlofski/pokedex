@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useContext } from 'react'
 import { useForm } from "react-hook-form"
 import { styled } from "styled-components"
@@ -23,8 +23,12 @@ const loginFormSchema = z.object({
 
 const LogIn = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm({ resolver: zodResolver(loginFormSchema) })
-    const { setLoggedUser, setLoggedUserId } = useContext(LoginContext)
+    const { loggedUserId, setLoggedUser, setLoggedUserId } = useContext(LoginContext)
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (loggedUserId !== "-1") navigate("/")
+    })
 
     const onSubmit = async (data, event) => {
         event.preventDefault();
@@ -44,11 +48,9 @@ const LogIn = () => {
         }
     }
 
-    const onError = () => { }
-
-    return (
+    return (<>{loggedUserId === "-1" &&
         <FormContainer>
-            <Form onSubmit={handleSubmit(onSubmit, onError)}>
+            <Form onSubmit={handleSubmit(onSubmit)}>
                 <Input {...register('name')}
                     type={"text"}
                     label="Imię:"
@@ -61,7 +63,8 @@ const LogIn = () => {
                     error={errors.password ?? ""} />
                 <Button type="submit" >Zaloguj</Button>
             </Form>
-        </FormContainer>
+        </FormContainer>}
+    </>
     )
 }
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { styled } from "styled-components"
 import { createPortal } from "react-dom"
+import { useNavigate } from 'react-router-dom'
 
 import LoginContext from '../../context/LoginContext'
 
@@ -17,6 +18,9 @@ import useFetchArena from '../../hooks/useFetchArena'
 
 const Arena = () => {
     const { loggedUserId } = useContext(LoginContext)
+    const navigate = useNavigate();
+    console.log(loggedUserId)
+
 
     const { leftPokemonFromArena, rightPokemonFromArena } = useFetchArena(loggedUserId)
     const [leftPokemon, setLeftPokemon] = useState(undefined)
@@ -25,6 +29,9 @@ const Arena = () => {
     const [winnerModalOpened, setWinnerModalOpened] = useState(false)
 
     useEffect(() => {
+        if (loggedUserId === "-1" || loggedUserId === -1)
+            navigate('/forbidden')
+
         setLeftPokemon(leftPokemonFromArena)
         setRightPokemon(rightPokemonFromArena)
     }, [leftPokemonFromArena, rightPokemonFromArena])
@@ -75,39 +82,41 @@ const Arena = () => {
         setWinnerModalOpened(true)
     }
 
-    return (
-        <ArenaContainer className="arena-container">
-            <ArenaCardContainer>
-                {leftPokemon !== undefined ?
-                    <PokemonCard
-                        rawPokemon={{ name: leftPokemon.name, url: leftPokemon.url ?? undefined }}
-                        setModalOpened={setModalOpened}
-                        setSelectedPokemon={setSelectedPokemon}
-                    /> :
-                    <EmptyPokemonCard />}
-                {leftPokemon && <RemoveFromArena onClick={() => removeFromArena("left")}><CloseIcon /></RemoveFromArena>}
-            </ArenaCardContainer>
+    return (<>
+        {loggedUserId !== '1' &&
+            <ArenaContainer className="arena-container">
+                <ArenaCardContainer>
+                    {leftPokemon !== undefined ?
+                        <PokemonCard
+                            rawPokemon={{ name: leftPokemon.name, url: leftPokemon.url ?? undefined }}
+                            setModalOpened={setModalOpened}
+                            setSelectedPokemon={setSelectedPokemon}
+                        /> :
+                        <EmptyPokemonCard />}
+                    {leftPokemon && <RemoveFromArena onClick={() => removeFromArena("left")}><CloseIcon /></RemoveFromArena>}
+                </ArenaCardContainer>
 
-            <FightButton
-                onClick={handleFight}
-                disabled={!(leftPokemon && rightPokemon)}
-                className="fight-button">
-                WALCZ!
-            </FightButton>
+                <FightButton
+                    onClick={handleFight}
+                    disabled={!(leftPokemon && rightPokemon)}
+                    className="fight-button">
+                    WALCZ!
+                </FightButton>
 
-            <ArenaCardContainer className="arena-card-container">
-                {rightPokemon !== undefined ?
-                    <PokemonCard
-                        rawPokemon={rightPokemon}
-                        setModalOpened={setModalOpened}
-                        setSelectedPokemon={setSelectedPokemon}
-                    /> :
-                    <EmptyPokemonCard />}
-                {rightPokemon && <RemoveFromArena onClick={() => removeFromArena("right")}><CloseIcon /></RemoveFromArena>}
-            </ArenaCardContainer>
-            {modalOpened && modal}
-            {winnerModalOpened && winnerModal}
-        </ArenaContainer>
+                <ArenaCardContainer className="arena-card-container">
+                    {rightPokemon !== undefined ?
+                        <PokemonCard
+                            rawPokemon={rightPokemon}
+                            setModalOpened={setModalOpened}
+                            setSelectedPokemon={setSelectedPokemon}
+                        /> :
+                        <EmptyPokemonCard />}
+                    {rightPokemon && <RemoveFromArena onClick={() => removeFromArena("right")}><CloseIcon /></RemoveFromArena>}
+                </ArenaCardContainer>
+                {modalOpened && modal}
+                {winnerModalOpened && winnerModal}
+            </ArenaContainer>}
+    </>
     )
 }
 

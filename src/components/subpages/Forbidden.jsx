@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from "styled-components"
 
-const NotFound = () => {
+const Forbidden = () => {
     return (
-        <NotFoundH2>404 page not found</NotFoundH2>
+        <ForbiddenH2>403 forbidden</ForbiddenH2>
     )
 }
 
-const NotFoundH2 = styled.h2`
+const ForbiddenH2 = styled.h2`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,4 +19,4 @@ const NotFoundH2 = styled.h2`
     color: ${({ theme }) => theme.color.fontOnBackground};
 `
 
-export default NotFound
+export default Forbidden

@@ -91,20 +91,19 @@ const EditPokemon = ({ editedPokemon, loggedUserId }) => {
                     type={"text"}
                     label="Wzrost:"
                     placeholder={"wzrost"}
-                    error={errors.name ?? ""} />
-
+                    error={errors.height ?? ""} />
 
                 <Input {...register('weight')}
                     type={"text"}
                     label="Waga:"
                     placeholder={"waga"}
-                    error={errors.email ?? ""} />
+                    error={errors.weight ?? ""} />
 
                 <Input {...register('baseExperience')}
                     type={"text"}
                     label="Doświadczenie:"
                     placeholder={"doświadczenie"}
-                    error={errors.password ?? ""} />
+                    error={errors.baseExperience ?? ""} />
                 <Button type="submit" >Potwierdź zmiany</Button>
             </EditForm>
         </EditFormContainer>

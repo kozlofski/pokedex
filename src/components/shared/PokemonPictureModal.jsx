@@ -107,7 +107,8 @@ const ModalContent = styled.div`
     align-items: center;
     position: relative;
 
-    @media (max-width: 600px) {
+    @media (max-width: 660px) {
+        padding: 4rem 0.5rem;
         flex-direction: column;
         height: fit-content;
     }
