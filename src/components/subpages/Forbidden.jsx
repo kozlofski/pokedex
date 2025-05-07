@@ -12,6 +12,7 @@ const ForbiddenH2 = styled.h2`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     height: 100%;
     width: 100%;
     font-size: 3rem;

@@ -59,7 +59,6 @@ const PokemonDetailsModal = ({ onClose, pokemon }) => {
             if (newIsFavourite === true) {
                 newFavourites = oldFavourites
                 newFavourites[name] = true
-                // change pokemon.name to name
             } else {
                 newFavourites = { ...oldFavourites }
                 delete newFavourites[name]

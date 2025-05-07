@@ -82,13 +82,9 @@ const CreatePokemon = ({ loggedUserId }) => {
         }
     }
 
-    const onError = (error) => {
-        console.error("Error from hook: : ", error)
-    }
-
     return (
         <CreateFormContainer>
-            <CreateForm onSubmit={handleSubmit(onSubmit, onError)}>
+            <CreateForm onSubmit={handleSubmit(onSubmit)}>
                 <Input {...register('name')}
                     type={"text"}
                     label="Imię:"

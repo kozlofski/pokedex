@@ -30,9 +30,10 @@ const PokemonBrowser = ({ favourites }) => {
 
     return (
         <BrowserContainer>
-            <PokemonsFilter
+            {rawPokemonsPaginated?.length === 0 && <AddPokemonsH2>dodaj kilka pokemonów do ulubionych</AddPokemonsH2>}
+            {rawPokemonsPaginated?.length > 0 && <PokemonsFilter
                 onChange={handleFilter}
-                placeholder='Search pokemon'></PokemonsFilter>
+                placeholder='Search pokemon'></PokemonsFilter>}
             <Pagination
                 rawPokemonsFiltered={rawPokemonsFiltered || rawPokemons}
                 setRawPokemonsPaginated={setRawPokemonsPaginated}
@@ -89,6 +90,19 @@ const PokemonsFilter = styled.input`
         outline: none;
         border: 2px solid ${({ theme }) => theme.color.inputBorderFocus};
     }
+`
+
+const AddPokemonsH2 = styled.h2`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    font-size: 3rem;
+    gap: 2rem;
+    color: ${({ theme }) => theme.color.fontOnBackground};
 `
 
 export default PokemonBrowser

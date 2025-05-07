@@ -1,286 +1,11 @@
 {
   "users": [
     {
-      "id": "067d",
+      "id": "4de5",
       "userName": "koza",
-      "userEmail": "koza@wp.pl",
+      "userEmail": "dupa@wp.pl",
       "hashedPassword": 3821238780675380,
-      "favourites": {
-        "caterpie": true,
-        "weedle": true,
-        "ponyta": true,
-        "rapidash": true,
-        "eevee": true,
-        "ninetales": true,
-        "venusaur": true,
-        "pikachu": true,
-        "rattata": true,
-        "kakuna": true,
-        "ivysaur": true,
-        "sdfgsdfghgfhgfd": true,
-        "dupa": true,
-        "charmander": true,
-        "charizard": true,
-        "dsfajnjk": true,
-        "Pokemą": true,
-        "aser": true
-      },
-      "arena": {},
-      "stats": {
-        "venusaur": {
-          "wins": 15,
-          "losses": 0,
-          "baseExperience": 44420
-        },
-        "bulbasaur": {
-          "wins": 10,
-          "losses": 20,
-          "baseExperience": 11510
-        },
-        "rattata": {
-          "wins": 1,
-          "losses": 4,
-          "baseExperience": 51
-        },
-        "caterpie": {
-          "wins": 0,
-          "losses": 6,
-          "baseExperience": 39
-        },
-        "ivysaur": {
-          "wins": 12,
-          "losses": 1,
-          "baseExperience": 262
-        },
-        "ponyta": {
-          "wins": 3,
-          "losses": 0,
-          "baseExperience": 112
-        },
-        "pikachu": {
-          "wins": 0,
-          "losses": 1,
-          "baseExperience": 112
-        },
-        "weedle": {
-          "wins": 0,
-          "losses": 5,
-          "baseExperience": 39
-        },
-        "eevee": {
-          "wins": 1,
-          "losses": 0,
-          "baseExperience": 75
-        },
-        "dewgong": {
-          "wins": 1,
-          "losses": 0,
-          "baseExperience": 176
-        },
-        "rapidash": {
-          "wins": 0,
-          "losses": 2,
-          "baseExperience": 175
-        },
-        "dupa": {
-          "wins": 1,
-          "losses": 3,
-          "baseExperience": 435
-        },
-        "sdfgsdfghgfhgfd": {
-          "wins": 0,
-          "losses": 1,
-          "baseExperience": 456
-        },
-        "charizard": {
-          "wins": 3,
-          "losses": 4,
-          "baseExperience": 297
-        },
-        "butterfree": {
-          "wins": 1,
-          "losses": 0,
-          "baseExperience": 208
-        },
-        "horsea": {
-          "wins": 0,
-          "losses": 1,
-          "baseExperience": 59
-        },
-        "charmeleon": {
-          "wins": 1,
-          "losses": 0,
-          "baseExperience": 152
-        },
-        "charmander": {
-          "wins": 0,
-          "losses": 3,
-          "baseExperience": 33
-        },
-        "ninetales": {
-          "wins": 1,
-          "losses": 0,
-          "baseExperience": 187
-        },
-        "undefined": {
-          "wins": 0,
-          "losses": 2
-        },
-        "dsfajnjk": {
-          "wins": 1,
-          "losses": 0,
-          "baseExperience": 53410
-        },
-        "metapod": {
-          "wins": 1,
-          "losses": 0,
-          "baseExperience": 82
-        },
-        "zubat": {
-          "wins": 1,
-          "losses": 0,
-          "baseExperience": 59
-        },
-        "kakuna": {
-          "wins": 0,
-          "losses": 1,
-          "baseExperience": 72
-        },
-        "sfdg": {
-          "wins": 1,
-          "losses": 0,
-          "baseExperience": 244
-        },
-        "Pokemą": {
-          "wins": 1,
-          "losses": 0,
-          "baseExperience": 343
-        },
-        "aser": {
-          "wins": 0,
-          "losses": 1,
-          "baseExperience": 342
-        }
-      },
-      "modified": {
-        "dupa": {
-          "height": 3451,
-          "weight": 21,
-          "baseExperience": 435
-        },
-        "squirtle": {
-          "height": 5,
-          "weight": 90,
-          "baseExperience": 64
-        },
-        "venusaur": {
-          "height": 20,
-          "weight": 1000,
-          "baseExperience": 444
-        },
-        "bulbasaur": {
-          "height": 8000,
-          "weight": 6800,
-          "baseExperience": 11500
-        },
-        "charmander": {
-          "height": 33,
-          "weight": 33,
-          "baseExperience": 33
-        },
-        "wartortle": {
-          "height": 10,
-          "weight": 225,
-          "baseExperience": 142
-        }
-      },
-      "created": {
-        "sdfgsdfghgfhgfd": {
-          "height": 234,
-          "weight": 234,
-          "baseExperience": 456,
-          "ability": "sdfggh",
-          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/152.png"
-        },
-        "dupa": {
-          "height": 3451,
-          "weight": 21,
-          "baseExperience": 4355654,
-          "ability": "zabijanie",
-          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/153.png"
-        },
-        "dfghdfg": {
-          "height": 1234,
-          "weight": 54645,
-          "baseExperience": 34243,
-          "ability": "dgfh",
-          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/151.png"
-        },
-        "dsfajnjk": {
-          "height": 123,
-          "weight": 23,
-          "baseExperience": 534,
-          "ability": "sdfgdfsg",
-          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/153.png"
-        },
-        "Pokemą": {
-          "height": 111,
-          "weight": 222,
-          "baseExperience": 333,
-          "ability": "nagła śmierć",
-          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/154.png"
-        },
-        "poke": {
-          "height": 213,
-          "weight": 34,
-          "baseExperience": 345,
-          "ability": "gsdfgdf",
-          "imgUrl": null
-        },
-        "sfdg": {
-          "height": 234,
-          "weight": 324,
-          "baseExperience": 234,
-          "ability": "dfsdfgdfg",
-          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/155.png"
-        },
-        "aser": {
-          "height": 234,
-          "weight": 21,
-          "baseExperience": 342,
-          "ability": "sdfds",
-          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/152.png"
-        }
-      },
-      "usedPictures": {},
-      "picturesUsed": {
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/151.png": true,
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/153.png": true,
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/154.png": true,
-        "null": true,
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/155.png": true,
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/152.png": true
-      }
-    },
-    {
-      "id": "368d",
-      "userName": "Gabrysia",
-      "userEmail": "koza@wp.pl",
-      "hashedPassword": 3821238780675380,
-      "favourites": {
-        "squirtle": true,
-        "wartortle": true,
-        "pidgeot": true,
-        "pikachu": true,
-        "ninetales": true,
-        "rapidash": true,
-        "goldeen": true,
-        "eevee": true,
-        "vaporeon": true,
-        "jolteon": true,
-        "articuno": true,
-        "flareon": true
-      },
+      "favourites": {},
       "arena": {},
       "stats": {},
       "modified": {},
@@ -288,14 +13,28 @@
       "usedPictures": {}
     },
     {
-      "id": "adfd",
+      "id": "d785",
       "userName": "koza1",
       "userEmail": "koza@wp.pl",
       "hashedPassword": 3821238780675380,
-      "favourites": {},
+      "favourites": {
+        "bulbasaur": true,
+        "ivysaur": true
+      },
       "arena": {},
       "stats": {},
-      "modified": {},
+      "modified": {
+        "bulbasaur": {
+          "height": 7,
+          "weight": 70,
+          "baseExperience": 70
+        },
+        "ivysaur": {
+          "height": 70,
+          "weight": 70,
+          "baseExperience": 70
+        }
+      },
       "created": {},
       "usedPictures": {}
     }

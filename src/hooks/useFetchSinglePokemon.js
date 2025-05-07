@@ -32,7 +32,7 @@ const useFetchSinglePokemon = (inputPokemonData) => {
 
         setPokemon(newPokemon);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     })();
   }, [inputPokemonData, loggedUserId]);

@@ -77,15 +77,10 @@ const SignUp = () => {
         }
     }
 
-    const onError = (error) => {
-        console.log("Error from hook: : ", error)
-        console.log("UserNamesTaken: ", userNamesTaken)
-    }
-
     return (<>
         {loggedUserId === "-1" &&
             <FormContainer>
-                <Form onSubmit={handleSubmit(onSubmit, onError)}>
+                <Form onSubmit={handleSubmit(onSubmit)}>
                     <Input {...register('name')}
                         type={"text"}
                         label="Imię:"

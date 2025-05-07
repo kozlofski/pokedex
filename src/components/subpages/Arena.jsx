@@ -12,6 +12,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import FightButton from '../shared/FightButton'
 import fight from '../../services/fight'
 import WinnerModal from '../shared/WinnerModal'
+import DrawModal from '../shared/DrawModal'
 import updateStats from '../../services/updateStats'
 import updateArena from '../../services/updateArena'
 import useFetchArena from '../../hooks/useFetchArena'
@@ -19,14 +20,13 @@ import useFetchArena from '../../hooks/useFetchArena'
 const Arena = () => {
     const { loggedUserId } = useContext(LoginContext)
     const navigate = useNavigate();
-    console.log(loggedUserId)
-
 
     const { leftPokemonFromArena, rightPokemonFromArena } = useFetchArena(loggedUserId)
     const [leftPokemon, setLeftPokemon] = useState(undefined)
     const [rightPokemon, setRightPokemon] = useState(undefined)
     const [winner, setWinner] = useState({})
     const [winnerModalOpened, setWinnerModalOpened] = useState(false)
+    const [drawModalOpened, setDrawModalOpened] = useState(false)
 
     useEffect(() => {
         if (loggedUserId === "-1" || loggedUserId === -1)
@@ -55,6 +55,17 @@ const Arena = () => {
         document.body
     )
 
+    const drawModal = createPortal(
+        <DrawModal
+            onClose={() => {
+                removeFromArena("both")
+                setDrawModalOpened(false)
+            }}
+            className="draw-modal" />,
+        document.body
+    )
+
+
     const removeFromArena = async (side) => {
         try {
             let newArena = {}
@@ -77,9 +88,13 @@ const Arena = () => {
 
     const handleFight = async () => {
         const { winner: winnerFromService, loser: loserFromService } = fight(leftPokemon, rightPokemon)
-        await updateStats(winnerFromService, loserFromService, loggedUserId)
-        setWinner(winnerFromService)
-        setWinnerModalOpened(true)
+        if (winnerFromService !== null && loserFromService !== null) {
+            await updateStats(winnerFromService, loserFromService, loggedUserId)
+            setWinner(winnerFromService)
+            setWinnerModalOpened(true)
+        } else {
+            setDrawModalOpened(true)
+        }
     }
 
     return (<>
@@ -115,6 +130,7 @@ const Arena = () => {
                 </ArenaCardContainer>
                 {modalOpened && modal}
                 {winnerModalOpened && winnerModal}
+                {drawModalOpened && drawModal}
             </ArenaContainer>}
     </>
     )
