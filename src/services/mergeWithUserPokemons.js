@@ -1,9 +1,13 @@
-import fetchUserData from "./fetchUserData";
+// import fetchUserData from "./fetchUserData";
 
-const mergeWithUserPokemons = async (linksToPokemons, loggedUserId) => {
+const mergeWithUserPokemons = async (
+  linksToPokemons,
+  loggedUserId,
+  userData
+) => {
   if (loggedUserId === "-1") return linksToPokemons;
 
-  const userData = await fetchUserData(loggedUserId);
+  // const userData = await fetchUserData(loggedUserId);
   const createdPokemonsNames = Object.keys(userData.created);
 
   const userPokemons = createdPokemonsNames.map((name) => {

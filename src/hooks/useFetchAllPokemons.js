@@ -19,10 +19,12 @@ const useFetchAllPokemons = (setSortedPokemons) => {
     (async () => {
       try {
         let linksToPokemons = await fetchLinksToPokemons(0, LIMIT);
+        const userData = await fetchUserData(loggedUserId);
 
         linksToPokemons = await mergeWithUserPokemons(
           linksToPokemons,
-          loggedUserId
+          loggedUserId,
+          userData
         );
 
         const pokemonFetchPromises = linksToPokemons.map(
@@ -34,7 +36,7 @@ const useFetchAllPokemons = (setSortedPokemons) => {
                 !("url" in inputPokemonData) ||
                 inputPokemonData.url === undefined
               ) {
-                const userData = await fetchUserData(loggedUserId);
+                // const userData = await fetchUserData(loggedUserId);
                 const createdPokemonData =
                   userData.created[inputPokemonData.name];
                 newPokemon = {
@@ -47,7 +49,8 @@ const useFetchAllPokemons = (setSortedPokemons) => {
               newPokemon.url = inputPokemonData.url;
               newPokemon = await updatePokemonWithUserData(
                 newPokemon,
-                loggedUserId
+                // loggedUserId,
+                userData
               );
               return newPokemon;
             } catch (error) {

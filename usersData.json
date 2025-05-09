@@ -17,13 +17,13 @@
           "baseExperience": 152
         },
         "bulbasaur": {
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "baseExperience": 641
+          "baseExperience": 651
         },
         "sdfgdsf": {
           "wins": 1,
-          "losses": 0,
+          "losses": 1,
           "baseExperience": 554
         }
       },

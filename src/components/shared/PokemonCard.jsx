@@ -3,6 +3,8 @@ import { styled } from "styled-components"
 import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
 
 const PokemonCard = ({ rawPokemon, setModalOpened, setSelectedPokemon }) => {
+    // const userData = await fetchUserData(loggedUserId);
+
     const pokemon = useFetchSinglePokemon(rawPokemon)
 
     const {

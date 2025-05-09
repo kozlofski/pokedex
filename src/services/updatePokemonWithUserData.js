@@ -1,9 +1,13 @@
-import fetchUserData from "./fetchUserData";
+// import fetchUserData from "./fetchUserData";
 
-const updatePokemonWithUserData = async (inputPokemon, loggedUserId) => {
+const updatePokemonWithUserData = async (
+  inputPokemon,
+  // loggedUserId,
+  userData
+) => {
   try {
     let outputPokemon = { ...inputPokemon };
-    const userData = await fetchUserData(loggedUserId);
+    // const userData = await fetchUserData(loggedUserId);
 
     if (inputPokemon.name in userData.modified) {
       outputPokemon = {

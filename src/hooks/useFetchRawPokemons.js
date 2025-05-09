@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 
 import fetchLinksToPokemons from "../services/fetchLinksToPokemons";
+import fetchUserData from "../services/fetchUserData";
 import filterFavourites from "../services/filterFavourites";
 import mergeWithUserPokemons from "../services/mergeWithUserPokemons";
 import LoginContext from "../context/LoginContext";
@@ -16,11 +17,13 @@ const useFetchRawPokemons = (start = 0, limit = LIMIT, favourites) => {
       try {
         setIsPending(true);
         let linksToPokemons = await fetchLinksToPokemons(start, limit);
+        const userData = await fetchUserData(loggedUserId);
 
         if (loggedUserId !== "-1") {
           linksToPokemons = await mergeWithUserPokemons(
             linksToPokemons,
-            loggedUserId
+            loggedUserId,
+            userData
           );
         }
 

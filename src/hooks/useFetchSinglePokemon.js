@@ -13,11 +13,11 @@ const useFetchSinglePokemon = (inputPokemonData) => {
     (async () => {
       try {
         let newPokemon;
+        const userData = await fetchUserData(loggedUserId);
         if (
           !("url" in inputPokemonData) ||
           inputPokemonData.url === undefined
         ) {
-          const userData = await fetchUserData(loggedUserId);
           const createdPokemonData = userData.created[inputPokemonData.name];
           newPokemon = { ...createdPokemonData, name: inputPokemonData.name };
         } else newPokemon = await fetchSinglePokemon(inputPokemonData.url);
@@ -27,7 +27,8 @@ const useFetchSinglePokemon = (inputPokemonData) => {
         if (loggedUserId !== "-1")
           newPokemon = await updatePokemonWithUserData(
             newPokemon,
-            loggedUserId
+            // loggedUserId,
+            userData
           );
 
         setPokemon(newPokemon);
