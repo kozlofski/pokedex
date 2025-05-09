@@ -13,19 +13,13 @@ git clone https://github.com/kozlofski/pokedex
 cd pokedex
 ```
 
-Run JSON server (https://www.npmjs.com/package/json-server)
+...and then run application
 
 ```
-json-server --watch usersData.json
+npm run server
 ```
 
-Run application
-
-```
-npm run dev
-```
-
-It will be most likely served at http://localhost:5173/
+It will be most likely served at http://localhost:5173/ . This script runs JSON-server in paralel at port 3000.
 
 ## Functionalities
 

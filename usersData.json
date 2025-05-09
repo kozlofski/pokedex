@@ -1,3 +1,61 @@
 {
-  "users": []
+  "users": [
+    {
+      "userName": "koza",
+      "userEmail": "koza@wp.pl",
+      "hashedPassword": 3821238780675380,
+      "favourites": {
+        "bulbasaur": true,
+        "ivysaur": true,
+        "sdfgdsf": true
+      },
+      "arena": {},
+      "stats": {
+        "ivysaur": {
+          "wins": 1,
+          "losses": 1,
+          "baseExperience": 152
+        },
+        "bulbasaur": {
+          "wins": 0,
+          "losses": 1,
+          "baseExperience": 641
+        },
+        "sdfgdsf": {
+          "wins": 1,
+          "losses": 0,
+          "baseExperience": 554
+        }
+      },
+      "modified": {
+        "bulbasaur": {
+          "height": 69,
+          "weight": 691,
+          "baseExperience": 641
+        }
+      },
+      "created": {
+        "sdfgdsf": {
+          "height": 324,
+          "weight": 435,
+          "baseExperience": 544,
+          "ability": "dsfgdfgg",
+          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/152.png"
+        },
+        "bulbasaur": {
+          "height": 12,
+          "weight": 12,
+          "baseExperience": 23,
+          "ability": "sdfas",
+          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/151.png"
+        }
+      },
+      "usedPictures": {},
+      "id": 1,
+      "picturesUsed": {
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/152.png": true,
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/151.png": true
+      }
+    }
+  ]
 }

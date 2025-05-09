@@ -54,6 +54,10 @@ const SignUp = () => {
             const hashedPassword = cyrb53(data.password)
 
             const response = await fetch(JSON_SERVER_URL, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 method: "POST",
                 body: JSON.stringify({
                     userName: data.name,

@@ -68,6 +68,10 @@ const EditPokemon = ({ editedPokemon, loggedUserId }) => {
 
             const patchResponse = fetch(`${JSON_SERVER_URL}/${loggedUserId}`, {
                 method: "PATCH",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({
                     modified: newModified,
                     stats: newStats,

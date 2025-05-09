@@ -30,7 +30,7 @@ const PokemonBrowser = ({ favourites }) => {
 
     return (
         <BrowserContainer>
-            {rawPokemonsPaginated?.length === 0 && <AddPokemonsH2>dodaj kilka pokemonów do ulubionych</AddPokemonsH2>}
+            {rawPokemonsPaginated?.length === 0 && favourites && <AddPokemonsH2>dodaj kilka pokemonów do ulubionych</AddPokemonsH2>}
             {rawPokemonsPaginated?.length > 0 && <PokemonsFilter
                 onChange={handleFilter}
                 placeholder='Search pokemon'></PokemonsFilter>}
