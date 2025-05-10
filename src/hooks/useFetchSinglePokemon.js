@@ -3,9 +3,8 @@ import { useState, useEffect, useContext } from "react";
 import LoginContext from "../context/LoginContext";
 import fetchSinglePokemon from "../services/fetchSinglePokemon";
 import updatePokemonWithUserData from "../services/updatePokemonWithUserData";
-import fetchUserData from "../services/fetchUserData";
 
-const useFetchSinglePokemon = (inputPokemonData) => {
+const useFetchSinglePokemon = (inputPokemonData, userData) => {
   const [pokemon, setPokemon] = useState({});
   const { loggedUserId } = useContext(LoginContext);
 
@@ -13,7 +12,6 @@ const useFetchSinglePokemon = (inputPokemonData) => {
     (async () => {
       try {
         let newPokemon;
-        const userData = await fetchUserData(loggedUserId);
         if (
           !("url" in inputPokemonData) ||
           inputPokemonData.url === undefined
@@ -25,18 +23,14 @@ const useFetchSinglePokemon = (inputPokemonData) => {
         newPokemon.url = inputPokemonData.url;
 
         if (loggedUserId !== "-1")
-          newPokemon = await updatePokemonWithUserData(
-            newPokemon,
-            // loggedUserId,
-            userData
-          );
+          newPokemon = await updatePokemonWithUserData(newPokemon, userData);
 
         setPokemon(newPokemon);
       } catch (error) {
         console.error(error);
       }
     })();
-  }, [inputPokemonData, loggedUserId]);
+  }, [inputPokemonData, loggedUserId, userData]);
 
   return pokemon;
 };

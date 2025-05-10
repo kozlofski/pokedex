@@ -4,8 +4,8 @@ import { styled } from "styled-components"
 import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
 import Button from "./Button"
 
-const WinnerModal = ({ onClose, pokemon }) => {
-    const { imgUrl } = useFetchSinglePokemon(pokemon)
+const WinnerModal = ({ onClose, pokemon, userData }) => {
+    const { imgUrl } = useFetchSinglePokemon(pokemon, userData)
 
     return (
         <Modal onClick={onClose}>

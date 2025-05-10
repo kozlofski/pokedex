@@ -11,6 +11,7 @@ const useFetchRawPokemons = (start = 0, limit = LIMIT, favourites) => {
   const { loggedUserId } = useContext(LoginContext);
   const [rawPokemons, setRawPokemons] = useState([]);
   const [isPending, setIsPending] = useState(false);
+  const [userData, setUserData] = useState();
 
   useEffect(() => {
     (async () => {
@@ -34,6 +35,7 @@ const useFetchRawPokemons = (start = 0, limit = LIMIT, favourites) => {
           );
 
         setRawPokemons(linksToPokemons);
+        setUserData(userData);
         setIsPending(false);
       } catch (error) {
         console.error(error);
@@ -41,7 +43,7 @@ const useFetchRawPokemons = (start = 0, limit = LIMIT, favourites) => {
     })();
   }, [start, limit, favourites, loggedUserId]);
 
-  return { rawPokemons, isPending };
+  return { rawPokemons, isPending, userData };
 };
 
 export default useFetchRawPokemons;

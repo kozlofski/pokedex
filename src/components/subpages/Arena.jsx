@@ -21,7 +21,7 @@ const Arena = () => {
     const { loggedUserId } = useContext(LoginContext)
     const navigate = useNavigate();
 
-    const { leftPokemonFromArena, rightPokemonFromArena } = useFetchArena(loggedUserId)
+    const { leftPokemonFromArena, rightPokemonFromArena, userData } = useFetchArena(loggedUserId)
     const [leftPokemon, setLeftPokemon] = useState(undefined)
     const [rightPokemon, setRightPokemon] = useState(undefined)
     const [winner, setWinner] = useState({})
@@ -51,6 +51,7 @@ const Arena = () => {
                 setWinnerModalOpened(false)
             }}
             pokemon={winner}
+            userData={userData}
             className="winner-modal" />,
         document.body
     )
@@ -106,6 +107,7 @@ const Arena = () => {
                             rawPokemon={{ name: leftPokemon.name, url: leftPokemon.url ?? undefined }}
                             setModalOpened={setModalOpened}
                             setSelectedPokemon={setSelectedPokemon}
+                            userData={userData}
                         /> :
                         <EmptyPokemonCard />}
                     {leftPokemon && <RemoveFromArena onClick={() => removeFromArena("left")}><CloseIcon /></RemoveFromArena>}
@@ -124,6 +126,7 @@ const Arena = () => {
                             rawPokemon={rightPokemon}
                             setModalOpened={setModalOpened}
                             setSelectedPokemon={setSelectedPokemon}
+                            userData={userData}
                         /> :
                         <EmptyPokemonCard />}
                     {rightPokemon && <RemoveFromArena onClick={() => removeFromArena("right")}><CloseIcon /></RemoveFromArena>}

@@ -2,10 +2,8 @@ import React from 'react'
 import { styled } from "styled-components"
 import useFetchSinglePokemon from '../../hooks/useFetchSinglePokemon'
 
-const PokemonCard = ({ rawPokemon, setModalOpened, setSelectedPokemon }) => {
-    // const userData = await fetchUserData(loggedUserId);
-
-    const pokemon = useFetchSinglePokemon(rawPokemon)
+const PokemonCard = ({ rawPokemon, setModalOpened, setSelectedPokemon, userData }) => {
+    const pokemon = useFetchSinglePokemon(rawPokemon, userData)
 
     const {
         name,

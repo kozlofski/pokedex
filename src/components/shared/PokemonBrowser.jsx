@@ -10,7 +10,7 @@ import Loader from './Loader'
 import { LIMIT } from '../../constants'
 
 const PokemonBrowser = ({ favourites }) => {
-    const { rawPokemons, isPending } = useFetchRawPokemons(0, LIMIT, favourites);
+    const { rawPokemons, isPending, userData } = useFetchRawPokemons(0, LIMIT, favourites);
     const [rawPokemonsFiltered, setRawPokemonsFiltered] = useState()
     const [rawPokemonsPaginated, setRawPokemonsPaginated] = useState(null)
     const [modalOpened, setModalOpened] = useState(false)
@@ -45,6 +45,7 @@ const PokemonBrowser = ({ favourites }) => {
                         <PokemonCard rawPokemon={rawPokemon}
                             setModalOpened={setModalOpened}
                             setSelectedPokemon={setSelectedPokemon}
+                            userData={userData}
                         />
                     </li>
                 }

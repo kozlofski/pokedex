@@ -41,7 +41,7 @@ const SignUp = () => {
 
     useEffect(() => {
         if (loggedUserId !== '-1') navigate("/forbidden")
-    })
+    }, [])
 
     const onSubmit = async (data, event) => {
         event.preventDefault();
@@ -73,7 +73,7 @@ const SignUp = () => {
             })
             if (!response) throw new Error("error during creating new user")
 
-            loginUser(data.name, hashedPassword, JSON_SERVER_URL, setLoggedUser, setLoggedUserId)
+            await loginUser(data.name, hashedPassword, JSON_SERVER_URL, setLoggedUser, setLoggedUserId)
             enqueueSnackbar(`Utworzono i zalogowano użytkownika ${data.name}`)
             navigate(`/`);
         } catch (error) {
