@@ -1,0 +1,38 @@
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { styled } from "styled-components"
+
+import LoginContext from '../../context/LoginContext'
+import { enqueueSnackbar } from 'notistack'
+
+const LogOut = () => {
+    const { loggedUser, setLoggedUser, setLoggedUserId } = useContext(LoginContext)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        localStorage.setItem("loggedUser", "null")
+        setLoggedUser("null")
+        localStorage.setItem("loggedUserId", "-1")
+        setLoggedUserId("-1")
+        enqueueSnackbar(`Wylogowano użytkownika ${loggedUser}`)
+        navigate('/')
+    }, [])
+
+    return (
+        <LogoutScreen>Logging out user {`${loggedUser}`}</LogoutScreen>
+    )
+}
+
+const LogoutScreen = styled.h2`
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 6.25rem);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: ${({ theme }) => theme.color.fontOnBackground}
+`
+
+export default LogOut

@@ -1,0 +1,131 @@
+import React, { useEffect } from 'react'
+import { useContext } from 'react'
+import { styled } from "styled-components"
+import { useNavigate } from 'react-router-dom'
+
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from 'zod'
+
+import Input from '../shared/Input'
+import LoginContext from '../../context/LoginContext'
+import Button from "./../shared/Button"
+import loginUser from '../../services/loginUser'
+import useFetchUserNames from '../../hooks/useFetchUserNames'
+import cyrb53 from '../../services/cyrb53'
+
+import { JSON_SERVER_URL } from '../../constants'
+import { enqueueSnackbar } from 'notistack'
+
+const signupFormSchema = z.object({
+    name: z.string().trim().min(3, { message: "imię musi zawierać conajmniej 3 znaki" }),
+    email: z.string().trim().email({ message: "wprowadź prawidłowy adres e-mail" }),
+    password: z.string().trim().min(8, { message: "hasło musi zawierać co najmniej 8 znaków" })
+        .regex(new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/g), { message: "za słabe hasło" }),
+    confirm: z.string().trim().min(1, { message: "potwierdź wprowadzone hasło" }),
+}).superRefine((val, ctx) => {
+    if (val.password !== val.confirm) {
+        ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: 'hasła nie są identyczne',
+            path: ['confirm'],
+        })
+    }
+})
+
+const SignUp = () => {
+    const { loggedUserId, setLoggedUser, setLoggedUserId } = useContext(LoginContext)
+    const userNamesTaken = useFetchUserNames();
+    const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(signupFormSchema) })
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (loggedUserId !== '-1') navigate("/forbidden")
+    }, [])
+
+    const onSubmit = async (data, event) => {
+        event.preventDefault();
+        try {
+            if (data.name in userNamesTaken) {
+                enqueueSnackbar(`użytkownik ${data.name} już istnieje`)
+                throw new Error("user already taken")
+            }
+
+            const hashedPassword = cyrb53(data.password)
+
+            const response = await fetch(JSON_SERVER_URL, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify({
+                    userName: data.name,
+                    userEmail: data.email,
+                    hashedPassword: hashedPassword,
+                    favourites: {},
+                    "arena": {},
+                    "stats": {},
+                    "modified": {},
+                    "created": {},
+                    "usedPictures": {},
+                })
+            })
+            if (!response) throw new Error("error during creating new user")
+
+            await loginUser(data.name, hashedPassword, JSON_SERVER_URL, setLoggedUser, setLoggedUserId)
+            enqueueSnackbar(`Utworzono i zalogowano użytkownika ${data.name}`)
+            navigate(`/`);
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    return (<>
+        {loggedUserId === "-1" &&
+            <FormContainer>
+                <Form onSubmit={handleSubmit(onSubmit)}>
+                    <Input {...register('name')}
+                        type={"text"}
+                        label="Imię:"
+                        placeholder={"imię"}
+                        error={errors.name ?? ""} />
+
+                    <Input {...register('email')}
+                        type={"text"}
+                        label="e-mail:"
+
+                        placeholder={"e-mail"}
+                        error={errors.email ?? ""} />
+                    <Input {...register('password')}
+                        type={"password"}
+                        label="Hasło:"
+                        placeholder={"hasło"}
+                        error={errors.password ?? ""} />
+                    <Input {...register('confirm')}
+                        type={"password"}
+                        label="Powtórz hasło:"
+                        placeholder={"powtórz hasło"}
+                        error={errors.confirm ?? ""} />
+                    <Button type="submit" width="8rem">Zarejestruj</Button>
+                </Form>
+            </FormContainer>}
+    </>
+    )
+}
+
+const FormContainer = styled.div`
+    height: 100%;
+    display: flex;
+    align-items: center;
+`
+
+const Form = styled.form`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`
+
+export default SignUp

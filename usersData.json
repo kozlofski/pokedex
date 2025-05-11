@@ -1,0 +1,177 @@
+{
+  "users": [
+    {
+      "userName": "koza",
+      "userEmail": "koza@wp.pl",
+      "hashedPassword": 3821238780675380,
+      "favourites": {
+        "bulbasaur": true,
+        "venusaur": true,
+        "gfdh": true,
+        "gfdhdfgh": true
+      },
+      "arena": {},
+      "stats": {
+        "venusaur": {
+          "wins": 2,
+          "losses": 0,
+          "baseExperience": 283
+        },
+        "gfdh": {
+          "wins": 2,
+          "losses": 2,
+          "baseExperience": 365
+        },
+        "bulbasaur": {
+          "wins": 0,
+          "losses": 5,
+          "baseExperience": 64
+        },
+        "charmeleon": {
+          "wins": 3,
+          "losses": 0,
+          "baseExperience": 172
+        },
+        "charizard": {
+          "wins": 1,
+          "losses": 0,
+          "baseExperience": 277
+        },
+        "ivysaur": {
+          "wins": 0,
+          "losses": 1,
+          "baseExperience": 142
+        }
+      },
+      "modified": {
+        "bulbasaur": {
+          "height": 74,
+          "weight": 69,
+          "baseExperience": 64
+        },
+        "gfdhdfgh": {
+          "height": 4,
+          "weight": 6,
+          "baseExperience": 5
+        }
+      },
+      "created": {
+        "gfdh": {
+          "height": 2345,
+          "weight": 45,
+          "baseExperience": 345,
+          "ability": "fghg",
+          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/450.png"
+        },
+        "gfdhdfgh": {
+          "height": 465,
+          "weight": 6745,
+          "baseExperience": 5678,
+          "ability": "hggfdj",
+          "imgUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/449.png"
+        }
+      },
+      "usedPictures": {},
+      "id": 1,
+      "picturesUsed": {
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/450.png": true,
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/449.png": true
+      }
+    },
+    {
+      "userName": "koza1",
+      "userEmail": "koza@w.pl",
+      "hashedPassword": 3821238780675380,
+      "favourites": {},
+      "arena": {},
+      "stats": {},
+      "modified": {},
+      "created": {},
+      "usedPictures": {},
+      "id": 2
+    },
+    {
+      "userName": "koza2",
+      "userEmail": "koza@wp.pl",
+      "hashedPassword": 3821238780675380,
+      "favourites": {},
+      "arena": {},
+      "stats": {},
+      "modified": {},
+      "created": {},
+      "usedPictures": {},
+      "id": 3
+    },
+    {
+      "userName": "koza4",
+      "userEmail": "koza@wp.pl",
+      "hashedPassword": 3821238780675380,
+      "favourites": {},
+      "arena": {},
+      "stats": {},
+      "modified": {},
+      "created": {},
+      "usedPictures": {},
+      "id": 4
+    },
+    {
+      "userName": "koza5",
+      "userEmail": "koza@wp.pl",
+      "hashedPassword": 3821238780675380,
+      "favourites": {},
+      "arena": {},
+      "stats": {},
+      "modified": {},
+      "created": {},
+      "usedPictures": {},
+      "id": 5
+    },
+    {
+      "userName": "koza7",
+      "userEmail": "koza@wp.pl",
+      "hashedPassword": 3821238780675380,
+      "favourites": {},
+      "arena": {},
+      "stats": {},
+      "modified": {},
+      "created": {},
+      "usedPictures": {},
+      "id": 6
+    },
+    {
+      "userName": "koza8",
+      "userEmail": "koza@wp.pl",
+      "hashedPassword": 3821238780675380,
+      "favourites": {},
+      "arena": {},
+      "stats": {},
+      "modified": {},
+      "created": {},
+      "usedPictures": {},
+      "id": 7
+    },
+    {
+      "userName": "koza9",
+      "userEmail": "koza@wp.pl",
+      "hashedPassword": 3821238780675380,
+      "favourites": {},
+      "arena": {},
+      "stats": {
+        "venusaur": {
+          "wins": 1,
+          "losses": 0,
+          "baseExperience": 273
+        },
+        "charmeleon": {
+          "wins": 0,
+          "losses": 1,
+          "baseExperience": 142
+        }
+      },
+      "modified": {},
+      "created": {},
+      "usedPictures": {},
+      "id": 8
+    }
+  ]
+}
